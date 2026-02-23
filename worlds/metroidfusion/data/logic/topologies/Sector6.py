@@ -123,7 +123,7 @@ Sector6VariaCoreXZone.connections = [
 Sector6AfterVariaCoreXZone.connections = [
     Connection(Sector6Crossroads, [
         PONRRequirement([], [HasMorph]),
-        HasVariaRequirement(["Morph Ball"], [HasScrewAttack]),
+        Requirement(["Morph Ball", "Varia Suit"], [HasScrewAttack]),
         CanFightBossRequirement(["Speed Booster", "Level 2 Keycard", "Varia Suit"], [CanBombOrPowerBomb])
     ], one_way=True),
     Connection(Sector6VariaCoreXZone, [
@@ -144,10 +144,10 @@ Sector6Hub.locations = [
 
 Sector6Crossroads.locations = [
     FusionLocation("Sector 6 (NOC) -- Missile Mimic Lodge", False, [
-        HasVariaRequirement([], [CanBombOrPowerBomb])
+        Requirement(["Varia Suit"], [CanBombOrPowerBomb])
     ]),
     FusionLocation("Sector 6 (NOC) -- Pillar Highway", False, [
-        HasVariaRequirement(["Screw Attack", "Speed Booster"], [CanBomb, HasWaveBeam])
+        Requirement(["Screw Attack", "Speed Booster", "Varia Suit"], [CanBomb, HasWaveBeam])
     ]),
     FusionLocation("Sector 6 (NOC) -- Vault", False, [CanBallJumpAndBomb])
 ]

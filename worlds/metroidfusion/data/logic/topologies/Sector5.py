@@ -64,9 +64,9 @@ Sector5SecurityZone.connections = [
         #ReverseIceLOLRequirement
     ]),
     Connection(Sector5FrozenHub, [
-        HasVariaRequirement(["Level 3 Keycard"], []),
-        HasVariaRequirement(["Space Jump"], [CanBombOrPowerBomb]),
-        HasVariaRequirement(["Space Jump", "Speed Booster", "Morph Ball", "Level 3 Keycard"], [CanFreezeEnemies])
+        Requirement(["Level 3 Keycard", "Varia Suit"], []),
+        Requirement(["Space Jump", "Varia Suit"], [CanBombOrPowerBomb]),
+        Requirement(["Space Jump", "Speed Booster", "Morph Ball", "Level 3 Keycard", "Varia Suit"], [CanFreezeEnemies])
     ], one_way=True)
 ]
 
@@ -189,7 +189,7 @@ Sector5SecurityZone.locations = [
         ])
     ]),
     FusionLocation("Sector 5 (ARC) -- Security Shaft East", False, [
-        HasVariaRequirement([], [CanPowerBomb])
+        Requirement(["Varia Suit"], [CanPowerBomb])
     ]),
     FusionLocation("Sector 5 (ARC) -- Transmutation Trial", False, [
         CanBallJumpRequirement(["Level 3 Keycard", "Varia Suit"], [HasSpaceJump, CanFreezeEnemies])
