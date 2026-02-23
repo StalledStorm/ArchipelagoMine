@@ -44,13 +44,13 @@ Sector5FrozenHub.connections = [
         HasKeycard3Requirement([], [HasVaria])
     ], one_way=True),
     Connection(Sector5BeforeNightmareHub, [
-        Level3KeycardRequirement([], [HasVaria])
+        Requirement(["Level 3 Keycard"], [HasVaria])
     ]),
     Connection(Sector5SecurityZone, [
         PONRRequirement(["Speed Booster", "Varia Suit"], [CanBombOrPowerBomb], level_3_e_tanks),
         HasSpaceJumpRequirement(["Speed Booster", "Varia Suit"], [CanBombOrPowerBomb], level_3_e_tanks),
-        #Level3KeycardRequirement(["Varia Suit"], [CanDoExpertShinespark]),
-        Level3KeycardRequirement(["Varia Suit"], [HasWaveBeam])
+        #Requirement(["Varia Suit", "Level 3 Keycard"], [CanDoExpertShinespark]),
+        Requirement(["Varia Suit", "Level 3 Keycard"], [HasWaveBeam])
     ], one_way=True),
     Connection(Sector5TopLeftBigRoom, [
         Requirement(["Varia Suit"], [CanJumpHigh, CanDoAdvancedWallJump])

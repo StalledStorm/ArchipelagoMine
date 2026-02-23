@@ -132,7 +132,7 @@ MainDeckHub.locations = [
     FusionLocation("Main Deck -- Quarantine Bay", False, []),
     FusionLocation("Main Deck -- Station Entrance", False, [CanPowerBomb]),
     FusionLocation("Main Deck -- Sub-Zero Containment", False, [
-        Level3KeycardRequirement([], [HasVaria])
+        Requirement(["Level 3 Keycard"], [HasVaria])
     ])
 ]
 
