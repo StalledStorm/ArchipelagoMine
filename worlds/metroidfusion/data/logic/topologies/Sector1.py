@@ -16,7 +16,7 @@ Sector1Hub.connections = [
         Requirement(["Screw Attack", "Level 2 Keycard"], [HasSpaceJump, CanDoAdvancedWallJumpWithHiJump])
     ]),
     Connection(Sector1TubeLeft, [
-        Level1KeycardRequirement(["Morph Ball", "Screw Attack"], [])
+        Requirement(["Morph Ball", "Screw Attack", "Level 1 Keycard"], [])
     ]),
     Connection(Sector1FirstStabilizerZone, [
         CanDefeatSmallGeron,

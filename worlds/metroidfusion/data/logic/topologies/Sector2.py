@@ -77,7 +77,7 @@ Sector2Hub.locations = [
         Requirement(["Level 1 Keycard"], []),
     ]),
     FusionLocation("Sector 2 (TRO) -- Lobby Cache", False, [
-        Level1KeycardRequirement([], [CanBombOrPowerBomb])
+        Requirement(["Level 1 Keycard"], [CanBombOrPowerBomb])
     ]),
 ]
 

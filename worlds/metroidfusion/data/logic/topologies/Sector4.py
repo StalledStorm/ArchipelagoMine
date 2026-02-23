@@ -65,7 +65,7 @@ Sector4UpperZone.connections = [
 
 Sector4BeforePumpControlZone.connections = [
     Connection(Sector4PumpControl, [
-        Level1KeycardRequirement([], [HasSpeedBooster])
+        Requirement(["Level 1 Keycard"], [HasSpeedBooster])
     ], one_way=True),
     Connection(Sector4UpperWaterZone, [
         CanDrainAQARequirement(["Gravity Suit"], [HasKeycard4])
