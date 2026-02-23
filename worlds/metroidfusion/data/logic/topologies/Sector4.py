@@ -172,7 +172,7 @@ Sector4LowerSecurityZone.connections = [
         ])
     ], one_way=True),
     Connection(Sector4SecurityZone, [
-        Level4KeyCardRequirement(["Gravity Suit"], [HasSpaceJump, CanDoSimpleWallJump]),
+        Requirement(["Gravity Suit", "Level 4 Keycard"], [HasSpaceJump, CanDoSimpleWallJump]),
         CanPowerBombRequirement(["Gravity Suit", "Missile Data"], [HasSpaceJump, CanDoSimpleWallJump]),
         CanScrewAttackUnderwaterRequirement(["Missile Data", "Morph Ball"], [HasSpaceJump, CanDoSimpleWallJump])
     ])
@@ -180,7 +180,7 @@ Sector4LowerSecurityZone.connections = [
 
 Sector4SecurityRoom.connections = [
     Connection(Sector4LowerSecurityZone, [
-        Level4KeycardRequirement(["Gravity Suit"], [HasSpaceJump, CanDoSimpleWallJump])
+        Requirement(["Gravity Suit", "Level 4 Keycard"], [HasSpaceJump, CanDoSimpleWallJump])
     ])
 ]
 
@@ -211,7 +211,7 @@ Sector4RightWaterZoneSave.connections = [
 
 Sector4DataZone.connections = [
     Connection(Sector4RightDataZone, [
-        Level4KeycardRequirement([], [CanBombOrPowerBomb])
+        Requirement(["Level 4 Keycard"], [CanBombOrPowerBomb])
     ])
 ]
 
