@@ -146,7 +146,7 @@ Sector4SecurityZone.connections = [
     Connection(Sector4LowerSecurityZone, [
         PONRRequirement([], [HasKeycard4]),
         PONRRequirement(["Missile Data", "Morph Ball"], [
-            HasGravityRequirement([], [CanBomb, HasScrewAttack]),
+            Requirement(["Gravity Suit"], [CanBomb, HasScrewAttack]),
             HasHiJumpRequirement([], [CanBomb]),
             CanPowerBomb
         ])
@@ -193,7 +193,7 @@ Sector4RightWaterZone.connections = [
         PONRRequirement(["Screw Attack"], [HasGravity])
     ], one_way=True),
     Connection(Sector4RightWaterZoneSave, [
-        HasGravityRequirement([], [HasScrewAttack]),
+        Requirement(["Gravity Suit"], [HasScrewAttack]),
         PONRRequirement(["Gravity Suit"], [CanDoBeginnerShinespark])
     ], one_way=True)
 ]
@@ -205,7 +205,7 @@ Sector4RightWaterZoneSave.connections = [
     Connection(Sector4RightWaterZone, [
         PONRRequirement(["Morph Ball", "Hi-Jump", "Gravity Suit", "Speed Booster"], [CanFreezeEnemies]),
         PONRRequirement(["Morph Ball", "Bomb Data", "Gravity Suit", "Speed Booster"], [CanFreezeEnemies]),
-        HasGravityRequirement([], [HasScrewAttack])
+        Requirement(["Gravity Suit"], [HasScrewAttack])
     ], one_way=True)
 ]
 
@@ -219,7 +219,7 @@ Sector4RightDataZone.connections = [
     Connection(Sector4TubeRight, [CanBallJumpRequirement([], [CanDiffusionMissile])]),
     Connection(Sector4RightWaterZone, [
         PONRRequirement(["Morph Ball"], [CanDiffusionMissile]),
-        HasGravityRequirement(["Morph Ball"], [CanDiffusionMissile])
+        Requirement(["Morph Ball", "Gravity Suit"], [CanDiffusionMissile])
     ], one_way=True)
 ]
 
@@ -281,7 +281,7 @@ Sector4SecurityZone.locations = [
     FusionLocation("Sector 4 (AQA) -- Cheddar Bay", False, [
         HasMissileRequirement(["Gravity Suit", "Morph Ball"], [CanBomb, HasScrewAttack]),
         HasMissileRequirement([], [CanPowerBomb]),
-        HasGravityRequirement(["Level 4 Keycard", "Morph Ball"], [HasScrewAttack, CanPowerBomb])
+        Requirement(["Level 4 Keycard", "Morph Ball", "Gravity Suit"], [HasScrewAttack, CanPowerBomb])
     ]),
     FusionLocation("Sector 4 (AQA) -- Aquarium Pirate Tank", False, [
         PONRRequirement([], [CanPowerBomb]),
