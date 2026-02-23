@@ -187,7 +187,7 @@ Sector4SecurityRoom.connections = [
 Sector4RightWaterZone.connections = [
     Connection(Sector4RightDataZone, [
         PONRRequirement(["Gravity Suit", "Morph Ball", "Missile Data"], [CanFreezeEnemies, HasSpaceJump]),
-        CanDiffusionMissileRequirement(["Morph Ball"], [HasGravity])
+        Requirement(["Morph Ball", "Missile Data", "Diffusion Missile"], [HasGravity])
     ], one_way=True),
     Connection(Sector4TubeLeft, [
         PONRRequirement(["Screw Attack"], [HasGravity])
