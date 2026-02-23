@@ -20,7 +20,7 @@ Sector1Hub.connections = [
     ]),
     Connection(Sector1FirstStabilizerZone, [
         CanDefeatSmallGeron,
-        Level1And2KeycardRequirement([], [CanLavaDive]),
+        Requirement(["Level 1 Keycard", "Level 2 Keycard"], [CanLavaDive]),
         CanDoAdvancedShinespark
     ]),
 ]
