@@ -24,7 +24,7 @@ MainDeckHub.connections = [
         Requirement(["Morph Ball"], [HasKeycard4, CanPowerBomb], level_2_e_tanks)
     ]),
     Connection(NexusStorage, [
-        Level2KeycardRequirement([], [CanDefeatLargeGeron])
+        Requirement(["Level 2 Keycard"], [CanDefeatLargeGeron])
     ])
 ]
 

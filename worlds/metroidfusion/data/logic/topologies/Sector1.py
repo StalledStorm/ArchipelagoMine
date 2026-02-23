@@ -13,7 +13,7 @@ from ..regions.Sector6 import Sector6RestrictedZoneElevatorToTourian
 Sector1Hub.connections = [
     VariableConnection(SectorHubElevator1Top, []),
     Connection(Sector1Antechamber, [
-        Level2KeycardRequirement(["Screw Attack"], [HasSpaceJump, CanDoAdvancedWallJumpWithHiJump])
+        Requirement(["Screw Attack", "Level 2 Keycard"], [HasSpaceJump, CanDoAdvancedWallJumpWithHiJump])
     ]),
     Connection(Sector1TubeLeft, [
         Level1KeycardRequirement(["Morph Ball", "Screw Attack"], [])
@@ -27,7 +27,7 @@ Sector1Hub.connections = [
 
 Sector1Antechamber.connections = [
     Connection(Sector1Hub, [
-        Level2KeycardRequirement([], [HasScrewAttack])
+        Requirement(["Level 2 Keycard"], [HasScrewAttack])
     ], one_way=True),
     Connection(Sector1TubeRight, [HasMorph], one_way=True)
 ]

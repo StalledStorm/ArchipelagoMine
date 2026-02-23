@@ -70,7 +70,7 @@ Sector3MainShaft.connections = [
         Requirement(["Morph Ball", "Speed Booster"], [CanDestroyBombBlocks]),
         CanDefeatMediumGeronRequirement(["Morph Ball", "Level 2 Keycard"], [CanDestroyBombBlocks])
     ], one_way=True),
-    Connection(Sector3BoilerZone, [Level2KeycardRequirement([], [HasVaria])]),
+    Connection(Sector3BoilerZone, [Requirement(["Level 2 Keycard"], [HasVaria])]),
     Connection(Sector3BobZone, [
         Requirement(["Morph Ball", "Hi-Jump"], [HasScrewAttack])
     ], one_way=True),
@@ -187,7 +187,7 @@ Sector3MainShaft.locations = [
         PONRRequirement(["Morph Ball", "Power Bomb"], [CanDoAdvancedShinespark])
     ]),
     FusionLocation("Sector 3 (PYR) -- Processing Access", False, [
-        Level2KeycardRequirement([], [])
+        Requirement(["Level 2 Keycard"], [])
     ]),
 ]
 
