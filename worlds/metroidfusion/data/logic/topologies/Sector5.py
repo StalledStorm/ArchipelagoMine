@@ -41,7 +41,7 @@ Sector5TopLeftBigRoom.connections = [
 Sector5FrozenHub.connections = [
     Connection(Sector5DataRoom, [
         PONRRequirement(["Level 3 Keycard"], [HasVaria]),
-        HasKeycard3Requirement([], [HasVaria])
+        Requirement(["Level 3 Keycard"], [HasVaria])
     ], one_way=True),
     Connection(Sector5BeforeNightmareHub, [
         Requirement(["Level 3 Keycard"], [HasVaria])
