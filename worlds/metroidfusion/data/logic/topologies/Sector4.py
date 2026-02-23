@@ -114,7 +114,7 @@ Sector4UpperWaterZone.connections = [
             CanFightMidgameBossRequirement(["Wave Beam", "Ice Beam"], [HasSpaceJump, CanDoSimpleWallJump]),
             CanFightMidgameBossRequirement(["Missile Data", "Diffusion Missile"], [HasSpaceJump, CanDoSimpleWallJump])
         ], level_4_e_tanks),
-        HasMorphRequirement(["Speed Booster"], [CanScrewAttackUnderwater], level_4_e_tanks)
+        Requirement(["Speed Booster", "Morph Ball"], [CanScrewAttackUnderwater], level_4_e_tanks)
     ], one_way=True)
 ]
 

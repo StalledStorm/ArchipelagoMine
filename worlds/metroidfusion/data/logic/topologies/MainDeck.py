@@ -53,7 +53,7 @@ UpperArachnusArena.connections = [
     Connection(LowerArachnusArena, [
         PONRRequirement([], [HasMissile]),
         CanBeatToughEnemyRequirement(["Morph Ball"], [CanDefeatSmallGeron]),
-        CanMorphRequirement(["Screw Attack"], [CanJumpHigh, CanDoSimpleWallJump])
+        Requirement(["Screw Attack", "Morph Ball"], [CanJumpHigh, CanDoSimpleWallJump])
     ], one_way=True)
 ]
 

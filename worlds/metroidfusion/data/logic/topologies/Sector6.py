@@ -196,7 +196,7 @@ Sector6VariaCoreXZone.locations = [
 
 Sector6AfterVariaCoreXZone.locations = [
     FusionLocation("Sector 6 (NOC) -- Twin Caverns West -- Lower Item", False, [
-        HasMorphRequirement([], [CanJumpHigh])
+        Requirement(["Morph Ball"], [CanJumpHigh])
     ]),
     FusionLocation("Sector 6 (NOC) -- Twin Caverns West -- Upper Item", False, [])
 ]
