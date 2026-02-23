@@ -279,8 +279,8 @@ Sector4UpperSecurityZone.locations = [
 
 Sector4SecurityZone.locations = [
     FusionLocation("Sector 4 (AQA) -- Cheddar Bay", False, [
-        HasMissileRequirement(["Gravity Suit", "Morph Ball"], [CanBomb, HasScrewAttack]),
-        HasMissileRequirement([], [CanPowerBomb]),
+        Requirement(["Gravity Suit", "Morph Ball", "Missile Data"], [CanBomb, HasScrewAttack]),
+        Requirement(["Missile Data"], [CanPowerBomb]),
         Requirement(["Level 4 Keycard", "Morph Ball", "Gravity Suit"], [HasScrewAttack, CanPowerBomb])
     ]),
     FusionLocation("Sector 4 (AQA) -- Aquarium Pirate Tank", False, [
