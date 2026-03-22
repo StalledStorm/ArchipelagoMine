@@ -68,6 +68,14 @@ sector_hub.ponr_sphere_0 = ["Space Jump", "Level 1 Keycard"]
 sector_hub.ponr_sphere_1 = ["Morph Ball", "Missile Data", "Screw Attack"]
 
 
+twin_junctions = StartingLocation()
+twin_junctions.vanilla_opening_locations = ["Sector 1 (SRX) -- Lava Lake -- Upper Right Item", "Sector 1 (SRX) -- Northeast Atmospheric Stabilizer"]
+twin_junctions.elevator_shuffle_opening_locations = ["Sector 1 (SRX) -- Lava Lake -- Upper Right Item", "Sector 1 (SRX) -- Northeast Atmospheric Stabilizer"]
+twin_junctions.sphere_0 = []
+twin_junctions.sphere_1 = ["Morph Ball", "Charge Beam", "Missile Data", "Screw Attack", "Speed Booster"]
+twin_junctions.ponr_sphere_0 = []
+twin_junctions.ponr_sphere_1 = ["Morph Ball", "Speed Booster"]
+
 starting_location_data = {
     "Docking Bay": {
         "Area": 0,
@@ -91,6 +99,12 @@ starting_location_data = {
         "Area": 0,
         "Room": 33,
         "BlockX": 9,
+        "BlockY": 10
+    },
+    "Twin Junctions Save Room": {
+        "Area": 1,
+        "Room": 34,
+        "BlockX": 10,
         "BlockY": 10
     }
 }

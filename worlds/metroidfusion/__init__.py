@@ -21,7 +21,7 @@ from .Locations import all_locations, MetroidFusionLocation, get_location_data_b
 from .Logic import create_logic_rule, create_logic_rule_for_list, LogicObject
 from .MFOptions import MetroidFusionOptions, metroid_fusion_option_groups
 from .Rom import MetroidFusionProcedurePatch
-from .StartingLocations import main_deck_hub, StartingLocation, sector_hub, starting_location_data, operations_deck
+from .StartingLocations import main_deck_hub, StartingLocation, sector_hub, starting_location_data, operations_deck, twin_junctions
 from .data import memory
 from .data.items import events
 from .data.locations import (fusion_regions, left_tubes, right_tubes, sector_elevator_tops, sector_elevator_bottoms,
@@ -185,6 +185,10 @@ class MetroidFusionWorld(World):
                     self.starting_region = "Main Deck Hub"
                     self.starting_location = "Concourse Save Station"
                     self.starting_location_object = main_deck_hub
+                elif self.options.StartingLocation == self.options.StartingLocation.option_twin_junctions_save_station:
+                    self.starting_region = "Twin Junctions"
+                    self.starting_location = "Twin Junctions Save Room"
+                    self.starting_location_object = twin_junctions
             self.starting_major_upgrades = self.options.StartingMajorUpgrades.value
             self.starting_energy_tanks = self.options.StartingEnergyTanks.value
             self.filler_items = sorted(self.options.FillerItems.value)

@@ -117,6 +117,7 @@ class StartingLocation(Choice):
     option_operations_deck = 1
     option_sector_hub = 2
     option_concourse_save_station = 3
+    option_twin_junctions_save_station = 4
     default = 0
 
 class StartingMajorUpgrades(Range):
