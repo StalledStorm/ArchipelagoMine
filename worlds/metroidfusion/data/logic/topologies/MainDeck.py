@@ -122,34 +122,26 @@ SectorHubElevatorBottom.connections = [
     VariableConnection(SectorHubElevatorTop, []),
     Connection(SectorHubElevator1Top, []),
     Connection(SectorHubElevator2Top, []),
-    Connection(SectorHubElevator3Top, [
-        SectorHubLevel1KeycardRequirement("Open Door with Level 1 Keycard")
-    ]),
-    Connection(SectorHubElevator4Top, [
-        SectorHubLevel1KeycardRequirement("Open Door with Level 1 Keycard")
-    ]),
-    Connection(SectorHubElevator5Top, [
-        SectorHubLevel1And2KeycardRequirement("Open Door with Level 2 Keycard")
-    ]),
-    Connection(SectorHubElevator6Top, [
-        SectorHubLevel1And2KeycardRequirement("Open Door with Level 2 Keycard")
-    ])
 ]
 
 SectorHubElevator1Top.connections = [
-    VariableConnection(Sector1Hub, [])
+    VariableConnection(Sector1Hub, []),
+    Connection(SectorHubElevator3Top, [SectorHubLevel1KeycardRequirement]),
 ]
 
 SectorHubElevator2Top.connections = [
-    VariableConnection(Sector2Hub, [])
+    VariableConnection(Sector2Hub, []),
+    Connection(SectorHubElevator4Top, [SectorHubLevel1KeycardRequirement]),
 ]
 
 SectorHubElevator3Top.connections = [
-    VariableConnection(Sector3Hub, [])
+    VariableConnection(Sector3Hub, []),
+    Connection(SectorHubElevator5Top, [SectorHubLevel2KeycardRequirement]),
 ]
 
 SectorHubElevator4Top.connections = [
-    VariableConnection(Sector4Hub, [])
+    VariableConnection(Sector4Hub, []),
+    Connection(SectorHubElevator6Top, [SectorHubLevel2KeycardRequirement])
 ]
 
 SectorHubElevator5Top.connections = [

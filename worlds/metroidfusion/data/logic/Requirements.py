@@ -501,6 +501,196 @@ class CanUseAllBeamUpgrades(HasChargeBeam, HasWideBeam, HasPlasmaBeam, HasWaveBe
                  *requirements, **kwargs):
         super().__init__(name, *requirements, **kwargs)
 
+class CanDoSimpleWallJump(Requirement):
+    name = "Can Do Simple Wall Jump"
+    items_needed = ["Wall Jump Boots"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_beginner
+
+class CanDoSimpleWallJumpWithHiJump(Requirement):
+    name = "Can Do Simple Wall Jump with Hi-Jump"
+    items_needed = ["Hi-Jump"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_beginner
+
+class CanDoSimpleWallJumpWithScrewAttack(Requirement):
+    name = "Can Do Simple Wall Jump with Screw Attack"
+    items_needed = ["Screw Attack"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_beginner
+
+class CanDoSimpleWallJumpWithHiJumpAndScrewAttack(Requirement):
+    name = "Can Do Simple Wall Jump with Hi-Jump and Screw Attack"
+    items_needed = ["Hi-Jump", "Screw Attack"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_beginner
+
+class CanDoSimpleWallJumpAndFreezeEnemies(Requirement):
+    name = "Can Do Simple Wall Jump and Freeze Enemies"
+    other_requirements = [CanFreezeEnemies]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_beginner
+
+class CanDoAdvancedWallJump(Requirement):
+    name = "Can Do Advanced Wall Jump"
+    items_needed = ["Wall Jump Boots"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_advanced
+
+class CanDoAdvancedWallJumpWithHiJump(Requirement):
+    name = "Can Do Advanced Wall Jump with Hi-Jump"
+    items_needed = ["Hi-Jump"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_advanced
+
+class CanDoAdvancedWallJumpWithScrewAttack(Requirement):
+    name = "Can Do Advanced Wall Jump with Screw Attack"
+    items_needed = ["Screw Attack"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpTrickDifficulty >= options.WallJumpTrickDifficulty.option_advanced
+
+class CanDoAdvancedCombat(Requirement):
+    name = "Can Do Advanced Combat"
+    items_needed = ["Nothing"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.CombatDifficulty >= options.CombatDifficulty.option_advanced
+
+class CanDoExpertCombat(Requirement):
+    name = "Can Do Expert Combat"
+    items_needed = ["Nothing"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.CombatDifficulty >= options.CombatDifficulty.option_expert
+
+class CanFightBossOnAdvanced(Requirement):
+    name = "Can Fight Boss on Advanced"
+    items_needed = ["Missile Data", "Charge Beam"]
+    energy_tanks_needed = level_1_e_tanks
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.CombatDifficulty >= options.CombatDifficulty.option_advanced
+
+class CanFightLategameBossOnAdvanced(Requirement):
+    name = "Can Fight Lategame Boss on Advanced"
+    items_needed = ["Missile Data", "Charge Beam", "Super Missile"]
+    energy_tanks_needed = level_2_e_tanks
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.CombatDifficulty >= options.CombatDifficulty.option_advanced
+
+class CanFightBossOnExpert(Requirement):
+    name = "Can Fight Boss on Expert"
+    items_needed = ["Missile Data", "Charge Beam"]
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.CombatDifficulty >= options.CombatDifficulty.option_expert
+
+class SectorHubLevel1KeycardRequirement(Requirement):
+    name = "Sector Hub Level 1 Keycard Requirement"
+    items_needed = ["Level 1 Keycard"]
+    energy_tanks_needed = level_1_e_tanks
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions"):
+        if options.GameMode == options.GameMode.option_custom:
+            return not options.OpenSectorElevators
+        else:
+            return options.GameMode == options.GameMode.option_vanilla
+
+
+class SectorHubLevel2KeycardRequirement(Requirement):
+    name = "Sector Hub Level 2 Keycard Requirement"
+    items_needed = ["Level 2 Keycard"]
+    energy_tanks_needed = level_2_e_tanks
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions"):
+        if options.GameMode == options.GameMode.option_custom:
+            return not options.OpenSectorElevators
+        else:
+            return options.GameMode == options.GameMode.option_vanilla
+
+
+# endregion
+
+#region Keycard Requirements
+class HasKeycard1(Requirement):
+    name = "Has Keycard 1"
+    energy_tanks_needed = level_1_e_tanks
+    items_needed = ["Level 1 Keycard"]
+
+class HasKeycard2(Requirement):
+    name = "Has Keycard 2"
+    energy_tanks_needed = level_2_e_tanks
+    items_needed = ["Level 2 Keycard"]
+
+class HasKeycard1And2(Requirement):
+    name = "Has Keycard 1 and 2"
+    energy_tanks_needed = level_2_e_tanks
+    items_needed = ["Level 1 Keycard", "Level 2 Keycard"]
+
+class HasKeycard3(Requirement):
+    name = "Has Keycard 3"
+    energy_tanks_needed = level_3_e_tanks
+    items_needed = ["Level 3 Keycard"]
+
+class HasKeycard4(Requirement):
+    name = "Has Keycard 4"
+    energy_tanks_needed = level_4_e_tanks
+    items_needed = ["Level 4 Keycard"]
+
+class Level1KeycardRequirement(Requirement):
+    name = "Level 1 Keycard Requirement"
+    def __init__(self, items_needed, other_requirements, energy_tanks_needed=3):
+        super().__init__(items_needed, other_requirements, energy_tanks_needed)
+        self.items_needed.append("Level 1 Keycard")
+
+class Level2KeycardRequirement(Requirement):
+    name = "Level 2 Keycard Requirement"
+    def __init__(self, items_needed, other_requirements, energy_tanks_needed=5):
+        super().__init__(items_needed, other_requirements, energy_tanks_needed)
+        self.items_needed.append("Level 2 Keycard")
+
+class Level1And2KeycardRequirement(Requirement):
+    name = "Level 1 and 2 Keycard Requirement"
+    def __init__(self, items_needed, other_requirements, energy_tanks_needed=5):
+        super().__init__(items_needed, other_requirements, energy_tanks_needed)
+        self.items_needed.append("Level 1 Keycard")
+        self.items_needed.append("Level 2 Keycard")
+
+class Level3KeycardRequirement(Requirement):
+    name = "Level 3 Keycard Requirement"
+    def __init__(self, items_needed, other_requirements, energy_tanks_needed=7):
+        super().__init__(items_needed, other_requirements, energy_tanks_needed)
+        self.items_needed.append("Level 3 Keycard")
+
+class Level4KeycardRequirement(Requirement):
+    name = "Level 4 Keycard Requirement"
+    def __init__(self, items_needed, other_requirements, energy_tanks_needed=10):
+        super().__init__(items_needed, other_requirements, energy_tanks_needed)
+        self.items_needed.append("Level 4 Keycard")
 #endregion
 
 #region Enemy Requirements
