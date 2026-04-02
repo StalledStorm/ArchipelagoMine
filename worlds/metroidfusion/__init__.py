@@ -186,7 +186,7 @@ class MetroidFusionWorld(World):
                     self.starting_location = "Concourse Save Station"
                     self.starting_location_object = main_deck_hub
                 elif self.options.StartingLocation == self.options.StartingLocation.option_twin_junctions_save_station:
-                    self.starting_region = "Twin Junctions"
+                    self.starting_region = "Sector 1 First Stabilizer Zone"
                     self.starting_location = "Twin Junctions Save Room"
                     self.starting_location_object = twin_junctions
             self.starting_major_upgrades = self.options.StartingMajorUpgrades.value
