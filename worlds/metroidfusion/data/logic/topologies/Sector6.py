@@ -13,11 +13,8 @@ from ..regions.Sector6 import *
 
 Sector6Hub.connections = [
     VariableConnection(SectorHubElevator6Top, []),
-    Connection(Sector6Crossroads, [
-        CanDamageMediumGeron(),
-        CanDamageAnyGeron(),
-        CanDoBeginnerShinespark()
-    ]),
+    Connection(Sector6Crossroads, [CanDamageMediumGeron, CanDamageAnyGeron, HasScrewAttack]),
+    Connection(Sector6Crossroads, [CanDoBeginnerShinespark], one_way=True),
     Connection(Sector6TubeLeft, [
         PONRRequirement("PONR - Enter Sector 6 West Tube", [
             HasScrewAttack()
@@ -77,11 +74,12 @@ Sector6Crossroads.connections = [
 
 Sector6Catacombs.connections = [
     Connection(Sector6Crossroads, [
-        CanDoAdvancedShinespark(energy_tanks_needed=level_1_e_tanks),
-        CanDoBeginnerShinespark(None, [
-            HasHiJump()
-        ], energy_tanks_needed=level_1_e_tanks),
-    ], one_way=True),
+        CanDoBeginnerShinespark([], [
+            HasHiJump(),
+            HasSpaceJump()
+        ]),
+        CanDoAdvancedShinespark([], [])
+    ]),
     Connection(Sector6BeforeVariaCoreXZone, [
         Requirement("Catacombs -> Pre-Varia Core X Zone", [
             CanBomb(),

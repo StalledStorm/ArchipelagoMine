@@ -76,6 +76,23 @@ twin_junctions.sphere_1 = ["Morph Ball", "Charge Beam", "Missile Data", "Screw A
 twin_junctions.ponr_sphere_0 = []
 twin_junctions.ponr_sphere_1 = ["Morph Ball", "Speed Booster"]
 
+
+cavern = StartingLocation()
+cavern.vanilla_opening_locations = ["Sector 6 (NOC) -- Catacombs"]
+cavern.elevator_shuffle_opening_locations = ["Sector 6 (NOC) -- Catacombs"]
+cavern.sphere_0 = []
+cavern.sphere_1 = []
+cavern.ponr_sphere_0 = []
+cavern.ponr_sphere_1 = []
+
+def get_cavern_additional_items(options: MetroidFusionOptions):
+    additional_items = []
+    if options.ShinesparkTrickDifficulty >= options.ShinesparkTrickDifficulty.option_advanced:
+        additional_items.append("Speed Booster")
+    return additional_items
+
+cavern.get_additional_items = get_cavern_additional_items
+
 starting_location_data = {
     "Docking Bay": {
         "Area": 0,
@@ -106,5 +123,11 @@ starting_location_data = {
         "Room": 34,
         "BlockX": 10,
         "BlockY": 10
-    }
+    },
+    "Cavern Save Room": {
+        "Area": 6,
+        "Room": 23,
+        "BlockX": 10,
+        "BlockY": 10
+    },
 }
