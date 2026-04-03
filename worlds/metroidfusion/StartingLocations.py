@@ -93,6 +93,16 @@ def get_cavern_additional_items(options: MetroidFusionOptions):
 
 cavern.get_additional_items = get_cavern_additional_items
 
+
+datasave = StartingLocation()
+datasave.vanilla_opening_locations = []
+datasave.elevator_shuffle_opening_locations = []
+datasave.sphere_0 = []
+datasave.sphere_1 = ["Level 2 Keycard"]
+datasave.ponr_sphere_0 = []
+datasave.ponr_sphere_1 = []
+
+
 starting_location_data = {
     "Docking Bay": {
         "Area": 0,
@@ -122,6 +132,12 @@ starting_location_data = {
         "Area": 1,
         "Room": 34,
         "BlockX": 10,
+        "BlockY": 10
+    },
+    "Sector 3 Data Save Room": {
+        "Area": 3,
+        "Room": 32,
+        "BlockX": 9,
         "BlockY": 10
     },
     "Cavern Save Room": {

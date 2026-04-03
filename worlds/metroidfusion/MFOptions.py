@@ -118,7 +118,8 @@ class StartingLocation(Choice):
     option_sector_hub = 2
     option_concourse_save_station = 3
     option_twin_junctions_save_station = 4
-    option_cavern_save_station = 5
+    option_data_save_room = 5
+    option_cavern_save_station = 6
     default = 0
 
 class StartingMajorUpgrades(Range):
