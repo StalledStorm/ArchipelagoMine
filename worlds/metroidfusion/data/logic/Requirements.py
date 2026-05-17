@@ -2028,6 +2028,137 @@ class CanDoLudicrousJumpBombjump(Requirement):
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.JumpBombjumpDifficulty >= 5  # options.JumpBombjumpDifficulty.option_ludicrous
 
+# Jump Extend
+
+class CanDoBeginnerJumpExtend(Requirement):
+    """
+    The player can perform beginner jump extend maneuvers with YAML option ``JumpExtendDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Jump Extend"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner Jump Extend",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Extend - Beginner"})
+        items_needed.add("Jump Extend - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpExtendDifficulty >= 1  # options.JumpExtendDifficulty.option_beginner
+
+
+class CanDoIntermediateJumpExtend(Requirement):
+    """
+    The player can perform intermediate jump extend maneuvers with YAML option ``JumpExtendDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate Jump Extend"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate Jump Extend",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Extend - Intermediate"})
+        items_needed.add("Jump Extend - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpExtendDifficulty >= 2  # options.JumpExtendDifficulty.option_intermediate
+
+
+class CanDoAdvancedJumpExtend(Requirement):
+    """
+    The player can perform advanced jump extend maneuvers with YAML option ``JumpExtendDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced Jump Extend"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced Jump Extend",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Extend - Advanced"})
+        items_needed.add("Jump Extend - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpExtendDifficulty >= 3  # options.JumpExtendDifficulty.option_advanced
+
+
+class CanDoExpertJumpExtend(Requirement):
+    """
+    The player can perform expert jump extend maneuvers with YAML option ``JumpExtendDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert Jump Extend"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert Jump Extend",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Extend - Expert"})
+        items_needed.add("Jump Extend - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpExtendDifficulty >= 4  # options.JumpExtendDifficulty.option_expert
+
+
+class CanDoLudicrousJumpExtend(Requirement):
+    """
+    The player can perform ludicrous jump extend maneuvers with YAML option ``JumpExtendDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Jump Extend"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Jump Extend",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Extend - Ludicrous"})
+        items_needed.add("Jump Extend - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpExtendDifficulty >= 5  # options.JumpExtendDifficulty.option_ludicrous
+
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
     The player can fight a mid-game boss and win with YAML option ``CombatDifficulty: advanced``.
