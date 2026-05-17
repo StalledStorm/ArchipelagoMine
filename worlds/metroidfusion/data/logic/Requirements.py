@@ -2421,6 +2421,137 @@ class CanDoLudicrousMidAirMorph(Requirement):
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.MidAirMorphDifficulty >= 5  # options.MidAirMorphDifficulty.option_ludicrous
 
+# Knowledge
+
+class CanDoBeginnerKnowledge(Requirement):
+    """
+    The player can perform beginner knowledge maneuvers with YAML option ``KnowledgeDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Knowledge"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner Knowledge",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Knowledge - Beginner"})
+        items_needed.add("Knowledge - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.KnowledgeDifficulty >= 1  # options.KnowledgeDifficulty.option_beginner
+
+
+class CanDoIntermediateKnowledge(Requirement):
+    """
+    The player can perform intermediate knowledge maneuvers with YAML option ``KnowledgeDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate Knowledge"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate Knowledge",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Knowledge - Intermediate"})
+        items_needed.add("Knowledge - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.KnowledgeDifficulty >= 2  # options.KnowledgeDifficulty.option_intermediate
+
+
+class CanDoAdvancedKnowledge(Requirement):
+    """
+    The player can perform advanced knowledge maneuvers with YAML option ``KnowledgeDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced Knowledge"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced Knowledge",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Knowledge - Advanced"})
+        items_needed.add("Knowledge - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.KnowledgeDifficulty >= 3  # options.KnowledgeDifficulty.option_advanced
+
+
+class CanDoExpertKnowledge(Requirement):
+    """
+    The player can perform expert knowledge maneuvers with YAML option ``KnowledgeDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert Knowledge"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert Knowledge",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Knowledge - Expert"})
+        items_needed.add("Knowledge - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.KnowledgeDifficulty >= 4  # options.KnowledgeDifficulty.option_expert
+
+
+class CanDoLudicrousKnowledge(Requirement):
+    """
+    The player can perform ludicrous knowledge maneuvers with YAML option ``KnowledgeDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Knowledge"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Knowledge",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Knowledge - Ludicrous"})
+        items_needed.add("Knowledge - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.KnowledgeDifficulty >= 5  # options.KnowledgeDifficulty.option_ludicrous
+
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
     The player can fight a mid-game boss and win with YAML option ``CombatDifficulty: advanced``.
