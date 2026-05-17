@@ -354,9 +354,18 @@ class MetroidFusionOptions(PerGameCommonOptions):
     ElevatorShuffle: ElevatorShuffle
     PointOfNoReturnsInLogic: PointOfNoReturnsInLogic
 
-    ShinesparkTrickDifficulty: ShinesparkTrickDifficulty
-    WallJumpTrickDifficulty: WallJumpTrickDifficulty
     CombatDifficulty: CombatDifficulty
+    DamageBoostDifficulty: DamageBoostDifficulty
+    DamageRunDifficulty: DamageRunDifficulty
+    JumpBombjumpDifficulty: JumpBombjumpDifficulty
+    JumpExtendDifficulty: JumpExtendDifficulty
+    KnowledgeDifficulty: KnowledgeDifficulty
+    MidAirMorphDifficulty: MidAirMorphDifficulty
+    MovementDifficulty: MovementDifficulty
+    ShinesparkTrickDifficulty: ShinesparkTrickDifficulty
+    StandOnFrozenEnemiesDifficulty: StandOnFrozenEnemiesDifficulty
+    UnderwaterWallJumpDifficulty: UnderwaterWallJumpDifficulty
+    WallJumpDifficulty: WallJumpDifficulty
 
     StartingLocation: StartingLocation
     StartingMajorUpgrades: StartingMajorUpgrades
@@ -395,9 +404,18 @@ metroid_fusion_option_groups = [
         PointOfNoReturnsInLogic
     ]),
     OptionGroup("Trick Options", [
+        CombatDifficulty,
+        DamageBoostDifficulty,
+        DamageRunDifficulty,
+        JumpBombjumpDifficulty,
+        JumpExtendDifficulty,
+        KnowledgeDifficulty,
+        MidAirMorphDifficulty,
+        MovementDifficulty,
         ShinesparkTrickDifficulty,
-        WallJumpTrickDifficulty,
-        CombatDifficulty
+        StandOnFrozenEnemiesDifficulty,
+        UnderwaterWallJumpDifficulty,
+        WallJumpDifficulty
     ]),
     OptionGroup("Custom Game Mode Options", [
         StartingLocation,
