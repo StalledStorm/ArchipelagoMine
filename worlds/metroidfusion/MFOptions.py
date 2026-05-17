@@ -203,7 +203,7 @@ class UnderwaterWallJumpDifficulty(Choice):
     default = 0
 
 class WallJumpDifficulty(Choice):
-    """The player may be expected to Wall Jump to traverse rooms vertically. All vanilla locations where Wall Jumps are expected are considered trickless.."""
+    """The player may be expected to Wall Jump to traverse rooms vertically. All vanilla locations where Wall Jumps are expected are considered trickless."""
     display_name = "Wall Jump Difficulty"
     option_none = 0
     option_beginner = 1
@@ -227,9 +227,7 @@ class StartingLocation(Choice):
 
 class StartingMajorUpgrades(Range):
     """How many major upgrades you begin with.
-    Note that depending on your StartingLocation and EarlyProgression settings, you may receive more than specified here
-    in order to successfully generate the game. Upgrades are taken from the general item pool and will be replaced
-    by a random filler item.
+    Note that depending on your StartingLocation and EarlyProgression settings, you may receive more than specified here in order to successfully generate the game. Upgrades are taken from the general item pool and will be replaced by a random filler item.
     These will be applied in addition to your start_inventory and start_inventory_from_pool items.
     These will be sent by the client once you're connected.
     This is a Custom Game Mode option and will only be applied if GameMode is set to Custom."""
