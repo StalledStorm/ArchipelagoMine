@@ -81,32 +81,136 @@ class ElevatorShuffle(Choice):
 
 # Trick Options
 
-class WallJumpTrickDifficulty(Choice):
-    """What level of wall jump trick difficulty may be required to navigate around."""
-    display_name = "Wall Jump Trick Difficulty"
+class CombatDifficulty(Choice):
+    """The player may be expected to fight enemies/bosses with less equipment than usual."""
+    display_name = "Combat Difficulty"
     option_none = 0
     option_beginner = 1
-    option_advanced = 2
-    # option_expert = 3
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
+    default = 0
+
+class DamageBoostDifficulty(Choice):
+    """The player may be expected to take intentional damage from an enemy to traverse a room or complete an action."""
+    display_name = "Damage Boost Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    # option_ludicrous = 5 This difficulty is currently unused.
+    default = 0
+
+class DamageRunDifficulty(Choice):
+    """The player may be expected to traverse a room while taking damage from the environment (Heat/Lava/Cold/Electric)."""
+    display_name = "Damage Run Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
+    default = 0
+
+class JumpBombjumpDifficulty(Choice):
+    """The player may be expected to place bombs midair and then get hit by them to gain more height."""
+    display_name = "Jump Bombjump Difficulty"
+    option_none = 0
+    # option_beginner = 1 This difficulty is currently unused.
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
+    default = 0
+
+class JumpExtendDifficulty(Choice):
+    """The player may be expected to extend their jump horizontally by re-spinning multiple times to traverse a room."""
+    display_name = "Jump Extend Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
+    default = 0
+
+class KnowledgeDifficulty(Choice):
+    """The player may be expected to know alternate enemy/block weaknesses or be able to identify potential softlocks risks."""
+    display_name = "Knowledge Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    # option_ludicrous = 5 This difficulty is currently unused.
+    default = 0
+
+class MidAirMorphDifficulty(Choice):
+    """The player may be expected to morph mid-air to access tunnels without Bombs or Spring Ball."""
+    display_name = "Mid-Air Morph Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    # option_ludicrous = 5 This difficulty is currently unused.
+    default = 0
+
+class MovementDifficulty(Choice):
+    """The player may be expected to use unique movement to traverse a room or complete an action."""
+    display_name = "Movement Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
     default = 0
 
 class ShinesparkTrickDifficulty(Choice):
-    """What level of shinespark trick difficulty may be required to navigate around.
-    Note that this does not exclude items that require shinesparking in vanilla to obtain.
-    Use the ShinesparkLocations location group for that."""
+    """The player may be expected to use shinesparking to traverse a room. All vanilla locations where shinesparks are expected are considered trickless."""
     display_name = "Shinespark Trick Difficulty"
     option_none = 0
     option_beginner = 1
-    option_advanced = 2
-    # option_expert = 3
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
     default = 0
 
-class CombatDifficulty(Choice):
-    """What level of combat tools are logically expected for later game bosses."""
-    display_name = "Combat Difficulty"
-    option_beginner = 0
-    option_advanced = 1
-    option_expert = 2
+class StandOnFrozenEnemiesDifficulty(Choice):
+    """The player may be expected to stand on frozen enemies to traverse a room. All vanilla locations where standing on frozen enemies is expected are considered trickless."""
+    display_name = "Stand On Frozen Enemies Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
+    default = 0
+
+class UnderwaterWallJumpDifficulty(Choice):
+    """The player may be expected to wall jump underwater to traverse rooms vertically."""
+    display_name = "Underwater Wall Jump Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
+    default = 0
+
+class WallJumpDifficulty(Choice):
+    """The player may be expected to Wall Jump to traverse rooms vertically. All vanilla locations where Wall Jumps are expected are considered trickless.."""
+    display_name = "Wall Jump Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_ludicrous = 5
     default = 0
 
 # Custom Game Mode options
