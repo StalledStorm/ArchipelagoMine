@@ -1770,7 +1770,7 @@ class CanDoLudicrousDamageBoost(Requirement):
 
 class CanDoBeginnerDamageRun(Requirement):
     """
-    The player can perform beginner damage Run maneuvers with YAML option ``DamageRunDifficulty: beginner``.
+    The player can perform beginner damage run maneuvers with YAML option ``DamageRunDifficulty: beginner``.
 
     :param name: Defaults to "Can Do Beginner Damage Run"
     :param requirements:
@@ -1796,7 +1796,7 @@ class CanDoBeginnerDamageRun(Requirement):
 
 class CanDoIntermediateDamageRun(Requirement):
     """
-    The player can perform intermediate damage Run maneuvers with YAML option ``DamageRunDifficulty: intermediate``.
+    The player can perform intermediate damage run maneuvers with YAML option ``DamageRunDifficulty: intermediate``.
 
     :param name: Defaults to "Can Do Intermediate Damage Run"
     :param requirements:
@@ -1822,7 +1822,7 @@ class CanDoIntermediateDamageRun(Requirement):
 
 class CanDoAdvancedDamageRun(Requirement):
     """
-    The player can perform advanced damage Run maneuvers with YAML option ``DamageRunDifficulty: advanced``.
+    The player can perform advanced damage run maneuvers with YAML option ``DamageRunDifficulty: advanced``.
 
     :param name: Defaults to "Can Do Advanced Damage Run"
     :param requirements:
@@ -1848,7 +1848,7 @@ class CanDoAdvancedDamageRun(Requirement):
 
 class CanDoExpertDamageRun(Requirement):
     """
-    The player can perform expert damage Run maneuvers with YAML option ``DamageRunDifficulty: expert``.
+    The player can perform expert damage run maneuvers with YAML option ``DamageRunDifficulty: expert``.
 
     :param name: Defaults to "Can Do Expert Damage Run"
     :param requirements:
@@ -1874,7 +1874,7 @@ class CanDoExpertDamageRun(Requirement):
 
 class CanDoLudicrousDamageRun(Requirement):
     """
-    The player can perform ludicrous damage Run maneuvers with YAML option ``DamageRunDifficulty: ludicrous``.
+    The player can perform ludicrous damage run maneuvers with YAML option ``DamageRunDifficulty: ludicrous``.
 
     :param name: Defaults to "Can Do Ludicrous Damage Run"
     :param requirements:
@@ -1896,6 +1896,137 @@ class CanDoLudicrousDamageRun(Requirement):
     @staticmethod
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.DamageRunDifficulty >= 5  # options.DamageRunDifficulty.option_ludicrous
+
+# Jump Bombjump
+
+class CanDoBeginnerJumpBombjump(Requirement):
+    """
+    The player can perform beginner jump bombjump maneuvers with YAML option ``JumpBombjumpDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Jump Bombjump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner Jump Bombjump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Bombjump - Beginner"})
+        items_needed.add("Jump Bombjump - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpBombjumpDifficulty >= 1  # options.JumpBombjumpDifficulty.option_beginner
+
+
+class CanDoIntermediateJumpBombjump(Requirement):
+    """
+    The player can perform intermediate jump bombjump maneuvers with YAML option ``JumpBombjumpDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate Jump Bombjump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate Jump Bombjump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Bombjump - Intermediate"})
+        items_needed.add("Jump Bombjump - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpBombjumpDifficulty >= 2  # options.JumpBombjumpDifficulty.option_intermediate
+
+
+class CanDoAdvancedJumpBombjump(Requirement):
+    """
+    The player can perform advanced jump bombjump maneuvers with YAML option ``JumpBombjumpDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced Jump Bombjump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced Jump Bombjump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Bombjump - Advanced"})
+        items_needed.add("Jump Bombjump - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpBombjumpDifficulty >= 3  # options.JumpBombjumpDifficulty.option_advanced
+
+
+class CanDoExpertJumpBombjump(Requirement):
+    """
+    The player can perform expert jump bombjump maneuvers with YAML option ``JumpBombjumpDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert Jump Bombjump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert Jump Bombjump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Bombjump - Expert"})
+        items_needed.add("Jump Bombjump - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpBombjumpDifficulty >= 4  # options.JumpBombjumpDifficulty.option_expert
+
+
+class CanDoLudicrousJumpBombjump(Requirement):
+    """
+    The player can perform ludicrous jump bombjump maneuvers with YAML option ``JumpBombjumpDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Jump Bombjump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Jump Bombjump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Jump Bombjump - Ludicrous"})
+        items_needed.add("Jump Bombjump - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.JumpBombjumpDifficulty >= 5  # options.JumpBombjumpDifficulty.option_ludicrous
 
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
