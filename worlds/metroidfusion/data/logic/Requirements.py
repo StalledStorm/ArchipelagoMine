@@ -2818,7 +2818,7 @@ class CanDoLudicrousStandOnFrozenEnemies(Requirement):
 
 class CanDoBeginnerUnderwaterWallJump(Requirement):
     """
-    The player can perform beginner underwater walljump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: beginner``.
+    The player can perform beginner underwater wall jump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: beginner``.
 
     :param name: Defaults to "Can Do Beginner Underwater Wall Jump"
     :param requirements:
@@ -2844,7 +2844,7 @@ class CanDoBeginnerUnderwaterWallJump(Requirement):
 
 class CanDoIntermediateUnderwaterWallJump(Requirement):
     """
-    The player can perform intermediate underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: intermediate``.
+    The player can perform intermediate underwater wall jump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: intermediate``.
 
     :param name: Defaults to "Can Do Intermediate Underwater Wall Jump"
     :param requirements:
@@ -2870,7 +2870,7 @@ class CanDoIntermediateUnderwaterWallJump(Requirement):
 
 class CanDoAdvancedUnderwaterWallJump(Requirement):
     """
-    The player can perform advanced underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: advanced``.
+    The player can perform advanced underwater wall jump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: advanced``.
 
     :param name: Defaults to "Can Do Advanced Underwater Wall Jump"
     :param requirements:
@@ -2896,7 +2896,7 @@ class CanDoAdvancedUnderwaterWallJump(Requirement):
 
 class CanDoExpertUnderwaterWallJump(Requirement):
     """
-    The player can perform expert underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: expert``.
+    The player can perform expert underwater wall jump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: expert``.
 
     :param name: Defaults to "Can Do Expert Underwater Wall Jump"
     :param requirements:
@@ -2922,7 +2922,7 @@ class CanDoExpertUnderwaterWallJump(Requirement):
 
 class CanDoLudicrousUnderwaterWallJump(Requirement):
     """
-    The player can perform ludicrous underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: ludicrous``.
+    The player can perform ludicrous underwater wall jump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: ludicrous``.
 
     :param name: Defaults to "Can Do Ludicrous Underwater Wall Jump"
     :param requirements:
