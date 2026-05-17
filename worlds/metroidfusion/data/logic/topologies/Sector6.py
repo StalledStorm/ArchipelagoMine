@@ -16,7 +16,7 @@ Sector6Hub.connections = [
     Connection(Sector6Crossroads, [
         CanDamageMediumGeron(),
         CanDamageAnyGeron(),
-        CanDoBeginnerShinespark(),
+        CanDoBeginnerShinesparkTrick(),
         HasScrewAttack()
     ]),
     Connection(Sector6TubeLeft, [
@@ -31,8 +31,8 @@ Sector6TubeLeft.connections = [
     Connection(Sector6Hub, [
         HasScrewAttack("Leave Sector 6 West Tube", [
             CanJumpHigh(),
-            CanDoSimpleWallJump(),
-            CanDoBeginnerShinespark()
+            CanDoBeginnerWallJump(),
+            CanDoBeginnerShinesparkTrick()
         ])
     ])
 ]
@@ -53,14 +53,14 @@ Sector6Crossroads.connections = [
         ], [
             # Return from X-B.O.X. Arena?
             HasSpaceJump(),
-            CanDoSimpleWallJump(),
+            CanDoBeginnerWallJump(),
             CanFreezeEnemies(missile_ammo_needed=3)
         ])
     ]),
     Connection(Sector6Catacombs, [
         HasSpeedBooster("Nocturnal Playground <-> Catacombs", [
-            CanDoAdvancedShinespark(),
-            CanDoBeginnerShinespark(None, [
+            CanDoAdvancedShinesparkTrick(),
+            CanDoBeginnerShinesparkTrick(None, [
                 HasHiJump()
             ]),
             PONRRequirement("PONR - Nocturnal Playground -> Catacombs")
@@ -78,8 +78,8 @@ Sector6Crossroads.connections = [
 
 Sector6Catacombs.connections = [
     Connection(Sector6Crossroads, [
-        CanDoAdvancedShinespark("Escape Catacombs to Crossroads - Advanced", energy_tanks_needed=level_1_e_tanks),
-        CanDoBeginnerShinespark("Escape Catacombs to Crossroads", [
+        CanDoAdvancedShinesparkTrick("Escape Catacombs to Crossroads - Advanced", energy_tanks_needed=level_1_e_tanks),
+        CanDoBeginnerShinesparkTrick("Escape Catacombs to Crossroads", [
             HasHiJump()
         ], energy_tanks_needed=level_1_e_tanks),
     ], one_way=True),
@@ -124,11 +124,11 @@ Sector6AfterXBOXZone.connections = [
         Requirement("Go to X-B.O.X. Save Station", [
             HasSpaceJump(),
             CanFreezeEnemies(missile_ammo_needed=3),
-            CanDoSimpleWallJump(None, [
+            CanDoBeginnerWallJump(None, [
                 HasHiJump()
             ]),
             CanDoAdvancedWallJump(),
-            # CanDoBeginnerShinespark(None, [
+            # CanDoBeginnerShinesparkTrick(None, [
             #     HasKeycard4()
             # ], [
             #     #future CanDoJumpExtend()
@@ -143,11 +143,11 @@ Sector6XBOXSave.connections = [
         Requirement("Ascend from X-B.O.X. Save Station", [
             HasSpaceJump(),
             CanFreezeEnemies(missile_ammo_needed=3),
-            CanDoSimpleWallJump(None, [
+            CanDoBeginnerWallJump(None, [
                 HasHiJump()
             ]),
             CanDoAdvancedWallJump(),
-            # CanDoBeginnerShinespark(None, [
+            # CanDoBeginnerShinesparkTrick(None, [
             #     HasKeycard4()
             # ], [
             #     #future CanDoJumpExtend()
@@ -198,7 +198,7 @@ Sector6BeforeVariaCoreXZone.connections = [
     Connection(Sector6Catacombs, [
         CanPowerBomb("Backwards Travel Pre-Varia Core X", [
             HasSpaceJump(),
-            CanDoSimpleWallJump(None, [
+            CanDoBeginnerWallJump(None, [
                 HasHiJump()
             ]),
             CanDoAdvancedWallJump()
@@ -241,7 +241,7 @@ Sector6Hub.locations = [
             CanBallJump("Skill Issue")
         ], [
             CanDestroyBombBlocks(),
-            CanDoBeginnerShinespark()
+            CanDoBeginnerShinesparkTrick()
         ])
     ])
 ]

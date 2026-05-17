@@ -76,7 +76,7 @@ Sector4TubeLeft.connections = [
     Connection(Sector4RightWaterZone, [
         CanScrewAttackUnderwater("Exit from Sector 4 Lower Tube", [
             HasSpaceJump(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ])
     ])
 ]
@@ -104,13 +104,13 @@ Sector4UpperZone.connections = [
             CanJumpHighUnderwater("Damage Run - Reservoir West with Jump",
                                   energy_tanks_needed=level_2_e_tanks),
             CanSpeedBoosterUnderwater("Damage Run - Reservoir West with Speed", [
-                CanDoBeginnerShinespark()
+                CanDoBeginnerShinesparkTrick()
             ], energy_tanks_needed=level_2_e_tanks)
         ])
     ], one_way=True),
     Connection(Sector4ReservoirVault, [
         HasSpaceJump(),
-        CanDoSimpleWallJump()
+        CanDoBeginnerWallJump()
     ])
 ]
 
@@ -143,7 +143,7 @@ Sector4BeforePumpControlZone.connections = [
             HasGravity(),
             HasHiJump(),
             HasSpaceJump()
-            #future CanDoSimpleUnderwaterWallJump()
+            #future CanDoBeginnerUnderwaterWallJump()
         ], [
             # Pass through Tunnel by Save
             CanBomb(),
@@ -152,7 +152,7 @@ Sector4BeforePumpControlZone.connections = [
             # Can return or escape?
             HasGravity(None, [
                 HasSpaceJump(),
-                CanDoSimpleWallJump(None, [
+                CanDoBeginnerWallJump(None, [
                     HasHiJump()
                 ]),
             ]),
@@ -194,7 +194,7 @@ Sector4BeforePumpControlZone.connections = [
 Sector4SerrisZone.connections = [
     Connection(Sector4BeforePumpControlZone, [
         HasGravity("Exit Serris Left", [
-            CanDoSimpleWallJump(),
+            CanDoBeginnerWallJump(),
             HasSpaceJump()
         ])
     ]),
@@ -220,7 +220,7 @@ Sector4UpperWaterZone.connections = [
             HasGravity(),
             HasHiJump(),
             CanFreezeEnemies(),
-            #future CanDoSimpleUnderwaterWallJump()
+            #future CanDoBeginnerUnderwaterWallJump()
         ], [
             CanActivatePumpControl(),
             HasGravity("Damage Run - Get to Pump Control Door from Cargo Hold",
@@ -260,7 +260,7 @@ Sector4UpperWaterZone.connections = [
                 ])
             ], [
                 # Trick level
-                CanDoExpertShinespark(None, [
+                CanDoExpertShinesparkTrick(None, [
                     HasGravity()
                 ]),
             ], [
@@ -309,7 +309,7 @@ Sector4SecurityZone.connections = [
                 HasSpaceJump(),
                 CanDoAdvancedWallJump(),
                 CanFreezeEnemies(None, [
-                    CanDoSimpleWallJump(),
+                    CanDoBeginnerWallJump(),
                     HasHiJump()
                 ])
             ])
@@ -339,7 +339,7 @@ Sector4SecurityZone.connections = [
             PONRRequirement(),
             HasGravity(None, [
                 HasSpaceJump(),
-                CanDoSimpleWallJump(),
+                CanDoBeginnerWallJump(),
             ])
         ]),
     ], one_way=True),
@@ -365,7 +365,7 @@ Sector4SecurityZone.connections = [
                 ])
             ], [
                 # Trick level
-                CanDoAdvancedShinespark(None, [
+                CanDoAdvancedShinesparkTrick(None, [
                     HasGravity()
                 ]),
             ]),
@@ -390,7 +390,7 @@ Sector4SecurityZone.connections = [
             ])
         ], [
             # Trick level
-            CanDoExpertShinespark(None, [
+            CanDoExpertShinesparkTrick(None, [
                 HasGravity()
             ]),
         ], [
@@ -423,7 +423,7 @@ Sector4LowerSecurityZone.connections = [
             # Climb Security Access Shaft
             HasGravity(None, [
                 HasSpaceJump(),
-                CanDoSimpleWallJump()
+                CanDoBeginnerWallJump()
             ])
         ], [
             # Get into Cheddar Bay
@@ -451,7 +451,7 @@ Sector4SecurityRoom.connections = [
         HasKeycard4("Leave Level 4 Security Room", [
             HasGravity(None, [
                 HasSpaceJump(),
-                CanDoSimpleWallJump()
+                CanDoBeginnerWallJump()
             ]),
             #future CanDoUnderwaterWallJump()
         ])
@@ -483,7 +483,7 @@ Sector4RightWaterZone.connections = [
     Connection(Sector4RightWaterZoneSave, [
         CanScrewAttackUnderwater(),
         PONRRequirement("PONR - Shinespark through Aquarium Hub Kago", [
-            CanDoBeginnerShinespark(None, [
+            CanDoBeginnerShinesparkTrick(None, [
                 CanSpeedBoosterUnderwater()
             ])
         ])

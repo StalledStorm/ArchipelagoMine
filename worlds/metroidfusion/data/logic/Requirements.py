@@ -3294,7 +3294,7 @@ class CanFightBOX(CanDamageToughEnemy):
     def __init__(self,
                  name="Can Fight BOX",
                  *requirements, **kwargs):
-        requirements += ([CanJumpHigh(), CanDoSimpleWallJump()],)
+        requirements += ([CanJumpHigh(), CanDoBeginnerWallJump()],)
         kwargs.update({
             'energy_tanks_needed': max(kwargs.pop('energy_tanks_needed', 0), level_2_e_tanks),
             'immunities': {"Beam", "Bomb", "Power Bomb", "Screw Attack"},
@@ -3326,7 +3326,7 @@ class CanClimbSector3AlcoveRight(Requirement):
             # From bottom right section
             HasSpaceJump(),
             CanFreezeEnemies("Use Sidehopper as platform", [
-                CanDoSimpleWallJump(),
+                CanDoBeginnerWallJump(),
                 HasHiJump()
             ]),
             CanDoAdvancedWallJump("Wall Jumping without Sidehopper", [
@@ -3392,7 +3392,7 @@ class CanDoBoiler(CanDamageCoreX):
             # Main blocker is Pyrochamber Access
             HasSpaceJump("Fly"),
             CanFreezeEnemies("Freeze Funes", [
-                CanDoSimpleWallJump(),
+                CanDoBeginnerWallJump(),
                 HasHiJump()
             ], missile_ammo_needed=2),
         ], [
@@ -3420,7 +3420,7 @@ class CanGetSovaProcessingItem(HasMorph):
         requirements += ([
             HasSpaceJump(),
             CanFreezeEnemies(missile_ammo_needed=4),
-            CanDoAdvancedShinespark("Diagonal-Right Shinespark", [
+            CanDoAdvancedShinesparkTrick("Diagonal-Right Shinespark", [
                 CanLavaDive()
             ])
         ],)
@@ -3452,13 +3452,13 @@ class CanActivatePumpControl(Requirement):
                 ], [
                     # Climb Up Drain Pipe
                     HasSpaceJump(),
-                    CanDoSimpleWallJump(items_needed={"Hi-Jump"})
+                    CanDoBeginnerWallJump(items_needed={"Hi-Jump"})
                 ], energy_tanks_needed=level_2_e_tanks)
             ], [
                 # Leaving
                 CanBallJump("Use Tunnel"),
                 # Shinespark will risk softlocking
-                CanDoAdvancedShinespark("Charge Shinespark and Use Terminal")
+                CanDoAdvancedShinesparkTrick("Charge Shinespark and Use Terminal")
             ], energy_tanks_needed=level_1_e_tanks),
         ],)
         super().__init__(name, *requirements, **kwargs)
@@ -3575,7 +3575,7 @@ class CanGetToTrainingAerie(Requirement):
             HasSpaceJump(),
             CanFreezeEnemies(missile_ammo_needed=2),
             # Video proof: https://youtu.be/Qe9eMPmoUcU?si=1sAjemYzoZWeI1Jg
-            CanDoBeginnerShinespark(None, [
+            CanDoBeginnerShinesparkTrick(None, [
                 HasKeycard3()
             ], [
                 CanDoExpertWallJump()

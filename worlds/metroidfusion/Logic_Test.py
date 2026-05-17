@@ -56,7 +56,7 @@ class FusionLogicTest(WorldTestBase):
         "PowerBombDataAmmo": 5,
         "PowerBombTankAmmo": "random-range-0-2",
         "TrickyShinesparksInRegionLogic": False,
-        "SimpleWallJumpsInRegionLogic": False,
+        "BeginnerWallJumpsInRegionLogic": False,
     }
 
     def individual_logic_test(self) -> None:

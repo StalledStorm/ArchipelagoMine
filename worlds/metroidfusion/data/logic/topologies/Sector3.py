@@ -14,7 +14,7 @@ Sector3Hub.connections = [
     VariableConnection(SectorHubElevator3Top, []),
     Connection(Sector3FieryStorageRight, [
         PONRRequirement("PONR - Shinespark to Fiery Storage", [
-            CanDoBeginnerShinespark()
+            CanDoBeginnerShinesparkTrick()
         ], [
             HasVaria()
         ]),
@@ -24,7 +24,7 @@ Sector3Hub.connections = [
             CanLavaDive(),
             CanJumpHigh()
                  ]),
-        CanDoBeginnerShinespark("Shinespark Across Monkey Bars of Fire", [
+        CanDoBeginnerShinesparkTrick("Shinespark Across Monkey Bars of Fire", [
             CanDestroyBombBlocks()
         ], [
             HasVaria()
@@ -37,7 +37,7 @@ Sector3Hub.connections = [
         HasSpeedBooster("Enter Sector 3 Main Shaft", [
             CanDamageToughEnemy("Kill Fune", enemy_hp=32, immunities={"Beam", "Bomb"}),
             CanDamageToughEnemy("Kill Namihe", enemy_hp=82, immunities={"Beam", "Bomb"}),
-            CanDoBeginnerShinespark("Kill the Fune/Namihe - Alternate"),
+            CanDoBeginnerShinesparkTrick("Kill the Fune/Namihe - Alternate"),
             HasMorph("Avoid the Fune/Namihe", [
                 CanFreezeEnemies(),
                 CanDoAdvancedCombat()
@@ -80,7 +80,7 @@ Sector3Hub.connections = [
     Connection(Sector3LowerAttic, [
         HasMorph("Enter Attic from Sector 3 Entrance", [
             HasSpaceJump(),
-            CanDoBeginnerShinespark(),
+            CanDoBeginnerShinesparkTrick(),
             # Video proof: https://www.youtube.com/watch?v=c8_2jq1NWUQ
             CanFreezeEnemies("Manipulate Geruta", [
                 CanDoAdvancedCombat(),
@@ -98,7 +98,7 @@ Sector3TubeLeft.connections = [
     Connection(Sector3FieryStorageLeft, [
         HasScrewAttack("Exit Sector 3 West Tube", [
             CanJumpHigh(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ])
     ])
 ]
@@ -123,7 +123,7 @@ Sector3FieryStorageRight.connections = [
             CanLavaDive(),
             CanJumpHigh()
         ]),
-        CanDoBeginnerShinespark("Shinespark Across Monkey Bars of Fire", [
+        CanDoBeginnerShinesparkTrick("Shinespark Across Monkey Bars of Fire", [
             CanDestroyBombBlocks()
         ], [
             HasVaria()
@@ -157,7 +157,7 @@ Sector3MainShaft.connections = [
         ], [
             HasSpaceJump("Fly to Upper Door"),
             HasWaveBeam("Open Gate Backwards"),
-            CanDoBeginnerShinespark("Shinespark to Upper Door", [
+            CanDoBeginnerShinesparkTrick("Shinespark to Upper Door", [
                 # Included immunities that would prevent properly charging a shinespark in the process.
                 CanDamageToughEnemy("Kill 2 Owtch in the way", enemy_hp=(10 * 2),
                                     immunities={"Screw Attack", "Power Bomb", "Bomb"})
@@ -229,7 +229,7 @@ Sector3UpperAttic.connections = [
     Connection(Sector3TubeRight, [
         HasScrewAttack("Climb to Sector 3 East Tube", [
             CanJumpHigh(),
-            CanDoBeginnerShinespark()
+            CanDoBeginnerShinesparkTrick()
         ])
     ]),
     Connection(Sector3LowerAttic, [
@@ -261,7 +261,7 @@ Sector3FieryStorageLeft.locations = [
         CanDestroyBombBlocks("Can Obtain Upper Fiery Storage Item", [
             CanActivatePillar(),
             HasSpaceJump(),
-            CanDoAdvancedShinespark("Charge from below and Wall Jump up before Shinespark", [
+            CanDoAdvancedShinesparkTrick("Charge from below and Wall Jump up before Shinespark", [
                 CanDoAdvancedWallJump()
             ]),
             # It is possible to wall jump up where the pillar is without extending it.
@@ -297,9 +297,9 @@ Sector3SecurityZone.locations = [
     FusionLocation("Sector 3 (PYR) -- Security Access", False, [
         CanDamageToughEnemy("Kill Sidehoppers then Jump Up", [
             CanJumpHigh(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ]),
-        CanDoAdvancedShinespark("Charge from above then go below", [
+        CanDoAdvancedShinesparkTrick("Charge from above then go below", [
             CanDoAdvancedCombat("Avoid Sidehoppers"),
             CanFreezeEnemies("Freeze the Sidehoppers", missile_ammo_needed=2)
         ], enemy_hp=(24 * 2))
@@ -319,7 +319,7 @@ Sector3MainShaft.locations = [
             # ]),
             PONRRequirement("PONR - Namihe's Lair - Shinespark", [
                 # Video proof: https://www.youtube.com/watch?v=4LkNz-cjgUI
-                CanDoExpertShinespark()
+                CanDoExpertShinesparkTrick()
             ])
         ])
     ]),

@@ -70,7 +70,7 @@ Sector1Hub.connections = [
     Connection(Sector1FirstStabilizerZone, [
         CanDamageSmallGeron("Atmospheric Stabilizer NW - Vanilla Kill"),
         CanDamageAnyGeron("Atmospheric Stabilizer NW - Alternate Kill"),
-        CanDoAdvancedShinespark("Atmospheric Stabilizer NW - Shinespark Kill")
+        CanDoAdvancedShinesparkTrick("Atmospheric Stabilizer NW - Shinespark Kill")
     ]),
     Connection(Sector1SecondStabilizerZone, [
         CanLavaDive("Cut Through Lava Pool", items_needed={"Level 1 Keycard", "Level 2 Keycard"})
@@ -113,7 +113,7 @@ Sector1TourianExit.connections = [
     Connection(Sector1TourianHub, [
         Requirement("Break Into Tourian from Exit", [
             HasSpaceJump("Fly"),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ], [
             HasWaveBeam("Can Open Shutter Gate Backwards"),
             PONRRequirement("PONR - Break Into Tourian from Exit")
@@ -133,7 +133,7 @@ Sector1TourianHub.connections = [
     Connection(Sector1TourianHubElevatorTop, [
         Requirement("Traverse Tourian Hub to/from Tourian Elevator", [
             HasSpaceJump(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ], [
             # Pinnacle of Movement and Avoidance
             CanDoExpertCombat(),
@@ -198,10 +198,10 @@ Sector1ChargeCoreZone.locations = [
             CanSpeedBoosterUnderwater(),
             # When new trick level is ready to unleash in the YAML
             # Video proof: https://www.youtube.com/watch?v=7CrmoeqlIUk
-            CanDoExpertShinespark("Watering Hole - The 7 Frame Window", [HasChargeBeam("Pseudo-Screw the Crab")])
+            CanDoExpertShinesparkTrick("Watering Hole - The 7 Frame Window", [HasChargeBeam("Pseudo-Screw the Crab")])
         ], [
-            CanDoAdvancedShinespark("Avoid the Crab"),
-            CanDoBeginnerShinespark("Alternate Kill the Crab", [
+            CanDoAdvancedShinesparkTrick("Avoid the Crab"),
+            CanDoBeginnerShinesparkTrick("Alternate Kill the Crab", [
                 HasWaveBeam(),
                 CanDo10MissileDamage(),
                 CanPowerBomb()
@@ -222,7 +222,7 @@ Sector1FirstStabilizerZone.locations = [
             CanDamageStabilizer("Atmospheric Stabilizer NE - Vanilla"),
             CanDamageAnyGeron("Atmospheric Stabilizer NE - Alternate"),
             # Video proof: https://www.youtube.com/watch?v=I9YH_s989sQ
-            CanDoExpertShinespark("Atmospheric Stabilizer NE - Shinespark"),
+            CanDoExpertShinesparkTrick("Atmospheric Stabilizer NE - Shinespark"),
         ])
     ]),
     FusionLocation("Sector 1 (SRX) -- Hornoad Hole", False, [
@@ -245,7 +245,7 @@ Sector1FourthStabilizerZone.locations = [
         CanDamageStabilizer("Can Kill Atmospheric Stabilizer SE - Vanilla"),
         CanDamageAnyGeron("Can Kill Atmospheric Stabilizer SE - Alternate", [
             HasHiJump(),
-            CanDoSimpleWallJump(),
+            CanDoBeginnerWallJump(),
             Requirement(hard_items_needed={"Power Bomb Data"})
         ])
     ])
@@ -259,7 +259,7 @@ Sector1SecondStabilizerZone.locations = [
     ]),
     FusionLocation("Sector 1 (SRX) -- Lava Lake -- Upper Left Item", False, [
         HasSpaceJump("Lava Lake Far Shelf - Fly"),
-        CanDoBeginnerShinespark("Lava Lake Far Shelf - Shinespark")
+        CanDoBeginnerShinesparkTrick("Lava Lake Far Shelf - Shinespark")
     ]),
     FusionLocation("Sector 1 (SRX) -- Lava Lake -- Upper Right Item", False, []),
 ]
@@ -275,7 +275,7 @@ Sector1TourianHub.locations = [
         ], [
             PONRRequirement("PONR - Enter and Collect Animorphs"),
             HasSpaceJump("Fly out of Animorphs Cache"),
-            CanDoSimpleWallJump("Wall Jump out of Animorphs Cache", [
+            CanDoBeginnerWallJump("Wall Jump out of Animorphs Cache", [
                 HasHiJump()
             ])
         ], enemy_hp=60)
@@ -313,7 +313,7 @@ Sector1TourianHub.locations = [
         ], [
             # Mobility Requirements
             HasSpaceJump(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ], [
             # Dealing with Rippers
             CanFreezeEnemies(missile_ammo_needed=5),

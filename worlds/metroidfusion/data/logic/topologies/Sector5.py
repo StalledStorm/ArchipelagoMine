@@ -86,7 +86,7 @@ Sector5FrozenHub.connections = [
                 CanBomb(),
                 CanPowerBomb()
             ]),
-            #future CanDoExpertShinespark("Go backwards through Arctic Underside", [HasKeycard3()])
+            #future CanDoExpertShinesparkTrick("Go backwards through Arctic Underside", [HasKeycard3()])
         ], energy_tanks_needed=level_3_e_tanks)
     ], one_way=True),
     Connection(Sector5TopLeftBigRoom, [
@@ -137,7 +137,7 @@ Sector5DataRoom.connections = [
 Sector5BeforeNightmareHub.connections = [
     Connection(Sector5TubeRight, [
         CanJumpHigh(),
-        CanDoSimpleWallJump()
+        CanDoBeginnerWallJump()
     ]),
     Connection(Sector5NightmareHub, [
         PONRRequirement("PONR - Drop down Flooded Tower", [
@@ -152,7 +152,7 @@ Sector5NightmareHub.connections = [
     Connection(Sector5BeforeNightmareHub, [
         CanScrewAttackUnderwater("Climb Flooded Tower", [
             HasSpaceJump(),
-            CanDoBeginnerShinespark("Shinespark up Flooded Tower", [
+            CanDoBeginnerShinesparkTrick("Shinespark up Flooded Tower", [
                 CanDoAdvancedWallJump()
             ]),
         ], energy_tanks_needed=level_3_e_tanks)
@@ -169,7 +169,7 @@ Sector5NightmareHub.connections = [
         ], [
             # Climb from Nightmare Hub Lower Half to Upper Half
             CanJumpHigh(),
-            CanDoBeginnerShinespark(None, [
+            CanDoBeginnerShinesparkTrick(None, [
                 CanSpeedBoosterUnderwater(),
             ]),
         ], energy_tanks_needed=level_3_e_tanks)
@@ -190,7 +190,7 @@ Sector5NightmareZoneUpper.connections = [
             HasMorph()
         ], [
             CanJumpHigh(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ], [
             CanFightNightmare()
         ])
@@ -211,7 +211,7 @@ Sector5Hub.locations = [
             HasMorph()
         ], [
             # Break the bomb block
-            CanDoBeginnerShinespark(),
+            CanDoBeginnerShinesparkTrick(),
             HasScrewAttack(),
             HasHiJump("Spring Ball and Bomb", [
                 CanBomb()
@@ -270,7 +270,7 @@ Sector5BeforeNightmareHub.locations = [
                     HasHiJump()
                 ])
             ]),
-            CanDoBeginnerShinespark("Enter Crow's Nest - Shinespark", [
+            CanDoBeginnerShinesparkTrick("Enter Crow's Nest - Shinespark", [
                 CanDestroyBombBlocks(),
                 PONRRequirement("PONR - Enter Crow's Nest - Shinespark")
             ])
@@ -281,7 +281,7 @@ Sector5BeforeNightmareHub.locations = [
         ], [
             # Climb to gates
             CanJumpHigh(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ], energy_tanks_needed=level_3_e_tanks)
     ])
 ]
@@ -323,7 +323,7 @@ Sector5SecurityZone.locations = [
             HasSpaceJump(),
             CanFreezeEnemies(None, [
                 HasHiJump(),
-                CanDoSimpleWallJump()
+                CanDoBeginnerWallJump()
             ])
         ])
     ]),
@@ -341,7 +341,7 @@ Sector5SecurityZone.locations = [
             HasSpaceJump(),
             CanFreezeEnemies(None, [
                 HasHiJump(),
-                CanDoSimpleWallJump()
+                CanDoBeginnerWallJump()
             ], missile_ammo_needed=6)
         ])
     ])
@@ -358,7 +358,7 @@ Sector5NightmareHub.locations = [
             HasMissile(missile_ammo_needed=1)
         ], [
             CanFreezeEnemies(missile_ammo_needed=8),
-            CanDoBeginnerShinespark(),
+            CanDoBeginnerShinesparkTrick(),
             CanJumpHighUnderwater(None, hard_items_needed={"Space Jump"}),
             CanDoExpertCombat("Shoot Missile Block and Grab Ledge in one motion during PONR drop", [
                 PONRRequirement("PONR - Mini-Fridge")

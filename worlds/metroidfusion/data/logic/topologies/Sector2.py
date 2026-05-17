@@ -35,7 +35,7 @@ Sector2Hub.connections = [
             CanPowerBomb()
         ], [
             CanJumpHigh(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ])
     ])
 ]
@@ -74,7 +74,7 @@ Sector2ZazabiZone.connections = [
             HasScrewAttack()
         ], [
             HasSpaceJump(),
-            CanDoSimpleWallJump(None, [
+            CanDoBeginnerWallJump(None, [
                 HasHiJump()
             ]),
             CanDoAdvancedWallJump()
@@ -125,7 +125,7 @@ Sector2Hub.locations = [
         CanJumpHigh(),
         HasScrewAttack(),
         CanFreezeEnemies(missile_ammo_needed=3),
-        CanDoBeginnerShinespark()
+        CanDoBeginnerShinesparkTrick()
     ]),
     FusionLocation("Sector 2 (TRO) -- Level 1 Security Room", True, [
         Requirement("Use the Security Terminal", [

@@ -43,7 +43,7 @@ MainDeckHub.connections = [
     Connection(UpperArachnusArena, [
         HasMorph("Use Hidden Screw Attack Tunnel", [
             CanJumpHigh(),
-            CanDoSimpleWallJump()
+            CanDoBeginnerWallJump()
         ], [
             HasScrewAttack()
         ])
@@ -53,7 +53,7 @@ MainDeckHub.connections = [
     ]),
     Connection(SectorHubElevatorTop, [
         HasMorph("Use Morph Tunnel"),
-        CanDoAdvancedShinespark("Can Shinespark to Sector Hub Elevator")
+        CanDoAdvancedShinesparkTrick("Can Shinespark to Sector Hub Elevator")
     ]),
     Connection(ReactorZone, [
         HasMorph("Can Enter Reactor Zone", [

@@ -332,14 +332,14 @@ class TrickyShinesparksInRegionLogic(Removed):
                             "Please use ShinesparkTrickDifficulty instead.")
         super().__init__(value)
 
-class SimpleWallJumpsInRegionLogic(Removed):
+class BeginnerWallJumpsInRegionLogic(Removed):
     """DEPRECATED OPTION. WILL BE REMOVED IN A FUTURE VERSION.
     Use WallJumpTrickDifficulty instead."""
-    display_name = "Simple Wall Jumps in Region Logic"
+    display_name = "Beginner Wall Jumps in Region Logic"
 
     def __init__(self, value: str):
         if value:
-            raise Exception("SimpleWallJumpsInRegionLogic option removed. Please use WallJumpTrickDifficulty instead.")
+            raise Exception("BeginnerWallJumpsInRegionLogic option removed. Please use WallJumpTrickDifficulty instead.")
         super().__init__(value)
 
 @dataclass
@@ -385,7 +385,7 @@ class MetroidFusionOptions(PerGameCommonOptions):
     PowerBombTankAmmo: PowerBombTankAmmo
 
     TrickyShinesparksInRegionLogic: TrickyShinesparksInRegionLogic
-    SimpleWallJumpsInRegionLogic: SimpleWallJumpsInRegionLogic
+    BeginnerWallJumpsInRegionLogic: BeginnerWallJumpsInRegionLogic
 
     start_inventory_from_pool: StartInventoryPool
     death_link: DeathLink
