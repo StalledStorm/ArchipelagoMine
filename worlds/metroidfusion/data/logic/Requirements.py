@@ -2306,7 +2306,7 @@ class CanDoBeginnerMidAirMorph(Requirement):
     """
 
     def __init__(self,
-                 name="Can Do Beginner MidAirMorph",
+                 name="Can Do Beginner Mid-Air Morph",
                  *requirements, **kwargs):
         items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Beginner"})
         items_needed.add("Mid-Air Morph - Beginner")
@@ -2332,7 +2332,7 @@ class CanDoIntermediateMidAirMorph(Requirement):
     """
 
     def __init__(self,
-                 name="Can Do Intermediate MidAirMorph",
+                 name="Can Do Intermediate Mid-Air Morph",
                  *requirements, **kwargs):
         items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Intermediate"})
         items_needed.add("Mid-Air Morph - Intermediate")
@@ -2358,7 +2358,7 @@ class CanDoAdvancedMidAirMorph(Requirement):
     """
 
     def __init__(self,
-                 name="Can Do Advanced MidAirMorph",
+                 name="Can Do Advanced Mid-Air Morph",
                  *requirements, **kwargs):
         items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Advanced"})
         items_needed.add("Mid-Air Morph - Advanced")
@@ -2384,7 +2384,7 @@ class CanDoExpertMidAirMorph(Requirement):
     """
 
     def __init__(self,
-                 name="Can Do Expert MidAirMorph",
+                 name="Can Do Expert Mid-Air Morph",
                  *requirements, **kwargs):
         items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Expert"})
         items_needed.add("Mid-Air Morph - Expert")
@@ -2410,7 +2410,7 @@ class CanDoLudicrousMidAirMorph(Requirement):
     """
 
     def __init__(self,
-                 name="Can Do Ludicrous MidAirMorph",
+                 name="Can Do Ludicrous Mid-Air Morph",
                  *requirements, **kwargs):
         items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Ludicrous"})
         items_needed.add("Mid-Air Morph - Ludicrous")
