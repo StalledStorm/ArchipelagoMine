@@ -2945,6 +2945,139 @@ class CanDoLudicrousUnderwaterWallJump(Requirement):
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.UnderwaterWallJumpDifficulty >= 5  # options.UnderwaterWallJumpDifficulty.option_ludicrous
 
+# Wall Jump
+
+class CanDoBeginnerWallJump(Requirement):
+    """
+    The player can perform beginner wall jump maneuvers with YAML option ``WallJumpDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump - Beginner"})
+        items_needed.add("Wall Jump - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpDifficulty >= 1  # options.WallJumpDifficulty.option_beginner
+
+
+class CanDoIntermediateWallJump(Requirement):
+    """
+    The player can perform intermediate wall jump maneuvers with YAML option ``WallJumpDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump - Intermediate"})
+        items_needed.add("Wall Jump - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpDifficulty >= 2  # options.WallJumpDifficulty.option_intermediate
+
+
+class CanDoAdvancedWallJump(Requirement):
+    """
+    The player can perform advanced wall jump maneuvers with YAML option ``WallJumpDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump - Advanced"})
+        items_needed.add("Wall Jump - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpDifficulty >= 3  # options.WallJumpDifficulty.option_advanced
+
+
+class CanDoExpertWallJump(Requirement):
+    """
+    The player can perform expert wall jump maneuvers with YAML option ``WallJumpDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump - Expert"})
+        items_needed.add("Wall Jump - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpDifficulty >= 4  # options.WallJumpDifficulty.option_expert
+
+
+class CanDoLudicrousWallJump(Requirement):
+    """
+    The player can perform ludicrous wall jump maneuvers with YAML option ``WallJumpDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump - Ludicrous"})
+        items_needed.add("Wall Jump - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.WallJumpDifficulty >= 5  # options.WallJumpDifficulty.option_ludicrous
+
+# Boss Combat
+
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
     The player can fight a mid-game boss and win with YAML option ``CombatDifficulty: advanced``.
