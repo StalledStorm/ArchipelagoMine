@@ -2683,6 +2683,137 @@ class CanDoLudicrousShinesparkTrick(Requirement):
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.ShinesparkTrickDifficulty >= 5  # options.ShinesparkTrickDifficulty.option_ludicrous
 
+# Stand On Frozen Enemies
+
+class CanDoBeginnerStandOnFrozenEnemies(Requirement):
+    """
+    The player can perform beginner stand on frozen enemies maneuvers with YAML option ``StandOnFrozenEnemiesDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Stand On Frozen Enemies"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner Stand On Frozen Enemies",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Stand On Frozen Enemies - Beginner"})
+        items_needed.add("Stand On Frozen Enemies - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.StandOnFrozenEnemiesDifficulty >= 1  # options.StandOnFrozenEnemiesDifficulty.option_beginner
+
+
+class CanDoIntermediateStandOnFrozenEnemies(Requirement):
+    """
+    The player can perform intermediate stand on frozen enemies maneuvers with YAML option ``StandOnFrozenEnemiesDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate Stand On Frozen Enemies"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate Stand On Frozen Enemies",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Stand On Frozen Enemies - Intermediate"})
+        items_needed.add("Stand On Frozen Enemies - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.StandOnFrozenEnemiesDifficulty >= 2  # options.StandOnFrozenEnemiesDifficulty.option_intermediate
+
+
+class CanDoAdvancedStandOnFrozenEnemies(Requirement):
+    """
+    The player can perform advanced stand on frozen enemies maneuvers with YAML option ``StandOnFrozenEnemiesDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced Stand On Frozen Enemies"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced Stand On Frozen Enemies",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Stand On Frozen Enemies - Advanced"})
+        items_needed.add("Stand On Frozen Enemies - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.StandOnFrozenEnemiesDifficulty >= 3  # options.StandOnFrozenEnemiesDifficulty.option_advanced
+
+
+class CanDoExpertStandOnFrozenEnemies(Requirement):
+    """
+    The player can perform expert stand on frozen enemies maneuvers with YAML option ``StandOnFrozenEnemiesDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert Stand On Frozen Enemies"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert Stand On Frozen Enemies",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Stand On Frozen Enemies - Expert"})
+        items_needed.add("Stand On Frozen Enemies - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.StandOnFrozenEnemiesDifficulty >= 4  # options.StandOnFrozenEnemiesDifficulty.option_expert
+
+
+class CanDoLudicrousStandOnFrozenEnemies(Requirement):
+    """
+    The player can perform ludicrous stand on frozen enemies maneuvers with YAML option ``StandOnFrozenEnemiesDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Stand On Frozen Enemies"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Stand On Frozen Enemies",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Stand On Frozen Enemies - Ludicrous"})
+        items_needed.add("Stand On Frozen Enemies - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.StandOnFrozenEnemiesDifficulty >= 5  # options.StandOnFrozenEnemiesDifficulty.option_ludicrous
+
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
     The player can fight a mid-game boss and win with YAML option ``CombatDifficulty: advanced``.
