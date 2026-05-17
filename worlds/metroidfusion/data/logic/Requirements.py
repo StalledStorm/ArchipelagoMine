@@ -1766,6 +1766,137 @@ class CanDoLudicrousDamageBoost(Requirement):
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.DamageBoostDifficulty >= 5  # options.DamageBoostDifficulty.option_ludicrous
 
+# Damage Run
+
+class CanDoBeginnerDamageRun(Requirement):
+    """
+    The player can perform beginner damage Run maneuvers with YAML option ``DamageRunDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Damage Run"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner Damage Run",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Damage Run - Beginner"})
+        items_needed.add("Damage Run - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.DamageRunDifficulty >= 1  # options.DamageRunDifficulty.option_beginner
+
+
+class CanDoIntermediateDamageRun(Requirement):
+    """
+    The player can perform intermediate damage Run maneuvers with YAML option ``DamageRunDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate Damage Run"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate Damage Run",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Damage Run - Intermediate"})
+        items_needed.add("Damage Run - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.DamageRunDifficulty >= 2  # options.DamageRunDifficulty.option_intermediate
+
+
+class CanDoAdvancedDamageRun(Requirement):
+    """
+    The player can perform advanced damage Run maneuvers with YAML option ``DamageRunDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced Damage Run"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced Damage Run",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Damage Run - Advanced"})
+        items_needed.add("Damage Run - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.DamageRunDifficulty >= 3  # options.DamageRunDifficulty.option_advanced
+
+
+class CanDoExpertDamageRun(Requirement):
+    """
+    The player can perform expert damage Run maneuvers with YAML option ``DamageRunDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert Damage Run"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert Damage Run",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Damage Run - Expert"})
+        items_needed.add("Damage Run - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.DamageRunDifficulty >= 4  # options.DamageRunDifficulty.option_expert
+
+
+class CanDoLudicrousDamageRun(Requirement):
+    """
+    The player can perform ludicrous damage Run maneuvers with YAML option ``DamageRunDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Damage Run"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Damage Run",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Damage Run - Ludicrous"})
+        items_needed.add("Damage Run - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.DamageRunDifficulty >= 5  # options.DamageRunDifficulty.option_ludicrous
+
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
     The player can fight a mid-game boss and win with YAML option ``CombatDifficulty: advanced``.
