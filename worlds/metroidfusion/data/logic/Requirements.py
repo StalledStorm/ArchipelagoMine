@@ -2814,6 +2814,137 @@ class CanDoLudicrousStandOnFrozenEnemies(Requirement):
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.StandOnFrozenEnemiesDifficulty >= 5  # options.StandOnFrozenEnemiesDifficulty.option_ludicrous
 
+# Underwater Wall Jump
+
+class CanDoBeginnerUnderwaterWallJump(Requirement):
+    """
+    The player can perform beginner underwater walljump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Underwater Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner Underwater Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Underwater Wall Jump - Beginner"})
+        items_needed.add("Underwater Wall Jump - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.UnderwaterWallJumpDifficulty >= 1  # options.UnderwaterWallJumpDifficulty.option_beginner
+
+
+class CanDoIntermediateUnderwaterWallJump(Requirement):
+    """
+    The player can perform intermediate underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate Underwater Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate Underwater Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Underwater Wall Jump - Intermediate"})
+        items_needed.add("Underwater Wall Jump - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.UnderwaterWallJumpDifficulty >= 2  # options.UnderwaterWallJumpDifficulty.option_intermediate
+
+
+class CanDoAdvancedUnderwaterWallJump(Requirement):
+    """
+    The player can perform advanced underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced Underwater Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced Underwater Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Underwater Wall Jump - Advanced"})
+        items_needed.add("Underwater Wall Jump - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.UnderwaterWallJumpDifficulty >= 3  # options.UnderwaterWallJumpDifficulty.option_advanced
+
+
+class CanDoExpertUnderwaterWallJump(Requirement):
+    """
+    The player can perform expert underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert Underwater Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert Underwater Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Underwater Wall Jump - Expert"})
+        items_needed.add("Underwater Wall Jump - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.UnderwaterWallJumpDifficulty >= 4  # options.UnderwaterWallJumpDifficulty.option_expert
+
+
+class CanDoLudicrousUnderwaterWallJump(Requirement):
+    """
+    The player can perform ludicrous underwater wallJump maneuvers with YAML option ``UnderwaterWallJumpDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Underwater Wall Jump"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Underwater Wall Jump",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Underwater Wall Jump - Ludicrous"})
+        items_needed.add("Underwater Wall Jump - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.UnderwaterWallJumpDifficulty >= 5  # options.UnderwaterWallJumpDifficulty.option_ludicrous
+
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
     The player can fight a mid-game boss and win with YAML option ``CombatDifficulty: advanced``.
