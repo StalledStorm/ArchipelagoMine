@@ -2290,6 +2290,137 @@ class CanDoLudicrousKnowledge(Requirement):
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
         return options.KnowledgeDifficulty >= 5  # options.KnowledgeDifficulty.option_ludicrous
 
+# Mid-Air Morph
+
+class CanDoBeginnerMidAirMorph(Requirement):
+    """
+    The player can perform beginner mid-air morph maneuvers with YAML option ``MidAirMorphDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner MidAirMorph"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Beginner MidAirMorph",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Beginner"})
+        items_needed.add("Mid-Air Morph - Beginner")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.MidAirMorphDifficulty >= 1  # options.MidAirMorphDifficulty.option_beginner
+
+
+class CanDoIntermediateMidAirMorph(Requirement):
+    """
+    The player can perform intermediate mid-air morph maneuvers with YAML option ``MidAirMorphDifficulty: intermediate``.
+
+    :param name: Defaults to "Can Do Intermediate MidAirMorph"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Intermediate MidAirMorph",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Intermediate"})
+        items_needed.add("Mid-Air Morph - Intermediate")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.MidAirMorphDifficulty >= 2  # options.MidAirMorphDifficulty.option_intermediate
+
+
+class CanDoAdvancedMidAirMorph(Requirement):
+    """
+    The player can perform advanced mid-air morph maneuvers with YAML option ``MidAirMorphDifficulty: advanced``.
+
+    :param name: Defaults to "Can Do Advanced MidAirMorph"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Advanced MidAirMorph",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Advanced"})
+        items_needed.add("Mid-Air Morph - Advanced")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.MidAirMorphDifficulty >= 3  # options.MidAirMorphDifficulty.option_advanced
+
+
+class CanDoExpertMidAirMorph(Requirement):
+    """
+    The player can perform expert mid-air morph maneuvers with YAML option ``MidAirMorphDifficulty: expert``.
+
+    :param name: Defaults to "Can Do Expert MidAirMorph"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Expert MidAirMorph",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Expert"})
+        items_needed.add("Mid-Air Morph - Expert")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.MidAirMorphDifficulty >= 4  # options.MidAirMorphDifficulty.option_expert
+
+
+class CanDoLudicrousMidAirMorph(Requirement):
+    """
+    The player can perform ludicrous mid-air morph maneuvers with YAML option ``MidAirMorphDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous MidAirMorph"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous MidAirMorph",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Mid-Air Morph - Ludicrous"})
+        items_needed.add("Mid-Air Morph - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.MidAirMorphDifficulty >= 5  # options.MidAirMorphDifficulty.option_ludicrous
+
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
     The player can fight a mid-game boss and win with YAML option ``CombatDifficulty: advanced``.
