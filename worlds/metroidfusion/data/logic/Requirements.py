@@ -1504,11 +1504,13 @@ class CanFightLateGameBoss(CanFightMidGameBoss, HasPlasmaBeam, HasSpaceJump):
 
 #region Trick Options Requirements
 
-class CanDoBeginnerShinespark(HasSpeedBooster):
-    """
-    The player can perform a shinespark with YAML option ``ShinesparkTrickDifficulty: beginner``.
+##Combat
 
-    :param name: Defaults to "Can Do Beginner Shinespark"
+class CanDoBeginnerCombat(Requirement):
+    """
+    The player can perform beginner combat maneuvers with YAML option ``CombatDifficulty: beginner``.
+
+    :param name: Defaults to "Can Do Beginner Combat"
     :param requirements:
     :key items_needed:
     :key hard_items_needed:
@@ -1516,24 +1518,25 @@ class CanDoBeginnerShinespark(HasSpeedBooster):
     :key missile_ammo_needed:
     :key power_bomb_ammo_needed:
     """
+
     def __init__(self,
-                 name="Can Do Beginner Shinespark",
+                 name="Can Do Beginner Combat",
                  *requirements, **kwargs):
-        items_needed: set[str] = kwargs.pop('items_needed', {"Shinespark Trick - Beginner"})
-        items_needed.add("Shinespark Trick - Beginner")
+        items_needed: set[str] = kwargs.pop('items_needed', {"Combat - Beginner"})
+        items_needed.add("Combat - Beginner")
         kwargs['items_needed'] = items_needed
         super().__init__(name, *requirements, **kwargs)
 
     @staticmethod
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.ShinesparkTrickDifficulty >= 1  #options.ShinesparkTrickDifficulty.option_beginner
+        return options.CombatDifficulty >= 1  # options.CombatDifficulty.option_beginner
 
 
-class CanDoAdvancedShinespark(HasSpeedBooster):
+class CanDoIntermediateCombat(Requirement):
     """
-    The player can perform a shinespark with YAML option ``ShinesparkTrickDifficulty: advanced``.
+    The player can perform intermediate combat maneuvers with YAML option ``CombatDifficulty: intermediate``.
 
-    :param name: Defaults to "Can Do Advanced Shinespark"
+    :param name: Defaults to "Can Do Intermediate Combat"
     :param requirements:
     :key items_needed:
     :key hard_items_needed:
@@ -1541,117 +1544,18 @@ class CanDoAdvancedShinespark(HasSpeedBooster):
     :key missile_ammo_needed:
     :key power_bomb_ammo_needed:
     """
+
     def __init__(self,
-                 name="Can Do Advanced Shinespark",
+                 name="Can Do Intermediate Combat",
                  *requirements, **kwargs):
-        items_needed: set[str] = kwargs.pop('items_needed', {"Shinespark Trick - Advanced"})
-        items_needed.add("Shinespark Trick - Advanced")
+        items_needed: set[str] = kwargs.pop('items_needed', {"Combat - Intermediate"})
+        items_needed.add("Combat - Intermediate")
         kwargs['items_needed'] = items_needed
         super().__init__(name, *requirements, **kwargs)
 
     @staticmethod
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.ShinesparkTrickDifficulty >= 2  #options.ShinesparkTrickDifficulty.option_advanced
-
-# Prepared in advance of trick setting. Currently unreachable due to lack of setting.
-class CanDoExpertShinespark(HasSpeedBooster):
-    """
-    The player can perform a shinespark with YAML option ``ShinesparkTrickDifficulty: expert``.
-
-    :param name: Defaults to "Can Do Expert Shinespark"
-    :param requirements:
-    :key items_needed:
-    :key hard_items_needed:
-    :key energy_tanks_needed:
-    :key missile_ammo_needed:
-    :key power_bomb_ammo_needed:
-    """
-    def __init__(self,
-                 name="Can Do Expert Shinespark",
-                 *requirements, **kwargs):
-        items_needed: set[str] = kwargs.pop('items_needed', {"Shinespark Trick - Expert"})
-        items_needed.add("Shinespark Trick - Expert")
-        kwargs['items_needed'] = items_needed
-        super().__init__(name, *requirements, **kwargs)
-
-    @staticmethod
-    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.ShinesparkTrickDifficulty >= 3  #options.ShinesparkTrickDifficulty.option_expert
-
-
-class CanDoSimpleWallJump(HasWallJump):
-    """
-    The player can perform a wall jump with YAML option ``WallJumpTrickDifficulty: beginner``.
-
-    :param name: Defaults to "Can Do Simple Wall Jump"
-    :param requirements:
-    :key items_needed:
-    :key hard_items_needed:
-    :key energy_tanks_needed:
-    :key missile_ammo_needed:
-    :key power_bomb_ammo_needed:
-    """
-    def __init__(self,
-                 name="Can Do Simple Wall Jump",
-                 *requirements, **kwargs):
-        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump Trick - Beginner"})
-        items_needed.add("Wall Jump Trick - Beginner")
-        kwargs['items_needed'] = items_needed
-        super().__init__(name, *requirements, **kwargs)
-
-    @staticmethod
-    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.WallJumpTrickDifficulty >= 1  #options.WallJumpTrickDifficulty.option_beginner
-
-
-class CanDoAdvancedWallJump(HasWallJump):
-    """
-    The player can perform a wall jump with YAML option ``WallJumpTrickDifficulty: advanced``.
-
-    :param name: Defaults to "Can Do Advanced Wall Jump"
-    :param requirements:
-    :key items_needed:
-    :key hard_items_needed:
-    :key energy_tanks_needed:
-    :key missile_ammo_needed:
-    :key power_bomb_ammo_needed:
-    """
-    def __init__(self,
-                 name="Can Do Advanced Wall Jump",
-                 *requirements, **kwargs):
-        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump Trick - Advanced"})
-        items_needed.add("Wall Jump Trick - Advanced")
-        kwargs['items_needed'] = items_needed
-        super().__init__(name, *requirements, **kwargs)
-
-    @staticmethod
-    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.WallJumpTrickDifficulty >= 2  #options.WallJumpTrickDifficulty.option_advanced
-
-
-class CanDoExpertWallJump(HasWallJump):
-    """
-    The player can perform a wall jump with YAML option ``WallJumpTrickDifficulty: expert``.
-
-    :param name: Defaults to "Can Do Expert Wall Jump"
-    :param requirements:
-    :key items_needed:
-    :key hard_items_needed:
-    :key energy_tanks_needed:
-    :key missile_ammo_needed:
-    :key power_bomb_ammo_needed:
-    """
-    def __init__(self,
-                 name="Can Do Expert Wall Jump",
-                 *requirements, **kwargs):
-        items_needed: set[str] = kwargs.pop('items_needed', {"Wall Jump Trick - Expert"})
-        items_needed.add("Wall Jump Trick - Expert")
-        kwargs['items_needed'] = items_needed
-        super().__init__(name, *requirements, **kwargs)
-
-    @staticmethod
-    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.WallJumpTrickDifficulty >= 3  #options.WallJumpTrickDifficulty.option_expert
+        return options.CombatDifficulty >= 2  # options.CombatDifficulty.option_intermediate
 
 
 class CanDoAdvancedCombat(Requirement):
@@ -1666,6 +1570,7 @@ class CanDoAdvancedCombat(Requirement):
     :key missile_ammo_needed:
     :key power_bomb_ammo_needed:
     """
+
     def __init__(self,
                  name="Can Do Advanced Combat",
                  *requirements, **kwargs):
@@ -1676,7 +1581,7 @@ class CanDoAdvancedCombat(Requirement):
 
     @staticmethod
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.CombatDifficulty >= 1  #options.CombatDifficulty.option_advanced
+        return options.CombatDifficulty >= 3  # options.CombatDifficulty.option_advanced
 
 
 class CanDoExpertCombat(Requirement):
@@ -1691,6 +1596,7 @@ class CanDoExpertCombat(Requirement):
     :key missile_ammo_needed:
     :key power_bomb_ammo_needed:
     """
+
     def __init__(self,
                  name="Can Do Expert Combat",
                  *requirements, **kwargs):
@@ -1701,8 +1607,34 @@ class CanDoExpertCombat(Requirement):
 
     @staticmethod
     def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.CombatDifficulty >= 2  #options.CombatDifficulty.option_expert
+        return options.CombatDifficulty >= 4  # options.CombatDifficulty.option_expert
 
+
+class CanDoLudicrousCombat(Requirement):
+    """
+    The player can perform ludicrous combat maneuvers with YAML option ``CombatDifficulty: ludicrous``.
+
+    :param name: Defaults to "Can Do Ludicrous Combat"
+    :param requirements:
+    :key items_needed:
+    :key hard_items_needed:
+    :key energy_tanks_needed:
+    :key missile_ammo_needed:
+    :key power_bomb_ammo_needed:
+    """
+
+    def __init__(self,
+                 name="Can Do Ludicrous Combat",
+                 *requirements, **kwargs):
+        items_needed: set[str] = kwargs.pop('items_needed', {"Combat - Ludicrous"})
+        items_needed.add("Combat - Ludicrous")
+        kwargs['items_needed'] = items_needed
+        super().__init__(name, *requirements, **kwargs)
+
+    @staticmethod
+    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
+        return options.CombatDifficulty >= 5  # options.CombatDifficulty.option_ludicrous
+    
 
 class CanFightMidGameBossOnAdvanced(CanDoAdvancedCombat, CanFightBoss):
     """
@@ -1771,6 +1703,9 @@ class CanFightBossOnExpert(CanDoExpertCombat, CanFightBoss):
                  *requirements, **kwargs):
         super().__init__(name, *requirements, **kwargs)
 
+#endregion
+
+#region Sector Hub Keycard Requirements
 
 class SectorHubLevel1KeycardRequirement(HasKeycard1):
     """
