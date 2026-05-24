@@ -213,5 +213,5 @@ sector_1_regions = [
     YamebaCorridor,
     YamebaPool,
     ZebesianZag,
-    ZebesianZig
+    ZebesianZig,
 ]

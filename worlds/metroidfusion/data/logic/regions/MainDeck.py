@@ -268,5 +268,5 @@ main_deck_regions = [
     SiloTunnel,
     StationEntrance,
     SubZeroContainment,
-    YakuzaArena
+    YakuzaArena,
 ]
