@@ -1,57 +1,149 @@
 from ..FusionRegion import FusionRegion
 
 
+class Alcove(FusionRegion):
+    name = "Alcove"
+
+class BOXArena(FusionRegion):
+    name = "B.O.X. Arena"
+
+class BOXArenaAccess(FusionRegion):
+    name = "B.O.X. Arena Access"
+
+class BobsAbode(FusionRegion):
+    name = "Bob's Abode"
+
+class BoilerAccess(FusionRegion):
+    name = "Boiler Access"
+
+class CheckpointCrossing(FusionRegion):
+    name = "Checkpoint Crossing"
+
 class Sector3Hub(FusionRegion):
     name = "Sector 3 Hub"
 
-class Sector3TubeLeft(FusionRegion):
-    name = "Sector 3 Tube Left"
+class ChuteAccess(FusionRegion):
+    name = "Chute Access"
 
-class Sector3TubeRight(FusionRegion):
-    name = "Sector 3 Tube Right"
+class DataRechargeRoom(FusionRegion):
+    name = "Data Recharge Room"
 
-class Sector3FieryStorageRight(FusionRegion):
-    name = "Sector 3 Fiery Storage Right"
+class DataRoom(FusionRegion):
+    name = "Data Room"
 
-class Sector3FieryStorageLeft(FusionRegion):
-    name = "Sector 3 Fiery Storage Left"
+class DataSaveRoom(FusionRegion):
+    name = "Data Save Room"
 
-class Sector3SecurityZone(FusionRegion):
-    name = "Sector 3 Security Zone"
+class DesertedRunway(FusionRegion):
+    name = "Deserted Runway"
 
-class Sector3MainShaft(FusionRegion):
-    name = "Sector 3 Main Shaft"
+class EntranceLobby(FusionRegion):
+    name = "Entrance Lobby"
 
-class Sector3BoilerZone(FusionRegion):
-    name = "Sector 3 Boiler Zone"
+class EntranceNavigationRoom(FusionRegion):
+    name = "Entrance Navigation Room"
 
-class Sector3BobZone(FusionRegion):
-    name = "Sector 3 Bob Zone"
+class EntranceRechargeRoom(FusionRegion):
+    name = "Entrance Recharge Room"
 
-class Sector3BOXZone(FusionRegion):
-    name = "Sector 3 BOX Zone"
+class EntranceSaveRoom(FusionRegion):
+    name = "Entrance Save Room"
 
-class Sector3LowerAttic(FusionRegion):
-    name = "Sector 3 Lower Attic"
+class FieryStorage(FusionRegion):
+    name = "Fiery Storage"
 
-class Sector3UpperAttic(FusionRegion):
-    name = "Sector 3 Upper Attic"
+class GarbageChute(FusionRegion):
+    name = "Garbage Chute"
 
-class Sector3SovaProcessing(FusionRegion):
-    name = "Sector 3 Sova Processing"
+class GeronsTreasure(FusionRegion):
+    name = "Geron's Treasure"
+
+class LavaMaze(FusionRegion):
+    name = "Lava Maze"
+
+class LavaReservoirs(FusionRegion):
+    name = "Lava Reservoirs"
+
+class Level2SecurityRoom(FusionRegion):
+    name = "Level 2 Security Room"
+
+class MainBoiler(FusionRegion):
+    name = "Main Boiler"
+
+class MainBoilerControlRoom(FusionRegion):
+    name = "Main Boiler Control Room"
+
+class MonkeyBarsOfFire(FusionRegion):
+    name = "Monkey Bars of Fire"
+
+class NamihesLair(FusionRegion):
+    name = "Namihe's Lair"
+
+class ProcessingAccess(FusionRegion):
+    name = "Processing Access"
+
+class Pyrochamber(FusionRegion):
+    name = "Pyrochamber"
+
+class PyrochamberAccess(FusionRegion):
+    name = "Pyrochamber Access"
+
+class RedTower(FusionRegion):
+    name = "Red Tower"
+
+class Sector3EastboundGlassTube(FusionRegion):
+    name = "Sector 3 (PYR) Eastbound Glass Tube"
+
+class Sector3EntranceElevator(FusionRegion):
+    name = "Sector 3 (PYR) Entrance Elevator"
+
+class Sector3WestboundGlassTube(FusionRegion):
+    name = "Sector 3 (PYR) Westbound Glass Tube"
+
+class SecurityAccess(FusionRegion):
+    name = "Security Access"
+
+class SovaProcessing(FusionRegion):
+    name = "Sova Processing"
+
+class SovaSuite(FusionRegion):
+    name = "Sova Suite"
 
 sector_3_regions = [
+    Alcove,
+    BOXArena,
+    BOXArenaAccess,
+    BobsAbode,
+    BoilerAccess,
+    CheckpointCrossing,
     Sector3Hub,
-    Sector3TubeLeft,
-    Sector3TubeRight,
-    Sector3FieryStorageRight,
-    Sector3FieryStorageLeft,
-    Sector3SecurityZone,
-    Sector3MainShaft,
-    Sector3BoilerZone,
-    Sector3BobZone,
-    Sector3BOXZone,
-    Sector3LowerAttic,
-    Sector3UpperAttic,
-    Sector3SovaProcessing
+    ChuteAccess,
+    DataRechargeRoom,
+    DataRoom,
+    DataSaveRoom,
+    DesertedRunway,
+    EntranceLobby,
+    EntranceNavigationRoom,
+    EntranceRechargeRoom,
+    EntranceSaveRoom,
+    FieryStorage,
+    GarbageChute,
+    GeronsTreasure,
+    LavaMaze,
+    LavaReservoirs,
+    Level2SecurityRoom,
+    MainBoiler,
+    MainBoilerControlRoom,
+    MonkeyBarsOfFire,
+    NamihesLair,
+    ProcessingAccess,
+    Pyrochamber,
+    PyrochamberAccess,
+    RedTower,
+    Sector3EastboundGlassTube,
+    Sector3EntranceElevator,
+    Sector3WestboundGlassTube,
+    SecurityAccess,
+    SovaProcessing,
+    SovaSuite,
 ]
