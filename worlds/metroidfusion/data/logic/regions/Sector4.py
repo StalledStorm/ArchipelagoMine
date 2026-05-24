@@ -1,78 +1,209 @@
 from ..FusionRegion import FusionRegion
 
 
-class Sector4Hub(FusionRegion):
-    name = "Sector 4 Hub"
+class AquariumHub(FusionRegion):
+    name = "Aquarium Hub"
 
-class Sector4TubeLeft(FusionRegion):
-    name = "Sector 4 Tube Left"
+class AquariumHubAccess(FusionRegion):
+    name = "Aquarium Hub Access"
 
-class Sector4TubeRight(FusionRegion):
-    name = "Sector 4 Tube Right"
+class AquariumKagoStorage(FusionRegion):
+    name = "Aquarium Kago Storage"
 
-class Sector4UpperZone(FusionRegion):
-    name = "Sector 4 Upper Zone"
+class AquariumPirateTank(FusionRegion):
+    name = "Aquarium Pirate Tank"
 
-class Sector4ReservoirVault(FusionRegion):
-    name = "Sector 4 Reservoir Vault"
+class AquariumSaveRoomEast(FusionRegion):
+    name = "Aquarium Save Room East"
 
-class Sector4BeforePumpControlZone(FusionRegion):
-    name = "Sector 4 Before Pump Control Zone"
+class AquariumSaveRoomWest(FusionRegion):
+    name = "Aquarium Save Room West"
 
-class Sector4SerrisZone(FusionRegion):
-    name = "Sector 4 Serris Zone"
+class AquariumShaft(FusionRegion):
+    name = "Aquarium Shaft"
 
-class Sector4PumpControl(FusionRegion):
-    name = "Sector 4 Pump Control"
+class AquariumSpeedway(FusionRegion):
+    name = "Aquarium Speedway"
 
-class Sector4UpperWaterZone(FusionRegion):
-    """ Planned for Deprecation. Replace with Sector4CargoHold"""
-    name = "Sector 4 Upper Water Zone"
+class BreedingTank(FusionRegion):
+    name = "Breeding Tank"
 
-class Sector4CargoHold(FusionRegion):
-    name = "Sector 4 Cargo Hold"
+class BreedingTankAccess(FusionRegion):
+    name = "Breeding Tank Access"
 
-class Sector4UpperSecurityZone(FusionRegion):
-    name = "Sector 4 Upper Security Zone"
+class BreedingTankAccessTunnel(FusionRegion):
+    name = "Breeding Tank Access Tunnel"
 
-class Sector4SecurityZone(FusionRegion):
-    name = "Sector 4 Security Zone"
+class BridgeAccess(FusionRegion):
+    name = "Bridge Access"
 
-class Sector4LowerSecurityZone(FusionRegion):
-    name = "Sector 4 Lower Security Zone"
+class BridgeSaveRoom(FusionRegion):
+    name = "Bridge Save Room"
 
-class Sector4SecurityRoom(FusionRegion):
-    name = "Sector 4 Security Room"
+class BrokenBridge(FusionRegion):
+    name = "Broken Bridge"
 
-class Sector4RightWaterZone(FusionRegion):
-    name = "Sector 4 Right Water Zone"
+class CCache(FusionRegion):
+    name = "C-Cache"
 
-class Sector4RightWaterZoneSave(FusionRegion):
-    name = "Sector 4 Right Water Zone Save"
+class CargoHold(FusionRegion):
+    name = "Cargo Hold"
 
-class Sector4DataZone(FusionRegion):
-    name = "Sector 4 Data Zone"
+class CargoHoldItem(FusionRegion):
+    name = "Cargo Hold Item"
 
-class Sector4RightDataZone(FusionRegion):
-    name = "Sector 4 Right Data Zone"
+class CheddarBayLower(FusionRegion):
+    name = "Cheddar Bay Lower"
+
+class CheddarBayUpper(FusionRegion):
+    name = "Cheddar Bay Upper"
+
+class DataRoom(FusionRegion):
+    name = "Data Room"
+
+class DrainPipe(FusionRegion):
+    name = "Drain Pipe"
+
+class EntranceLobby(FusionRegion):
+    name = "Entrance Lobby"
+
+class EntranceNavigationRoom(FusionRegion):
+    name = "Entrance Navigation Room"
+
+class EntranceRechargeRoom(FusionRegion):
+    name = "Entrance Recharge Room"
+
+class EntranceSaveRoom(FusionRegion):
+    name = "Entrance Save Room"
+
+class EvirEnclosure(FusionRegion):
+    name = "Evir Enclosure"
+
+class Hideout(FusionRegion):
+    name = "Hideout"
+
+class Level4SecurityRoom(FusionRegion):
+    name = "Level 4 Security Room"
+
+class OwtchAtrium(FusionRegion):
+    name = "Owtch Atrium"
+
+class PowampPlayhouse(FusionRegion):
+    name = "Powamp Playhouse"
+
+class PowampShaft(FusionRegion):
+    name = "Powamp Shaft"
+
+class PumpControlAccess(FusionRegion):
+    name = "Pump Control Access"
+
+class PumpControlSaveRoom(FusionRegion):
+    name = "Pump Control Save Room"
+
+class PumpControlAccess(FusionRegion):
+    name = "Pump Control Access"
+
+class ReservoirEast(FusionRegion):
+    name = "Reservoir East"
+
+class ReservoirSaveRoom(FusionRegion):
+    name = "Reservoir Save Room"
+
+class ReservoirVault(FusionRegion):
+    name = "Reservoir Vault"
+
+class ReservoirWest(FusionRegion):
+    name = "Reservoir West"
+
+class SanctuaryCache(FusionRegion):
+    name = "Sanctuary Cache"
+
+class SciserSanctuary(FusionRegion):
+    name = "Sciser Sanctuary"
+
+class SciserStall(FusionRegion):
+    name = "Sciser Stall"
+
+class Sector4EastboundGlassTube(FusionRegion):
+    name = "Sector 4 (AQA) Eastbound Glass Tube"
+
+class Sector4EntranceElevator(FusionRegion):
+    name = "Sector 4 (AQA) Entrance Elevator"
+
+class Sector4WestboundGlassTube(FusionRegion):
+    name = "Sector 4 (AQA) Westbound Glass Tube"
+
+class SecurityAccess(FusionRegion):
+    name = "Security Access"
+
+class SecurityBypass(FusionRegion):
+    name = "Security Bypass"
+
+class SerrisArena(FusionRegion):
+    name = "Serris Arena"
+
+class SerrisSpeedway(FusionRegion):
+    name = "Serris Speedway"
+
+class SkulteraCisterns(FusionRegion):
+    name = "Skulter Cisterns"
+
+class Waterway(FusionRegion):
+    name = "Waterway"
+
+class YardFiringRange(FusionRegion):
+    name = "Yard Firing Range"
 
 sector_4_regions = [
-    Sector4Hub,
-    Sector4TubeLeft,
-    Sector4TubeRight,
-    Sector4UpperZone,
-    Sector4ReservoirVault,
-    Sector4BeforePumpControlZone,
-    Sector4SerrisZone,
-    Sector4PumpControl,
-    Sector4UpperWaterZone,
-    Sector4CargoHold,
-    Sector4UpperSecurityZone,
-    Sector4SecurityZone,
-    Sector4LowerSecurityZone,
-    Sector4SecurityRoom,
-    Sector4RightWaterZone,
-    Sector4RightWaterZoneSave,
-    Sector4DataZone,
-    Sector4RightDataZone
+    AquariumHub,
+    AquariumHubAccess,
+    AquariumKagoStorage,
+    AquariumPirateTank,
+    AquariumSaveRoomEast,
+    AquariumSaveRoomWest,
+    AquariumShaft,
+    AquariumSpeedway,
+    BreedingTank,
+    BreedingTankAccess,
+    BreedingTankAccessTunnel,
+    BridgeAccess,
+    BridgeSaveRoom,
+    BrokenBridge,
+    CCache,
+    CargoHold,
+    CargoHoldItem,
+    CheddarBayLower,
+    CheddarBayUpper,
+    DataRoom,
+    DrainPipe,
+    EntranceLobby,
+    EntranceNavigationRoom,
+    EntranceRechargeRoom,
+    EntranceSaveRoom,
+    EvirEnclosure,
+    Hideout,
+    Level4SecurityRoom,
+    OwtchAtrium,
+    PowampPlayhouse,
+    PowampShaft,
+    PumpControlAccess,
+    PumpControlSaveRoom,
+    PumpControlAccess,
+    ReservoirEast,
+    ReservoirSaveRoom,
+    ReservoirVault,
+    ReservoirWest,
+    SanctuaryCache,
+    SciserSanctuary,
+    SciserStall,
+    Sector4EastboundGlassTube,
+    Sector4EntranceElevator,
+    Sector4WestboundGlassTube,
+    SecurityAccess,
+    SecurityBypass,
+    SerrisArena,
+    SerrisSpeedway,
+    SkulteraCisterns,
+    Waterway,
+    YardFiringRange,
 ]
