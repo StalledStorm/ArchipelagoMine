@@ -1,65 +1,165 @@
 from ..FusionRegion import FusionRegion
 
 
-class Sector6Hub(FusionRegion):
-    name = "Sector 6 Hub"
+class AuthorizationCheckpoint(FusionRegion):
+    name = "Authorization Checkpoint"
 
-class Sector6TubeLeft(FusionRegion):
-    name = "Sector 6 Tube Left"
+class BlueXBlockade(FusionRegion):
+    name = "Blue-X Blockade"
 
-class Sector6TubeRight(FusionRegion):
-    name = "Sector 6 Tube Right"
+class BullBend(FusionRegion):
+    name = "Bull Bend"
 
-class Sector6Crossroads(FusionRegion):
-    name = "Sector 6 Crossroads"
+class Catacombs(FusionRegion):
+    name = "Catacombs"
 
-class Sector6Catacombs(FusionRegion):
-    name = "Sector 6 Catacombs"
+class CavernSaveAccess(FusionRegion):
+    name = "Cavern Save Access"
 
-class Sector6BeforeXBOXZone(FusionRegion):
-    name = "Sector 6 Before X-BOX Zone"
+class CavernSaveRoom(FusionRegion):
+    name = "Cavern Save Room"
 
-class Sector6XBOXZone(FusionRegion):
-    name = "Sector 6 X-BOX Zone"
+class CloggedCavern(FusionRegion):
+    name = "Clogged Cavern"
 
-class Sector6XBOXSave(FusionRegion):
-    name = "Sector 6 X-BOX Save"
+class DataAccess(FusionRegion):
+    name = "Data Access"
 
-class Sector6AfterXBOXZone(FusionRegion):
-    name = "Sector 6 After X-BOX Zone"
+class DataRoom(FusionRegion):
+    name = "Data Room"
 
-class Sector6RestrictedZone(FusionRegion):
-    name = "Sector 6 Restricted Zone"
+class DataSaveRoom(FusionRegion):
+    name = "Data Save Room"
 
-class Sector6RestrictedZoneElevatorToTourian(FusionRegion):
-    name = "Sector 6 Restricted Zone Elevator To Tourian Bottom"
+class EntranceLobby(FusionRegion):
+    name = "Entrance Lobby"
 
-class Sector6BeforeVariaCoreXZone(FusionRegion):
-    name = "Sector 6 Before Varia Core-X Zone"
+class EntranceNavigationRoom(FusionRegion):
+    name = "Entrance Navigation Room"
 
-class Sector6VariaCoreXZone(FusionRegion):
-    name = "Sector 6 Varia Core-X Zone"
+class EntranceRechargeRoom(FusionRegion):
+    name = "Entrance Recharge Room"
 
-class Sector6CavernsSave(FusionRegion):
-    name = "Sector 6 Caverns Save"
+class EntranceSaveRoom(FusionRegion):
+    name = "Entrance Save Room"
 
-class Sector6AfterVariaCoreXZone(FusionRegion):
-    name = "Sector 6 After Varia Core-X Zone"
+class ForbiddenEntrance(FusionRegion):
+    name = "Forbidden Entrance"
+
+class GeronsCrossing(FusionRegion):
+    name = "Geron's Crossing"
+
+class MaintenanceWing(FusionRegion):
+    name = "Maintenance Wing"
+
+class MissileMimicLodge(FusionRegion):
+    name = "Missile Mimic Lodge"
+
+class NeglectedSaveRoom(FusionRegion):
+    name = "Neglected Save Room"
+
+class NeglectedShaft(FusionRegion):
+    name = "Neglected Shaft"
+
+class NocturnalAccess(FusionRegion):
+    name = "Nocturnal Access"
+
+class NocturnalPlayground(FusionRegion):
+    name = "Nocturnal Playground"
+
+class NocturnalShaft(FusionRegion):
+    name = "Nocturnal Shaft"
+
+class PillarHighway(FusionRegion):
+    name = "Pillar Highway"
+
+class Sector6EastboundGlassTube(FusionRegion):
+    name = "Sector 6 (NOC) Eastbound Glass Tube"
+
+class Sector6EntranceElevator(FusionRegion):
+    name = "Sector 6 (NOC) Entrance Elevator"
+
+class Sector6WestboundGlassTube(FusionRegion):
+    name = "Sector 6 (NOC) Westbound Glass Tube"
+
+class SpaceboostAlley(FusionRegion):
+    name = "Spaceboost Alley"
+
+class TwinCavernsSaveRoom(FusionRegion):
+    name = "Twin Caverns Save Room"
+
+class TwinCavernsEast(FusionRegion):
+    name = "Twin Caverns East"
+
+class TwinCavernsWest(FusionRegion):
+    name = "Twin Caverns West"
+
+class VariaCoreXArena(FusionRegion):
+    name = "Varia Core-X Arena"
+
+class Vault(FusionRegion):
+    name = "Vault"
+
+class Warehouse(FusionRegion):
+    name = "Warehouse"
+
+class WarehouseAccess(FusionRegion):
+    name = "Warehouse Access"
+
+class WeaponsTestingGrounds(FusionRegion):
+    name = "Weapons Testing Grounds"
+
+class XBOXArena(FusionRegion):
+    name = "X-B.O.X. Arena"
+
+class XBOXArenaAccess(FusionRegion):
+    name = "X-B.O.X. Arena Access"
+
+class XBOXGarage(FusionRegion):
+    name = "X-B.O.X. Garage"
+
+class ZozoroWineCellar(FusionRegion):
+    name = "Zozoro Wine Cellar"
 
 sector_6_regions = [
-    Sector6Hub,
-    Sector6TubeLeft,
-    Sector6TubeRight,
-    Sector6Crossroads,
-    Sector6Catacombs,
-    Sector6BeforeXBOXZone,
-    Sector6XBOXZone,
-    Sector6AfterXBOXZone,
-    Sector6XBOXSave,
-    Sector6RestrictedZone,
-    Sector6RestrictedZoneElevatorToTourian,
-    Sector6BeforeVariaCoreXZone,
-    Sector6VariaCoreXZone,
-    Sector6AfterVariaCoreXZone,
-    Sector6CavernsSave
+    AuthorizationCheckpoint,
+    BlueXBlockade,
+    BullBend,
+    Catacombs,
+    CavernSaveAccess,
+    CavernSaveRoom,
+    CloggedCavern,
+    DataAccess,
+    DataRoom,
+    DataSaveRoom,
+    EntranceLobby,
+    EntranceNavigationRoom,
+    EntranceRechargeRoom,
+    EntranceSaveRoom,
+    ForbiddenEntrance,
+    GeronsCrossing,
+    MaintenanceWing,
+    MissileMimicLodge,
+    NeglectedSaveRoom,
+    NeglectedShaft,
+    NocturnalAccess,
+    NocturnalPlayground,
+    NocturnalShaft,
+    PillarHighway,
+    Sector6EastboundGlassTube,
+    Sector6EntranceElevator,
+    Sector6WestboundGlassTube,
+    SpaceboostAlley,
+    TwinCavernsSaveRoom,
+    TwinCavernsEast,
+    TwinCavernsWest,
+    VariaCoreXArena,
+    Vault,
+    Warehouse,
+    WarehouseAccess,
+    WeaponsTestingGrounds,
+    XBOXArena,
+    XBOXArenaAccess,
+    XBOXGarage,
+    ZozoroWineCellar,
 ]
