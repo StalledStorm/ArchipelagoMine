@@ -1,53 +1,189 @@
 from ..FusionRegion import FusionRegion
 
 
-class Sector5Hub(FusionRegion):
-    name = "Sector 5 Hub"
+class ArcticContainment(FusionRegion):
+    name = "Arctic Containment"
 
-class Sector5TubeLeft(FusionRegion):
-    name = "Sector 5 Tube Left"
+class ArcticUnderside(FusionRegion):
+    name = "Arctic Underside"
 
-class Sector5TubeRight(FusionRegion):
-    name = "Sector 5 Tube Right"
+class Cellar(FusionRegion):
+    name = "Cellar"
 
-class Sector5MagicBox(FusionRegion):
-    name = "Sector 5 Magic Box"
+class CellarSaveRoom(FusionRegion):
+    name = "Cellar Save Room"
 
-class Sector5TopLeftBigRoom(FusionRegion):
-    name = "Sector 5 Top Left of Big Room"
+class CrowsNest(FusionRegion):
+    name = "Crow's Nest"
 
-class Sector5FrozenHub(FusionRegion):
-    name = "Sector 5 Frozen Hub"
+class DataCheckpoint(FusionRegion):
+    name = "Data Checkpoint"
 
-class Sector5SecurityZone(FusionRegion):
-    name = "Sector 5 Security Zone"
+class DataRoom(FusionRegion):
+    name = "Data Room"
 
-class Sector5DataRoom(FusionRegion):
-    name = "Sector 5 Data Room"
+class ETankMimicDen(FusionRegion):
+    name = "E-Tank Mimic Den"
 
-class Sector5BeforeNightmareHub(FusionRegion):
-    name = "Sector 5 Before Nightmare Hub"
+class EntranceLobby(FusionRegion):
+    name = "Entrance Lobby"
 
-class Sector5NightmareHub(FusionRegion):
-    name = "Sector 5 Nightmare Hub"
+class EntranceNavigationRoom(FusionRegion):
+    name = "Entrance Navigation Room"
 
-class Sector5NightmareZoneUpper(FusionRegion):
-    name = "Sector 5 Nightmare Zone Upper"
+class EntranceRechargeRoom(FusionRegion):
+    name = "Entrance Recharge Room"
 
-class Sector5NightmareZoneArena(FusionRegion):
-    name = "Sector 5 Nightmare Zone Arena"
+class EntranceSaveRoom(FusionRegion):
+    name = "Entrance Save Room"
+
+class FloodedAccess(FusionRegion):
+    name = "Flooded Access"
+
+class FloodedAirlock(FusionRegion):
+    name = "Flooded Airlock"
+
+class FloodedTower(FusionRegion):
+    name = "Flooded Tower"
+
+class FrozenTower(FusionRegion):
+    name = "Frozen Tower"
+
+class GerubusGully(FusionRegion):
+    name = "Gerubus Gully"
+
+class KagoRoadblock(FusionRegion):
+    name = "Kago Roadblock"
+
+class KagoSpeedway(FusionRegion):
+    name = "Kago Speedway"
+
+class Level3SecurityRoom(FusionRegion):
+    name = "Level 3 Security Room"
+
+class MagicBox(FusionRegion):
+    name = "Magic Box"
+
+class MiniFridge(FusionRegion):
+    name = "Mini-Fridge"
+
+class NightmareArena(FusionRegion):
+    name = "Nightmare Arena"
+
+class NightmareHub(FusionRegion):
+    name = "Nightmare Hub"
+
+class NightmareLowerAccess(FusionRegion):
+    name = "Nightmare Lower Access"
+
+class NightmareNook(FusionRegion):
+    name = "Nightmare Nook"
+
+class NightmareRechargeRoom(FusionRegion):
+    name = "Nightmare Recharge Room"
+
+class NightmareSaveRoom(FusionRegion):
+    name = "Nightmare Save Room"
+
+class NightmareUpperAccess(FusionRegion):
+    name = "Nightmare Upper Access"
+
+class RipperRoad(FusionRegion):
+    name = "Ripper Road"
+
+class RippersTreasure(FusionRegion):
+    name = "Ripper's Treasure"
+
+class RuinedBreakRoom(FusionRegion):
+    name = "Ruined Break Room"
+
+class RuinedCorridor(FusionRegion):
+    name = "Ruined Corridor"
+
+class Sector5EastboundGlassTube(FusionRegion):
+    name = "Sector 5 (ARC) Eastbound Glass Tube"
+
+class Sector5EntranceElevator(FusionRegion):
+    name = "Sector 5 (ARC) Entrance Elevator"
+
+class Sector5WestboundGlassTube(FusionRegion):
+    name = "Sector 5 (ARC) Westbound Glass Tube"
+
+class SecuritySaveRoom(FusionRegion):
+    name = "Security Save Room"
+
+class SecurityShaftEast(FusionRegion):
+    name = "Security Shaft East"
+
+class SecurityShaftWest(FusionRegion):
+    name = "Security Shaft West"
+
+class Subway(FusionRegion):
+    name = "Subway"
+
+class TrainingAerie(FusionRegion):
+    name = "Training Aerie"
+
+class TrainingGrounds(FusionRegion):
+    name = "Training Grounds"
+
+class TransmutationTrial(FusionRegion):
+    name = "Transmutation Trial"
+
+class WaverWard(FusionRegion):
+    name = "Waver Ward"
+
+class ZebesianWaters(FusionRegion):
+    name = "Zebesian Waters"
+
+class ZeelaCheckpoint(FusionRegion):
+    name = "Zeela Checkpoint"
 
 sector_5_regions = [
-    Sector5Hub,
-    Sector5TubeLeft,
-    Sector5TubeRight,
-    Sector5MagicBox,
-    Sector5TopLeftBigRoom,
-    Sector5FrozenHub,
-    Sector5SecurityZone,
-    Sector5DataRoom,
-    Sector5BeforeNightmareHub,
-    Sector5NightmareHub,
-    Sector5NightmareZoneUpper,
-    Sector5NightmareZoneArena
+    ArcticContainment,
+    ArcticUnderside,
+    Cellar,
+    CellarSaveRoom,
+    CrowsNest,
+    DataCheckpoint,
+    DataRoom,
+    ETankMimicDen,
+    EntranceLobby,
+    EntranceNavigationRoom,
+    EntranceRechargeRoom,
+    EntranceSaveRoom,
+    FloodedAccess,
+    FloodedAirlock,
+    FloodedTower,
+    FrozenTower,
+    GerubusGully,
+    KagoRoadblock,
+    KagoSpeedway,
+    Level3SecurityRoom,
+    MagicBox,
+    MiniFridge,
+    NightmareArena,
+    NightmareHub,
+    NightmareLowerAccess,
+    NightmareNook,
+    NightmareRechargeRoom,
+    NightmareSaveRoom,
+    NightmareUpperAccess,
+    RipperRoad,
+    RippersTreasure,
+    RuinedBreakRoom,
+    RuinedCorridor,
+    Sector5EastboundGlassTube,
+    Sector5EntranceElevator,
+    Sector5WestboundGlassTube,
+    SecuritySaveRoom,
+    SecurityShaftEast,
+    SecurityShaftWest,
+    Subway,
+    TrainingAerie,
+    TrainingGrounds,
+    TransmutationTrial,
+    WaverWard,
+    ZebesianWaters,
+    ZeelaCheckpoint,
 ]
