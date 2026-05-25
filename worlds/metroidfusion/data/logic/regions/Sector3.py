@@ -19,9 +19,6 @@ class BoilerAccess(FusionRegion):
 class CheckpointCrossing(FusionRegion):
     name = "Checkpoint Crossing"
 
-class Sector3Hub(FusionRegion):
-    name = "Sector 3 Hub"
-
 class ChuteAccess(FusionRegion):
     name = "Chute Access"
 
@@ -116,7 +113,6 @@ sector_3_regions = [
     BobsAbode,
     BoilerAccess,
     CheckpointCrossing,
-    Sector3Hub,
     ChuteAccess,
     DataRechargeRoom,
     DataRoom,
