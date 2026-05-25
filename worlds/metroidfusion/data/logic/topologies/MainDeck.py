@@ -1,12 +1,12 @@
 from ..Connection import Connection
 from ..FusionLocation import FusionLocation
 from ..regions.MainDeck import *
-from ..regions.Sector1 import Sector1Hub
-from ..regions.Sector2 import Sector2Hub, Sector2NettoriZone
-from ..regions.Sector3 import Sector3Hub
-from ..regions.Sector4 import Sector4Hub
-from ..regions.Sector5 import Sector5Hub
-from ..regions.Sector6 import Sector6Hub
+from ..regions.Sector1 import Sector1EntranceElevator
+from ..regions.Sector2 import Sector2EntranceElevator, OvergrownEntrance
+from ..regions.Sector3 import Sector3EntranceElevator
+from ..regions.Sector4 import Sector4EntranceElevator
+from ..regions.Sector5 import Sector5EntranceElevator
+from ..regions.Sector6 import Sector6EntranceElevator
 from ..Requirement import Requirement, PONRRequirement
 from ..Requirements import *
 from ..VariableConnection import VariableConnection

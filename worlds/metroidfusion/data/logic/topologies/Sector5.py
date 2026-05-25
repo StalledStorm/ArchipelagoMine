@@ -4,11 +4,11 @@ from ..VariableConnection import VariableConnection
 from ..Requirements import *
 from ..FusionLocation import FusionLocation
 
-from ..regions.MainDeck import SectorHubElevator5Top
-from ..regions.Sector3 import Sector3TubeLeft
-from ..regions.Sector4 import Sector4UpperWaterZone
+from ..regions.MainDeck import SectorHubLift5
+from ..regions.Sector3 import Sector3WestboundGlassTube
+from ..regions.Sector4 import CargoHold
 from ..regions.Sector5 import *
-from ..regions.Sector6 import Sector6TubeRight
+from ..regions.Sector6 import Sector6EastboundGlassTube
 
 Sector5Hub.connections = [
     VariableConnection(SectorHubElevator5Top, []),
