@@ -94,13 +94,13 @@ class SciserPlayground(FusionRegion):
 class SciserPuddle(FusionRegion):
     name = "Scisser Puddle"
 
-class S1EastboundGlassTube(FusionRegion):
+class Sector1EastboundGlassTube(FusionRegion):
     name = "Sector 1 (SRX) Eastbound Glass Tube"
 
-class S1EntranceElevator(FusionRegion):
+class Sector1EntranceElevator(FusionRegion):
     name = "Sector 1 (SRX) Entrance Elevator"
 
-class S1WestboundGlassTube(FusionRegion):
+class Sector1WestboundGlassTube(FusionRegion):
     name = "Sector 1 (SRX) Westbound Glass Tube"
 
 class StabilizerCheckpoint(FusionRegion):
@@ -192,9 +192,9 @@ sector_1_regions = [
     RipperSauna,
     SciserPlayground,
     SciserPuddle,
-    S1EastboundGlassTube,
-    S1EntranceElevator,
-    S1WestboundGlassTube,
+    Sector1EastboundGlassTube,
+    Sector1EntranceElevator,
+    Sector1WestboundGlassTube,
     StabilizerCheckpoint,
     StabilizerStorage,
     TourianCheckpoint,
