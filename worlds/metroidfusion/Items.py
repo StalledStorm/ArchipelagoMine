@@ -29,7 +29,8 @@ for item in all_item_data:
     item_table[item[0]] = ItemData(item[0], item[1], item[2], item[3])
 
 item_names = [item for item in item_table.keys()]
-placeholder_names: set[str] = {"Wall Jump Boots",
+placeholder_names: set[str] = {"False Requirement Flag",
+                               "Wall Jump Boots",
                                "Point of No Return",
                                "Wall Jump Trick - Beginner",
                                "Wall Jump Trick - Advanced",

@@ -278,7 +278,7 @@ Sector1TourianHub.locations = [
             CanDoBeginnerWallJump("Wall Jump out of Animorphs Cache", [
                 HasHiJump()
             ])
-        ], enemy_hp=60)
+        ], enemy_hp=60, behind_wall=True)
     ]),
     FusionLocation("Sector 1 (SRX) -- Neo-Ridley Arena", True, [
         Requirement("Enter Neo-Ridley Arena", [

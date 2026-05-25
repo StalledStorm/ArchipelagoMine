@@ -120,7 +120,7 @@ class MetroidFusionWorld(World):
     item_name_groups = {
         "MajorUpgrades": major_upgrades
     }
-    version = "1.22.0"
+    version = "1.22.3"
     debug = False
 
 
@@ -222,7 +222,8 @@ class MetroidFusionWorld(World):
                 (logic_object.requirements,
                  logic_object.energy_tanks,
                  logic_object.missile_ammo,
-                 logic_object.power_bomb_ammo) = create_logic_rule_for_list(
+                 logic_object.power_bomb_ammo,
+                 logic_object.yaml_enabled) = create_logic_rule_for_list(
                     connection.requirements,
                     self.options,
                     self.debug)
@@ -390,7 +391,8 @@ class MetroidFusionWorld(World):
             (logic_object.requirements,
              logic_object.energy_tanks,
              logic_object.missile_ammo,
-             logic_object.power_bomb_ammo) = create_logic_rule_for_list(
+             logic_object.power_bomb_ammo,
+             logic_object.yaml_enabled) = create_logic_rule_for_list(
                 location_data.requirements, self.options, self.debug)
             add_rule(ap_location, logic_object.logic_rule)
 

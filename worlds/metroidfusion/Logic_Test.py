@@ -33,7 +33,7 @@ class FusionLogicTest(WorldTestBase):
         "EarlyProgression": 2,
         "SectorTubeShuffle": True,
         "ElevatorShuffle": "all",
-        "PointOfNoReturnsInLogic": True,
+        "PointOfNoReturnsInLogic": False,
         # Trick Options
         "WallJumpTrickDifficulty": 2,
         "ShinesparkTrickDifficulty": 1,
@@ -64,30 +64,9 @@ class FusionLogicTest(WorldTestBase):
         start = perf_counter()
         reqs: list[Requirement] = [
             # Copy or write a Requirement in this area to test
-            Requirement("Enter Neo-Ridley Arena", [
-                # Destroy Bomb Wall
-                CanBomb(),
-                CanPowerBomb()
-            ], [
-                # Can Kill Genesis under floor
-                HasWaveBeam(),
-                CanPowerBomb(power_bomb_ammo_needed=2)
-            ], [
-                # Can Kill Golden Pirates
-                CanDamageToughEnemy("Kill Golden Pirates", enemy_hp=(135 * 2),
-                                    immunities={"Beam", "Power Bomb"})
-            ], [
-                # Do Ridley Fight
-                CanFightLateGameBoss("Ridley Trickless", energy_tanks_needed=level_4_e_tanks, boss_hp=4500,
-                                     immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"}),
-                CanFightLateGameBossOnAdvanced("Ridley On Advanced", [
-                    HasPlasmaBeam()
-                ], boss_hp=4500, immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"}),
-                CanFightBossOnExpert("Ridley On Expert", boss_hp=4500,
-                                     immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"})
-            ], [
-                HasSpaceJump("Can Leave Neo-Ridley Arena"),
-                PONRRequirement("PONR - Neo-Ridley Arena")
+            HasKeycard2("Enter BOX's Zone", [
+                CanDamageMediumGeron(),
+                CanDamageAnyGeron()
             ])
         ]
         expected_results: list[tuple[set[str], int, int, int]] = [
@@ -100,7 +79,8 @@ class FusionLogicTest(WorldTestBase):
         (rules,
          energy_tanks,
          missiles,
-         power_bombs) = create_logic_rule_for_list(reqs, MetroidFusionOptions(**self.options), True)
+         power_bombs,
+         yaml_enabled) = create_logic_rule_for_list(reqs, MetroidFusionOptions(**self.options), True)
         generate = perf_counter()
         for (expected_requirement,
              expected_energy,

@@ -203,5 +203,30 @@ offworld_sprites: dict[str, dict[str, SpriteNames]] = {
         "Lucky Frog": SpriteNames.EnergyTank,
         "Magic Soap": SpriteNames.MissileTank, # (Refills your Magic Bolts at Save Stations)
         "Big League Glove": SpriteNames.SuperMissiles, # (Turns Baseballs into Super Baseballs)
-    }
+    },
+    "Metroid: Samus Returns": {
+        "Missile Tank": SpriteNames.MissileTank,
+        "Super Missile Tank": SpriteNames.SuperMissiles,
+        "Power Bomb Tank": SpriteNames.PowerBombTank,
+        "Energy Tank": SpriteNames.EnergyTank,
+        "Missile Launcher": SpriteNames.Missiles,
+        "Super Missile": SpriteNames.SuperMissiles,
+        "Power Bomb": SpriteNames.PowerBombs,
+        "Charge Beam": SpriteNames.ChargeBeam,
+        "Ice Beam": SpriteNames.IceBeam,
+        "Wave Beam": SpriteNames.WaveBeam,
+        "Spazer Beam": SpriteNames.WideBeam,
+        "Plasma Beam": SpriteNames.PlasmaBeam,
+        "Morph Ball": SpriteNames.MorphBall,
+        "Bomb": SpriteNames.Bombs,
+        "Varia Suit": SpriteNames.VariaSuit,
+        "Gravity Suit": SpriteNames.GravitySuit,
+        "High Jump Boots": SpriteNames.HiJump,
+        "Space Jump": SpriteNames.SpaceJump,
+        "Screw Attack": SpriteNames.ScrewAttack,
+        "Metroid Hatchling": SpriteNames.InfantMetroid,
+        "Energy Reserve Tank": SpriteNames.EnergyTank,
+        "Missile Reserve Tank": SpriteNames.MissileTank,
+        "Nothing": SpriteNames.Empty,
+    },
 }

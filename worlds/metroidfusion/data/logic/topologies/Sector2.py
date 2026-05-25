@@ -42,7 +42,7 @@ Sector2Hub.connections = [
 
 Sector2LeftSide.connections = [
     Connection(Sector2Hub, [
-        HasMorph("Climb Zig-Zag-Zone from Maintenance Wing", [
+        CanBallJump("Maintenance Wing -> Data Courtyard", [
             CanBomb(None, [HasScrewAttack()]),
             CanPowerBomb(power_bomb_ammo_needed=4)
         ], [
@@ -51,7 +51,7 @@ Sector2LeftSide.connections = [
                 HasHiJump()
             ])
         ])
-    ]),
+    ], one_way=True),
     Connection(Sector2ZazabiZone, [
         CanBomb(),
         CanPowerBomb(power_bomb_ammo_needed=4)
@@ -82,6 +82,9 @@ Sector2ZazabiZone.connections = [
             # Required if coming from Cathedral
             CanFreezeEnemies(),
             CanJumpHigh()
+        ], [
+            PONRRequirement("PONR - To Zig-Zag-Zone"),
+            CanBallJump()
         ])
     ], one_way=True),
     Connection(Sector2NettoriZone, [
@@ -99,10 +102,13 @@ Sector2ZazabiZone.connections = [
 
 Sector2ZazabiZoneUpper.connections = [
     Connection(Sector2ZazabiZone, [
-        PONRRequirement("PONR - Drop Down Cathedral", [
+        Requirement("Drop Down Cathedral",[
             CanBomb(),
             CanPowerBomb()
-        ]),
+        ],[
+            CanJumpHigh(),
+            PONRRequirement("PONR - Drop Down Cathedral")
+        ])
     ], one_way=True)
 ]
 
