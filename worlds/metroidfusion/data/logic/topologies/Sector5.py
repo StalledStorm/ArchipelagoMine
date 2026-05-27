@@ -359,7 +359,7 @@ Sector5NightmareHub.locations = [
         ], [
             CanFreezeEnemies(missile_ammo_needed=8),
             CanDoBeginnerShinespark(),
-            CanJumpHighUnderwater(None, hard_items_needed={"Space Jump"}),
+            HasGravity(None, [HasSpaceJump()]),
             CanDoExpertCombat("Shoot Missile Block and Grab Ledge in one motion during PONR drop", [
                 PONRRequirement("PONR - Mini-Fridge")
             ])
@@ -371,8 +371,8 @@ Sector5NightmareZoneUpper.locations = [
     FusionLocation("Sector 5 (ARC) -- Nightmare Hub", False, [
         CanBallJump("Can Obtain Nightmare Hub Item", [
             CanPowerBomb(),
-            #future CanDoMidairMorph(None, hard_items_needed={"Bomb Data"})
-        ])
+        ]),
+        #future CanDoMidairMorph(None, [CanBomb()])
     ]),
     FusionLocation("Sector 5 (ARC) -- Ruined Break Room", False, [
         CanPowerBomb()

@@ -255,7 +255,7 @@ Sector1FourthStabilizerZone.locations = [
         CanDamageAnyGeron("Can Kill Atmospheric Stabilizer SE - Alternate", [
             HasHiJump(),
             CanDoSimpleWallJump(),
-            Requirement(hard_items_needed={"Power Bomb Data"})
+            CanPowerBomb()
         ])
     ])
 ]

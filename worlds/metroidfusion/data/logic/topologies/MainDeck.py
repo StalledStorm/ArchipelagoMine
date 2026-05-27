@@ -275,12 +275,12 @@ MainDeckHub.locations = [
 
 NexusStorage.locations = [
     FusionLocation("Main Deck -- Nexus Storage", False, [
-        CanBallJump("Can Access Nexus Storage Item", [
+        CanPowerBomb("Can Access Nexus Storage Item", [
             PONRRequirement("PONR - Collect Nexus Storage Item",
-                            hard_items_needed={"Hi-Jump"}),
-            Requirement(hard_items_needed={"Bomb Data"}),
+                            [HasHiJump()]),
+            HasBombData(),
             CanPowerBomb()
-        ])
+        ]),
     ])
 ]
 
