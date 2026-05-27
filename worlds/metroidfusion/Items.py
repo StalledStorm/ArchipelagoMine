@@ -1,3 +1,5 @@
+from typing import Iterable
+
 from BaseClasses import ItemClassification
 from .data.items import all_item_data, events
 
@@ -42,6 +44,10 @@ placeholder_names: set[str] = {"False Requirement Flag",
                                "Combat - Expert"}
 
 valid_item_names = [*item_names, *[event[3] for event in events], *placeholder_names]
+
+def validate_items(items: Iterable[str]) -> None:
+    assert all([item_name in valid_item_names for item_name in items]), \
+        f"Invalid item name in: {items}"
 
 # Everything not listed here has a quantity of one
 default_item_quantities = {
