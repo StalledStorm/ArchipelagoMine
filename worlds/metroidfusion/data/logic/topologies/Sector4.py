@@ -197,7 +197,7 @@ Sector4SerrisZone.connections = [
             CanDoSimpleWallJump(),
             HasSpaceJump()
         ])
-    ]),
+    ], one_way=True),
     Connection(Sector4ReservoirVault, [
         HasSpeedBooster()
     ], one_way=True)
