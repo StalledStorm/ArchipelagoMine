@@ -1,15 +1,15 @@
 import random
 from typing import TYPE_CHECKING
 
-from .constants.enemies import EnemyType
-from .constants.game_data import spriteset_count, spriteset_ptrs
-from .mf.constants.enemies import ENEMY_TYPES_MF
-from .mf.constants.game_data import sprite_vram_sizes
-from .rom import Rom
+from mars_patcher.constants.enemies import EnemyType
+from mars_patcher.constants.game_data import spriteset_count, spriteset_ptrs
+from mars_patcher.mf.constants.enemies import ENEMY_TYPES_MF
+from mars_patcher.mf.constants.game_data import sprite_vram_sizes
+from mars_patcher.rom import Rom
 
 if TYPE_CHECKING:
-    from .mf.constants.sprites import SpriteIdMF
-    from .zm.constants.sprites import SpriteIdZM
+    from mars_patcher.mf.constants.sprites import SpriteIdMF
+    from mars_patcher.zm.constants.sprites import SpriteIdZM
 
 
 def randomize_enemies(rom: Rom) -> None:

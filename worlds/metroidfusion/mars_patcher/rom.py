@@ -2,10 +2,9 @@ from collections.abc import Sequence
 from enum import Enum
 from os import PathLike
 
-from .mf.constants.reserved_space import ReservedConstantsMF
-from .zm.constants.reserved_space import ReservedConstantsZM
-
-BytesLike = bytes | bytearray
+from mars_patcher.common_types import BytesLike
+from mars_patcher.mf.constants.reserved_space import ReservedConstantsMF
+from mars_patcher.zm.constants.reserved_space import ReservedConstantsZM
 
 SIZE_8MB = 0x800000
 ROM_OFFSET = 0x8000000
@@ -163,7 +162,7 @@ class Rom:
 
     def read_ascii(self, addr: int, size: int) -> str:
         """
-        Reads a specified amount of bytes from a given addres, and returns
+        Reads a specified amount of bytes from a given address, and returns
         the read values interpreted as an ASCII string
         """
         return self.read_bytes(addr, size).decode("ascii")

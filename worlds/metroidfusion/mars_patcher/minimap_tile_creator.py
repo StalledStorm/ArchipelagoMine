@@ -1,6 +1,6 @@
 from enum import Enum
 
-from .constants.minimap_tiles import ColoredDoor, Content, Edge, MapTile, TileEdges
+from mars_patcher.constants.minimap_tiles import ColoredDoor, Content, Edge, MapTile, TileEdges
 
 # Used for the edges of tiles, also used for boss icons that are always visible
 COLOR_WHITE_OUTLINE = 1

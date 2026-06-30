@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from .patcher import patch
+from mars_patcher.patcher import patch
 
 
 def main() -> None:

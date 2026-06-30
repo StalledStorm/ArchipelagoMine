@@ -1,20 +1,20 @@
-import pkgutil
-from ..constants import game_data as gd
-from .auto_generated_types import MarsschemamfEnvironmentaldamage
-from .constants.reserved_space import ReservedPointersMF
-from .data import get_relative_data_path
-from ..patching import BpsDecoder, IpsDecoder
-from ..rom import Rom
+import mars_patcher.constants.game_data as gd
+from mars_patcher.mf.auto_generated_types import MarsschemamfEnvironmentalDamage
+from mars_patcher.mf.constants.reserved_space import ReservedPointersMF
+from mars_patcher.mf.data import get_data_path
+from mars_patcher.patching import BpsDecoder, IpsDecoder
+from mars_patcher.rom import Rom
 
 
 def _get_patch_path(rom: Rom, subfolder: str, filename: str) -> str:
     dir = f"{rom.game.name}_{rom.region.name}".lower()
-    return get_relative_data_path(__file__, "patches", dir, subfolder, filename)
+    return get_data_path("patches", dir, subfolder, filename)
 
 
 def _internal_apply_ips_patch(rom: Rom, patch_name: str, subfolder: str) -> None:
     path = _get_patch_path(rom, subfolder, patch_name)
-    patch = pkgutil.get_data(__name__, path)
+    with open(path, "rb") as f:
+        patch = f.read()
     IpsDecoder().apply_patch(patch, rom.data)
 
 
@@ -28,7 +28,8 @@ def apply_patch_in_asm_path(rom: Rom, patch_name: str) -> None:
 
 def apply_base_patch(rom: Rom) -> None:
     path = _get_patch_path(rom, "asm", "m4rs.bps")
-    patch = pkgutil.get_data(__name__, path)
+    with open(path, "rb") as f:
+        patch = f.read()
     rom.data = BpsDecoder().apply_patch(patch, rom.data)
 
 
@@ -85,15 +86,15 @@ def apply_alternative_health_layout(rom: Rom) -> None:
     rom.write_8(rom.read_ptr(ReservedPointersMF.USE_ALTERNATIVE_HUD_DISPLAY.value), 1)
 
 
-def apply_environmental_damage(rom: Rom, damage_dict: MarsschemamfEnvironmentaldamage) -> None:
+def apply_environmental_damage(rom: Rom, damage_dict: MarsschemamfEnvironmentalDamage) -> None:
     base_address = rom.read_ptr(ReservedPointersMF.ENVIRONMENTAL_HAZARD_DAMAGE_ADDR.value)
     damage = [
-        damage_dict["Lava"],
-        damage_dict["Acid"],
-        damage_dict["Heat"],
+        damage_dict["lava"],
+        damage_dict["acid"],
+        damage_dict["heat"],
         # ASM currently has Subzero and Cold mislabelled. https://github.com/MetroidAdvRandomizerSystem/mars-fusion-asm/issues/374
-        damage_dict["Cold"],
-        damage_dict["Subzero"],
+        damage_dict["cold"],
+        damage_dict["subzero"],
     ]
     for offset, damage_amount in enumerate(damage):
         rom.write_8(base_address + offset, damage_amount)

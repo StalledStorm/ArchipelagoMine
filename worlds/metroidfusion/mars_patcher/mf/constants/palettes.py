@@ -1,4 +1,4 @@
-from .sprites import SpriteIdMF
+from mars_patcher.mf.constants.sprites import SpriteIdMF
 
 MF_TILESET_ALT_PAL_ROWS = {
     0x46F134: 0xD,  # 08
