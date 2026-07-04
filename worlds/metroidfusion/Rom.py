@@ -41,7 +41,11 @@ class MetroidFusionPatchExtension(APPatchExtension):
             rom_name = bytearray(rom_name_text, 'utf-8')
             rom_name.extend([0] * (20 - len(rom_name)))
             rom_data[memory.rom_name_location:memory.rom_name_location + 20] = bytes(rom_name)
-            rom_data[memory.generation_version_location:memory.generation_version_location + 2] = bytes(bytearray(map(int, patch_dict.get("GenerationVersion").split("."))))
+            if isinstance(patch_dict.get('GenerationVersion'), str):
+                gen_version = Utils.tuplize_version(patch_dict.get('GenerationVersion'))
+            else: # old apworld, GenerationVersion is int
+                gen_version = Utils.Version(0, 0, patch_dict.get('GenerationVersion'))
+            rom_data[memory.generation_version_location:memory.generation_version_location + 2] = bytes(gen_version)
             rom_data[memory.patching_version_location:memory.patching_version_location + 2] = map(int, MetroidFusionWorld.version.split("."))
         return rom_data
 
