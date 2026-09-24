@@ -81,33 +81,142 @@ class ElevatorShuffle(Choice):
 
 # Trick Options
 
-class WallJumpTrickDifficulty(Choice):
-    """What level of wall jump trick difficulty may be required to navigate around."""
-    display_name = "Wall Jump Trick Difficulty"
+class CombatDifficulty(Choice):
+    """What level of combat tools are logically expected to defeat bosses and enemies while navigating.
+    A higher difficulty will expect less combat tools to be available and to include fewer Energy Tanks than normal."""
+    display_name = "Combat Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class KnowledgeDifficulty(Choice):
+    """Knowledge of interactions that aren't explained by a vanilla playthrough.
+    A higher difficulty will expect knowing details in increasing obscurity."""
+    display_name = "Knowledge Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    default = 0
+
+class DamageBoostTrickDifficulty(Choice):
+    """A damage boost is the act of intentionally taking damage to prevent taking a larger amount of damage, or to
+    induce desirable knockback to use in travel.
+    A higher difficulty represents a greater risk of taking more damage than necessary to achieve results."""
+    display_name = "Damage Boost Trick Difficulty"
     option_none = 0
     option_beginner = 1
-    option_advanced = 2
-    # option_expert = 3
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class DamageRunTrickDifficulty(Choice):
+    """Traversing damaging environments without the Varia Suit, excluding damage from enemies.
+    A higher difficulty will expect less extra Energy Tanks to perform."""
+    display_name = "Damage Run Trick Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class FrozenEnemiesTrickDifficulty(Choice):
+    """Freezing an enemy to use as a platform in getting elsewhere.
+    A higher difficulty will expect more precise positioning or a risk to self."""
+    display_name = "Frozen Enemies Trick Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class JumpBombJumpTrickDifficulty(Choice):
+    """The act of placing a bomb at the peak of a jump to use in getting more vertical reach.
+    A higher difficulty will require more precision.
+    The beginner level is unavailable due to the difficulty of this trick."""
+    display_name = "Jump Bomb Jump Trick Difficulty"
+    option_none = 0
+    # option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class JumpExtendTrickDifficulty(Choice):
+    """Abusing midair state transitions to slow your falling speed.
+    A higher difficulty will require more precision."""
+    display_name = "Jump Extend Trick Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class MidairMorphTrickDifficulty(Choice):
+    """The act of entering Morph Ball in midair to enter a tunnel.
+    A higher difficulty will require more precision."""
+    display_name = "Midair Morph Trick Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
     default = 0
 
 class ShinesparkTrickDifficulty(Choice):
-    """What level of shinespark trick difficulty may be required to navigate around.
-    Note that this does not exclude items that require shinesparking in vanilla to obtain.
+    """Using the stored charges from Speed Booster to traverse the station in unorthodox ways.
+    Note that this does not exclude locations that require shinesparking in vanilla to collect.
     Use the ShinesparkLocations location group for that."""
     display_name = "Shinespark Trick Difficulty"
-    option_none = 0
+    option_vanilla = 0
     option_beginner = 1
-    option_advanced = 2
-    # option_expert = 3
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
     default = 0
 
-class CombatDifficulty(Choice):
-    """What level of combat tools are logically expected for later game bosses."""
-    display_name = "Combat Difficulty"
-    option_beginner = 0
-    option_advanced = 1
-    option_expert = 2
+class UnderwaterWallJumpTrickDifficulty(Choice):
+    """Wall jumping underwater without Gravity Suit can be used to climb higher.
+    A higher difficulty will require climbing a greater height."""
+    display_name = "Underwater Wall Jump Trick Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
     default = 0
+
+class WallJumpTrickDifficulty(Choice):
+    """Your ability to kick off walls to climb higher in areas that won't expect you to do so.
+    A higher difficulty will expect a wider range of ingenuity or higher risk."""
+    display_name = "Wall Jump Trick Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+
+
+
 
 # Custom Game Mode options
 
