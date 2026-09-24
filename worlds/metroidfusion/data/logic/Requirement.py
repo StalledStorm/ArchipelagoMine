@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import TYPE_CHECKING, Self
 from abc import ABC, abstractmethod
 
@@ -6,6 +7,100 @@ import logging
 
 if TYPE_CHECKING:
     from ... import MetroidFusionOptions
+
+
+class Trick:
+    """
+    A utility class to subdivide tricks and their difficulties
+
+    :param trick_type: The type of trick being evaluated
+    :param difficulty: The difficulty of the trick being evaluated
+    """
+
+    class TrickType(Enum):
+        """
+        * UNDEFINED ``-1`` - Default value for ``TrickRequirement``
+        * GENERIC_MOVEMENT ``0`` - Otherwise uncategorized platforming maneuvers
+        * KNOWLEDGE ``1`` - Game knowledge about unexpected interaction behavior
+        * COMBAT ``2`` - Combat survival ability
+        * WALL_JUMP ``3`` - Jumping off walls to climb higher
+        * FROZEN_ENEMIES ``4`` - Freezing an enemy for use as a platform
+        * SHINESPARK ``5`` - Using the Shinespark to traverse or deal damage
+        * MIDAIR_MORPH ``6`` - Entering Morph Ball midair to enter an elevated tunnel
+        * DAMAGE_RUN ``7`` - Traversing damaging terrain or environments
+        * UNDERWATER_WALL_JUMP ``8`` - Using underwater physics to scale upwards with a single wall
+        * JUMP_BOMB_JUMP ``9`` - Laying a bomb in the air to gain extra height after jumping
+        * JUMP_EXTEND ``10`` - Abuse of midair state transitions to fall slower than normal
+        * DAMAGE_BOOST ``11`` - Intentionally taking contact damage to avoid other sources of contact damage
+        """
+
+        UNDEFINED = -1
+        GENERIC_MOVEMENT = 0
+        KNOWLEDGE = 1
+        COMBAT = 2
+        WALL_JUMP = 3
+        FROZEN_ENEMIES = 4
+        SHINESPARK = 5
+        MIDAIR_MORPH = 6
+        DAMAGE_RUN = 7
+        UNDERWATER_WALL_JUMP = 8
+        JUMP_BOMB_JUMP = 9
+        JUMP_EXTEND = 10
+        DAMAGE_BOOST = 11
+
+    class Difficulty(Enum):
+        """
+        * VANILLA ``0`` - Intended developer routes to pick up every item in an unmodified game
+        * BEGINNER ``1`` - Tricks beginning to step outside the boundaries of the intended game mechanics
+        * INTERMEDIATE ``2`` - Tricks commonly used in randomization and most speedruns
+        * ADVANCED ``3`` - Tricks for experienced players continuing to think outside the box
+        * EXPERT ``4`` - Tricks performed by seasoned game veterans or competing speedrunners
+        * MASTER ``5`` - The upper echelon of speedrunning technical maneuvers
+        * THEORETICAL ``6`` - Reserved for any tricks yet to be performed by humans at full game speed
+        """
+
+        VANILLA = 0
+        BEGINNER = 1
+        INTERMEDIATE = 2
+        ADVANCED = 3
+        EXPERT = 4
+        MASTER = 5
+        THEORETICAL = 6
+
+    trick_type: TrickType
+    difficulty: Difficulty
+
+    def __init__(self,
+                 trick_type: TrickType,
+                 difficulty: Difficulty):
+        self.trick_type = trick_type
+        self.difficulty = difficulty
+
+    def __str__(self):
+        return (self.difficulty.name
+                + " "
+                + self.trick_type.name).replace("_", " ").title()
+
+    @staticmethod
+    def check_option_enabled(instance, options: "MetroidFusionOptions") -> bool:
+        match instance.trick_type:
+            # case Trick.TrickType.GENERIC_MOVEMENT: return options.MovementTrickDifficulty
+            # case Trick.TrickType.KNOWLEDGE: return options.KnowledgeTrickDifficulty
+            case Trick.TrickType.COMBAT:
+                return options.CombatDifficulty.value >= instance.difficulty.value
+            case Trick.TrickType.WALL_JUMP:
+                return options.WallJumpTrickDifficulty.value >= instance.difficulty.value
+            # case Trick.TrickType.FROZEN_ENEMIES: return options.FrozenEnemiesTrickDifficulty
+            case Trick.TrickType.SHINESPARK:
+                return options.ShinesparkTrickDifficulty.value >= instance.difficulty.value
+            # case Trick.TrickType.MIDAIR_MORPH: return options.MidairMorphTrickDifficulty
+            # case Trick.TrickType.DAMAGE_RUN: return options.DamageRunTrickDifficulty
+            # case Trick.TrickType.UNDERWATER_WALL_JUMP: return options.UnderwaterWallJumpTrickDifficulty
+            # case Trick.TrickType.JUMP_BOMB_JUMP: return options.JumpBombJumpTrickDifficulty
+            # case Trick.TrickType.JUMP_EXTEND: return options.JumpExtendTrickDifficulty
+            # case Trick.TrickType.DAMAGE_BOOST: return options.DamageBoostTrickDifficulty
+            case _:
+                return False
 
 
 class RequirementBase(ABC):
@@ -27,6 +122,7 @@ class RequirementBase(ABC):
     :param energy_tanks_needed: An integer number of energy tanks required. Defaults to 0.
     :param missile_ammo_needed: An integer number of missiles required. Defaults to 0.
     :param power_bomb_ammo_needed: An integer number of power bombs required. Defaults to 0.
+    :param tricks: A set of Trick objects to define required skill levels. Defaults to an empty set.
     :param requirements: A list of lists of Requirement objects. Defaults to an empty list.
     """
     name: str
@@ -35,6 +131,7 @@ class RequirementBase(ABC):
     energy_tanks_needed: int
     missile_ammo_needed: int
     power_bomb_ammo_needed: int
+    tricks: set[Trick]
     requirements: list[list[Self]]
 
     @abstractmethod
@@ -45,6 +142,7 @@ class RequirementBase(ABC):
                  energy_tanks_needed: int = 0,
                  missile_ammo_needed: int = 0,
                  power_bomb_ammo_needed: int = 0,
+                 tricks: set[Trick] = None,
                  *requirements: list[Self],
                  **kwargs):
         if name is None:
@@ -57,6 +155,9 @@ class RequirementBase(ABC):
         if hard_items_needed is None:
             hard_items_needed = set()
         self.hard_items_needed = hard_items_needed
+        if tricks is None:
+            tricks = set()
+        self.tricks = tricks
         self.requirements = [requirement for requirement in requirements]
         self.energy_tanks_needed = energy_tanks_needed
         self.missile_ammo_needed = missile_ammo_needed
@@ -69,6 +170,12 @@ class RequirementBase(ABC):
         return_string += f"EnergyTanks: {self.energy_tanks_needed}\n"
         return_string += f"MissileAmmo: {self.missile_ammo_needed}\n"
         return_string += f"PowerBombAmmo: {self.power_bomb_ammo_needed}\n"
+        return_string += f"Tricks: ["
+        if self.tricks:
+            return_string += f"\n\t{', '.join(trick.__str__() for trick in self.tricks)}"
+            return_string += "\n]"
+        else:
+            return_string += "]"
         return_string += "Requirements: ["
         if self.requirements:
             return_string += f"\n\t[{', '.join(req.name for req_list in self.requirements for req in req_list)}]"
@@ -111,7 +218,7 @@ class RequirementBase(ABC):
 
         # Initialize variables
         possibilities: list[tuple[set[str], int, int, int, bool]] = kwargs.pop("possibilities", [])
-        yaml_enabled: bool = kwargs.pop("yaml_enabled", self.check_option_enabled(options))
+        yaml_enabled: bool = kwargs.pop("yaml_enabled", self.check_option_enabled(self, options))
         debug: bool = kwargs.pop("debug", False)
         parent_items: set[str] = kwargs.pop("parent_items", self.items_needed)
         parent_hard_items: set[str] = kwargs.pop("parent_hard_items", self.hard_items_needed)
@@ -148,7 +255,7 @@ class RequirementBase(ABC):
                                                     for nested_requirement in requirements_permutation)}]")
 
                 # Check if all requirements in permutation have enabled options
-                if not yaml_enabled or any([not nested_requirement.check_option_enabled(options)
+                if not yaml_enabled or any([not nested_requirement.check_option_enabled(nested_requirement, options)
                                             for nested_requirement in requirements_permutation]):
                     if debug:
                         print(f"Permutation disabled due to options: ["
@@ -184,7 +291,7 @@ class RequirementBase(ABC):
 
                 # Post-recursion processing
                 for (n_r_items, n_r_energy, n_r_missiles, n_r_pbs, n_r_yaml) in new_possibilities:
-                    n_r_yaml = n_r_yaml and self.check_option_enabled(options)
+                    n_r_yaml = n_r_yaml and self.check_option_enabled(self, options)
                     combined_items = n_r_items | self.items_needed
                     calculated_energy = max(n_r_energy, self.energy_tanks_needed)
                     hard_test: bool = (parent_hard_items.issubset(combined_items)
@@ -210,12 +317,12 @@ class RequirementBase(ABC):
                                   max(parent_energy_tanks, self.energy_tanks_needed),
                                   parent_missile_ammo + self.missile_ammo_needed,
                                   parent_power_bomb_ammo + self.power_bomb_ammo_needed,
-                                  yaml_enabled and self.check_option_enabled(options)))
+                                  yaml_enabled and self.check_option_enabled(self, options)))
         return possibilities
 
     @staticmethod
-    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return True
+    def check_option_enabled(instance, options: "MetroidFusionOptions") -> bool:
+        return all([Trick.check_option_enabled(trick, options) for trick in instance.tricks])
 
 
 class Requirement(RequirementBase):
@@ -227,6 +334,7 @@ class Requirement(RequirementBase):
         Each list is treated as an OR logic block.
         If there are more than one list, they are treated as list1 AND list2...
 
+    :key tricks: A set of Trick objects to define required skill levels.
     :key items_needed: A set of items that must be in the inventory.
     :key hard_items_needed: A set of items that are absolutely required to fulfill this Requirement.
         Affects final calculation of possibilities to fulfill this Requirement.
@@ -239,13 +347,15 @@ class Requirement(RequirementBase):
 
     def __init__(self,
                  name = None,
-                 *requirements: list[RequirementBase], **kwargs):
+                 *requirements: list[RequirementBase],
+                 **kwargs):
         super().__init__(name,
                          kwargs.pop('items_needed', None),
                          kwargs.pop('hard_items_needed', None),
                          kwargs.pop('energy_tanks_needed', 0),
                          kwargs.pop('missile_ammo_needed', 0),
                          kwargs.pop('power_bomb_ammo_needed', 0),
+                         kwargs.pop('tricks', None),
                          *requirements,
                          **kwargs)
 
@@ -260,6 +370,7 @@ class PONRRequirement(Requirement):
         Each list is treated as an OR logic block.
         If there are more than one list, they are treated as list1 AND list2...
 
+    :key tricks: A set of Trick objects to define required skill levels.
     :key items_needed: A set of items that must be in the inventory.
         Defaults to ``{"Point of No Return"}`` or adds that element to the passed set.
     :key hard_items_needed: A set of items that are absolutely required to fulfill this Requirement.
@@ -281,5 +392,5 @@ class PONRRequirement(Requirement):
         super().__init__(name, *requirements, **kwargs)
 
     @staticmethod
-    def check_option_enabled(options: "MetroidFusionOptions") -> bool:
-        return options.PointOfNoReturnsInLogic == True
+    def check_option_enabled(instance, options: "MetroidFusionOptions") -> bool:
+        return options.PointOfNoReturnsInLogic == True and RequirementBase.check_option_enabled(instance, options)
