@@ -194,7 +194,7 @@ class UnderwaterWallJumpTrickDifficulty(Choice):
     """Wall jumping underwater without Gravity Suit can be used to climb higher.
     A higher difficulty will require climbing a greater height."""
     display_name = "Underwater Wall Jump Trick Difficulty"
-    option_vanilla = 0
+    option_none = 0
     option_beginner = 1
     option_intermediate = 2
     option_advanced = 3
