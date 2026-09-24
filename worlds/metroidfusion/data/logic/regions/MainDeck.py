@@ -1,38 +1,166 @@
 from ..FusionRegion import FusionRegion
 
-
-class MainDeckHub(FusionRegion):
-    name = "Main Deck Hub"
-
-class LowerArachnusArena(FusionRegion):
-    name = "Lower Arachnus Arena"
-
-class VentilationZone(FusionRegion):
-    name = "Ventilation Zone"
+class ArachnusArena(FusionRegion):
+    name = "Arachnus Arena"
 
 class UpperArachnusArena(FusionRegion):
     name = "Upper Arachnus Arena"
 
-class OperationsDeckElevatorBottom(FusionRegion):
-    name = "Operations Deck Elevator Bottom"
+class LowerArachnusArena(FusionRegion):
+    name = "Lower Arachnus Arena"
 
-class OperationsDeck(FusionRegion):
-    name = "Operations Deck"
+class Attic(FusionRegion):
+    name = "Attic"
 
-class OperationsDeckElevatorTop(FusionRegion):
-    name = "Operations Deck Elevator Top"
+class AuxiliaryNavigation(FusionRegion):
+    name = "Auxiliary Navigation Room"
 
-class HabitationDeckElevatorBottom(FusionRegion):
-    name = "Habitation Deck Elevator Bottom"
+class AuxiliaryPowerStation(FusionRegion):
+    name = "Auxiliary Power Station"
 
-class HabitationDeckElevatorTop(FusionRegion):
-    name = "Habitation Deck Elevator Top"
+class CentralNexus(FusionRegion):
+    name = "Central Nexus"
+
+class CentralReactorCore(FusionRegion):
+    name = "Central Reactor Core"
+
+class Concourse(FusionRegion):
+    name = "Concourse"
+
+class ConcourseRecharge(FusionRegion):
+    name = "Concourse Recharge Room"
+
+class ConcourseSave(FusionRegion):
+    name = "Concourse Save Room"
+
+class ConcourseVentilation(FusionRegion):
+    name = "Concourse Ventilation"
+
+class CrewQuartersEast(FusionRegion):
+    name = "Crew Quarters East"
+
+class CrewQuartersNavigation(FusionRegion):
+    name = "Crew Quarters Navigation Room"
+
+class CrewQuartersSave(FusionRegion):
+    name = "Crew Quarters Save Room"
+
+class CrewQuartersWest(FusionRegion):
+    name = "Crew Quarters West"
+
+class CubbyHole(FusionRegion):
+    name = "Cubby Hole"
+
+class DarkStairwell(FusionRegion):
+    name = "Dark Stairwell"
+
+class DockingBayAccess(FusionRegion):
+    name = "Docking Bay Access"
+
+class DockingBayClimb(FusionRegion):
+    name = "Docking Bay Climb"
+
+class DockingBayHangar(FusionRegion):
+    name = "Docking Bay Hangar"
+
+class GenesisSpeedway(FusionRegion):
+    name = "Genesis Speedway"
 
 class HabitationDeck(FusionRegion):
     name = "Habitation Deck"
 
-class SectorHubElevatorTop(FusionRegion):
-    name = "Sector Hub Elevator Top"
+class HabitationDeckElevatorTop(FusionRegion):
+    name = "Habitation Deck Elevator Top"
+
+class HabitationDeckElevatorBottom(FusionRegion):
+    name = "Habitation Deck Elevator Bottom"
+
+class HabitationDeckEntrance(FusionRegion):
+    name = "Habitation Deck Entrance"
+
+class HabitationDeckSave(FusionRegion):
+    name = "Habitation Deck Save"
+
+class HabitationVentilation(FusionRegion):
+    name = "Habitation Ventilation"
+
+class HornoadHallway(FusionRegion):
+    name = "Hornoad Hallway"
+
+class MainElevatorTop(FusionRegion):
+    name = "Main Elevator"
+
+class MainElevatorAccess(FusionRegion):
+    name = "Main Elevator Access"
+
+class MainElevatorCache(FusionRegion):
+    name = "Main Elevator Cache"
+
+class MainElevatorShaft(FusionRegion):
+    name = "Main Elevator Shaft"
+
+class NexusNavigation(FusionRegion):
+    name = "Nexus Navigation Room"
+
+class NexusStorage(FusionRegion):
+    name = "Nexus Storage"
+
+class OperationsDeck(FusionRegion):
+    name = "Operations Deck"
+
+class OperationsDeckData(FusionRegion):
+    name = "Operations Deck Data Room"
+
+class OperationsDeckElevatorTop(FusionRegion):
+    name = "Operations Deck Elevator Top"
+
+class OperationsDeckElevatorBottom(FusionRegion):
+    name = "Operations Deck Elevator Bottom"
+
+class OperationsDeckNavigation(FusionRegion):
+    name = "Operations Deck Navigation Room"
+
+class OperationsDeckRecharge(FusionRegion):
+    name = "Operations Deck Recharge Room"
+
+class OperationsDeckSave(FusionRegion):
+    name = "Operations Deck Save Room"
+
+class OperationsRoom(FusionRegion):
+    name = "Operations Room"
+
+class OperationsVentilation(FusionRegion):
+    name = "Operations Ventilation"
+
+class OperationsVentilationStorage(FusionRegion):
+    name = "Operations Ventilation Storage"
+
+class QuarantineBay(FusionRegion):
+    name = "Quarantine Bay"
+
+class QuarantineJunction(FusionRegion):
+    name = "Quarantine Junction"
+
+class RestrictedAirlockTop(FusionRegion):
+    name = "Restricted Airlock Top"
+
+class RestrictedAirlockBottom(FusionRegion):
+    name = "Restricted Airlock Bottom"
+
+class RestrictedBackDoor(FusionRegion):
+    name = "Restricted Back Door"
+
+class RestrictedCorridor(FusionRegion):
+    name = "Restricted Corridor"
+
+class RestrictedNavigation(FusionRegion):
+    name = "Restricted Navigation Room"
+
+class RestrictedSave(FusionRegion):
+    name = "Restricted Save"
+
+class RestrictedElevatorBottom(FusionRegion):
+    name = "Restricted Elevator Bottom"
 
 class SectorHubElevatorBottom(FusionRegion):
     name = "Sector Hub Elevator Bottom"
@@ -55,30 +183,89 @@ class SectorHubElevator5Top(FusionRegion):
 class SectorHubElevator6Top(FusionRegion):
     name = "Sector Hub Elevator 6 Top"
 
-class ReactorZone(FusionRegion):
-    name = "Reactor Zone"
+class SiloCatwalk(FusionRegion):
+    name = "Silo Catwalk"
 
-class YakuzaZone(FusionRegion):
-    name = "Yakuza Zone"
+class SiloCheckpoint(FusionRegion):
+    name = "Silo Checkpoint"
 
-class AuxiliaryReactor(FusionRegion):
-    name = "Auxiliary Reactor"
+class SiloEntry(FusionRegion):
+    name = "Silo Entry"
 
-class NexusStorage(FusionRegion):
-    name = "Nexus Storage"
+class SiloSave(FusionRegion):
+    name = "Silo Save Room"
+
+class SiloScaffolding(FusionRegion):
+    name = "Silo Scaffolding"
+
+class SiloTunnel(FusionRegion):
+    name = "Silo Tunnel"
+
+class StationEntrance(FusionRegion):
+    name = "Station Entrance"
+
+class SubZeroContainment(FusionRegion):
+    name = "Sub Zero Containment"
+
+class YakuzaArena(FusionRegion):
+    name = "Yakuza Arena"
+
 
 main_deck_regions = [
-    MainDeckHub,
-    VentilationZone,
+    ArachnusArena,
     UpperArachnusArena,
     LowerArachnusArena,
-    OperationsDeckElevatorBottom,
-    OperationsDeckElevatorTop,
-    OperationsDeck,
-    HabitationDeckElevatorBottom,
-    HabitationDeckElevatorTop,
+    Attic,
+    AuxiliaryNavigation,
+    AuxiliaryPowerStation,
+    CentralNexus,
+    CentralReactorCore,
+    Concourse,
+    ConcourseRecharge,
+    ConcourseSave,
+    ConcourseVentilation,
+    CrewQuartersEast,
+    CrewQuartersNavigation,
+    CrewQuartersSave,
+    CrewQuartersWest,
+    CubbyHole,
+    DarkStairwell,
+    DockingBayAccess,
+    DockingBayClimb,
+    DockingBayHangar,
+    GenesisSpeedway,
     HabitationDeck,
-    SectorHubElevatorTop,
+    HabitationDeckElevatorTop,
+    HabitationDeckElevatorBottom, # AKA: Nexus Elevator
+    HabitationDeckEntrance,
+    HabitationDeckSave,
+    HabitationVentilation,
+    HornoadHallway,
+    MainElevatorTop,
+    MainElevatorAccess,
+    MainElevatorCache,
+    MainElevatorShaft,
+    NexusNavigation,
+    NexusStorage,
+    OperationsDeck,
+    OperationsDeckData,
+    OperationsDeckElevatorTop,
+    OperationsDeckElevatorBottom,
+    OperationsDeckNavigation,
+    OperationsDeckRecharge,
+    OperationsDeckSave,
+    OperationsRoom,
+    OperationsVentilation,
+    OperationsVentilationStorage,
+    QuarantineBay,
+    QuarantineJunction,
+    RestrictedAirlockTop,
+    RestrictedAirlockBottom,
+    RestrictedBackDoor,
+    RestrictedCorridor,
+    RestrictedNavigation,
+    RestrictedSave,
+    RestrictedElevatorBottom,
     SectorHubElevatorBottom,
     SectorHubElevator1Top,
     SectorHubElevator2Top,
@@ -86,8 +273,13 @@ main_deck_regions = [
     SectorHubElevator4Top,
     SectorHubElevator5Top,
     SectorHubElevator6Top,
-    ReactorZone,
-    YakuzaZone,
-    AuxiliaryReactor,
-    NexusStorage
+    SiloCatwalk,
+    SiloCheckpoint,
+    SiloEntry,
+    SiloSave,
+    SiloScaffolding,
+    SiloTunnel,
+    StationEntrance,
+    SubZeroContainment,
+    YakuzaArena
 ]

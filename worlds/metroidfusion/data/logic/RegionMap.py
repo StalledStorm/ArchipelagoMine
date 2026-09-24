@@ -1,4 +1,4 @@
-from .regions.MainDeck import (SectorHubElevatorTop, OperationsDeckElevatorTop, HabitationDeckElevatorTop,
+from .regions.MainDeck import (MainElevatorTop, OperationsDeckElevatorTop, HabitationDeckElevatorTop,
                                SectorHubElevator1Top, SectorHubElevator2Top, SectorHubElevator3Top,
                                SectorHubElevator4Top, SectorHubElevator5Top, SectorHubElevator6Top,
                                OperationsDeckElevatorBottom, HabitationDeckElevatorBottom, SectorHubElevatorBottom)
@@ -24,7 +24,7 @@ default_region_map = {
     SectorHubElevator6Top: Sector6Hub,
     OperationsDeckElevatorTop: OperationsDeckElevatorBottom,
     HabitationDeckElevatorTop: HabitationDeckElevatorBottom,
-    SectorHubElevatorTop: SectorHubElevatorBottom,
+    MainElevatorTop: SectorHubElevatorBottom,
     Sector1TourianHubElevatorTop: Sector6RestrictedZoneElevatorToTourian
 }
 
