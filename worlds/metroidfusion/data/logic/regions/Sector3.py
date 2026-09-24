@@ -2,142 +2,142 @@ from ..FusionRegion import FusionRegion
 
 
 class AlcoveBottom(FusionRegion):
-    name = "Alcove Bottom"
+    name = "Sector 3 (PYR) - Alcove (Bottom)"
 
 class AlcoveTop(FusionRegion):
-    name = "Alcove Top"
+    name = "Sector 3 (PYR) - Alcove (Top)"
 
 class AlcoveRight(FusionRegion):
-    name = "Alcove Right"
+    name = "Sector 3 (PYR) - Alcove (Right)"
 
 class BOXArena(FusionRegion):
-    name = "BOX Arena"
+    name = "Sector 3 (PYR) - BOX Arena"
 
 class BOXArenaAccess(FusionRegion):
-    name = "BOX Arena Access"
+    name = "Sector 3 (PYR) - BOX Arena Access"
 
 class BobsAbodeTopLeft(FusionRegion):
-    name = "Bob's Abode Top Left"
+    name = "Sector 3 (PYR) - Bob's Abode (Top Left)"
 
 class BobsAbodeTopRight(FusionRegion):
-    name = "Bob's Abode Top Right"
+    name = "Sector 3 (PYR) - Bob's Abode (Top Right)"
 
 class BobsAbodeBottomLeft(FusionRegion):
-    name = "Bob's Abode Bottom Left"
+    name = "Sector 3 (PYR) - Bob's Abode (Bottom Left)"
 
 class BobsAbodeBottomRight(FusionRegion):
-    name = "Bob's Abode Bottom Right"
+    name = "Sector 3 (PYR) - Bob's Abode (Bottom Right)"
 
 class BoilerAccess(FusionRegion):
-    name = "Boiler Access"
+    name = "Sector 3 (PYR) - Boiler Access"
 
 class CheckpointCrossing(FusionRegion):
-    name = "Checkpoint Crossing"
+    name = "Sector 3 (PYR) - Checkpoint Crossing"
 
 class ChuteAccess(FusionRegion):
-    name = "Chute Access"
+    name = "Sector 3 (PYR) - Chute Access"
 
 class DataRecharge(FusionRegion):
-    name = "Data Recharge Room"
+    name = "Sector 3 (PYR) - Data Recharge Room"
 
 class Data(FusionRegion):
-    name = "Data Room"
+    name = "Sector 3 (PYR) - Data Room"
 
 class DataSave(FusionRegion):
-    name = "Data Save Room"
+    name = "Sector 3 (PYR) - Data Save Room"
 
 class DesertedRunway(FusionRegion):
-    name = "Deserted Runway"
+    name = "Sector 3 (PYR) - Deserted Runway"
 
 class EntranceLobby(FusionRegion):
-    name = "Entrance Lobby"
+    name = "Sector 3 (PYR) - Entrance Lobby"
 
 class EntranceNavigation(FusionRegion):
-    name = "Entrance Navigation Room"
+    name = "Sector 3 (PYR) - Entrance Navigation Room"
 
 class EntranceRecharge(FusionRegion):
-    name = "Entrance Recharge Room"
+    name = "Sector 3 (PYR) - Entrance Recharge Room"
 
 class EntranceSave(FusionRegion):
-    name = "Entrance Save Room"
+    name = "Sector 3 (PYR) - Entrance Save Room"
 
 class FieryStorageBottom(FusionRegion):
-    name = "Fiery Storage Bottom"
+    name = "Sector 3 (PYR) - Fiery Storage (Bottom)"
 
 class FieryStorageLeft(FusionRegion):
-    name = "Fiery Storage Left"
+    name = "Sector 3 (PYR) - Fiery Storage (Left)"
 
 class FieryStorageRight(FusionRegion):
-    name = "Fiery Storage Right"
+    name = "Sector 3 (PYR) - Fiery Storage (Right)"
 
 class GarbageChute(FusionRegion):
-    name = "Garbage Chute"
+    name = "Sector 3 (PYR) - Garbage Chute"
 
 class GeronsTreasure(FusionRegion):
-    name = "Geron's Treasure"
+    name = "Sector 3 (PYR) - Geron's Treasure"
 
 class LavaMaze(FusionRegion):
-    name = "Lava Maze"
+    name = "Sector 3 (PYR) - Lava Maze"
 
 class LavaReservoirs(FusionRegion):
-    name = "Lava Reservoirs"
+    name = "Sector 3 (PYR) - Lava Reservoirs"
 
 class L2Security(FusionRegion):
-    name = "Level 2 Security Station"
+    name = "Sector 3 (PYR) - Level 2 Security Station"
 
 class MainBoiler(FusionRegion):
-    name = "Main Boiler"
+    name = "Sector 3 (PYR) - Main Boiler"
 
 class MainBoilerControl(FusionRegion):
-    name = "Main Boiler Control Room"
+    name = "Sector 3 (PYR) - Main Boiler Control Room"
 
 class MonkeyBarsOfFire(FusionRegion):
-    name = "Monkey Bars of Fire"
+    name = "Sector 3 (PYR) - Monkey Bars of Fire"
 
 class NamihesLairUpper(FusionRegion):
-    name = "Namihe's Lair Upper"
+    name = "Sector 3 (PYR) - Namihe's Lair (Upper)"
 
 class NamihesLairBottomLeft(FusionRegion):
-    name = "Namihe's Lair Bottom Left"
+    name = "Sector 3 (PYR) - Namihe's Lair (Bottom Left)"
 
 class NamihesLairBottomRight(FusionRegion):
-    name = "Namihe's Lair Bottom Right"
+    name = "Sector 3 (PYR) - Namihe's Lair (Bottom Right)"
 
 class ProcessingAccessLeft(FusionRegion):
-    name = "Processing Access Left"
+    name = "Sector 3 (PYR) - Processing Access (Left)"
 
 class ProcessingAccessBottomRight(FusionRegion):
-    name = "Processing Access Bottom Right"
+    name = "Sector 3 (PYR) - Processing Access (Bottom Right)"
 
 class ProcessingAccessTopRight(FusionRegion):
-    name = "Processing Access Top Right"
+    name = "Sector 3 (PYR) - Processing Access (Top Right)"
 
 class Pyrochamber(FusionRegion):
-    name = "Pyrochamber"
+    name = "Sector 3 (PYR) - Pyrochamber"
 
 class PyrochamberAccess(FusionRegion):
-    name = "Pyrochamber Access"
+    name = "Sector 3 (PYR) - Pyrochamber Access"
 
 class RedTower(FusionRegion):
-    name = "Red Tower"
+    name = "Sector 3 (PYR) - Red Tower"
 
 class Sector3TubeLeft(FusionRegion):
-    name = "Sector 3 Tube Left"
+    name = "Sector 3 (PYR) - Tube Left"
 
 class Sector3TubeRight(FusionRegion):
-    name = "Sector 3 Tube Right"
+    name = "Sector 3 (PYR) - Tube Right"
 
 class Sector3EntranceElevatorBottom(FusionRegion):
-    name = "Sector 3 Entrance Elevator Bottom"
+    name = "Sector 3 (PYR) - Entrance Elevator Bottom"
 
 class SecurityAccess(FusionRegion):
-    name = "Security Access"
+    name = "Sector 3 (PYR) - Security Access"
 
 class SovaProcessing(FusionRegion):
-    name = "Sova Processing"
+    name = "Sector 3 (PYR) - Sova Processing"
 
 class SovaSuite(FusionRegion):
-    name = "Sova Suite"
+    name = "Sector 3 (PYR) - Sova Suite"
 
 
 sector_3_regions = [

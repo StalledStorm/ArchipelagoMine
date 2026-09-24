@@ -2,154 +2,154 @@ from ..FusionRegion import FusionRegion
 
 
 class BroomCloset(FusionRegion):
-    name = "Broom Closet"
+    name = "Sector 2 (TRO) - Broom Closet"
 
 class Cathedral(FusionRegion):
-    name = "Cathedral"
+    name = "Sector 2 (TRO) - Cathedral"
 
 class CathedralCorridor(FusionRegion):
-    name = "Cathedral Corridor"
+    name = "Sector 2 (TRO) - Cathedral Corridor"
 
 class CathedralSaveAccess(FusionRegion):
-    name = "Cathedral Save Access"
+    name = "Sector 2 (TRO) - Cathedral Save Access"
 
 class CathedralSave(FusionRegion):
-    name = "Cathedral Save Room"
+    name = "Sector 2 (TRO) - Cathedral Save Room"
 
 class Cloister(FusionRegion):
-    name = "Cloister"
+    name = "Sector 2 (TRO) - Cloister"
 
 class CourtyardAccess(FusionRegion):
-    name = "Courtyard Access"
+    name = "Sector 2 (TRO) - Courtyard Access"
 
 class CourtyardSave(FusionRegion):
-    name = "Courtyard Save Room"
+    name = "Sector 2 (TRO) - Courtyard Save Room"
 
 class CrumbleCity(FusionRegion):
-    name = "Crumble City"
+    name = "Sector 2 (TRO) - Crumble City"
 
 class CultivationStation(FusionRegion):
-    name = "Cultivation Station"
+    name = "Sector 2 (TRO) - Cultivation Station"
 
 class DataCourtyard(FusionRegion):
-    name = "Data Courtyard"
+    name = "Sector 2 (TRO) - Data Courtyard"
 
 class Data(FusionRegion):
-    name = "Data Room"
+    name = "Sector 2 (TRO) - Data Room"
 
 class DessgeegaDorm(FusionRegion):
-    name = "Dessgeega Dorm"
+    name = "Sector 2 (TRO) - Dessgeega Dorm"
 
 class EntranceLobby(FusionRegion):
-    name = "Entrance Lobby"
+    name = "Sector 2 (TRO) - Entrance Lobby"
 
 class EntranceNavigation(FusionRegion):
-    name = "Entrance Navigation Room"
+    name = "Sector 2 (TRO) - Entrance Navigation Room"
 
 class EntranceRecharge(FusionRegion):
-    name = "Entrance Recharge Room"
+    name = "Sector 2 (TRO) - Entrance Recharge Room"
 
 class EntranceSave(FusionRegion):
-    name = "Entrance Save Room"
+    name = "Sector 2 (TRO) - Entrance Save Room"
 
 class HiddenRecharge(FusionRegion):
-    name = "Hidden Recharge Room"
+    name = "Sector 2 (TRO) - Hidden Recharge Room"
 
 class Kago(FusionRegion):
-    name = "Kago Room"
+    name = "Sector 2 (TRO) - Kago Room"
 
 class KihunterHallway(FusionRegion):
-    name = "Kihunter Hallway"
+    name = "Sector 2 (TRO) - Kihunter Hallway"
 
 class L1Security(FusionRegion):
-    name = "Level 1 Security Station"
+    name = "Sector 2 (TRO) - Level 1 Security Station"
 
 class LobbyCache(FusionRegion):
-    name = "Lobby Cache"
+    name = "Sector 2 (TRO) - Lobby Cache"
 
 class MaintenanceWing(FusionRegion):
-    name = "Maintenance Wing"
+    name = "Sector 2 (TRO) - Maintenance Wing"
 
 class NettoriArena(FusionRegion):
-    name = "Nettori Arena"
+    name = "Sector 2 (TRO) - Nettori Arena"
 
 class NettoriArenaAccess(FusionRegion):
-    name = "Nettori Arena Access"
+    name = "Sector 2 (TRO) - Nettori Arena Access"
 
 class NettoriSave(FusionRegion):
-    name = "Nettori Save Room"
+    name = "Sector 2 (TRO) - Nettori Save Room"
 
 class Oasis(FusionRegion):
-    name = "Oasis"
+    name = "Sector 2 (TRO) - Oasis"
 
 class OasisStorage(FusionRegion):
-    name = "Oasis Storage"
+    name = "Sector 2 (TRO) - Oasis Storage"
 
 class OvergrownCache(FusionRegion):
-    name = "Overgrown Cache"
+    name = "Sector 2 (TRO) - Overgrown Cache"
 
 class OvergrownCheckpoint(FusionRegion):
-    name = "Overgrown Checkpoint"
+    name = "Sector 2 (TRO) - Overgrown Checkpoint"
 
 class OvergrownEntrance(FusionRegion):
-    name = "Overgrown Entrance"
+    name = "Sector 2 (TRO) - Overgrown Entrance"
 
 class OvergrownHallway(FusionRegion):
-    name = "Overgrown Hallway"
+    name = "Sector 2 (TRO) - Overgrown Hallway"
 
 class OvergrownSpire(FusionRegion):
-    name = "Overgrown Spire"
+    name = "Sector 2 (TRO) - Overgrown Spire"
 
 class OwtchOffice(FusionRegion):
-    name = "Owtch Office"
+    name = "Sector 2 (TRO) - Owtch Office"
 
 class PuyoCorridor(FusionRegion):
-    name = "Puyo Corridor"
+    name = "Sector 2 (TRO) - Puyo Corridor"
 
 class PuyoPalace(FusionRegion):
-    name = "Puyo Palace"
+    name = "Sector 2 (TRO) - Puyo Palace"
 
 class Reo(FusionRegion):
-    name = "Reo Room"
+    name = "Sector 2 (TRO) - Reo Room"
 
 class RipperTower(FusionRegion):
-    name = "Ripper Tower"
+    name = "Sector 2 (TRO) - Ripper Tower"
 
 class Sanctum(FusionRegion):
-    name = "Sanctum"
+    name = "Sector 2 (TRO) - Sanctum"
 
 class Sector2TubeLeft(FusionRegion):
-    name = "Sector 2 Tube Left"
+    name = "Sector 2 (TRO) - Tube Left"
 
 class Sector2TubeRight(FusionRegion):
-    name = "Sector 2 Tube Right"
+    name = "Sector 2 (TRO) - Tube Right"
 
 class Sector2EntranceElevatorBottom(FusionRegion):
-    name = "Sector 2 Entrance Elevator Bottom"
+    name = "Sector 2 (TRO) - Entrance Elevator Bottom"
 
 class SecurityAccess(FusionRegion):
-    name = "Security Access"
+    name = "Sector 2 (TRO) - Security Access"
 
 class SecurityCorridor(FusionRegion):
-    name = "Security Corridor"
+    name = "Sector 2 (TRO) - Security Corridor"
 
 class ShootingGallery(FusionRegion):
-    name = "Shooting Gallery"
+    name = "Sector 2 (TRO) - Shooting Gallery"
 
 class ZazabiArena(FusionRegion):
-    name = "Zazabi Arena"
+    name = "Sector 2 (TRO) - Zazabi Arena"
 
 class ZazabiArenaAccess(FusionRegion):
-    name = "Zazabi Arena Access"
+    name = "Sector 2 (TRO) - Zazabi Arena Access"
 
 class ZazabiSave(FusionRegion):
-    name = "Zazabi Save Room"
+    name = "Sector 2 (TRO) - Zazabi Save Room"
 
 class ZazabiSpeedway(FusionRegion):
-    name = "Zazabi Speedway"
+    name = "Sector 2 (TRO) - Zazabi Speedway"
 
 class ZigZagZone(FusionRegion):
-    name = "Zig-Zag-Zone"
+    name = "Sector 2 (TRO) - Zig-Zag-Zone"
 
 
 sector_2_regions = [

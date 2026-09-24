@@ -1,214 +1,214 @@
 from ..FusionRegion import FusionRegion
 
 class ArachnusArena(FusionRegion):
-    name = "Arachnus Arena"
+    name = "Main Deck - Arachnus Arena"
 
 class UpperArachnusArena(FusionRegion):
-    name = "Upper Arachnus Arena"
+    name = "Main Deck - Arachnus Arena (Upper)"
 
 class LowerArachnusArena(FusionRegion):
-    name = "Lower Arachnus Arena"
+    name = "Main Deck - Arachnus Arena (Lower)"
 
 class Attic(FusionRegion):
-    name = "Attic"
+    name = "Main Deck - Attic"
 
 class AuxiliaryNavigation(FusionRegion):
-    name = "Auxiliary Navigation Room"
+    name = "Main Deck - Auxiliary Navigation Room"
 
 class AuxiliaryPowerStation(FusionRegion):
-    name = "Auxiliary Power Station"
+    name = "Main Deck - Auxiliary Power Station"
 
 class CentralNexus(FusionRegion):
-    name = "Central Nexus"
+    name = "Main Deck - Central Nexus"
 
 class CentralReactorCore(FusionRegion):
-    name = "Central Reactor Core"
+    name = "Main Deck - Central Reactor Core"
 
 class Concourse(FusionRegion):
-    name = "Concourse"
+    name = "Main Deck - Concourse"
 
 class ConcourseRecharge(FusionRegion):
-    name = "Concourse Recharge Room"
+    name = "Main Deck - Concourse Recharge Room"
 
 class ConcourseSave(FusionRegion):
-    name = "Concourse Save Room"
+    name = "Main Deck - Concourse Save Room"
 
 class ConcourseVentilation(FusionRegion):
-    name = "Concourse Ventilation"
+    name = "Main Deck - Concourse Ventilation"
 
 class CrewQuartersEast(FusionRegion):
-    name = "Crew Quarters East"
+    name = "Main Deck - Crew Quarters East"
 
 class CrewQuartersNavigation(FusionRegion):
-    name = "Crew Quarters Navigation Room"
+    name = "Main Deck - Crew Quarters Navigation Room"
 
 class CrewQuartersSave(FusionRegion):
-    name = "Crew Quarters Save Room"
+    name = "Main Deck - Crew Quarters Save Room"
 
 class CrewQuartersWest(FusionRegion):
-    name = "Crew Quarters West"
+    name = "Main Deck - Crew Quarters West"
 
 class CubbyHole(FusionRegion):
-    name = "Cubby Hole"
+    name = "Main Deck - Cubby Hole"
 
 class DarkStairwell(FusionRegion):
-    name = "Dark Stairwell"
+    name = "Main Deck - Dark Stairwell"
 
 class DockingBayAccess(FusionRegion):
-    name = "Docking Bay Access"
+    name = "Main Deck - Docking Bay Access"
 
 class DockingBayClimb(FusionRegion):
-    name = "Docking Bay Climb"
+    name = "Main Deck - Docking Bay Climb"
 
 class DockingBayHangar(FusionRegion):
-    name = "Docking Bay Hangar"
+    name = "Main Deck - Docking Bay Hangar"
 
 class GenesisSpeedway(FusionRegion):
-    name = "Genesis Speedway"
+    name = "Main Deck - Genesis Speedway"
 
 class HabitationDeck(FusionRegion):
-    name = "Habitation Deck"
+    name = "Main Deck - Habitation Deck"
 
 class HabitationDeckElevatorTop(FusionRegion):
-    name = "Habitation Deck Elevator Top"
+    name = "Main Deck - Habitation Deck Elevator Top"
 
 class HabitationDeckElevatorBottom(FusionRegion):
-    name = "Habitation Deck Elevator Bottom"
+    name = "Main Deck - Habitation Deck Elevator Bottom"
 
 class HabitationDeckEntrance(FusionRegion):
-    name = "Habitation Deck Entrance"
+    name = "Main Deck - Habitation Deck Entrance"
 
 class HabitationDeckSave(FusionRegion):
-    name = "Habitation Deck Save"
+    name = "Main Deck - Habitation Deck Save"
 
 class HabitationVentilation(FusionRegion):
-    name = "Habitation Ventilation"
+    name = "Main Deck - Habitation Ventilation"
 
 class HornoadHallway(FusionRegion):
-    name = "Hornoad Hallway"
+    name = "Main Deck - Hornoad Hallway"
 
 class MainElevatorTop(FusionRegion):
-    name = "Main Elevator"
+    name = "Main Deck - Main Elevator"
 
 class MainElevatorAccess(FusionRegion):
-    name = "Main Elevator Access"
+    name = "Main Deck - Main Elevator Access"
 
 class MainElevatorCache(FusionRegion):
-    name = "Main Elevator Cache"
+    name = "Main Deck - Main Elevator Cache"
 
 class MainElevatorShaft(FusionRegion):
-    name = "Main Elevator Shaft"
+    name = "Main Deck - Main Elevator Shaft"
 
 class NexusNavigation(FusionRegion):
-    name = "Nexus Navigation Room"
+    name = "Main Deck - Nexus Navigation Room"
 
 class NexusStorage(FusionRegion):
-    name = "Nexus Storage"
+    name = "Main Deck - Nexus Storage"
 
 class OperationsDeck(FusionRegion):
-    name = "Operations Deck"
+    name = "Main Deck - Operations Deck"
 
 class OperationsDeckData(FusionRegion):
-    name = "Operations Deck Data Room"
+    name = "Main Deck - Operations Deck Data Room"
 
 class OperationsDeckElevatorTop(FusionRegion):
-    name = "Operations Deck Elevator Top"
+    name = "Main Deck - Operations Deck Elevator Top"
 
 class OperationsDeckElevatorBottom(FusionRegion):
-    name = "Operations Deck Elevator Bottom"
+    name = "Main Deck - Operations Deck Elevator Bottom"
 
 class OperationsDeckNavigation(FusionRegion):
-    name = "Operations Deck Navigation Room"
+    name = "Main Deck - Operations Deck Navigation Room"
 
 class OperationsDeckRecharge(FusionRegion):
-    name = "Operations Deck Recharge Room"
+    name = "Main Deck - Operations Deck Recharge Room"
 
 class OperationsDeckSave(FusionRegion):
-    name = "Operations Deck Save Room"
+    name = "Main Deck - Operations Deck Save Room"
 
 class OperationsRoom(FusionRegion):
-    name = "Operations Room"
+    name = "Main Deck - Operations Room"
 
 class OperationsVentilation(FusionRegion):
-    name = "Operations Ventilation"
+    name = "Main Deck - Operations Ventilation"
 
 class OperationsVentilationStorage(FusionRegion):
-    name = "Operations Ventilation Storage"
+    name = "Main Deck - Operations Ventilation Storage"
 
 class QuarantineBay(FusionRegion):
-    name = "Quarantine Bay"
+    name = "Main Deck - Quarantine Bay"
 
 class QuarantineJunction(FusionRegion):
-    name = "Quarantine Junction"
+    name = "Main Deck - Quarantine Junction"
 
 class RestrictedAirlockTop(FusionRegion):
-    name = "Restricted Airlock Top"
+    name = "Main Deck - Restricted Airlock (Top)"
 
 class RestrictedAirlockBottom(FusionRegion):
-    name = "Restricted Airlock Bottom"
+    name = "Main Deck - Restricted Airlock (Bottom)"
 
 class RestrictedBackDoor(FusionRegion):
-    name = "Restricted Back Door"
+    name = "Main Deck - Restricted Back Door"
 
 class RestrictedCorridor(FusionRegion):
-    name = "Restricted Corridor"
+    name = "Main Deck - Restricted Corridor"
 
 class RestrictedNavigation(FusionRegion):
-    name = "Restricted Navigation Room"
+    name = "Main Deck - Restricted Navigation Room"
 
 class RestrictedSave(FusionRegion):
-    name = "Restricted Save"
+    name = "Main Deck - Restricted Save"
 
 class RestrictedElevatorBottom(FusionRegion):
-    name = "Restricted Elevator Bottom"
+    name = "Main Deck - Restricted Elevator Bottom"
 
 class SectorHubElevatorBottom(FusionRegion):
-    name = "Sector Hub Elevator Bottom"
+    name = "Main Deck - Sector Hub Elevator Bottom"
 
 class SectorHubElevator1Top(FusionRegion):
-    name = "Sector Hub Elevator 1 Top"
+    name = "Main Deck - Sector Hub Elevator 1 Top"
 
 class SectorHubElevator2Top(FusionRegion):
-    name = "Sector Hub Elevator 2 Top"
+    name = "Main Deck - Sector Hub Elevator 2 Top"
 
 class SectorHubElevator3Top(FusionRegion):
-    name = "Sector Hub Elevator 3 Top"
+    name = "Main Deck - Sector Hub Elevator 3 Top"
 
 class SectorHubElevator4Top(FusionRegion):
-    name = "Sector Hub Elevator 4 Top"
+    name = "Main Deck - Sector Hub Elevator 4 Top"
 
 class SectorHubElevator5Top(FusionRegion):
-    name = "Sector Hub Elevator 5 Top"
+    name = "Main Deck - Sector Hub Elevator 5 Top"
 
 class SectorHubElevator6Top(FusionRegion):
-    name = "Sector Hub Elevator 6 Top"
+    name = "Main Deck - Sector Hub Elevator 6 Top"
 
 class SiloCatwalk(FusionRegion):
-    name = "Silo Catwalk"
+    name = "Main Deck - Silo Catwalk"
 
 class SiloCheckpoint(FusionRegion):
-    name = "Silo Checkpoint"
+    name = "Main Deck - Silo Checkpoint"
 
 class SiloEntry(FusionRegion):
-    name = "Silo Entry"
+    name = "Main Deck - Silo Entry"
 
 class SiloSave(FusionRegion):
-    name = "Silo Save Room"
+    name = "Main Deck - Silo Save Room"
 
 class SiloScaffolding(FusionRegion):
-    name = "Silo Scaffolding"
+    name = "Main Deck - Silo Scaffolding"
 
 class SiloTunnel(FusionRegion):
-    name = "Silo Tunnel"
+    name = "Main Deck - Silo Tunnel"
 
 class StationEntrance(FusionRegion):
-    name = "Station Entrance"
+    name = "Main Deck - Station Entrance"
 
 class SubZeroContainment(FusionRegion):
-    name = "Sub Zero Containment"
+    name = "Main Deck - Sub Zero Containment"
 
 class YakuzaArena(FusionRegion):
-    name = "Yakuza Arena"
+    name = "Main Deck - Yakuza Arena"
 
 
 main_deck_regions = [

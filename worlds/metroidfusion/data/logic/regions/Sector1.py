@@ -2,163 +2,163 @@ from ..FusionRegion import FusionRegion
 
 
 class Animorphs(FusionRegion):
-    name = "Animorphs"
+    name = "Sector 1 (SRX) - Animorphs"
 
 class AnimorphsCache(FusionRegion):
-    name = "Animorphs Cache"
+    name = "Sector 1 (SRX) - Animorphs Cache"
 
 class Antechamber(FusionRegion):
-    name = "Antechamber"
+    name = "Sector 1 (SRX) - Antechamber"
 
 class AtmosphericStabilizerCentral(FusionRegion):
-    name = "Atmospheric Stabilizer Central"
+    name = "Sector 1 (SRX) - Atmospheric Stabilizer Central"
 
 class AtmosphericStabilizerNortheast(FusionRegion):
-    name = "Atmospheric Stabilizer Northeast"
+    name = "Sector 1 (SRX) - Atmospheric Stabilizer Northeast"
 
 class AtmosphericStabilizerNorthwest(FusionRegion):
-    name = "Atmospheric Stabilizer Northwest"
+    name = "Sector 1 (SRX) - Atmospheric Stabilizer Northwest"
 
 class AtmosphericStabilizerSoutheast(FusionRegion):
-    name = "Atmospheric Stabilizer Southeast"
+    name = "Sector 1 (SRX) - Atmospheric Stabilizer Southeast"
 
 class AtmosphericStabilizerSouthwest(FusionRegion):
-    name = "Atmospheric Stabilizer Southwest"
+    name = "Sector 1 (SRX) - Atmospheric Stabilizer Southwest"
 
 class CentralSave(FusionRegion):
-    name = "Central Save Room"
+    name = "Sector 1 (SRX) - Central Save Room"
 
 class ChargeCoreArena(FusionRegion):
-    name = "Charge Core Arena"
+    name = "Sector 1 (SRX) - Charge Core Arena"
 
 class ChargeCoreLowerAccess(FusionRegion):
-    name = "Charge Core Lower Access"
+    name = "Sector 1 (SRX) - Charge Core Lower Access"
 
 class ChargeCoreUpperAccess(FusionRegion):
-    name = "Charge Core Upper Access"
+    name = "Sector 1 (SRX) - Charge Core Upper Access"
 
 class CrabRave(FusionRegion):
-    name = "Crab Rave"
+    name = "Sector 1 (SRX) - Crab Rave"
 
 class EntranceLobby(FusionRegion):
-    name = "Entrance Lobby"
+    name = "Sector 1 (SRX) - Entrance Lobby"
 
 class EntranceNavigation(FusionRegion):
-    name = "Entrance Navigation Room"
+    name = "Sector 1 (SRX) - Entrance Navigation Room"
 
 class EntranceRecharge(FusionRegion):
-    name = "Entrance Recharge Room"
+    name = "Sector 1 (SRX) - Entrance Recharge Room"
 
 class EntranceSave(FusionRegion):
-    name = "Entrance Save Room"
+    name = "Sector 1 (SRX) - Entrance Save Room"
 
 class GenesisHabitation(FusionRegion):
-    name = "Genesis Habitation"
+    name = "Sector 1 (SRX) - Genesis Habitation"
 
 class GoldPirateCrossing(FusionRegion):
-    name = "Gold Pirate Crossing"
+    name = "Sector 1 (SRX) - Gold Pirate Crossing"
 
 class HornoadHole(FusionRegion):
-    name = "Hornoad Hole"
+    name = "Sector 1 (SRX) - Hornoad Hole"
 
 class HornoadHousing(FusionRegion):
-    name = "Hornoad Housing"
+    name = "Sector 1 (SRX) - Hornoad Housing"
 
 class LavaLake(FusionRegion):
-    name = "Lava Lake"
+    name = "Sector 1 (SRX) - Lava Lake"
 
 class LavaLakeAnnex(FusionRegion):
-    name = "Lava Lake Annex"
+    name = "Sector 1 (SRX) - Lava Lake Annex"
 
 class MotoManor(FusionRegion):
-    name = "Moto Manor"
+    name = "Sector 1 (SRX) - Moto Manor"
 
 class MotoMotorway(FusionRegion):
-    name = "Moto Motorway"
+    name = "Sector 1 (SRX) - Moto Motorway"
 
 class NeoRidleyArena(FusionRegion):
-    name = "Neo-Ridley Arena"
+    name = "Sector 1 (SRX) - Neo-Ridley Arena"
 
 class NeoRidleyArenaAccess(FusionRegion):
-    name = "Neo-Ridley Arena Access"
+    name = "Sector 1 (SRX) - Neo-Ridley Arena Access"
 
 class RipperMaze(FusionRegion):
-    name = "Ripper Maze"
+    name = "Sector 1 (SRX) - Ripper Maze"
 
 class RipperSauna(FusionRegion):
-    name = "Ripper Sauna"
+    name = "Sector 1 (SRX) - Ripper Sauna"
 
 class SciserPlayground(FusionRegion):
-    name = "Sciser Playground"
+    name = "Sector 1 (SRX) - Sciser Playground"
 
 class SciserPuddle(FusionRegion):
-    name = "Sciser Puddle"
+    name = "Sector 1 (SRX) - Sciser Puddle"
 
 class Sector1TubeRight(FusionRegion):
-    name = "Sector 1 Tube Right"
+    name = "Sector 1 (SRX) - Tube Right"
 
 class Sector1TubeLeft(FusionRegion):
-    name = "Sector 1 Tube Left"
+    name = "Sector 1 (SRX) - Tube Left"
 
 class Sector1EntranceElevatorBottom(FusionRegion):
-    name = "Sector 1 Entrance Elevator Bottom"
+    name = "Sector 1 (SRX) - Entrance Elevator Bottom"
 
 class StabilizerCheckpoint(FusionRegion):
-    name = "Stabilizer Checkpoint"
+    name = "Sector 1 (SRX) - Stabilizer Checkpoint"
 
 class StabilizerStorage(FusionRegion):
-    name = "Stabilizer Storage"
+    name = "Sector 1 (SRX) - Stabilizer Storage"
 
 class TourianCheckpoint(FusionRegion):
-    name = "Tourian Checkpoint"
+    name = "Sector 1 (SRX) - Tourian Checkpoint"
 
 class TourianEasternHub(FusionRegion):
-    name = "Tourian Eastern Hub"
+    name = "Sector 1 (SRX) - Tourian Eastern Hub"
 
 class TourianElevatorTop(FusionRegion):
-    name = "Sector 1 Tourian Hub Elevator Top"
+    name = "Sector 1 (SRX) - Tourian Hub Elevator Top"
 
 class TourianSaveEast(FusionRegion):
-    name = "Tourian Save Room East"
+    name = "Sector 1 (SRX) - Tourian Save Room East"
 
 class TourianSaveWest(FusionRegion):
-    name = "Tourian Save Room West"
+    name = "Sector 1 (SRX) - Tourian Save Room West"
 
 class TourianTower(FusionRegion):
-    name = "Tourian Tower"
+    name = "Sector 1 (SRX) - Tourian Tower"
 
 class TourianTrapdoor(FusionRegion):
-    name = "Tourian Trapdoor"
+    name = "Sector 1 (SRX) - Tourian Trapdoor"
 
 class TourianWesternHub(FusionRegion):
-    name = "Tourian Western Hub"
+    name = "Sector 1 (SRX) - Tourian Western Hub"
 
 class TwinJunctionsEast(FusionRegion):
-    name = "Twin Junctions East"
+    name = "Sector 1 (SRX) - Twin Junctions East"
 
 class TwinJunctionsSave(FusionRegion):
-    name = "Twin Junctions Save Room"
+    name = "Sector 1 (SRX) - Twin Junctions Save Room"
 
 class TwinJunctionsWest(FusionRegion):
-    name = "Twin Junctions West"
+    name = "Sector 1 (SRX) - Twin Junctions West"
 
 class WallJumpTutorial(FusionRegion):
-    name = "Wall Jump Tutorial"
+    name = "Sector 1 (SRX) - Wall Jump Tutorial"
 
 class WateringHole(FusionRegion):
-    name = "Watering Hole"
+    name = "Sector 1 (SRX) - Watering Hole"
 
 class YamebaCorridor(FusionRegion):
-    name = "Yameba Corridor"
+    name = "Sector 1 (SRX) - Yameba Corridor"
 
 class YamebaPool(FusionRegion):
-    name = "Yameba Pool"
+    name = "Sector 1 (SRX) - Yameba Pool"
 
 class ZebesianZag(FusionRegion):
-    name = "Zebesian Zag"
+    name = "Sector 1 (SRX) - Zebesian Zag"
 
 class ZebesianZig(FusionRegion):
-    name = "Zebesian Zig"
+    name = "Sector 1 (SRX) - Zebesian Zig"
 
 sector_1_regions = [
     Animorphs,
