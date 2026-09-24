@@ -61,22 +61,22 @@ class Trick:
             case TrickType.COMBAT:
                 return options.CombatDifficulty.value > self.difficulty.value
             case TrickType.WALL_JUMP:
-                return options.WallJumpTrickDifficulty > self.difficulty.value
+                return options.WallJumpTrickDifficulty.value > self.difficulty.value
             case TrickType.FROZEN_ENEMIES:
-                return options.FrozenEnemiesTrickDifficulty > self.difficulty.value
+                return options.FrozenEnemiesTrickDifficulty.value > self.difficulty.value
             case TrickType.SHINESPARK:
-                return options.ShinesparkTrickDifficulty > self.difficulty.value
+                return options.ShinesparkTrickDifficulty.value > self.difficulty.value
             case TrickType.MIDAIR_MORPH:
-                return options.MidairMorphTrickDifficulty > self.difficulty.value
+                return options.MidairMorphTrickDifficulty.value > self.difficulty.value
             case TrickType.DAMAGE_RUN:
-                return options.DamageRunTrickDifficulty > self.difficulty.value
+                return options.DamageRunTrickDifficulty.value > self.difficulty.value
             case TrickType.UNDERWATER_WALL_JUMP:
-                return options.UnderwaterWallJumpTrickDifficulty > self.difficulty.value
+                return options.UnderwaterWallJumpTrickDifficulty.value > self.difficulty.value
             case TrickType.JUMP_BOMB_JUMP:
-                return options.JumpBombJumpTrickDifficulty > self.difficulty.value
+                return options.JumpBombJumpTrickDifficulty.value > self.difficulty.value
             case TrickType.JUMP_EXTEND:
-                return options.JumpExtendTrickDifficulty > self.difficulty.value
+                return options.JumpExtendTrickDifficulty.value > self.difficulty.value
             case TrickType.DAMAGE_BOOST:
-                return options.DamageBoostTrickDifficulty > self.difficulty.value
+                return options.DamageBoostTrickDifficulty.value > self.difficulty.value
             case _:
                 return False
