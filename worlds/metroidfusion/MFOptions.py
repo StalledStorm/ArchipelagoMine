@@ -214,10 +214,6 @@ class WallJumpTrickDifficulty(Choice):
     option_master = 5
     default = 0
 
-
-
-
-
 # Custom Game Mode options
 
 class StartingLocation(Choice):
@@ -354,29 +350,6 @@ class PowerBombTankAmmo(Range):
     range_end = 100
     default = 2
 
-# Deprecated options
-
-class TrickyShinesparksInRegionLogic(Removed):
-    """DEPRECATED OPTION. WILL BE REMOVED IN A FUTURE VERSION.
-    Use ShinesparkTrickDifficulty instead."""
-    display_name = "Tricky Shinesparks in Region Logic"
-
-    def __init__(self, value: str):
-        if value:
-            raise Exception("TrickyShinesparksInRegionLogic option removed. "
-                            "Please use ShinesparkTrickDifficulty instead.")
-        super().__init__(value)
-
-class SimpleWallJumpsInRegionLogic(Removed):
-    """DEPRECATED OPTION. WILL BE REMOVED IN A FUTURE VERSION.
-    Use WallJumpTrickDifficulty instead."""
-    display_name = "Simple Wall Jumps in Region Logic"
-
-    def __init__(self, value: str):
-        if value:
-            raise Exception("SimpleWallJumpsInRegionLogic option removed. Please use WallJumpTrickDifficulty instead.")
-        super().__init__(value)
-
 @dataclass
 class MetroidFusionOptions(PerGameCommonOptions):
     GameMode: GameMode
@@ -392,6 +365,14 @@ class MetroidFusionOptions(PerGameCommonOptions):
     ShinesparkTrickDifficulty: ShinesparkTrickDifficulty
     WallJumpTrickDifficulty: WallJumpTrickDifficulty
     CombatDifficulty: CombatDifficulty
+    KnowledgeDifficulty: KnowledgeDifficulty
+    DamageBoostTrickDifficulty: DamageBoostTrickDifficulty
+    DamageRunTrickDifficulty: DamageRunTrickDifficulty
+    FrozenEnemiesTrickDifficulty: FrozenEnemiesTrickDifficulty
+    JumpBombJumpTrickDifficulty: JumpBombJumpTrickDifficulty
+    JumpExtendTrickDifficulty: JumpExtendTrickDifficulty
+    MidairMorphTrickDifficulty: MidairMorphTrickDifficulty
+    UnderwaterWallJumpTrickDifficulty: UnderwaterWallJumpTrickDifficulty
 
     StartingLocation: StartingLocation
     StartingMajorUpgrades: StartingMajorUpgrades
@@ -415,9 +396,6 @@ class MetroidFusionOptions(PerGameCommonOptions):
     PowerBombDataAmmo: PowerBombDataAmmo
     PowerBombTankAmmo: PowerBombTankAmmo
 
-    TrickyShinesparksInRegionLogic: TrickyShinesparksInRegionLogic
-    SimpleWallJumpsInRegionLogic: SimpleWallJumpsInRegionLogic
-
     start_inventory_from_pool: StartInventoryPool
     death_link: DeathLink
 
@@ -437,7 +415,15 @@ metroid_fusion_option_groups = [
     OptionGroup("Trick Options", [
         ShinesparkTrickDifficulty,
         WallJumpTrickDifficulty,
-        CombatDifficulty
+        CombatDifficulty,
+        KnowledgeDifficulty,
+        DamageBoostTrickDifficulty,
+        DamageRunTrickDifficulty,
+        FrozenEnemiesTrickDifficulty,
+        JumpExtendTrickDifficulty,
+        JumpBombJumpTrickDifficulty,
+        MidairMorphTrickDifficulty,
+        UnderwaterWallJumpTrickDifficulty
     ]),
     OptionGroup("Custom Game Mode Options", [
         StartingLocation,
