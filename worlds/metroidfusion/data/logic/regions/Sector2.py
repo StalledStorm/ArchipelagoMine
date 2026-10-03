@@ -94,6 +94,9 @@ class OvergrownCheckpoint(FusionRegion):
 class OvergrownEntrance(FusionRegion):
     name = "Sector 2 (TRO) - Overgrown Entrance"
 
+class OvergrownEntranceTunnel(FusionRegion):
+    name = "Sector 2 (TRO) - Overgrown Entrance (Tunnel)"
+
 class OvergrownHallway(FusionRegion):
     name = "Sector 2 (TRO) - Overgrown Hallway"
 
@@ -184,6 +187,7 @@ sector_2_regions = [
     OvergrownCache,
     OvergrownCheckpoint,
     OvergrownEntrance,
+    OvergrownEntranceTunnel,
     OvergrownHallway,
     OvergrownSpire,
     OwtchOffice,
