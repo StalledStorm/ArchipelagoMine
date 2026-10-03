@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification
-from .logic.regions.Sector4 import Sector4PumpControl
+from .logic.regions.Sector4 import PumpControl
 from .logic.regions.MainDeck import OperationsDeck
 
 all_item_data = [
@@ -37,5 +37,5 @@ all_item_data = [
 
 events: list[tuple[str, ItemClassification, str, str]] = [
     ("Victory", ItemClassification.progression, OperationsDeck.name, "Victory"),
-    ("Pump Control", ItemClassification.progression, Sector4PumpControl.name, "Pump Control Activated")
+    ("Pump Control", ItemClassification.progression, PumpControl.name, "Pump Control Activated")
 ]
