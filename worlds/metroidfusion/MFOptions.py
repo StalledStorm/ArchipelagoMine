@@ -93,6 +93,19 @@ class CombatDifficulty(Choice):
     option_master = 5
     default = 0
 
+class MovementTrickDifficulty(Choice):
+    """Any non-trivial maneuver that isn't otherwise classified by other tricks and is not expected to be performed in
+    a vanilla playthrough.
+    A higher difficulty will expect higher precision."""
+    display_name = "Movement Trick Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
 class KnowledgeDifficulty(Choice):
     """Knowledge of interactions that aren't explained by a vanilla playthrough.
     A higher difficulty will expect knowing details in increasing obscurity."""
@@ -365,6 +378,7 @@ class MetroidFusionOptions(PerGameCommonOptions):
     ShinesparkTrickDifficulty: ShinesparkTrickDifficulty
     WallJumpTrickDifficulty: WallJumpTrickDifficulty
     CombatDifficulty: CombatDifficulty
+    MovementTrickDifficulty: MovementTrickDifficulty
     KnowledgeDifficulty: KnowledgeDifficulty
     DamageBoostTrickDifficulty: DamageBoostTrickDifficulty
     DamageRunTrickDifficulty: DamageRunTrickDifficulty
@@ -416,6 +430,7 @@ metroid_fusion_option_groups = [
         ShinesparkTrickDifficulty,
         WallJumpTrickDifficulty,
         CombatDifficulty,
+        MovementTrickDifficulty,
         KnowledgeDifficulty,
         DamageBoostTrickDifficulty,
         DamageRunTrickDifficulty,
