@@ -165,3 +165,43 @@ class Enemy(Enum):
             return True
         else:
             return False
+
+    def can_be_damaged_by(self,
+                          method: Immunity,
+                          inventory: dict[str, int]) -> bool:
+        """Check for a specific immunity and appropriate inventory to deal damage if that immunity does not exist"""
+        match method:
+            case Immunity.CHARGE:
+                return (Immunity.CHARGE not in self.immunities
+                        and "Charge Beam" in inventory
+                        and inventory["Charge Beam"] > 0)
+            case Immunity.MISSILE:
+                return (Immunity.MISSILE not in self.immunities
+                        and "Missile Data" in inventory
+                        and inventory["Missile Data"] > 0)
+            case Immunity.SUPER:
+                return (Immunity.SUPER not in self.immunities
+                        and "Missile Data" in inventory
+                        and inventory["Missile Data"] > 0
+                        and "Super Missile" in inventory
+                        and inventory["Super Missile"] > 0)
+            case Immunity.BOMB:
+                return (Immunity.BOMB not in self.immunities
+                        and "Morph Ball" in inventory
+                        and inventory["Morph Ball"] > 0
+                        and "Bomb Data" in inventory
+                        and inventory["Bomb Data"] > 0)
+            case Immunity.PB:
+                return (Immunity.PB not in self.immunities
+                        and "Morph Ball" in inventory
+                        and inventory["Morph Ball"] > 0
+                        and "Power Bomb Data" in inventory
+                        and inventory["Power Bomb Data"] > 0)
+            case Immunity.SCREW:
+                return (Immunity.SCREW not in self.immunities
+                        and "Screw Attack" in inventory
+                        and inventory["Screw Attack"] > 0)
+            case Immunity.BEAM:
+                return Immunity.BEAM not in self.immunities
+            case _:
+                return False
