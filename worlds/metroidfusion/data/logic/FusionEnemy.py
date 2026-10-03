@@ -1,3 +1,4 @@
+from collections import Counter
 from enum import Enum
 
 
@@ -120,7 +121,7 @@ class Enemy(Enum):
         return self.name.title().replace("_", " ")
 
     def can_be_damaged(self,
-                       inventory: dict[str, int],
+                       inventory: Counter[str],
                        speed_booster_override: bool = False) -> bool:
         """Can the enemy be damaged based on ``inventory``?
 
@@ -168,7 +169,7 @@ class Enemy(Enum):
 
     def can_be_damaged_by(self,
                           method: Immunity,
-                          inventory: dict[str, int]) -> bool:
+                          inventory: Counter[str]) -> bool:
         """Check for a specific immunity and appropriate inventory to deal damage if that immunity does not exist"""
         match method:
             case Immunity.CHARGE:
