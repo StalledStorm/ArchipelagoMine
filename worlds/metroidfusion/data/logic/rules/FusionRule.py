@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+from typing import TYPE_CHECKING
 from BaseClasses import CollectionState
 from NetUtils import JSONMessagePart
 from FusionTrick import Trick
@@ -7,6 +7,12 @@ from rule_builder.rules import (True_, False_, And, Or, Rule, Has, HasAll, HasAl
                                 HasAnyCount, HasFromList, HasFromListUnique, HasGroup, HasGroupUnique,
                                 CanReachLocation, CanReachRegion, CanReachEntrance)
 from ..FusionEnemy import Enemy, Immunity
+
+import EnergyAmmoUtil
+
+if TYPE_CHECKING:
+    from ....MFOptions import MetroidFusionOptions
+    from ....__init__ import MetroidFusionWorld
 
 
 @dataclass
@@ -215,12 +221,12 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 
             # Calculate how much ammo is needed
             if self.enemy:
-                missile_ammo_req = Enemy.damage_to_ammo_calc(self.enemy.hp, missile_damage)
-                pb_ammo_req = Enemy.damage_to_ammo_calc(self.enemy.hp, 50)
+                missile_ammo_req = EnergyAmmoUtil.damage_to_ammo_calc(self.enemy.hp, missile_damage)
+                pb_ammo_req = EnergyAmmoUtil.damage_to_ammo_calc(self.enemy.hp, 50)
                 missile_ammo_req *= self.enemy_count
 
-            missile_ammo_req = Enemy.ammo_modified_by_options(missile_ammo_req, self.options)
-            pb_ammo_req = Enemy.ammo_modified_by_options(pb_ammo_req, self.options)
+            missile_ammo_req = EnergyAmmoUtil.ammo_modified_by_options(missile_ammo_req, self.options)
+            pb_ammo_req = EnergyAmmoUtil.ammo_modified_by_options(pb_ammo_req, self.options)
 
             # Do checks
             if (self.enemy in {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER}
@@ -290,7 +296,7 @@ class HasMissileAmmo(Rule["MetroidFusionWorld"], game="MetroidFusion"):
         def _evaluate(self, state: CollectionState) -> bool:
             if not state.has("Missile Data", self.player):
                 return False
-            ammo = Enemy.ammo_modified_by_options(self.ammo, self.options)
+            ammo = EnergyAmmoUtil.ammo_modified_by_options(self.ammo, self.options)
             ammo -= self.options.MissileDataAmmo.value
             ammo -= (self.options.MissileTankAmmo.value * state.count("Missile Tank", self.player))
             return ammo >= 0
@@ -309,8 +315,14 @@ class HasPowerBombAmmo(Rule["MetroidFusionWorld"], game="MetroidFusion"):
         def _evaluate(self, state: CollectionState) -> bool:
             if not state.has("Power Bomb Data", self.player):
                 return False
-            ammo = Enemy.ammo_modified_by_options(self.ammo, self.options)
+            ammo = EnergyAmmoUtil.ammo_modified_by_options(self.ammo, self.options)
             ammo -= self.options.PowerBombDataAmmo.value
             ammo -= (self.options.PowerBombTankAmmo.value * state.count("Power Bomb Tank", self.player))
             return ammo >= 0
 
+@dataclass
+class HasEnergy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    energy: int
+
+    def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
+        return Has("Energy Tank", EnergyAmmoUtil.energy_value_to_tanks(self.energy)).resolve(world)
