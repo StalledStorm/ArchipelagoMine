@@ -10,6 +10,9 @@ level_2_e_tanks = 5
 level_3_e_tanks = 7
 level_4_e_tanks = 10
 
+### This file will be deprecated as of version 1.23.0
+### Please refer to FusionRule
+
 
 #region Individual Item Requirements
 #Morph Ball Items

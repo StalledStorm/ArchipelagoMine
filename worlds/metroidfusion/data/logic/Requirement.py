@@ -8,6 +8,8 @@ import logging
 if TYPE_CHECKING:
     from ... import MetroidFusionOptions
 
+### This file will be deprecated as of version 1.23.0.
+### Please refer to FusionRule and FusionTrick
 
 class Trick:
     """
