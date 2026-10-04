@@ -1,12 +1,12 @@
-from .Requirement import Requirement
+from rule_builder.rules import Rule
 
 
 class FusionLocation:
     name: str
     major: bool
-    requirements: list[Requirement]
+    rule: Rule
 
-    def __init__(self, name, major, requirements):
+    def __init__(self, name, major, rule):
         self.name = name
         self.major = major
-        self.requirements = requirements
+        self.rule = rule
