@@ -54,6 +54,9 @@ class CubbyHole(FusionRegion):
 class DarkStairwell(FusionRegion):
     name = "Main Deck - Dark Stairwell"
 
+class DarkStairwellCubby(FusionRegion):
+    name = "Main Deck - Dark Stairwell Cubby"
+
 class DockingBayAccess(FusionRegion):
     name = "Main Deck - Docking Bay Access"
 
