@@ -192,8 +192,8 @@ class MidairMorphTrickDifficulty(Choice):
 
 class ShinesparkTrickDifficulty(Choice):
     """Using the stored charges from Speed Booster to traverse the station in unorthodox ways.
-    Note that this does not exclude locations that require shinesparking in vanilla to collect.
-    Use the ShinesparkLocations location group for that."""
+    Note: This does not exclude locations that require shinesparking in vanilla to collect.
+    Exclude the ShinesparkLocations location group if you wish to never perform a shinespark to complete the game."""
     display_name = "Shinespark Trick Difficulty"
     option_vanilla = 0
     option_beginner = 1
