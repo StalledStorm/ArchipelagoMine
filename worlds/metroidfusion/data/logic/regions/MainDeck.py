@@ -132,8 +132,11 @@ class OperationsDeckSave(FusionRegion):
 class OperationsRoom(FusionRegion):
     name = "Main Deck - Operations Room"
 
-class OperationsVentilation(FusionRegion):
-    name = "Main Deck - Operations Ventilation"
+class OperationsVentilationTop(FusionRegion):
+    name = "Main Deck - Operations Ventilation (Top)"
+
+class OperationsVentilationBottom(FusionRegion):
+    name = "Main Deck - Operations Ventilation (Bottom)"
 
 class OperationsVentilationWalkwayLeft(FusionRegion):
     name = "Main Deck - Operations Ventilation (Walkway, Left)"
