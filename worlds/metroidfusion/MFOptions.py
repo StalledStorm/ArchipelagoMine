@@ -272,7 +272,7 @@ class FillerItems(ItemSet):
     default = ["Missile Tank", "Power Bomb Tank"]
 
 class OpenSectorElevators(Toggle):
-    """Determines if the sector elevators in the Sector Hub are locked by their vanilla keycard requirements.
+    """Unlocks the Sector Hub elevator doors on Main Deck, allowing full access without the necessary keycard items.
     This is a Custom Game Mode option and will only be applied if GameMode is set to Custom."""
     display_name = "Open Sector Elevators"
 
