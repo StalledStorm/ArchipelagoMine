@@ -76,6 +76,19 @@ class OpenSectorHubElevators(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
         return False_.resolve(world)
 
 @dataclass
+class IsLocationCollected(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
+    location_name: str
+
+    def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
+        return self.Resolved(player=world.player, location_name=self.location_name)
+
+    class Resolved(Rule.Resolved):
+        location_name: str
+
+        def _evaluate(self, state: CollectionState) -> bool:
+            return state.multiworld.get_location(self.location_name, self.player) in state.locations_checked
+
+@dataclass
 class CanBomb(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         return HasAll("Morph Ball", "Bomb Data").resolve(world)
