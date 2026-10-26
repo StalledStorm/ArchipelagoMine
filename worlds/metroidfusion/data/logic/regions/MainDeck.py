@@ -135,6 +135,12 @@ class OperationsRoom(FusionRegion):
 class OperationsVentilation(FusionRegion):
     name = "Main Deck - Operations Ventilation"
 
+class OperationsVentilationWalkwayLeft(FusionRegion):
+    name = "Main Deck - Operations Ventilation (Walkway, Left)"
+
+class OperationsVentilationWalkwayRight(FusionRegion):
+    name = "Main Deck - Operations Ventilation (Walkway, Right)"
+
 class OperationsVentilationStorage(FusionRegion):
     name = "Main Deck - Operations Ventilation Storage"
 
