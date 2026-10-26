@@ -201,8 +201,11 @@ class SiloCatwalk(FusionRegion):
 class SiloCheckpoint(FusionRegion):
     name = "Main Deck - Silo Checkpoint"
 
-class SiloEntry(FusionRegion):
-    name = "Main Deck - Silo Entry"
+class SiloEntryTop(FusionRegion):
+    name = "Main Deck - Silo Entry (Top)"
+
+class SiloEntryBottom(FusionRegion):
+    name = "Main Deck - Silo Entry (Bottom)"
 
 class SiloSave(FusionRegion):
     name = "Main Deck - Silo Save Room"
