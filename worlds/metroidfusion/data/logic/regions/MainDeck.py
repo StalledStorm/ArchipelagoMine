@@ -21,8 +21,11 @@ class AuxiliaryPowerStation(FusionRegion):
 class CentralNexus(FusionRegion):
     name = "Main Deck - Central Nexus"
 
-class CentralReactorCore(FusionRegion):
-    name = "Main Deck - Central Reactor Core"
+class CentralReactorCoreTop(FusionRegion):
+    name = "Main Deck - Central Reactor Core (Top)"
+
+class CentralReactorCoreBottom(FusionRegion):
+    name = "Main Deck - Central Reactor Core (Bottom)"
 
 class Concourse(FusionRegion):
     name = "Main Deck - Concourse"
