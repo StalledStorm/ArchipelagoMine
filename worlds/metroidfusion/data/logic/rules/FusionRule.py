@@ -49,11 +49,12 @@ class CanGoal(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
 
 @dataclass
 class TrickEnabled(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
-    trick: Trick
+    trick_type: int
+    difficulty: int
     """The trick type and difficulty to match against"""
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        if self.trick.can_perform_trick(world.options):
+        if Trick.can_perform_trick(world.options, self.trick_type, self.difficulty):
             return True_.resolve(world)
         else:
             return False_.resolve(world)
