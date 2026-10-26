@@ -72,8 +72,20 @@ class DockingBayHangar(FusionRegion):
 class GenesisSpeedway(FusionRegion):
     name = "Main Deck - Genesis Speedway"
 
-class HabitationDeck(FusionRegion):
-    name = "Main Deck - Habitation Deck"
+class HabitationDeckTopRight(FusionRegion):
+    name = "Main Deck - Habitation Deck (Top, Right)"
+
+class HabitationDeckTopLeft(FusionRegion):
+    name = "Main Deck - Habitation Deck (Top, Left)"
+
+class HabitationDeckMiddle(FusionRegion):
+    name = "Main Deck - Habitation Deck (Middle)"
+
+class HabitationDeckBottomRight(FusionRegion):
+    name = "Main Deck - Habitation Deck (Bottom, Right)"
+
+class HabitationDeckBottomLeft(FusionRegion):
+    name = "Main Deck - Habitation Deck (Bottom, Left)"
 
 class HabitationDeckElevatorTop(FusionRegion):
     name = "Main Deck - Habitation Deck Elevator Top"
@@ -266,7 +278,11 @@ main_deck_regions = [
     DockingBayClimb,
     DockingBayHangar,
     GenesisSpeedway,
-    HabitationDeck,
+    HabitationDeckTopLeft,
+    HabitationDeckTopRight,
+    HabitationDeckMiddle,
+    HabitationDeckBottomLeft,
+    HabitationDeckBottomRight,
     HabitationDeckElevatorTop,
     HabitationDeckElevatorBottom, # AKA: Nexus Elevator
     HabitationDeckEntrance,
