@@ -52,7 +52,7 @@ class Trick:
                 + " "
                 + self.trick_type.name).replace("_", " ").title()
 
-    def can_perform_trick(self, options: "MetroidFusionOptions") -> bool:
+    def can_perform(self, options: "MetroidFusionOptions") -> bool:
         match self.trick_type:
             case TrickType.GENERIC_MOVEMENT:
                 return options.MovementTrickDifficulty.value > self.difficulty.value
@@ -78,5 +78,37 @@ class Trick:
                 return options.JumpExtendTrickDifficulty.value > self.difficulty.value
             case TrickType.DAMAGE_BOOST:
                 return options.DamageBoostTrickDifficulty.value > self.difficulty.value
+            case _:
+                return False
+
+    @staticmethod
+    def can_perform_trick(options: "MetroidFusionOptions",
+                          trick_type: int,
+                          difficulty: int) -> bool:
+        match trick_type:
+            case TrickType.GENERIC_MOVEMENT.value:
+                return options.MovementTrickDifficulty.value > difficulty
+            case TrickType.KNOWLEDGE.value:
+                return options.KnowledgeDifficulty.value > difficulty
+            case TrickType.COMBAT.value:
+                return options.CombatDifficulty.value > difficulty
+            case TrickType.WALL_JUMP.value:
+                return options.WallJumpTrickDifficulty.value > difficulty
+            case TrickType.FROZEN_ENEMIES.value:
+                return options.FrozenEnemiesTrickDifficulty.value > difficulty
+            case TrickType.SHINESPARK.value:
+                return options.ShinesparkTrickDifficulty.value > difficulty
+            case TrickType.MIDAIR_MORPH.value:
+                return options.MidairMorphTrickDifficulty.value > difficulty
+            case TrickType.DAMAGE_RUN.value:
+                return options.DamageRunTrickDifficulty.value > difficulty
+            case TrickType.UNDERWATER_WALL_JUMP.value:
+                return options.UnderwaterWallJumpTrickDifficulty.value > difficulty
+            case TrickType.JUMP_BOMB_JUMP.value:
+                return options.JumpBombJumpTrickDifficulty.value > difficulty
+            case TrickType.JUMP_EXTEND.value:
+                return options.JumpExtendTrickDifficulty.value > difficulty
+            case TrickType.DAMAGE_BOOST.value:
+                return options.DamageBoostTrickDifficulty.value > difficulty
             case _:
                 return False
