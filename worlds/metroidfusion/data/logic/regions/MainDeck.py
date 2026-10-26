@@ -198,8 +198,11 @@ class SiloSave(FusionRegion):
 class SiloScaffolding(FusionRegion):
     name = "Main Deck - Silo Scaffolding"
 
-class SiloTunnel(FusionRegion):
-    name = "Main Deck - Silo Tunnel"
+class SiloTunnelLeft(FusionRegion):
+    name = "Main Deck - Silo Tunnel (Left)"
+
+class SiloTunnelRight(FusionRegion):
+    name = "Main Deck - Silo Tunnel (Right)"
 
 class StationEntrance(FusionRegion):
     name = "Main Deck - Station Entrance"
