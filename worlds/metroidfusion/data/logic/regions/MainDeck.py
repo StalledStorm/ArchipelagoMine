@@ -84,6 +84,9 @@ class HabitationDeckMiddle(FusionRegion):
 class HabitationDeckBottomRight(FusionRegion):
     name = "Main Deck - Habitation Deck (Bottom, Right)"
 
+class HabitationDeckBottomMiddle(FusionRegion):
+    name = "Main Deck - Habitation Deck (Bottom, Middle)"
+
 class HabitationDeckBottomLeft(FusionRegion):
     name = "Main Deck - Habitation Deck (Bottom, Left)"
 
@@ -282,6 +285,7 @@ main_deck_regions = [
     HabitationDeckTopRight,
     HabitationDeckMiddle,
     HabitationDeckBottomLeft,
+    HabitationDeckBottomMiddle,
     HabitationDeckBottomRight,
     HabitationDeckElevatorTop,
     HabitationDeckElevatorBottom, # AKA: Nexus Elevator
