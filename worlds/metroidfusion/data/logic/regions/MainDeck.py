@@ -234,8 +234,11 @@ class StationEntrance(FusionRegion):
 class SubZeroContainment(FusionRegion):
     name = "Main Deck - Sub Zero Containment"
 
-class YakuzaArena(FusionRegion):
-    name = "Main Deck - Yakuza Arena"
+class YakuzaArenaTop(FusionRegion):
+    name = "Main Deck - Yakuza Arena (Top)"
+
+class YakuzaArenaBottom(FusionRegion):
+    name = "Main Deck - Yakuza Arena (Bottom)"
 
 
 main_deck_regions = [
@@ -317,5 +320,6 @@ main_deck_regions = [
     SiloTunnelRight,
     StationEntrance,
     SubZeroContainment,
-    YakuzaArena
+    YakuzaArenaTop,
+    YakuzaArenaBottom
 ]
