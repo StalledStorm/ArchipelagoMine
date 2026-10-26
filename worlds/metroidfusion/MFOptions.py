@@ -180,7 +180,7 @@ class JumpExtendTrickDifficulty(Choice):
     default = 0
 
 class MidairMorphTrickDifficulty(Choice):
-    """The act of entering Morph Ball in midair to enter a tunnel.
+    """The act of entering Morph Ball in midair to enter a tunnel or place a bomb.
     A higher difficulty will require more precision."""
     display_name = "Midair Morph Trick Difficulty"
     option_none = 0
