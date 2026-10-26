@@ -67,6 +67,32 @@ class CanPONR(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
             return False_.resolve(world)
 
 @dataclass
+class CanAccessSectorHubElevator(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
+    start: int
+    dest: int
+    
+    def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
+        if any([world.options.GameMode.value == 1,
+                world.options.GameMode.value == 2 and world.options.OpenSectorElevators.value,
+                self.start == self.dest,
+                self.start in [0, 1, 2] and self.dest in [0, 1, 2]]):
+            return True_.resolve(world)
+        elif any([self.start in [0, 1, 2] and self.dest in [3, 4],
+                  self.start in [3, 4] and self.dest in [0, 1, 2]]):
+            return Has("Level 1 Keycard").resolve(world)
+        elif any([self.start == 3 and self.dest == 5,
+                  self.start == 5 and self.dest == 3,
+                  self.start == 4 and self.dest == 6,
+                  self.start == 6 and self.dest == 4]):
+            return Has("Level 2 Keycard").resolve(world)
+        elif any([self.start in [0, 1, 2] and self.dest in [5, 6],
+                  self.start in [5, 6] and self.dest in [0, 1, 2],
+                  self.start == 3 and self.dest == 6,
+                  self.start == 4 and self.dest == 5]):
+            return HasAll("Level 1 Keycard", "Level 2 Keycard").resolve(world)
+        return False_.resolve(world)
+
+@dataclass
 class CanBomb(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         return HasAll("Morph Ball", "Bomb Data").resolve(world)
