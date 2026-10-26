@@ -119,7 +119,7 @@ class KnowledgeDifficulty(Choice):
 
 class DamageBoostTrickDifficulty(Choice):
     """A damage boost is the act of intentionally taking damage to prevent taking a larger amount of damage, or to
-    induce desirable knockback to use in travel.
+    create desirable knockback to use in travel.
     A higher difficulty represents a greater risk of taking more damage than necessary to achieve results."""
     display_name = "Damage Boost Trick Difficulty"
     option_none = 0
