@@ -198,8 +198,11 @@ class SectorHubElevator5Top(FusionRegion):
 class SectorHubElevator6Top(FusionRegion):
     name = "Main Deck - Sector Hub Elevator 6 Top"
 
-class SiloCatwalk(FusionRegion):
-    name = "Main Deck - Silo Catwalk"
+class SiloCatwalkLeft(FusionRegion):
+    name = "Main Deck - Silo Catwalk (Left)"
+
+class SiloCatwalkRight(FusionRegion):
+    name = "Main Deck - Silo Catwalk (Right)"
 
 class SiloCheckpoint(FusionRegion):
     name = "Main Deck - Silo Checkpoint"
@@ -302,7 +305,8 @@ main_deck_regions = [
     SectorHubElevator4Top,
     SectorHubElevator5Top,
     SectorHubElevator6Top,
-    SiloCatwalk,
+    SiloCatwalkLeft,
+    SiloCatwalkRight,
     SiloCheckpoint,
     SiloEntryTop,
     SiloEntryBottom,
