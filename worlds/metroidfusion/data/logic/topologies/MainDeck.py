@@ -691,6 +691,7 @@ HabitationDeckTopRight.connections = [
 HabitationDeckMiddle.connections = [
     Connection(HabitationDeckEntrance, Has("Level 2 Keycard")),
     Connection(HabitationDeckBottomRight, True_),
+    Connection(HabitationDeckBottomMiddle, True_),
     Connection(HabitationDeckBottomLeft, Has("Speed Booster"))
 ]
 
