@@ -7,8 +7,11 @@ class Animorphs(FusionRegion):
 class AnimorphsCache(FusionRegion):
     name = "Sector 1 (SRX) - Animorphs Cache"
 
-class Antechamber(FusionRegion):
-    name = "Sector 1 (SRX) - Antechamber"
+class AntechamberTop(FusionRegion):
+    name = "Sector 1 (SRX) - Antechamber (Top)"
+
+class AntechamberBottom(FusionRegion):
+    name = "Sector 1 (SRX) - Antechamber (Bottom)"
 
 class AtmosphericStabilizerCentral(FusionRegion):
     name = "Sector 1 (SRX) - Atmospheric Stabilizer Central"
