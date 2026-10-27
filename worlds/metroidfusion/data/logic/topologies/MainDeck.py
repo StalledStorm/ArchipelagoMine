@@ -1,5 +1,7 @@
 from ..Connection import Connection
 from ..FusionLocation import FusionLocation
+from ..VariableConnection import VariableConnection
+
 from ..regions.MainDeck import *
 from ..regions.Sector1 import Sector1EntranceElevatorBottom, TourianElevatorTop
 from ..regions.Sector2 import Sector2EntranceElevatorBottom, OvergrownEntranceTunnel
@@ -7,13 +9,14 @@ from ..regions.Sector3 import Sector3EntranceElevatorBottom
 from ..regions.Sector4 import Sector4EntranceElevatorBottom
 from ..regions.Sector5 import Sector5EntranceElevatorBottom
 from ..regions.Sector6 import Sector6EntranceElevatorBottom, AuthorizationCheckpointTunnel
+
 from ..rules.FusionRule import *
 from ..rules.FusionTrick import TrickType, TrickDifficulty
 from ..FusionEnemy import Enemy
-from ..VariableConnection import VariableConnection
 from rule_builder.rules import (True_, False_, And, Or, Has, HasAll, HasAllCounts, HasAny,
                                 HasAnyCount, HasFromList, HasFromListUnique, HasGroup, HasGroupUnique,
                                 CanReachLocation, CanReachRegion, CanReachEntrance)
+
 
 # Elevator and Tube Connections
 MainElevatorTop.connections = [
