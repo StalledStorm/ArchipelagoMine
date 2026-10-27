@@ -166,7 +166,8 @@ class ZebesianZig(FusionRegion):
 sector_1_regions = [
     Animorphs,
     AnimorphsCache,
-    Antechamber,
+    AntechamberTop,
+    AntechamberBottom,
     AtmosphericStabilizerCentral,
     AtmosphericStabilizerNortheast,
     AtmosphericStabilizerNorthwest,
