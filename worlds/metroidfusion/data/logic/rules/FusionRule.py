@@ -7,8 +7,7 @@ from rule_builder.rules import (True_, False_, And, Or, Rule, Has, HasAll, HasAl
                                 HasAnyCount, HasFromList, HasFromListUnique, HasGroup, HasGroupUnique,
                                 CanReachLocation, CanReachRegion, CanReachEntrance)
 from ..FusionEnemy import Enemy, Immunity
-
-import EnergyAmmoUtil
+from EnergyAmmoUtil import EnergyAmmoUtil
 
 if TYPE_CHECKING:
     from ....MFOptions import MetroidFusionOptions
@@ -272,36 +271,61 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 
 @dataclass
 class CanDamageSmallGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    speed_booster_override: bool = False
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if world.options.NerfGeronWeaknesses.value:
-            return CanClearEnemy(enemy=Enemy.GERON).resolve(world)
-        return Or(CanClearEnemy(enemy=Enemy.GERON), Has("Screw Attack")).resolve(world)
+            return CanClearEnemy(enemy=Enemy.GERON,
+                                 speed_booster_override=self.speed_booster_override).resolve(world)
+        return Or(
+            Has("Screw Attack"),
+            CanClearEnemy(enemy=Enemy.GERON,
+                          speed_booster_override=self.speed_booster_override)
+        ).resolve(world)
 
 @dataclass
 class CanDamageMediumGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    speed_booster_override: bool = False
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if world.options.NerfGeronWeaknesses.value:
-            return And(CanClearEnemy(enemy=Enemy.GERON_SUPER), Has("Super Missile")).resolve(world)
+            return CanClearEnemy(enemy=Enemy.GERON_SUPER,
+                                 speed_booster_override=self.speed_booster_override).resolve(world)
         return Or(
-            And(CanClearEnemy(enemy=Enemy.GERON_SUPER), Has("Super Missile")),
-            Has("Screw Attack")
+            Has("Screw Attack"),
+            CanClearEnemy(enemy=Enemy.GERON_SUPER,
+                          speed_booster_override=self.speed_booster_override)
         ).resolve(world)
 
 @dataclass
 class CanDamageLargeGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    speed_booster_override: bool = False
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if world.options.NerfGeronWeaknesses.value:
-            return CanPowerBomb().resolve(world)
-        return Or(CanPowerBomb(), Has("Screw Attack")).resolve(world)
+            return CanClearEnemy(enemy=Enemy.GERON_POWER,
+                                 speed_booster_override=self.speed_booster_override).resolve(world)
+        return Or(
+            Has("Screw Attack"),
+            CanClearEnemy(enemy=Enemy.GERON_POWER,
+                          speed_booster_override=self.speed_booster_override)
+        ).resolve(world)
 
 @dataclass
 class CanDamageStabilizer(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    speed_booster_override: bool = False
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if world.options.NerfGeronWeaknesses.value:
-            return Or(CanClearEnemy(enemy=Enemy.ATMOSPHERIC_STABILIZER_PARASITE), Has("Charge Beam")).resolve(world)
+            return Or(
+                HasAny("Charge Beam", "Missile Data"),
+                CanClearEnemy(enemy=Enemy.ATMOSPHERIC_STABILIZER_PARASITE,
+                              speed_booster_override=self.speed_booster_override)
+            ).resolve(world)
         return Or(
-            CanClearEnemy(enemy=Enemy.ATMOSPHERIC_STABILIZER_PARASITE),
-            HasAny("Charge Beam", "Screw Attack")
+            HasAny("Charge Beam", "Missile Data", "Screw Attack"),
+            CanClearEnemy(enemy=Enemy.ATMOSPHERIC_STABILIZER_PARASITE,
+                          speed_booster_override=self.speed_booster_override)
         ).resolve(world)
 
 @dataclass
