@@ -2,13 +2,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from .compress import comp_rle, decomp_rle
-from .constants.game_data import area_room_entry_ptrs
+from mars_patcher.compress import comp_rle, decomp_rle
+from mars_patcher.constants.game_data import area_room_entry_ptrs
 
 if TYPE_CHECKING:
     from types import TracebackType
 
-    from .rom import Rom
+    from mars_patcher.rom import Rom
 
 
 class RoomEntry:

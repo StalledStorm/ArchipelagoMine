@@ -1,8 +1,9 @@
-from .sprites import SpriteIdZM
+from mars_patcher.zm.constants.sprites import SpriteIdZM
 
 EXCLUDED_ENEMIES_ZM = {
     SpriteIdZM.UNUSED_10,
     SpriteIdZM.MESSAGE_BANNER,
+    SpriteIdZM.AREA_BANNER,
 }
 
 
