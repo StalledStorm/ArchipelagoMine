@@ -6,7 +6,6 @@ from BaseClasses import Location, ItemClassification
 from .Items import mars_name_to_ap_name, major_jingles
 from .data.locations import fusion_regions
 from .data.logic.Requirement import Requirement
-from .data.logic import topologies
 from .data.major_locations import boss_locations
 from .data.minor_locations import extended_boss_locations
 
@@ -38,19 +37,19 @@ class LocationData:
             jingle = "Minor"
         if self.major:
             return {
-                "Source": self.source_name,
-                "Item": item,
-                "Jingle": jingle
+                "source": self.source_name,
+                "item": item,
+                "jingle": jingle
             }
         else:
             return {
-                "Area": self.mars_id[0],
-                "Room": self.mars_id[1],
-                "BlockX": self.room_location[0],
-                "BlockY": self.room_location[1],
-                "Item": item,
-                "ItemSprite": item_sprite,
-                "Jingle": jingle
+                "area": self.mars_id[0],
+                "room": self.mars_id[1],
+                "block_x": self.room_location[0],
+                "block_y": self.room_location[1],
+                "item": item,
+                "item_sprite": item_sprite,
+                "jingle": jingle
             }
 
     def __repr__(self):
@@ -77,21 +76,23 @@ def build_shiny_item_message(item_name: str):
 
 
 def populate_json_data(location_data: LocationData):
+    print (location_data)
     file = pkgutil.get_data(__name__, "data/new_locations.json").decode()
     json_data = json.loads(file)
-    locations = json_data["MajorLocations"]
+    locations = json_data["major_locations"]
     for location in locations:
         if location["room_name"] == location_data.name:
-            location_data.source_name = location["Source"]
-    locations = json_data["MinorLocations"]
+            location_data.source_name = location["source"]
+    locations = json_data["minor_locations"]
     for location in locations:
         if location["room_name"] == location_data.name:
-            location_data.mars_id = location["Area"], location["Room"]
-            location_data.room_location = location["BlockX"], location["BlockY"]
+            location_data.mars_id = location["area"], location["room"]
+            location_data.room_location = location["block_x"], location["block_y"]
 
 file = pkgutil.get_data(__name__, "data/new_locations.json").decode()
 json_data = json.loads(file)
-locations = json_data["MinorLocations"]
+print (json_data)
+locations = json_data["minor_locations"]
 
 all_locations: list[LocationData] = []
 location_ids: dict[str, int] = dict()
