@@ -1,4 +1,4 @@
-from mars_patcher.rom import Game, Region, Rom
+from ...rom import Game, Region, Rom
 
 
 def hatch_lock_events(rom: Rom) -> int:

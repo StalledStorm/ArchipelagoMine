@@ -1,5 +1,5 @@
-from mars_patcher.constants.enemies import EnemyType
-from mars_patcher.mf.constants.sprites import SpriteIdMF
+from ...constants.enemies import EnemyType
+from .sprites import SpriteIdMF
 
 ENEMY_TYPES_MF = {
     SpriteIdMF.HORNOAD: EnemyType.GROUND,

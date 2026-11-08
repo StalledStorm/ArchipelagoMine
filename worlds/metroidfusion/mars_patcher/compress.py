@@ -1,12 +1,10 @@
-from mars_patcher.common_types import BytesLike
-
 MIN_MATCH_SIZE = 3
 MIN_WINDOW_SIZE = 1
 MAX_MATCH_SIZE = (1 << 4) - 1 + MIN_MATCH_SIZE
 MAX_WINDOW_SIZE = (1 << 12) - 1 + MIN_WINDOW_SIZE
 
 
-def decomp_rle(input: BytesLike, idx: int) -> tuple[bytearray, int]:
+def decomp_rle(input: bytes, idx: int) -> tuple[bytearray, int]:
     """
     Decompresses RLE data and returns it with the size of the compressed data.
     """
@@ -66,7 +64,7 @@ def decomp_rle(input: BytesLike, idx: int) -> tuple[bytearray, int]:
     return output, comp_size
 
 
-def comp_rle(input: BytesLike) -> bytearray:
+def comp_rle(input: bytes) -> bytearray:
     """
     Compresses data using RLE.
     """
@@ -155,7 +153,7 @@ def comp_rle(input: BytesLike) -> bytearray:
     return output
 
 
-def decomp_lz77(input: BytesLike, idx: int) -> tuple[bytearray, int]:
+def decomp_lz77(input: bytes, idx: int) -> tuple[bytearray, int]:
     """Decompresses LZ77 data and returns it with the size of the compressed data."""
     # Check for 0x10 flag
     if input[idx] != 0x10:
@@ -204,11 +202,11 @@ def decomp_lz77(input: BytesLike, idx: int) -> tuple[bytearray, int]:
             cflag <<= 1
 
 
-def comp_lz77(input: BytesLike) -> bytearray:
+def comp_lz77(input: bytes) -> bytearray:
     """Compresses data using LZ77."""
     length = len(input)
     idx = 0
-    longest_matches = _find_longest_matches(input, 64)
+    longest_matches = _find_longest_matches(input)
 
     # Write start of data
     output = bytearray()
@@ -224,10 +222,10 @@ def comp_lz77(input: BytesLike) -> bytearray:
 
         for i in range(8):
             # Find longest match at current position
-            longest_match = longest_matches.get(idx)
-            if longest_match is not None:
+            _match = longest_matches.get(idx)
+            if _match is not None:
                 # Compressed
-                match_idx, match_len = longest_match
+                match_idx, match_len = _match
                 match_offset = idx - match_idx - MIN_WINDOW_SIZE
                 output.append(((match_len - MIN_MATCH_SIZE) << 4) | (match_offset >> 8))
                 output.append(match_offset & 0xFF)
@@ -245,9 +243,7 @@ def comp_lz77(input: BytesLike) -> bytearray:
     raise RuntimeError("LZ77 compression error")
 
 
-def _find_longest_matches(
-    input: BytesLike, max_checks_in_window: int = MAX_WINDOW_SIZE
-) -> dict[int, tuple[int, int]]:
+def _find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
     length = len(input)
     triplets: dict[int, list[int]] = {}
     longest_matches: dict[int, tuple[int, int]] = {}
@@ -272,23 +268,18 @@ def _find_longest_matches(
         if indexes[j] >= i - 1:
             j -= 1
 
-        # Avoid checking too many matches (improves speed at the expense of compression size)
-        stop = max(j - max_checks_in_window, -1)
-
         # Try each index to find the longest match
-        for j in range(j, stop, -1):
+        while j >= 0:
             idx = indexes[j]
             # Stop if past window
             if idx < window_start:
                 break
 
-            # Quick check if match would be longer
-            if longest_len > 0 and input[idx + longest_len] != input[i + longest_len]:
-                continue
-
             # Find length of match
             match_len = MIN_MATCH_SIZE
-            while match_len < max_size and input[idx + match_len] == input[i + match_len]:
+            while match_len < max_size:
+                if input[idx + match_len] != input[i + match_len]:
+                    break
                 match_len += 1
 
             # Update longest match
@@ -299,6 +290,8 @@ def _find_longest_matches(
                 # Stop looking if max size
                 if longest_len == max_size:
                     break
+
+            j -= 1
 
         indexes.append(i)
         if longest_len >= MIN_MATCH_SIZE:

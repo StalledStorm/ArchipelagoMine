@@ -1,20 +1,21 @@
 import json
+import pkgutil
 from collections.abc import Callable
 from os import PathLike
 
-from mars_patcher.level_edits import apply_level_edits
-from mars_patcher.mf.auto_generated_types import MarsSchemaMF
-from mars_patcher.mf.connections import Connections
-from mars_patcher.mf.credits import write_credits
-from mars_patcher.mf.data import get_data_path
-from mars_patcher.mf.door_locks import set_door_locks
-from mars_patcher.mf.item_patcher import (
+from ..level_edits import apply_level_edits
+from .auto_generated_types import MarsSchemaMF
+from .connections import Connections
+from .credits import write_credits
+from .data import get_relative_data_path
+from .door_locks import set_door_locks
+from .item_patcher import (
     ItemPatcher,
     set_required_metroid_count,
     set_tank_increments,
 )
-from mars_patcher.mf.locations import LocationSettings
-from mars_patcher.mf.misc_patches import (
+from .locations import LocationSettings
+from .misc_patches import (
     apply_alternative_health_layout,
     apply_base_patch,
     apply_environmental_damage,
@@ -22,8 +23,6 @@ from mars_patcher.mf.misc_patches import (
     apply_nerf_gerons,
     apply_reveal_hidden_tiles,
     apply_reveal_unexplored_doors,
-    apply_rng_values,
-    apply_toggle_for_secondary_weapon_selection,
     apply_unexplored_map,
     change_missile_limit,
     disable_demos,
@@ -32,15 +31,14 @@ from mars_patcher.mf.misc_patches import (
     skip_door_transitions,
     stereo_default,
 )
-from mars_patcher.mf.navigation_text import NavigationText
-from mars_patcher.mf.starting import set_starting_items, set_starting_location
-from mars_patcher.random_palettes import PaletteRandomizer, PaletteSettings
-from mars_patcher.rom import Rom
-from mars_patcher.room_names import write_room_names
-from mars_patcher.sounds import set_sounds
-from mars_patcher.text import write_seed_hash
-from mars_patcher.tilemap import apply_minimap_edits
-from mars_patcher.title_screen_text import write_title_text
+from .navigation_text import NavigationText
+from .room_names import write_room_names
+from .starting import set_starting_items, set_starting_location
+from ..minimap import apply_minimap_edits
+from ..random_palettes import PaletteRandomizer, PaletteSettings
+from ..rom import Rom
+from ..text import write_seed_hash
+from ..titlescreen_text import write_title_text
 
 
 def patch_mf(
@@ -67,143 +65,132 @@ def patch_mf(
 
     # Randomize palettes - palettes are randomized first in case the item
     # patcher needs to copy tilesets
-    if "palettes" in patch_data:
+    if "Palettes" in patch_data:
         status_update("Randomizing palettes...", -1)
-        pal_settings = PaletteSettings.from_json(patch_data["palettes"])
+        pal_settings = PaletteSettings.from_json(patch_data["Palettes"])
         pal_randomizer = PaletteRandomizer(rom, pal_settings)
         pal_randomizer.randomize()
 
     # Load locations and set assignments
     status_update("Writing item assignments...", -1)
     loc_settings = LocationSettings.initialize()
-    loc_settings.set_assignments(patch_data["locations"])
+    loc_settings.set_assignments(patch_data["Locations"])
     item_patcher = ItemPatcher(rom, loc_settings)
     item_patcher.write_items()
 
     # Required metroid count
-    set_required_metroid_count(rom, patch_data["required_metroid_count"])
-
-    # Music
-    if "music_replacement" in patch_data:
-        status_update("Writing music...", -1)
-        set_sounds(rom, patch_data["music_replacement"])
+    set_required_metroid_count(rom, patch_data["RequiredMetroidCount"])
 
     # Starting location
-    if "starting_location" in patch_data:
+    if "StartingLocation" in patch_data:
         status_update("Writing starting location...", -1)
-        set_starting_location(rom, patch_data["starting_location"])
+        set_starting_location(rom, patch_data["StartingLocation"])
 
     # Starting items
-    if "starting_items" in patch_data:
+    if "StartingItems" in patch_data:
         status_update("Writing starting items...", -1)
-        set_starting_items(rom, patch_data["starting_items"])
+        set_starting_items(rom, patch_data["StartingItems"])
 
     # Tank increments
-    if "tank_increments" in patch_data:
+    if "TankIncrements" in patch_data:
         status_update("Writing tank increments...", -1)
-        set_tank_increments(rom, patch_data["tank_increments"])
+        set_tank_increments(rom, patch_data["TankIncrements"])
 
     # Elevator connections
     conns = None
-    if "elevator_connections" in patch_data:
+    if "ElevatorConnections" in patch_data:
         status_update("Writing elevator connections...", -1)
         conns = Connections(rom)
-        conns.set_elevator_connections(patch_data["elevator_connections"])
+        conns.set_elevator_connections(patch_data["ElevatorConnections"])
 
     # Sector shortcuts
-    if "sector_shortcuts" in patch_data:
+    if "SectorShortcuts" in patch_data:
         status_update("Writing sector shortcuts...", -1)
         if conns is None:
             conns = Connections(rom)
-        conns.set_shortcut_connections(patch_data["sector_shortcuts"])
+        conns.set_shortcut_connections(patch_data["SectorShortcuts"])
 
     # Hints
-    if nav_text := patch_data.get("navigation_text", {}):
+    if nav_text := patch_data.get("NavigationText", {}):
         status_update("Writing navigation text...", -1)
         navigation_text = NavigationText.from_json(nav_text)
         navigation_text.write(rom)
 
-    if nav_locks := patch_data.get("nav_station_locks", {}):
+    if nav_locks := patch_data.get("NavStationLocks", {}):
         status_update("Writing navigation locks...", -1)
         NavigationText.apply_hint_security(rom, nav_locks)
 
     # Room Names
-    if room_names := patch_data.get("room_names", []):
+    if room_names := patch_data.get("RoomNames", []):
         status_update("Writing room names...", -1)
         write_room_names(rom, room_names)
 
     # Credits
-    if credits_text := patch_data.get("credits_text", []):
+    if credits_text := patch_data.get("CreditsText", []):
         status_update("Writing credits text...", -1)
         write_credits(rom, credits_text)
 
     # Misc patches
-    if patch_data.get("disable_demos"):
+    if patch_data.get("DisableDemos"):
         disable_demos(rom)
 
-    if patch_data.get("instant_unmorph"):
+    if patch_data.get("InstantUnmorph"):
         apply_instant_unmorph_patch(rom)
 
-    if patch_data.get("skip_door_transitions"):
+    if patch_data.get("SkipDoorTransitions"):
         skip_door_transitions(rom)
 
-    if patch_data.get("stereo_default", True):
+    if patch_data.get("StereoDefault", True):
         stereo_default(rom)
 
-    if patch_data.get("disable_music"):
+    if patch_data.get("DisableMusic"):
         disable_music(rom)
 
-    if patch_data.get("disable_sound_effects"):
+    if patch_data.get("DisableSoundEffects"):
         disable_sound_effects(rom)
 
-    if environmental_damage := patch_data.get("environmental_damage"):
+    if environmental_damage := patch_data.get("EnvironmentalDamage"):
         apply_environmental_damage(rom, environmental_damage)
 
-    if "missile_limit" in patch_data:
-        change_missile_limit(rom, patch_data["missile_limit"])
+    if "MissileLimit" in patch_data:
+        change_missile_limit(rom, patch_data["MissileLimit"])
 
-    if patch_data.get("nerf_gerons"):
+    if patch_data.get("NerfGerons"):
         apply_nerf_gerons(rom)
 
-    if patch_data.get("use_alternative_hud_health_layout"):
+    if patch_data.get("UseAlternativeHudHealthLayout"):
         apply_alternative_health_layout(rom)
 
-    if patch_data.get("use_toggle_for_secondary_weapon_selection"):
-        apply_toggle_for_secondary_weapon_selection(rom)
-
-    if rng_dict := patch_data.get("rng"):
-        apply_rng_values(rom, rng_dict)
-
-    if patch_data.get("unexplored_map"):
+    if patch_data.get("UnexploredMap"):
         apply_unexplored_map(rom)
 
-        if not patch_data.get("hide_doors_on_minimap", False):
+        if not patch_data.get("HideDoorsOnMinimap", False):
             apply_reveal_unexplored_doors(rom)
 
-    if patch_data.get("reveal_hidden_tiles"):
+    if patch_data.get("RevealHiddenTiles"):
         apply_reveal_hidden_tiles(rom)
 
-    if "level_edits" in patch_data:
-        apply_level_edits(rom, patch_data["level_edits"])
+    if "LevelEdits" in patch_data:
+        apply_level_edits(rom, patch_data["LevelEdits"])
 
     # Apply base minimap edits
-    with open(get_data_path("base_minimap_edits.json")) as f:
-        edits_dict = json.load(f)
+    path = get_relative_data_path(__file__, "base_minimap_edits.json")
+    edits_dict = json.loads(pkgutil.get_data(__name__, path).decode())
     apply_minimap_edits(rom, edits_dict)
 
     # Apply JSON minimap edits
-    if "minimap_edits" in patch_data:
-        apply_minimap_edits(rom, patch_data["minimap_edits"])
+    if "MinimapEdits" in patch_data:
+        apply_minimap_edits(rom, patch_data["MinimapEdits"])
 
     # Door locks
-    if door_locks := patch_data.get("door_locks", []):
+    if door_locks := patch_data.get("DoorLocks", []):
         status_update("Writing door locks...", -1)
         set_door_locks(rom, door_locks)
 
-    write_seed_hash(rom, patch_data["seed_hash"])
+    write_seed_hash(rom, patch_data["SeedHash"])
 
-    # Title screen text
-    if title_screen_text := patch_data.get("title_text"):
+    # Title-screen text
+    if title_screen_text := patch_data.get("TitleText"):
         status_update("Writing title screen text...", -1)
         write_title_text(rom, title_screen_text)
 

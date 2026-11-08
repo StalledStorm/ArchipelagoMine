@@ -1,21 +1,15 @@
 import math
 import random
 
-from mars_patcher.color_spaces import HsvColor, OklabColor, RgbBitSize, RgbColor
-from mars_patcher.convert_array import u16_to_u8
-from mars_patcher.rom import Rom
-
-PAL_ROW_COUNT = 16
-"""The number of colors in a palette row."""
-PAL_ROW_SIZE = PAL_ROW_COUNT * 2
-"""The byte size of a palette row."""
+from .color_spaces import HsvColor, OklabColor, RgbBitSize, RgbColor
+from .rom import Rom
 
 HUE_VARIATION_RANGE = 180.0
 """The maximum range that hue can be additionally rotated."""
 
 
 class SineWave:
-    STEP = (2 * math.pi) / PAL_ROW_COUNT
+    STEP = (2 * math.pi) / 16
 
     def __init__(self, amplitude: float, frequency: float, phase: float):
         self.amplitude = amplitude
@@ -41,7 +35,7 @@ class SineWave:
         return SineWave(amplitude, frequency, phase)
 
     def calculate_variation(self, x: int) -> float:
-        assert 0 <= x < PAL_ROW_COUNT
+        assert 0 <= x < 16
         return self.amplitude * math.sin(self.frequency * x * self.STEP + self.phase)
 
 
@@ -74,7 +68,7 @@ class Palette:
     def __init__(self, rows: int, rom: Rom, addr: int):
         assert rows >= 1
         self.colors: list[RgbColor] = []
-        for i in range(rows * PAL_ROW_COUNT):
+        for i in range(rows * 16):
             rgb = rom.read_16(addr + i * 2)
             color = RgbColor.from_rgb(rgb, RgbBitSize.Rgb5)
             self.colors.append(color)
@@ -83,11 +77,15 @@ class Palette:
         return self.colors[key]
 
     def rows(self) -> int:
-        return len(self.colors) // PAL_ROW_COUNT
+        return len(self.colors) // 16
 
     def byte_data(self) -> bytes:
-        values = [c.rgb_15() for c in self.colors]
-        return u16_to_u8(values)
+        arr = bytearray()
+        for color in self.colors:
+            val = color.rgb_15()
+            arr.append(val & 0xFF)
+            arr.append(val >> 8)
+        return bytes(arr)
 
     def write(self, rom: Rom, addr: int) -> None:
         data = self.byte_data()
@@ -100,8 +98,8 @@ class Palette:
         for row in range(self.rows()):
             if row in excluded_rows:
                 continue
-            offset = row * PAL_ROW_COUNT
-            for i in range(PAL_ROW_COUNT):
+            offset = row * 16
+            for i in range(16):
                 # Skip black and white
                 rgb = self.colors[offset + i]
                 if rgb == black or rgb == white:
@@ -122,8 +120,8 @@ class Palette:
         for row in range(self.rows()):
             if row in excluded_rows:
                 continue
-            offset = row * PAL_ROW_COUNT
-            for i in range(PAL_ROW_COUNT):
+            offset = row * 16
+            for i in range(16):
                 rgb = self.colors[offset + i]
                 lab = change.change_oklab(rgb.oklab(), i)
                 self.colors[offset + i] = lab.rgb()
