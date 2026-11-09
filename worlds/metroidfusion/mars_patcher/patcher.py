@@ -5,8 +5,8 @@ from os import PathLike
 
 from jsonschema import validate
 
-import mars_patcher.mf.data as data_mf
-import mars_patcher.zm.data as data_zm
+from .mf import data as data_mf
+from .zm import data as data_zm
 from .mf.auto_generated_types import MarsSchemaMF
 from .mf.patcher import patch_mf
 from .rom import Rom

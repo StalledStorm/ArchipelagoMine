@@ -4,7 +4,7 @@ from typing import TypeAlias
 
 from typing_extensions import Self
 
-import mars_patcher.constants.game_data as gd
+from .constants import game_data as gd
 from .mf.auto_generated_types import (
     MarsschemamfPalettes,
     MarsschemamfPalettesColorSpace,

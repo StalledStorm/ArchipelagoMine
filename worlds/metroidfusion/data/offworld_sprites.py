@@ -18,7 +18,7 @@ class SpriteNames(Enum):
     IceMissiles = "ICE_MISSILES"
     WideBeam = "WIDE_BEAM"
     PowerBombs = "POWER_BOMBS"
-    SpaceJump = "SPCAE_JUMP"
+    SpaceJump = "SPACE_JUMP"
     PlasmaBeam = "PLASMA_BEAM"
     GravitySuit = "GRAVITY_SUIT"
     Level4 = "LEVEL_4"

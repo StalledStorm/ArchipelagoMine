@@ -32,12 +32,12 @@ room_names = [
         {
             "area": 0,
             "room": 8,
-            "name": "Concourse Recharge room"
+            "name": "Concourse Recharge Room"
         },
         {
             "area": 0,
             "room": 9,
-            "name": "Crew Quarters Navigation room"
+            "name": "Crew Quarters Navigation Room"
         },
         {
             "area": 0,
@@ -47,7 +47,7 @@ room_names = [
         {
             "area": 0,
             "room": 11,
-            "name": "Habitation Deck Save room"
+            "name": "Habitation Deck Save Room"
         },
         {
             "area": 0,
@@ -82,7 +82,7 @@ room_names = [
         {
             "area": 0,
             "room": 16,
-            "name": "Nexus Navigation room"
+            "name": "Nexus Navigation Room"
         },
         {
             "area": 0,
@@ -157,12 +157,12 @@ room_names = [
         {
             "area": 0,
             "room": 32,
-            "name": "Operations Deck Navigation room"
+            "name": "Operations Deck Navigation Room"
         },
         {
             "area": 0,
             "room": 33,
-            "name": "Concourse Save room"
+            "name": "Concourse Save Room"
         },
         {
             "area": 0,
@@ -187,7 +187,7 @@ room_names = [
         {
             "area": 0,
             "room": 37,
-            "name": "Crew Quarters Save room"
+            "name": "Crew Quarters Save Room"
         },
         {
             "area": 0,
@@ -197,7 +197,7 @@ room_names = [
         {
             "area": 0,
             "room": 39,
-            "name": "Operations Deck Data room"
+            "name": "Operations Deck Data Room"
         },
         {
             "area": 0,
@@ -222,7 +222,7 @@ room_names = [
         {
             "area": 0,
             "room": 44,
-            "name": "Operations Deck Save room"
+            "name": "Operations Deck Save Room"
         },
         {
             "area": 0,
@@ -292,7 +292,7 @@ room_names = [
         {
             "area": 0,
             "room": 56,
-            "name": "Auxiliary Navigation room"
+            "name": "Auxiliary Navigation Room"
         },
         {
             "area": 0,
@@ -302,7 +302,7 @@ room_names = [
         {
             "area": 0,
             "room": 58,
-            "name": "Silo Save room"
+            "name": "Silo Save Room"
         },
         {
             "area": 0,
@@ -322,7 +322,7 @@ room_names = [
         {
             "area": 0,
             "room": 64,
-            "name": "Restricted Save room"
+            "name": "Restricted Save Room"
         },
         {
             "area": 0,
@@ -332,7 +332,7 @@ room_names = [
         {
             "area": 0,
             "room": 66,
-            "name": "Restricted Navigation room"
+            "name": "Restricted Navigation Room"
         },
         {
             "area": 0,
@@ -377,12 +377,12 @@ room_names = [
         {
             "area": 0,
             "room": 81,
-            "name": "Operations Deck Recharge room"
+            "name": "Operations Deck Recharge Room"
         },
         {
             "area": 0,
             "room": 82,
-            "name": "Operations room"
+            "name": "Operations Room"
         },
         {
             "area": 0,
@@ -402,12 +402,12 @@ room_names = [
         {
             "area": 1,
             "room": 1,
-            "name": "Entrance Save room"
+            "name": "Entrance Save Room"
         },
         {
             "area": 1,
             "room": 2,
-            "name": "Entrance Navigation room"
+            "name": "Entrance Navigation Room"
         },
         {
             "area": 1,
@@ -452,7 +452,7 @@ room_names = [
         {
             "area": 1,
             "room": 11,
-            "name": "Entrance Recharge room"
+            "name": "Entrance Recharge Room"
         },
         {
             "area": 1,
@@ -492,7 +492,7 @@ room_names = [
         {
             "area": 1,
             "room": 19,
-            "name": "Tourian Save room East"
+            "name": "Tourian Save Room East"
         },
         {
             "area": 1,
@@ -517,7 +517,7 @@ room_names = [
         {
             "area": 1,
             "room": 24,
-            "name": "Tourian Save room West"
+            "name": "Tourian Save Room West"
         },
         {
             "area": 1,
@@ -567,7 +567,7 @@ room_names = [
         {
             "area": 1,
             "room": 34,
-            "name": "Twin Junctions Save room"
+            "name": "Twin Junctions Save Room"
         },
         {
             "area": 1,
@@ -607,7 +607,7 @@ room_names = [
         {
             "area": 1,
             "room": 42,
-            "name": "Central Save room"
+            "name": "Central Save Room"
         },
         {
             "area": 1,
@@ -667,12 +667,12 @@ room_names = [
         {
             "area": 2,
             "room": 1,
-            "name": "Entrance Save room"
+            "name": "Entrance Save Room"
         },
         {
             "area": 2,
             "room": 2,
-            "name": "Entrance Navigation room"
+            "name": "Entrance Navigation Room"
         },
         {
             "area": 2,
@@ -702,7 +702,7 @@ room_names = [
         {
             "area": 2,
             "room": 8,
-            "name": "Data room"
+            "name": "Data Room"
         },
         {
             "area": 2,
@@ -747,7 +747,7 @@ room_names = [
         {
             "area": 2,
             "room": 16,
-            "name": "Cathedral Save room"
+            "name": "Cathedral Save Room"
         },
         {
             "area": 2,
@@ -812,7 +812,7 @@ room_names = [
         {
             "area": 2,
             "room": 26,
-            "name": "Level 1 Security room"
+            "name": "Level 1 Security Room"
         },
         {
             "area": 2,
@@ -822,7 +822,7 @@ room_names = [
         {
             "area": 2,
             "room": 28,
-            "name": "Reo room"
+            "name": "Reo Room"
         },
         {
             "area": 2,
@@ -852,17 +852,17 @@ room_names = [
         {
             "area": 2,
             "room": 33,
-            "name": "Kago room"
+            "name": "Kago Room"
         },
         {
             "area": 2,
             "room": 37,
-            "name": "Entrance Recharge room"
+            "name": "Entrance Recharge Room"
         },
         {
             "area": 2,
             "room": 38,
-            "name": "Courtyard Save room"
+            "name": "Courtyard Save Room"
         },
         {
             "area": 2,
@@ -872,7 +872,7 @@ room_names = [
         {
             "area": 2,
             "room": 40,
-            "name": "Zazabi Save room"
+            "name": "Zazabi Save Room"
         },
         {
             "area": 2,
@@ -897,12 +897,12 @@ room_names = [
         {
             "area": 2,
             "room": 48,
-            "name": "Hidden Recharge room"
+            "name": "Hidden Recharge Room"
         },
         {
             "area": 2,
             "room": 49,
-            "name": "Nettori Save room"
+            "name": "Nettori Save Room"
         },
         {
             "area": 2,
@@ -962,12 +962,12 @@ room_names = [
         {
             "area": 3,
             "room": 1,
-            "name": "Entrance Save room"
+            "name": "Entrance Save Room"
         },
         {
             "area": 3,
             "room": 2,
-            "name": "Entrance Navigation room"
+            "name": "Entrance Navigation Room"
         },
         {
             "area": 3,
@@ -977,7 +977,7 @@ room_names = [
         {
             "area": 3,
             "room": 4,
-            "name": "Level 2 Security room"
+            "name": "Level 2 Security Room"
         },
         {
             "area": 3,
@@ -1062,7 +1062,7 @@ room_names = [
         {
             "area": 3,
             "room": 21,
-            "name": "Data room"
+            "name": "Data Room"
         },
         {
             "area": 3,
@@ -1087,12 +1087,12 @@ room_names = [
         {
             "area": 3,
             "room": 25,
-            "name": "Main Boiler Control room"
+            "name": "Main Boiler Control Room"
         },
         {
             "area": 3,
             "room": 26,
-            "name": "Entrance Recharge room"
+            "name": "Entrance Recharge Room"
         },
         {
             "area": 3,
@@ -1112,12 +1112,12 @@ room_names = [
         {
             "area": 3,
             "room": 31,
-            "name": "Data Recharge room"
+            "name": "Data Recharge Room"
         },
         {
             "area": 3,
             "room": 32,
-            "name": "Data Save room"
+            "name": "Data Save Room"
         },
         {
             "area": 3,
@@ -1157,12 +1157,12 @@ room_names = [
         {
             "area": 4,
             "room": 1,
-            "name": "Entrance Save room"
+            "name": "Entrance Save Room"
         },
         {
             "area": 4,
             "room": 2,
-            "name": "Entrance Navigation room"
+            "name": "Entrance Navigation Room"
         },
         {
             "area": 4,
@@ -1172,7 +1172,7 @@ room_names = [
         {
             "area": 4,
             "room": 4,
-            "name": "Data room"
+            "name": "Data Room"
         },
         {
             "area": 4,
@@ -1207,7 +1207,7 @@ room_names = [
         {
             "area": 4,
             "room": 11,
-            "name": "Reservoir Save room"
+            "name": "Reservoir Save Room"
         },
         {
             "area": 4,
@@ -1262,7 +1262,7 @@ room_names = [
         {
             "area": 4,
             "room": 22,
-            "name": "Pump Control Save room"
+            "name": "Pump Control Save Room"
         },
         {
             "area": 4,
@@ -1282,7 +1282,7 @@ room_names = [
         {
             "area": 4,
             "room": 26,
-            "name": "Level 4 Security room"
+            "name": "Level 4 Security Room"
         },
         {
             "area": 4,
@@ -1297,7 +1297,7 @@ room_names = [
         {
             "area": 4,
             "room": 29,
-            "name": "Entrance Recharge room"
+            "name": "Entrance Recharge Room"
         },
         {
             "area": 4,
@@ -1312,7 +1312,7 @@ room_names = [
         {
             "area": 4,
             "room": 32,
-            "name": "Bridge Save room"
+            "name": "Bridge Save Room"
         },
         {
             "area": 4,
@@ -1347,7 +1347,7 @@ room_names = [
         {
             "area": 4,
             "room": 39,
-            "name": "Aquarium Save room West"
+            "name": "Aquarium Save Room West"
         },
         {
             "area": 4,
@@ -1387,7 +1387,7 @@ room_names = [
         {
             "area": 4,
             "room": 47,
-            "name": "Aquarium Save room East"
+            "name": "Aquarium Save Room East"
         },
         {
             "area": 5,
@@ -1397,12 +1397,12 @@ room_names = [
         {
             "area": 5,
             "room": 1,
-            "name": "Entrance Save room"
+            "name": "Entrance Save Room"
         },
         {
             "area": 5,
             "room": 2,
-            "name": "Entrance Navigation room"
+            "name": "Entrance Navigation Room"
         },
         {
             "area": 5,
@@ -1442,7 +1442,7 @@ room_names = [
         {
             "area": 5,
             "room": 10,
-            "name": "Level 3 Security room"
+            "name": "Level 3 Security Room"
         },
         {
             "area": 5,
@@ -1467,7 +1467,7 @@ room_names = [
         {
             "area": 5,
             "room": 16,
-            "name": "Data room"
+            "name": "Data Room"
         },
         {
             "area": 5,
@@ -1532,7 +1532,7 @@ room_names = [
         {
             "area": 5,
             "room": 29,
-            "name": "Security Save room"
+            "name": "Security Save Room"
         },
         {
             "area": 5,
@@ -1547,7 +1547,7 @@ room_names = [
         {
             "area": 5,
             "room": 32,
-            "name": "Entrance Recharge room"
+            "name": "Entrance Recharge Room"
         },
         {
             "area": 5,
@@ -1577,7 +1577,7 @@ room_names = [
         {
             "area": 5,
             "room": 38,
-            "name": "Cellar Save room"
+            "name": "Cellar Save Room"
         },
         {
             "area": 5,
@@ -1612,17 +1612,17 @@ room_names = [
         {
             "area": 5,
             "room": 47,
-            "name": "Ruined Break room"
+            "name": "Ruined Break Room"
         },
         {
             "area": 5,
             "room": 48,
-            "name": "Nightmare Recharge room"
+            "name": "Nightmare Recharge Room"
         },
         {
             "area": 5,
             "room": 49,
-            "name": "Nightmare Save room"
+            "name": "Nightmare Save Room"
         },
         {
             "area": 5,
@@ -1642,12 +1642,12 @@ room_names = [
         {
             "area": 6,
             "room": 1,
-            "name": "Entrance Save room"
+            "name": "Entrance Save Room"
         },
         {
             "area": 6,
             "room": 2,
-            "name": "Entrance Navigation room"
+            "name": "Entrance Navigation Room"
         },
         {
             "area": 6,
@@ -1697,7 +1697,7 @@ room_names = [
         {
             "area": 6,
             "room": 11,
-            "name": "Data Save room"
+            "name": "Data Save Room"
         },
         {
             "area": 6,
@@ -1747,7 +1747,7 @@ room_names = [
         {
             "area": 6,
             "room": 21,
-            "name": "Neglected Save room"
+            "name": "Neglected Save Room"
         },
         {
             "area": 6,
@@ -1757,7 +1757,7 @@ room_names = [
         {
             "area": 6,
             "room": 23,
-            "name": "Cavern Save room"
+            "name": "Cavern Save Room"
         },
         {
             "area": 6,
@@ -1767,7 +1767,7 @@ room_names = [
         {
             "area": 6,
             "room": 25,
-            "name": "Data room"
+            "name": "Data Room"
         },
         {
             "area": 6,
@@ -1787,7 +1787,7 @@ room_names = [
         {
             "area": 6,
             "room": 29,
-            "name": "Entrance Recharge room"
+            "name": "Entrance Recharge Room"
         },
         {
             "area": 6,
@@ -1812,7 +1812,7 @@ room_names = [
         {
             "area": 6,
             "room": 35,
-            "name": "Twin Cavern Save room"
+            "name": "Twin Cavern Save Room"
         },
         {
             "area": 6,

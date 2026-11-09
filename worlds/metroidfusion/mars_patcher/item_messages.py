@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum, auto
 
-from frozendict import frozendict
+from .frozendict import frozendict
 from typing_extensions import Self
 
 from .common_types import ItemMessagesType

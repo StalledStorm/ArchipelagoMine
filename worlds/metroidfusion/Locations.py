@@ -6,6 +6,7 @@ from BaseClasses import Location, ItemClassification
 from .Items import mars_name_to_ap_name, major_jingles
 from .data.locations import fusion_regions
 from .data.logic.Requirement import Requirement
+from .data.logic import topologies
 from .data.major_locations import boss_locations
 from .data.minor_locations import extended_boss_locations
 
@@ -75,18 +76,18 @@ def build_shiny_item_message(item_name: str):
     }
 
 
-def populate_json_data(location_data2: LocationData):
-    file2 = pkgutil.get_data(__name__, "data/new_locations.json").decode()
-    json_data2 = json.loads(file2)
-    locations2 = json_data2["major_locations"]
-    for location2 in locations2:
-        if location2["room_name"] == location_data2.name:
-            location_data2.source_name = location2["source"]
-    locations2 = json_data["minor_locations"]
-    for location2 in locations2:
-        if location2["room_name"] == location_data2.name:
-            location_data2.mars_id = location2["area"], location2["room"]
-            location_data2.room_location = location2["block_x"], location2["block_y"]
+def populate_json_data(location_data: LocationData):
+    file = pkgutil.get_data(__name__, "data/new_locations.json").decode()
+    json_data = json.loads(file)
+    locations = json_data["major_locations"]
+    for location in locations:
+        if location["room_name"] == location_data.name:
+            location_data.source_name = location["source"]
+    locations = json_data["minor_locations"]
+    for location in locations:
+        if location["room_name"] == location_data.name:
+            location_data.mars_id = location["area"], location["room"]
+            location_data.room_location = location["block_x"], location["block_y"]
 
 file = pkgutil.get_data(__name__, "data/new_locations.json").decode()
 json_data = json.loads(file)
@@ -106,6 +107,7 @@ for region in fusion_regions:
         if location.major:
             major_location_names.append(location.name)
         ap_id += 1
+
 
 
 shinespark_locations = [

@@ -1,7 +1,7 @@
 from typing import Annotated, TypeAlias
 
-import mars_patcher.mf.auto_generated_types as types_mf
-import mars_patcher.zm.auto_generated_types as types_zm
+from .mf import auto_generated_types as types_mf
+from .zm import auto_generated_types as types_zm
 
 BytesLike: TypeAlias = bytes | bytearray
 

@@ -25,7 +25,7 @@ class MetroidFusionPatchExtension(APPatchExtension):
         logging.info(f"Metroid Fusion APWorld v{MetroidFusionWorld.version} used for patching.")
         from .mars_patcher import patcher
         patcher.validate_patch_data_mf(patch_dict)
-        output_file = patch_dict["OutputFile"]
+        output_file = patch_dict["output_file"]
         directory = tempfile.gettempdir()
         with open(os.path.join(directory, "temp.gba"), "wb") as file:
             file.write(rom)
@@ -37,14 +37,14 @@ class MetroidFusionPatchExtension(APPatchExtension):
         )
         with open(os.path.join(directory, output_file), "rb") as file:
             rom_data = bytearray(file.read())
-            rom_name_text = patch_dict["RomName"]
+            rom_name_text = patch_dict["rom_name"]
             rom_name = bytearray(rom_name_text, 'utf-8')
             rom_name.extend([0] * (20 - len(rom_name)))
             rom_data[memory.rom_name_location:memory.rom_name_location + 20] = bytes(rom_name)
-            if isinstance(patch_dict.get('GenerationVersion'), str):
-                gen_version = Utils.tuplize_version(patch_dict.get('GenerationVersion'))
+            if isinstance(patch_dict.get('generation_version'), str):
+                gen_version = Utils.tuplize_version(patch_dict.get('generation_version'))
             else: # old apworld, GenerationVersion is int
-                gen_version = Utils.Version(0, 0, patch_dict.get('GenerationVersion'))
+                gen_version = Utils.Version(0, 0, patch_dict.get('generation_version'))
             rom_data[memory.generation_version_location:memory.generation_version_location + 2] = bytes(gen_version)
             rom_data[memory.patching_version_location:memory.patching_version_location + 2] = map(int, MetroidFusionWorld.version.split("."))
         return rom_data

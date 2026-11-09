@@ -5,7 +5,7 @@
       "room": 39,
       "source": "MAIN_DECK_DATA",
       "original": "MISSILES",
-      "room_name": "Main Deck -- Operations Deck Data room"
+      "room_name": "Main Deck -- Operations Deck Data Room"
     },
     {
       "name": "Arachnus Arena",
@@ -27,14 +27,14 @@
       "room": 26,
       "source": "LEVEL_1",
       "original": "LEVEL_1",
-      "room_name": "Sector 2 (TRO) -- Level 1 Security room"
+      "room_name": "Sector 2 (TRO) -- Level 1 Security Room"
     },
     {
       "area": 2,
       "room": 8,
       "source": "TRO_DATA",
       "original": "BOMBS",
-      "room_name": "Sector 2 (TRO) -- Data room"
+      "room_name": "Sector 2 (TRO) -- Data Room"
     },
     {
       "area": 2,
@@ -55,14 +55,14 @@
       "room": 4,
       "source": "LEVEL_2",
       "original": "LEVEL_2",
-      "room_name": "Sector 3 (PYR) -- Level 2 Security room"
+      "room_name": "Sector 3 (PYR) -- Level 2 Security Room"
     },
     {
       "area": 3,
       "room": 21,
       "source": "PYR_DATA",
       "original": "SUPER_MISSILES",
-      "room_name": "Sector 3 (PYR) -- Data room"
+      "room_name": "Sector 3 (PYR) -- Data Room"
     },
     {
       "area": 6,
@@ -76,21 +76,21 @@
       "room": 10,
       "source": "LEVEL_3",
       "original": "LEVEL_3",
-      "room_name": "Sector 5 (ARC) -- Level 3 Security room"
+      "room_name": "Sector 5 (ARC) -- Level 3 Security Room"
     },
     {
       "area": 5,
       "room": 16,
       "source": "ARC_DATA_1",
       "original": "ICE_MISSILES",
-      "room_name": "Sector 5 (ARC) -- Data room"
+      "room_name": "Sector 5 (ARC) -- Data Room"
     },
     {
       "area": 3,
       "room": 25,
       "source": "WIDE_CORE_X",
       "original": "WIDE_BEAM",
-      "room_name": "Sector 3 (PYR) -- Main Boiler Control room -- Core X"
+      "room_name": "Sector 3 (PYR) -- Main Boiler Control Room -- Core X"
     },
     {
       "area": 0,
@@ -118,14 +118,14 @@
       "room": 26,
       "source": "LEVEL_4",
       "original": "LEVEL_4",
-      "room_name": "Sector 4 (AQA) -- Level 4 Security room"
+      "room_name": "Sector 4 (AQA) -- Level 4 Security Room"
     },
     {
       "area": 4,
       "room": 4,
       "source": "AQA_DATA",
       "original": "DIFFUSION_MISSILES",
-      "room_name": "Sector 4 (AQA) -- Data room"
+      "room_name": "Sector 4 (AQA) -- Data Room"
     },
     {
       "area": 6,
@@ -146,7 +146,7 @@
       "room": 25,
       "source": "BOILER",
       "original": "INFANT_METROID",
-      "room_name": "Sector 3 (PYR) -- Main Boiler Control room -- Boiler"
+      "room_name": "Sector 3 (PYR) -- Main Boiler Control Room -- Boiler"
     },
     {
       "area": 0,
@@ -495,7 +495,7 @@
       "block_y": 8,
       "hidden": false,
       "original": "MISSILE_TANK",
-      "room_name": "Sector 2 (TRO) -- Kago room"
+      "room_name": "Sector 2 (TRO) -- Kago Room"
     },
     {
       "area": 2,
@@ -963,7 +963,7 @@
       "block_y": 10,
       "hidden": true,
       "original": "POWER_BOMB_TANK",
-      "room_name": "Sector 5 (ARC) -- Ruined Break room"
+      "room_name": "Sector 5 (ARC) -- Ruined Break Room"
     },
     {
       "area": 5,

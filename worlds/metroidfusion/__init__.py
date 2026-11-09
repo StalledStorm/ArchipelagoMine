@@ -120,7 +120,7 @@ class MetroidFusionWorld(World):
     item_name_groups = {
         "MajorUpgrades": major_upgrades
     }
-    version = "1.22.4"
+    version = "1.22.5"
     debug = False
 
 
@@ -474,15 +474,15 @@ class MetroidFusionWorld(World):
             briefing_text_addition_end = (f"Uplink at [COLOR=2]Navigation Rooms[/COLOR] along the way. "
                                        f"I can scan the station for useful equipment from there.")
         navigation_text = {
-            "english": {
+            "ENGLISH": {
                 "ship_text": {
-                    "initial_text": f"{briefing_text_addition_start}"
+                    "INITIAL_TEXT": f"{briefing_text_addition_start}"
                                    f"Your objective is as follows: Find enough [COLOR=3]Infant Metroids[/COLOR] "
                                    f"({required_metroids}) to lure out the SA-X. "
                                    f"Then initiate the station's self-destruct sequence. "
                                    f"{briefing_text_addition_end}"
                                    f"[OBJECTIVE]Good. Move out.",
-                    "confirm_text": "Any objections, Lady?"
+                    "CONFIRM_TEXT": "Any objections, Lady?"
                 }
             }
         }
@@ -514,7 +514,7 @@ class MetroidFusionWorld(World):
                     "SECTOR_5_ENTRANCE": "No hint data available.",
                     "SECTOR_6_ENTRANCE": "No hint data available."
                 }
-        navigation_text["english"]["navigation_terminals"] = nav_room_text
+        navigation_text["ENGLISH"]["navigation_terminals"] = nav_room_text
         return navigation_text
 
     @staticmethod
@@ -735,7 +735,6 @@ class MetroidFusionWorld(World):
 
     def build_starting_items_dict(self):
         starting_inventory = [item.name for item in self.multiworld.precollected_items[self.player]]
-        print(starting_inventory)
         energy = 99
         missiles = 0
         power_bombs = 0
@@ -836,7 +835,7 @@ class MetroidFusionWorld(World):
         patch_dict["skip_door_transitions"] = bool(self.options.FastDoorTransitions.value)
         patch_dict["unexplored_map"] = True
         patch_dict["room_names"] = room_names
-        patch_dict["title_text"] = [{"text": "         Archipelago", "LineNum": 12}]
+        patch_dict["title_text"] = [{"text": "         Archipelago", "line_num": 12}]
         patch_dict["credits_text"] = self.build_credits_text()
         patch_dict["nerf_gerons"] = bool(self.options.NerfGeronWeaknesses.value)
 

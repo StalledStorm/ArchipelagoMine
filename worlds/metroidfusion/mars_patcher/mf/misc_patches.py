@@ -1,4 +1,4 @@
-import mars_patcher.constants.game_data as gd
+from .constants import game_data as gd
 from .auto_generated_types import MarsschemamfEnvironmentalDamage, MarsschemamfRng
 from .constants.reserved_space import ReservedPointersMF
 from .data import get_data_path

@@ -1,5 +1,5 @@
-import mars_patcher.mf.auto_generated_types as mf_types
-import mars_patcher.zm.auto_generated_types as zm_types
+from .mf import auto_generated_types as mf_types
+from .zm import auto_generated_types as zm_types
 from .constants.game_data import title_text_addr
 from .mf.constants.reserved_space import ReservedPointersMF
 from .rom import Rom
