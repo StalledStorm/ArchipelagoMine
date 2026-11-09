@@ -32,9 +32,9 @@ class LocationData:
     def to_json(self, item: str, item_sprite: str, item_classification: ItemClassification):
         ap_name = mars_name_to_ap_name[item]
         if ap_name in major_jingles or (item_classification & ItemClassification.progression and ap_name != "Energy Tank"):
-            jingle = "Major"
+            jingle = "MAJOR"
         else:
-            jingle = "Minor"
+            jingle = "MINOR"
         if self.major:
             return {
                 "source": self.source_name,
@@ -60,38 +60,36 @@ def escape_string(string: str) -> str:
 
 def build_item_message(item_name: str, player_name: str):
     return {
-        "Languages": {
-            "English": f"Found {escape_string(player_name)}'s\n{escape_string(item_name)}",
+        "languages": {
+            "ENGLISH": f"Found {escape_string(player_name)}'s\n{escape_string(item_name)}",
         },
-        "Kind": "CustomMessage"
+        "kind": "CUSTOM_MESSAGE"
     }
 
 def build_shiny_item_message(item_name: str):
     return {
-        "Languages": {
-            "English": f"Found a Shiny {item_name}!\nIt's shiny, so it's special.",
+        "languages": {
+            "ENGLISH": f"Found a Shiny {item_name}!\nIt's shiny, so it's special.",
         },
-        "Kind": "CustomMessage"
+        "kind": "CUSTOM_MESSAGE"
     }
 
 
-def populate_json_data(location_data: LocationData):
-    print (location_data)
-    file = pkgutil.get_data(__name__, "data/new_locations.json").decode()
-    json_data = json.loads(file)
-    locations = json_data["major_locations"]
-    for location in locations:
-        if location["room_name"] == location_data.name:
-            location_data.source_name = location["source"]
-    locations = json_data["minor_locations"]
-    for location in locations:
-        if location["room_name"] == location_data.name:
-            location_data.mars_id = location["area"], location["room"]
-            location_data.room_location = location["block_x"], location["block_y"]
+def populate_json_data(location_data2: LocationData):
+    file2 = pkgutil.get_data(__name__, "data/new_locations.json").decode()
+    json_data2 = json.loads(file2)
+    locations2 = json_data2["major_locations"]
+    for location2 in locations2:
+        if location2["room_name"] == location_data2.name:
+            location_data2.source_name = location2["source"]
+    locations2 = json_data["minor_locations"]
+    for location2 in locations2:
+        if location2["room_name"] == location_data2.name:
+            location_data2.mars_id = location2["area"], location2["room"]
+            location_data2.room_location = location2["block_x"], location2["block_y"]
 
 file = pkgutil.get_data(__name__, "data/new_locations.json").decode()
 json_data = json.loads(file)
-print (json_data)
 locations = json_data["minor_locations"]
 
 all_locations: list[LocationData] = []

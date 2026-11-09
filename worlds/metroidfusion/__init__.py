@@ -154,7 +154,7 @@ class MetroidFusionWorld(World):
                 self.starting_location_object = main_deck_hub
             self.starting_major_upgrades = 0
             self.starting_energy_tanks = 0
-            self.filler_items = None
+            self.filler_items = []
             self.open_sector_elevators = False
             self.navigation_room_hint_locks = False
         elif self.options.GameMode == self.options.GameMode.option_open_sector_hub:
@@ -164,7 +164,7 @@ class MetroidFusionWorld(World):
                 self.starting_location_object = sector_hub
             self.starting_major_upgrades = 1
             self.starting_energy_tanks = 1
-            self.filler_items = None
+            self.filler_items = []
             self.open_sector_elevators = True
             self.navigation_room_hint_locks = True
         elif self.options.GameMode == self.options.GameMode.option_custom:
@@ -243,7 +243,7 @@ class MetroidFusionWorld(World):
                         else:
                             eligible_elevators = []
                         if origin_region_data in eligible_elevators:
-                            if "Top" in connection.destination.name:
+                            if "TOP" in connection.destination.name:
                                 group = ERGroups.ELEVATOR_BOTTOM
                             else:
                                 group = ERGroups.ELEVATOR_TOP
@@ -451,7 +451,7 @@ class MetroidFusionWorld(World):
                     "hue_max": 360
                 }
             },
-            "ColorSpace": "Oklab"
+            "color_space": "OKLAB"
         }
 
     def create_navigation_text(self, hint_text: list[str], required_metroids: int):
@@ -474,15 +474,15 @@ class MetroidFusionWorld(World):
             briefing_text_addition_end = (f"Uplink at [COLOR=2]Navigation Rooms[/COLOR] along the way. "
                                        f"I can scan the station for useful equipment from there.")
         navigation_text = {
-            "English": {
-                "ShipText": {
-                    "InitialText": f"{briefing_text_addition_start}"
+            "english": {
+                "ship_text": {
+                    "initial_text": f"{briefing_text_addition_start}"
                                    f"Your objective is as follows: Find enough [COLOR=3]Infant Metroids[/COLOR] "
                                    f"({required_metroids}) to lure out the SA-X. "
                                    f"Then initiate the station's self-destruct sequence. "
                                    f"{briefing_text_addition_end}"
                                    f"[OBJECTIVE]Good. Move out.",
-                    "ConfirmText": "Any objections, Lady?"
+                    "confirm_text": "Any objections, Lady?"
                 }
             }
         }
@@ -514,7 +514,7 @@ class MetroidFusionWorld(World):
                     "SECTOR_5_ENTRANCE": "No hint data available.",
                     "SECTOR_6_ENTRANCE": "No hint data available."
                 }
-        navigation_text["English"]["NavigationTerminals"] = nav_room_text
+        navigation_text["english"]["navigation_terminals"] = nav_room_text
         return navigation_text
 
     @staticmethod
@@ -657,7 +657,7 @@ class MetroidFusionWorld(World):
 
     def build_sector_connections(self):
         return {
-            "LeftAreas": [
+            "left_areas": [
                 sector_tube_id_lookups[self.region_map[Sector1TubeLeft.name]],
                 sector_tube_id_lookups[self.region_map[Sector2TubeLeft.name]],
                 sector_tube_id_lookups[self.region_map[Sector3TubeLeft.name]],
@@ -665,7 +665,7 @@ class MetroidFusionWorld(World):
                 sector_tube_id_lookups[self.region_map[Sector5TubeLeft.name]],
                 sector_tube_id_lookups[self.region_map[Sector6TubeLeft.name]],
             ],
-            "RightAreas": [
+            "right_areas": [
                 sector_tube_id_lookups[self.region_map[Sector1TubeRight.name]],
                 sector_tube_id_lookups[self.region_map[Sector2TubeRight.name]],
                 sector_tube_id_lookups[self.region_map[Sector3TubeRight.name]],
@@ -677,7 +677,7 @@ class MetroidFusionWorld(World):
 
     def build_elevator_connections(self):
         return {
-            "ElevatorTops": {
+            "elevator_tops": {
                 "OPERATIONS_DECK_TOP": elevator_id_lookups[self.region_map[OperationsDeckElevatorTop.name]],
                 "MAIN_HUB_TO_SECTOR_1": elevator_id_lookups[self.region_map[SectorHubElevator1Top.name]],
                 "MAIN_HUB_TO_SECTOR_2": elevator_id_lookups[self.region_map[SectorHubElevator2Top.name]],
@@ -689,7 +689,7 @@ class MetroidFusionWorld(World):
                 "HABITATION_DECK_TOP": elevator_id_lookups[self.region_map[HabitationDeckElevatorTop.name]],
                 "SECTOR_1_TO_RESTRICTED_LAB": elevator_id_lookups[self.region_map[Sector1TourianHubElevatorTop.name]]
             },
-            "ElevatorBottoms": {
+            "elevator_bottoms": {
                 "OPERATIONS_DECK_BOTTOM": elevator_id_lookups[self.region_map[OperationsDeckElevatorBottom.name]],
                 "MAIN_HUB_BOTTOM": elevator_id_lookups[self.region_map[SectorHubElevatorBottom.name]],
                 "RESTRICTED_LAB_TO_SECTOR_1": elevator_id_lookups[self.region_map[Sector6RestrictedZoneElevatorToTourian.name]],
@@ -735,6 +735,7 @@ class MetroidFusionWorld(World):
 
     def build_starting_items_dict(self):
         starting_inventory = [item.name for item in self.multiworld.precollected_items[self.player]]
+        print(starting_inventory)
         energy = 99
         missiles = 0
         power_bombs = 0

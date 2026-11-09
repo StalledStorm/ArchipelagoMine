@@ -4,7 +4,7 @@
       "area": 0,
       "room": 39,
       "source": "MAIN_DECK_DATA",
-      "original": "Missiles",
+      "original": "MISSILES",
       "room_name": "Main Deck -- Operations Deck Data room"
     },
     {
@@ -12,133 +12,133 @@
       "area": 0,
       "room": 38,
       "source": "ARACHNUS",
-      "original": "MorphBall",
+      "original": "MORPH_BALL",
       "room_name": "Main Deck -- Arachnus Arena -- Core X"
     },
     {
       "area": 1,
       "room": 40,
       "source": "CHARGE_CORE_X",
-      "original": "ChargeBeam",
+      "original": "CHARGE_BEAM",
       "room_name": "Sector 1 (SRX) -- Charge Core Arena -- Core X"
     },
     {
       "area": 2,
       "room": 26,
       "source": "LEVEL_1",
-      "original": "Level1",
+      "original": "LEVEL_1",
       "room_name": "Sector 2 (TRO) -- Level 1 Security room"
     },
     {
       "area": 2,
       "room": 8,
       "source": "TRO_DATA",
-      "original": "Bombs",
+      "original": "BOMBS",
       "room_name": "Sector 2 (TRO) -- Data room"
     },
     {
       "area": 2,
       "room": 18,
       "source": "ZAZABI",
-      "original": "HiJump",
+      "original": "HI_JUMP",
       "room_name": "Sector 2 (TRO) -- Zazabi Arena"
     },
     {
       "area": 4,
       "room": 42,
       "source": "SERRIS",
-      "original": "SpeedBooster",
+      "original": "SPEED_BOOSTER",
       "room_name": "Sector 4 (AQA) -- Serris Arena"
     },
     {
       "area": 3,
       "room": 4,
       "source": "LEVEL_2",
-      "original": "Level2",
+      "original": "LEVEL_2",
       "room_name": "Sector 3 (PYR) -- Level 2 Security room"
     },
     {
       "area": 3,
       "room": 21,
       "source": "PYR_DATA",
-      "original": "SuperMissiles",
+      "original": "SUPER_MISSILES",
       "room_name": "Sector 3 (PYR) -- Data room"
     },
     {
       "area": 6,
       "room": 13,
       "source": "MEGA_X",
-      "original": "VariaSuit",
+      "original": "VARIA_SUIT",
       "room_name": "Sector 6 (NOC) -- Varia Core-X Arena"
     },
     {
       "area": 5,
       "room": 10,
       "source": "LEVEL_3",
-      "original": "Level3",
+      "original": "LEVEL_3",
       "room_name": "Sector 5 (ARC) -- Level 3 Security room"
     },
     {
       "area": 5,
       "room": 16,
       "source": "ARC_DATA_1",
-      "original": "IceMissiles",
+      "original": "ICE_MISSILES",
       "room_name": "Sector 5 (ARC) -- Data room"
     },
     {
       "area": 3,
       "room": 25,
       "source": "WIDE_CORE_X",
-      "original": "WideBeam",
+      "original": "WIDE_BEAM",
       "room_name": "Sector 3 (PYR) -- Main Boiler Control room -- Core X"
     },
     {
       "area": 0,
       "room": 86,
       "source": "YAKUZA",
-      "original": "SpaceJump",
+      "original": "SPACE_JUMP",
       "room_name": "Main Deck -- Yakuza Arena"
     },
     {
       "area": 2,
       "room": 22,
       "source": "NETTORI",
-      "original": "PlasmaBeam",
+      "original": "PLASMA_BEAM",
       "room_name": "Sector 2 (TRO) -- Nettori Arena"
     },
     {
       "area": 5,
       "room": 20,
       "source": "NIGHTMARE",
-      "original": "GravitySuit",
+      "original": "GRAVITY_SUIT",
       "room_name": "Sector 5 (ARC) -- Nightmare Arena"
     },
     {
       "area": 4,
       "room": 26,
       "source": "LEVEL_4",
-      "original": "Level4",
+      "original": "LEVEL_4",
       "room_name": "Sector 4 (AQA) -- Level 4 Security room"
     },
     {
       "area": 4,
       "room": 4,
       "source": "AQA_DATA",
-      "original": "DiffusionMissiles",
+      "original": "DIFFUSION_MISSILES",
       "room_name": "Sector 4 (AQA) -- Data room"
     },
     {
       "area": 6,
       "room": 16,
       "source": "WAVE_CORE_X",
-      "original": "WaveBeam",
+      "original": "WAVE_BEAM",
       "room_name": "Sector 6 (NOC) -- X-B.O.X. Arena"
     },
     {
       "area": 1,
       "room": 27,
       "source": "RIDLEY",
-      "original": "ScrewAttack",
+      "original": "SCREW_ATTACK",
       "room_name": "Sector 1 (SRX) -- Neo-Ridley Arena"
     },
     {
