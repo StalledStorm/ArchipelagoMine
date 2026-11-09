@@ -1,8 +1,9 @@
-from types import MappingProxyType
-from array import array
-from . import frozendict
 from collections.abc import MutableMapping, MutableSequence, MutableSet
 from enum import Enum
+from types import MappingProxyType
+
+from array import array
+from frozendict import frozendict
 
 # fix for python 3.9-
 
@@ -187,7 +188,7 @@ def deepfreeze(
     Where is a good old tail call when you need it?
     """
     
-    from .frozendict import frozendict
+    from frozendict import frozendict
     
     if custom_converters is None:
         custom_converters = frozendict()
@@ -244,7 +245,11 @@ def deepfreeze(
         except AttributeError:
             pass
         else:
-            return frozendict(o.__dict__)
+            return deepfreeze(
+                o.__dict__,
+                custom_converters = custom_converters,
+                custom_inverse_converters = custom_inverse_converters
+            )
         
         try:
             hash(o)
