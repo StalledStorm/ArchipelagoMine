@@ -3,4 +3,4 @@
 # specifically mention frozendict.core.frozendict
 
 # noinspection PyUnresolvedReferences
-from frozendict import frozendict
+from .frozendict import frozendict

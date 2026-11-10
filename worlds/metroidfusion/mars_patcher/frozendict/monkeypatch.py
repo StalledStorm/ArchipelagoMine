@@ -7,31 +7,8 @@ class MonkeypatchWarning(UserWarning):
     pass
 
 
-def warn_not_applied(name):
-    import warnings
-
-    warnings.warn(
-        f"{name} not found, monkeypatch will not be applied",
-        MonkeypatchWarning
-    )
-
-
 def checkCExtension(*, warn, warn_c = False):
-    import frozendict as cool
-    
-    res = cool.c_ext
-    
-    if warn and res == warn_c:
-        if warn_c:  # pragma: no cover
-            msg = "C Extension version, monkeypatch will not be applied"
-        else:
-            msg = "Pure Python version, monkeypatch will not be applied"
-        
-        import warnings
-        
-        warnings.warn(msg, MonkeypatchWarning)
-    
-    return res
+    return False
 
 
 def patchOrUnpatchJson(*, patch, warn = True):  # pragma: no cover
@@ -42,11 +19,7 @@ def patchOrUnpatchJson(*, patch, warn = True):  # pragma: no cover
     self = import_module(__name__)
     import frozendict as cool
     import json
-
-    if not hasattr(json, "_default_encoder"):
-        warn_not_applied("json._default_encoder")
-        return
-
+    
     OldJsonEncoder = self._OldJsonEncoder
     
     # noinspection PyUnresolvedReferences, PyProtectedMember
@@ -112,7 +85,7 @@ def patchOrUnpatchOrjson(*, patch, warn = True):  # pragma: no cover
         oldOrjsonDumps = self._oldOrjsonDumps
     
     if patch:
-        from frozendict import frozendict
+        from .frozendict import frozendict
         
         def frozendictOrjsonDumps(obj, *args, **kwargs):
             if isinstance(obj, frozendict):
@@ -144,18 +117,8 @@ def patchOrUnpatchMutableMappingSubclasshook(
     from importlib import import_module
     self = import_module(__name__)
     from collections.abc import MutableMapping
-    from frozendict import frozendict
-
-    if not (
-        hasattr(MutableMapping, "_abc_caches_clear")
-        or (
-            hasattr(MutableMapping, "_abc_cache")
-            and hasattr(MutableMapping, "_abc_negative_cache")
-        )
-    ):
-        warn_not_applied("MutableMapping._abc_caches_clear")
-        return
-
+    from . import frozendict
+    
     if self._oldMutableMappingSubclasshook is None:
         if not patch:
             raise ValueError(
@@ -163,9 +126,9 @@ def patchOrUnpatchMutableMappingSubclasshook(
                 "(maybe you already unpatched MutableMapping?)"
             )
         
-        oldMutableMappingHook = MutableMapping.__subclasshook__
+        oldMutableMappingSubclasshook = MutableMapping.__subclasshook__
     else:
-        oldMutableMappingHook = self._oldMutableMappingSubclasshook
+        oldMutableMappingSubclasshook = self._oldMutableMappingSubclasshook
     
     if patch:
         # noinspection PyDecorator
@@ -180,8 +143,7 @@ def patchOrUnpatchMutableMappingSubclasshook(
                 if issubclass(subclass, frozendict):
                     return False
                 
-                # noinspection PyArgumentList
-                return oldMutableMappingHook(
+                return oldMutableMappingSubclasshook(
                     subclass, 
                     *args, 
                     **kwargs
@@ -189,14 +151,14 @@ def patchOrUnpatchMutableMappingSubclasshook(
             
             return NotImplemented
         
-        defaultMutableMappingHook = frozendictMutableMappingSubclasshook
-        newOldMutableMappingHook = oldMutableMappingHook
+        defaultMutableMappingSubclasshook = frozendictMutableMappingSubclasshook
+        newOldMutableMappingSubclasshook = oldMutableMappingSubclasshook
     else:
-        defaultMutableMappingHook = oldMutableMappingHook
-        newOldMutableMappingHook = None
+        defaultMutableMappingSubclasshook = oldMutableMappingSubclasshook
+        newOldMutableMappingSubclasshook = None
     
-    self._oldMutableMappingSubclasshook = newOldMutableMappingHook
-    MutableMapping.__subclasshook__ = defaultMutableMappingHook
+    self._oldMutableMappingSubclasshook = newOldMutableMappingSubclasshook
+    MutableMapping.__subclasshook__ = defaultMutableMappingSubclasshook
     
     try:
         # noinspection PyUnresolvedReferences, PyProtectedMember
