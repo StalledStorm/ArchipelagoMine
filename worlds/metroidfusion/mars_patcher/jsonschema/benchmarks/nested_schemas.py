@@ -5,7 +5,7 @@ See https://github.com/python-jsonschema/jsonschema/issues/1097.
 """
 from itertools import cycle
 
-from jsonschema.validators import validator_for
+from ..validators import validator_for
 
 metaschemaish = {
     "$id": "https://example.com/draft/2020-12/schema/strict",

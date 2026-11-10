@@ -3,7 +3,7 @@ import typing
 from collections.abc import Callable
 from os import PathLike
 
-from jsonschema import validate
+from .jsonschema.validators import validate
 
 from .mf import data as data_mf
 from .zm import data as data_zm

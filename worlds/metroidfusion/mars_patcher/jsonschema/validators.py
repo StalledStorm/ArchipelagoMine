@@ -21,7 +21,7 @@ from rpds import HashTrieMap
 import referencing.exceptions
 import referencing.jsonschema
 
-from jsonschema import (
+from . import (
     _format,
     _keywords,
     _legacy_keywords,
@@ -32,7 +32,7 @@ from jsonschema import (
 )
 
 if TYPE_CHECKING:
-    from jsonschema.protocols import Validator
+    from .protocols import Validator
 
 _UNSET = _utils.Unset()
 

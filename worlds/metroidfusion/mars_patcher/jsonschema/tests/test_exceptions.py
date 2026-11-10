@@ -3,8 +3,8 @@ import textwrap
 
 import jsonpath_ng
 
-from jsonschema import exceptions
-from jsonschema.validators import _LATEST_VERSION
+from .. import exceptions
+from ..validators import _LATEST_VERSION
 
 
 class TestBestMatch(TestCase):

@@ -6,7 +6,7 @@ import numbers
 from attrs import evolve, field, frozen
 from rpds import HashTrieMap
 
-from jsonschema.exceptions import UndefinedTypeCheck
+from .exceptions import UndefinedTypeCheck
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Mapping
