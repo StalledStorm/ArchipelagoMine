@@ -787,8 +787,8 @@ class MetroidFusionWorld(World):
             item_sprite = None
             if location.item.player == self.player:
                 item_name = ap_name_to_mars_name[location.item.name]
-                if item_name == "None":   # Empty items, when we implement them,
-                    item_sprite = "Empty" # have a different sprite name than item name
+                if item_name == "NONE":   # Empty items, when we implement them,
+                    item_sprite = "EMPTY" # have a different sprite name than item name
                 else:
                     item_sprite = item_name
                 message = None # A None message leaves the default Fusion message.
