@@ -432,7 +432,7 @@ class MetroidFusionWorld(World):
     @staticmethod
     def create_palette_rando(seed: int):
         return {
-            "seed": seed % 2**32,
+            "seed": seed % 2**31,
             "randomize": {
                 "SAMUS": {
                     "hue_min": 0,
