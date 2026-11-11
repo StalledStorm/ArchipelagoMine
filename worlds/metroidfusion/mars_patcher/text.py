@@ -1,11 +1,12 @@
 import json
+import pkgutil
 from enum import Enum
 from functools import cache
 
 from .constants.game_data import character_widths
 from .convert_array import u16_to_u8
 from .mf.constants.game_data import file_screen_text_ptrs
-from .mf.data import get_data_path as get_data_path_mf
+from .mf.data import get_relative_data_path as get_relative_data_path_mf
 from .rom import Game, Rom
 from .zm.constants.game_data import seed_hash_addr
 from .zm.data import get_data_path as get_data_path_zm
@@ -70,13 +71,12 @@ class MessageType(Enum):
 @cache
 def get_char_map(rom: Rom) -> dict[str, int]:
     if rom.is_mf():
-        path = get_data_path_mf("char_map_mf.json")
+        path = get_relative_data_path_mf(__file__, "char_map_mf.json")
     elif rom.is_zm():
         path = get_data_path_zm("char_map_zm.json")
     else:
         raise ValueError(rom.game)
-    with open(path, encoding="utf-8") as f:
-        sections = json.load(f)
+    sections = json.loads(pkgutil.get_data(__name__, path).decode())
     char_map: dict[str, int] = {}
     for section in sections:
         if rom.region.name in section["regions"]:

@@ -1,4 +1,5 @@
 import json
+import pkgutil
 
 from typing_extensions import Self
 
@@ -23,7 +24,7 @@ from .constants.items import (
     ItemType,
     MajorSource,
 )
-from .data import get_data_path
+from .data import get_relative_data_path
 
 
 class Location:
@@ -91,8 +92,8 @@ class LocationSettings:
 
     @classmethod
     def initialize(cls) -> Self:
-        with open(get_data_path("locations.json")) as f:
-            data = json.load(f)
+        path = get_relative_data_path(__file__, "locations.json")
+        data = json.loads(pkgutil.get_data(__name__, path).decode())
 
         major_locs = []
         for entry in data[KEY_MAJOR_LOCS]:
