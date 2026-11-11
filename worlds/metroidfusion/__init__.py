@@ -867,6 +867,8 @@ class MetroidFusionWorld(World):
         patch_dict["nav_station_locks"] = self.build_nav_locks_dict()
 
         patch_dict["generation_version"] = MetroidFusionWorld.version
+        patch_dict["minimum_compatible_version"] = \
+                MetroidFusionProcedurePatch.minimum_patch_version.as_simple_string()
 
         patch_dict["sector_shortcuts"] = self.build_sector_connections()
         patch_dict["elevator_connections"] = self.build_elevator_connections()
