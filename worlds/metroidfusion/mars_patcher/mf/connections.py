@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+import pkgutil
 
 from ..constants import game_data as gd
 from .auto_generated_types import (
@@ -196,12 +197,10 @@ class Connections:
 
         # Write new graphics and tilemap
         path = get_data_path("main_hub.gfx.lz")
-        with open(path, "rb") as f:
-            gfx = f.read()
+        gfx = pkgutil.get_data(__name__, path)
         self.rom.write_bytes(MAIN_HUB_GFX_ADDR, gfx)
         path = get_data_path("main_hub_tilemap.bin")
-        with open(path, "rb") as f:
-            tilemap = f.read()
+        tilemap = pkgutil.get_data(__name__, path)
         self.rom.write_bytes(MAIN_HUB_TILEMAP_ADDR + 2, tilemap)
 
         # Overwrite numbers on BG2

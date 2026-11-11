@@ -11,15 +11,15 @@ import heapq
 import re
 import warnings
 
-from attrs import define
-from referencing.exceptions import Unresolvable as _Unresolvable
+from ..attrs import define
+from ..referencing.exceptions import Unresolvable as _Unresolvable
 
-from jsonschema import _utils
+from . import _utils
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping, MutableMapping, Sequence
 
-    from jsonschema import _types
+    from . import _types
 
 WEAK_MATCHES: frozenset[str] = frozenset(["anyOf", "oneOf"])
 STRONG_MATCHES: frozenset[str] = frozenset()

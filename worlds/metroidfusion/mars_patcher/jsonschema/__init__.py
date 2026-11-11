@@ -10,10 +10,10 @@ for you.
 """
 import warnings
 
-from jsonschema._format import FormatChecker
-from jsonschema._types import TypeChecker
-from jsonschema.exceptions import SchemaError, ValidationError
-from jsonschema.validators import (
+from ._format import FormatChecker
+from ._types import TypeChecker
+from .exceptions import SchemaError, ValidationError
+from .validators import (
     Draft3Validator,
     Draft4Validator,
     Draft6Validator,
@@ -37,7 +37,7 @@ def __getattr__(name):
         from importlib import metadata
         return metadata.version("jsonschema")
     elif name == "RefResolver":
-        from jsonschema.validators import _RefResolver
+        from .validators import _RefResolver
         warnings.warn(
             _RefResolver._DEPRECATION_MESSAGE,
             DeprecationWarning,
@@ -52,7 +52,7 @@ def __getattr__(name):
             DeprecationWarning,
             stacklevel=2,
         )
-        from jsonschema.exceptions import ErrorTree
+        from .exceptions import ErrorTree
         return ErrorTree
     elif name == "FormatError":
         warnings.warn(
@@ -62,7 +62,7 @@ def __getattr__(name):
             DeprecationWarning,
             stacklevel=2,
         )
-        from jsonschema.exceptions import FormatError
+        from .exceptions import FormatError
         return FormatError
     elif name == "Validator":
         warnings.warn(
@@ -72,10 +72,10 @@ def __getattr__(name):
             DeprecationWarning,
             stacklevel=2,
         )
-        from jsonschema.protocols import Validator
+        from .protocols import Validator
         return Validator
     elif name == "RefResolutionError":
-        from jsonschema.exceptions import _RefResolutionError
+        from .exceptions import _RefResolutionError
         warnings.warn(
             _RefResolutionError._DEPRECATION_MESSAGE,
             DeprecationWarning,

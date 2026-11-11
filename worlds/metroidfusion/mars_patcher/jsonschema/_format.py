@@ -8,7 +8,7 @@ import re
 import typing
 import warnings
 
-from jsonschema.exceptions import FormatError
+from .exceptions import FormatError
 
 _FormatCheckCallable = typing.Callable[[object], bool]
 #: A format checker callable.

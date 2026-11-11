@@ -1,4 +1,5 @@
 import json
+import pkgutil
 from enum import Enum
 from functools import cache
 
@@ -75,8 +76,7 @@ def get_char_map(rom: Rom) -> dict[str, int]:
         path = get_data_path_zm("char_map_zm.json")
     else:
         raise ValueError(rom.game)
-    with open(path, encoding="utf-8") as f:
-        sections = json.load(f)
+    sections = json.loads(pkgutil.get_data(__name__, path).decode())
     char_map: dict[str, int] = {}
     for section in sections:
         if rom.region.name in section["regions"]:

@@ -12,10 +12,10 @@ import sys
 import traceback
 import warnings
 
-from attrs import define, field
+from ..attrs import define, field
 
-from jsonschema.exceptions import SchemaError
-from jsonschema.validators import _RefResolver, validator_for
+from .exceptions import SchemaError
+from .validators import _RefResolver, validator_for
 
 warnings.warn(
     (
@@ -139,7 +139,7 @@ class _PlainFormatter:
 
 def _resolve_name_with_default(name):
     if "." not in name:
-        name = "jsonschema." + name
+        name = "." + name
     return resolve_name(name)
 
 

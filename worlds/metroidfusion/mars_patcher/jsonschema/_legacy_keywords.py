@@ -1,9 +1,9 @@
 import re
 
-from referencing.jsonschema import lookup_recursive_ref
+from ..referencing.jsonschema import lookup_recursive_ref
 
-from jsonschema import _utils
-from jsonschema.exceptions import ValidationError
+from . import _utils
+from .exceptions import ValidationError
 
 
 def ignore_ref_siblings(schema):

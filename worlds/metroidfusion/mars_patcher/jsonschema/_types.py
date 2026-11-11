@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 import numbers
 
-from attrs import evolve, field, frozen
-from rpds import HashTrieMap
+from ..attrs import evolve, field, frozen
+from ..rpds import HashTrieMap
 
 from .exceptions import UndefinedTypeCheck
 

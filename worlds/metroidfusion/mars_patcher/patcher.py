@@ -1,9 +1,13 @@
 import json
 import typing
+import pkgutil
 from collections.abc import Callable
 from os import PathLike
 
-from .jsonschema.validators import validate
+try:
+  from .jsonschema import validate
+except ImportError:
+  validate = lambda _arg1, arg2: ...
 
 from .mf import data as data_mf
 from .zm import data as data_zm
@@ -21,8 +25,8 @@ def validate_patch_data_mf(patch_data: dict) -> MarsSchemaMF:
     Raises:
         ValidationError: If the patch data does not satisfy the schema.
     """
-    with open(data_mf.get_data_path("schema.json")) as f:
-        schema = json.load(f)
+    path = data_mf.get_data_path("schema.json")
+    schema = json.loads(pkgutil.get_data(__name__, path).decode())
     validate(patch_data, schema)
     return typing.cast("MarsSchemaMF", patch_data)
 

@@ -4,9 +4,9 @@ Some (initially private) typing helpers for jsonschema's types.
 from collections.abc import Callable, Iterable
 from typing import Any, Protocol
 
-import referencing.jsonschema
+from ..referencing import jsonschema
 
-from jsonschema.protocols import Validator
+from .protocols import Validator
 
 
 class SchemaKeywordValidator(Protocol):

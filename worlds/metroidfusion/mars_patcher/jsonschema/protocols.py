@@ -16,12 +16,11 @@ from typing import TYPE_CHECKING, Any, ClassVar, Protocol, runtime_checkable
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
 
-    import referencing.jsonschema
+    from ..referencing import jsonschema
 
-    from jsonschema import _typing
-    from jsonschema.exceptions import ValidationError
-    import jsonschema
-    import jsonschema.validators
+    from . import _typing
+    from .exceptions import ValidationError
+    from . import validators
 
 # For code authors working on the validator protocol, these are the three
 # use-cases which should be kept in mind:

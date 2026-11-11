@@ -15,11 +15,11 @@ import json
 import reprlib
 import warnings
 
-from attrs import define, field, fields
-from jsonschema_specifications import REGISTRY as SPECIFICATIONS
+from ..attrs import define, field, fields
+from ..jsonschema_specifications import REGISTRY as SPECIFICATIONS
 from rpds import HashTrieMap
-import referencing.exceptions
-import referencing.jsonschema
+from ..referencing import exceptions
+from ..referencing import jsonschema
 
 from . import (
     _format,
@@ -48,7 +48,7 @@ def __getattr__(name):
             DeprecationWarning,
             stacklevel=2,
         )
-        from jsonschema.exceptions import ErrorTree
+        from .exceptions import ErrorTree
         return ErrorTree
     elif name == "validators":
         warnings.warn(

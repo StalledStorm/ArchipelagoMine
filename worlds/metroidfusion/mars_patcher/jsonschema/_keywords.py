@@ -1,7 +1,7 @@
 from fractions import Fraction
 import re
 
-from jsonschema._utils import (
+from ._utils import (
     ensure_list,
     equal,
     extras_msg,
@@ -10,7 +10,7 @@ from jsonschema._utils import (
     find_evaluated_property_keys_by_schema,
     uniq,
 )
-from jsonschema.exceptions import FormatError, ValidationError
+from .exceptions import FormatError, ValidationError
 
 
 def patternProperties(validator, patternProperties, instance, schema):

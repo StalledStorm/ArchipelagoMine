@@ -279,6 +279,11 @@ class MetroidFusionWorld(World):
             event_location.place_locked_item(self.create_event(event[3]))
 
     def connect_entrances(self) -> None:
+        from Utils import visualize_regions
+        state = self.multiworld.get_all_state(False, True)
+        state.update_reachable_regions(self.player)
+        visualize_regions(self.get_region("Menu"), "my_world.puml", show_entrance_names=True,
+                          regions_to_highlight=state.reachable_regions[self.player])
         self.er_map = randomize_entrances(self, True, self.er_group_mappings).pairings
         for connection in self.er_map:
             source = connection[0].replace(" Destination", "")

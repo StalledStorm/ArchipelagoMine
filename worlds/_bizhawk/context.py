@@ -168,6 +168,7 @@ class BizHawkClientContext(CommonContext):
         if cmd == "Connected":
             self.slot_data = args.get("slot_data", None)
             self.auth_status = AuthStatus.AUTHENTICATED
+            print(self.slot_data)
 
         if self.client_handler is not None:
             self.client_handler.on_package(self, cmd, args)
