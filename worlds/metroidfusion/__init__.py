@@ -927,6 +927,7 @@ class MetroidFusionWorld(World):
         patch_dict["required_metroid_count"] = infant_metroids_required
         patch_dict["reveal_hidden_tiles"] = bool(self.options.RevealHiddenBlocks.value)
         patch_dict["disable_demos"] = True
+        patch_dict["use_alternative_hud_health_layout"] = self.options.AlternateHudLayout.value
         patch_dict["skip_door_transitions"] = bool(self.options.FastDoorTransitions.value)
         patch_dict["unexplored_map"] = True
         patch_dict["room_names"] = room_names
