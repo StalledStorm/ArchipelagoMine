@@ -927,12 +927,15 @@ class MetroidFusionWorld(World):
         patch_dict["required_metroid_count"] = infant_metroids_required
         patch_dict["reveal_hidden_tiles"] = bool(self.options.RevealHiddenBlocks.value)
         patch_dict["disable_demos"] = True
+        patch_dict["use_alternative_hud_health_layout"] = self.options.AlternateHealthHudLayout.value
         patch_dict["skip_door_transitions"] = bool(self.options.FastDoorTransitions.value)
         patch_dict["unexplored_map"] = True
         patch_dict["room_names"] = room_names
         patch_dict["title_text"] = [{"text": "         Archipelago", "line_num": 12}]
         patch_dict["credits_text"] = self.build_credits_text()
+        patch_dict["instant_unmorph"] = self.options.InstantMorph.value
         patch_dict["nerf_gerons"] = bool(self.options.NerfGeronWeaknesses.value)
+        patch_dict["use_toggle_for_secondary_weapon_selection"] = self.options.SecondaryWeaponToggle.value
         patch_dict["music_replacement"] = self._construct_music_shuffle_dict(self.options.MusicRando.value)
 
         if self.options.PaletteRandomization:
