@@ -120,7 +120,7 @@ class MetroidFusionWorld(World):
     item_name_groups = {
         "MajorUpgrades": major_upgrades
     }
-    version = "1.22.7"
+    version = "1.22.8"
     debug = False
 
 
@@ -243,7 +243,7 @@ class MetroidFusionWorld(World):
                         else:
                             eligible_elevators = []
                         if origin_region_data in eligible_elevators:
-                            if "TOP" in connection.destination.name:
+                            if "Top" in connection.destination.name:
                                 group = ERGroups.ELEVATOR_BOTTOM
                             else:
                                 group = ERGroups.ELEVATOR_TOP
