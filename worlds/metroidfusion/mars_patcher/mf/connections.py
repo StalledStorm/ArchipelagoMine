@@ -88,6 +88,8 @@ class Connections:
 
         # Connect tops to bottoms
         pairs_top = data["elevator_tops"]
+        print(pairs_top)
+        print(data["elevator_tops"])
         self.connect_elevators(ELEVATOR_TOPS, ELEVATOR_BOTTOMS, pairs_top)
         # Connect bottoms to tops
         pairs_bottom = data["elevator_bottoms"]
