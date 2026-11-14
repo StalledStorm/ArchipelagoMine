@@ -793,7 +793,7 @@ class MetroidFusionWorld(World):
                     item_sprite = item_name
                 message = None # A None message leaves the default Fusion message.
             else:
-                item_name = "None" # Remote items shouldn't give anything ingame.
+                item_name = "NONE" # Remote items shouldn't give anything ingame.
                 message = build_item_message(location.item.name, self.multiworld.player_name[location.item.player])
                 # Check if the item is in the list of eligible offworld items we can use a Fusion sprite for.
                 game = self.multiworld.worlds[location.item.player].game
