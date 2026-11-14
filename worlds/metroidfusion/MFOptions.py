@@ -187,6 +187,10 @@ class InstantMorph(DefaultOnToggle):
     """Enables instant morphing, using the 'SELECT' button."""
     display_name = "Instant Morph"
 
+class SecondaryWeaponToggle(Toggle):
+    """Sets the missile launcher to be toggled on and off, instead of needing to be held."""
+    display_name = "Secondary Weapon Toggle"
+
 class NerfGeronWeaknesses(Toggle):
     """Makes Gerons only weak to their 'intended' values."""
     display_name = "Nerf Geron Weaknesses"
@@ -286,6 +290,7 @@ class MetroidFusionOptions(PerGameCommonOptions):
     PaletteRandomization: PaletteRandomization
     EnableHints: EnableHints
     InstantMorph: InstantMorph
+    SecondaryWeaponToggle: SecondaryWeaponToggle
     NerfGeronWeaknesses: NerfGeronWeaknesses
     MusicRando: MusicRando
     MajorJingles: MajorJingles
@@ -334,6 +339,7 @@ metroid_fusion_option_groups = [
         RevealHiddenBlocks,
         FastDoorTransitions,
         InstantMorph,
+        SecondaryWeaponToggle,
         NerfGeronWeaknesses,
         MusicRando,
         MajorJingles,

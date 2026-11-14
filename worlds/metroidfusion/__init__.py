@@ -934,6 +934,7 @@ class MetroidFusionWorld(World):
         patch_dict["credits_text"] = self.build_credits_text()
         patch_dict["instant_unmorph"] = self.options.InstantMorph.value
         patch_dict["nerf_gerons"] = bool(self.options.NerfGeronWeaknesses.value)
+        patch_dict["use_toggle_for_secondary_weapon_selection"] = self.options.SecondaryWeaponToggle.value
         patch_dict["music_replacement"] = self._construct_music_shuffle_dict(self.options.MusicRando.value)
 
         if self.options.PaletteRandomization:
