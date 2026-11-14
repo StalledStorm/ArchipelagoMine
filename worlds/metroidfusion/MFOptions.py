@@ -171,9 +171,9 @@ class PaletteRandomization(Toggle):
     """Randomize the ingame palettes."""
     display_name = "Palette Randomization"
 
-class AlternateHudLayout(Toggle):
-    """Enables an alternative HUD layout."""
-    display_name = "Alternate HUD Layout"
+class AlternateHealthHudLayout(Toggle):
+    """Enables an alternative HUD for health."""
+    display_name = "Alternate Health HUD Layout"
 
 class EnableHints(DefaultOnToggle):
     """Enable ingame hints at Navigation Stations."""
@@ -292,7 +292,7 @@ class MetroidFusionOptions(PerGameCommonOptions):
     SectorNavigationRoomHintLocks: SectorNavigationRoomHintLocks
 
     PaletteRandomization: PaletteRandomization
-    AlternateHudLayout: AlternateHudLayout
+    AlternateHealthHudLayout: AlternateHealthHudLayout
     EnableHints: EnableHints
     InstantMorph: InstantMorph
     SecondaryWeaponToggle: SecondaryWeaponToggle
