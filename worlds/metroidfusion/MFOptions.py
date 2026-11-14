@@ -183,6 +183,10 @@ class FastDoorTransitions(DefaultOnToggle):
     """Enables fast door transitions between rooms."""
     display_name = "Fast Door Transitions"
 
+class InstantMorph(DefaultOnToggle):
+    """Enables instant morphing, using the 'SELECT' button."""
+    display_name = "Instant Morph"
+
 class NerfGeronWeaknesses(Toggle):
     """Makes Gerons only weak to their 'intended' values."""
     display_name = "Nerf Geron Weaknesses"
@@ -281,6 +285,7 @@ class MetroidFusionOptions(PerGameCommonOptions):
 
     PaletteRandomization: PaletteRandomization
     EnableHints: EnableHints
+    InstantMorph: InstantMorph
     NerfGeronWeaknesses: NerfGeronWeaknesses
     MusicRando: MusicRando
     MajorJingles: MajorJingles
@@ -326,6 +331,7 @@ metroid_fusion_option_groups = [
     OptionGroup("Minor Options", [
         PaletteRandomization,
         EnableHints,
+        InstantMorph,
         NerfGeronWeaknesses,
         MusicRando,
         MajorJingles,

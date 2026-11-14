@@ -932,6 +932,7 @@ class MetroidFusionWorld(World):
         patch_dict["room_names"] = room_names
         patch_dict["title_text"] = [{"text": "         Archipelago", "line_num": 12}]
         patch_dict["credits_text"] = self.build_credits_text()
+        patch_dict["instant_unmorph"] = self.options.InstantMorph.value
         patch_dict["nerf_gerons"] = bool(self.options.NerfGeronWeaknesses.value)
         patch_dict["music_replacement"] = self._construct_music_shuffle_dict(self.options.MusicRando.value)
 
