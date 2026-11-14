@@ -187,6 +187,20 @@ class NerfGeronWeaknesses(Toggle):
     """Makes Gerons only weak to their 'intended' values."""
     display_name = "Nerf Geron Weaknesses"
 
+class MusicRando(Choice):
+    """Changes how music is shuffled.
+    Vanilla: Does not shuffle any songs.
+    Type: Shuffles songs within the same category. This ensures that you won't hear boss music while exploring,
+    or an item jingle as the escape sequence. Jingles are not shuffled. Certain songs, such as the Credits song,
+    are excluded from shuffling.
+    Full: Will shuffle all songs with each other. Jingles are not shuffled. Certain songs, such as the
+    Credits song, are excluded from shuffling."""
+    display_name = "Music Rando"
+    option_vanilla = 0
+    option_type = 1
+    option_full = 2
+    default = 0
+
 class MissileDataAmmo(Range):
     """The amount of missiles provided by a Missile Data item."""
     display_name = "Missile Data Ammo"
@@ -264,6 +278,7 @@ class MetroidFusionOptions(PerGameCommonOptions):
     PaletteRandomization: PaletteRandomization
     EnableHints: EnableHints
     NerfGeronWeaknesses: NerfGeronWeaknesses
+    MusicRando: MusicRando
     RevealHiddenBlocks: RevealHiddenBlocks
     FastDoorTransitions: FastDoorTransitions
     MissileDataAmmo: MissileDataAmmo
@@ -307,6 +322,7 @@ metroid_fusion_option_groups = [
         PaletteRandomization,
         EnableHints,
         NerfGeronWeaknesses,
+        MusicRando,
         RevealHiddenBlocks,
         FastDoorTransitions,
         MissileDataAmmo,
