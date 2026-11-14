@@ -945,6 +945,13 @@ class MetroidFusionWorld(World):
                 infant_metroids_required)
         else:
             patch_dict["navigation_text"] = self.create_navigation_text([], infant_metroids_required)
+        if self.options.MajorJingles:
+            for location in patch_dict["locations"]["major_locations"]:
+                if location["jingle"] == "MAJOR":
+                    location["jingle"] = "MINOR"
+            for location in patch_dict["locations"]["minor_locations"]:
+                if location["jingle"] == "MAJOR":
+                    location["jingle"] = "MINOR"
         if len(self.options.start_inventory.value) > 0 or len(self.options.start_inventory_from_pool.value) > 0:
             patch_dict["starting_items"] = self.build_starting_items_dict()
         patch_dict["tank_increments"] = {

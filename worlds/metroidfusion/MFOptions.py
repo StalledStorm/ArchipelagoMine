@@ -201,6 +201,10 @@ class MusicRando(Choice):
     option_full = 2
     default = 0
 
+class MajorJingles(Toggle):
+    """Replaces all major item jingles with minor ones."""
+    display_name = "Major Jingles"
+
 class MissileDataAmmo(Range):
     """The amount of missiles provided by a Missile Data item."""
     display_name = "Missile Data Ammo"
@@ -279,6 +283,7 @@ class MetroidFusionOptions(PerGameCommonOptions):
     EnableHints: EnableHints
     NerfGeronWeaknesses: NerfGeronWeaknesses
     MusicRando: MusicRando
+    MajorJingles: MajorJingles
     RevealHiddenBlocks: RevealHiddenBlocks
     FastDoorTransitions: FastDoorTransitions
     MissileDataAmmo: MissileDataAmmo
@@ -323,6 +328,7 @@ metroid_fusion_option_groups = [
         EnableHints,
         NerfGeronWeaknesses,
         MusicRando,
+        MajorJingles,
         RevealHiddenBlocks,
         FastDoorTransitions,
         MissileDataAmmo,
