@@ -202,7 +202,7 @@ class MusicRando(Choice):
     default = 0
 
 class MajorJingles(Toggle):
-    """Replaces all major item jingles with minor ones."""
+    """Replace all major item jingles with the minor jingle instead. Select 'true' to disable major item jingles."""
     display_name = "Major Jingles"
 
 class MissileDataAmmo(Range):
