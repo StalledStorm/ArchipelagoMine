@@ -340,7 +340,7 @@ metroid_fusion_option_groups = [
     ]),
     OptionGroup("Minor Options", [
         PaletteRandomization,
-        AlternateHudLayout,
+        AlternateHealthHudLayout,
         EnableHints,
         RevealHiddenBlocks,
         FastDoorTransitions,
