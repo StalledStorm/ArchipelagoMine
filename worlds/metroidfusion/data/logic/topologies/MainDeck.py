@@ -722,7 +722,7 @@ HabitationVentilation.connections = [
     Connection(HabitationDeckBottomLeft, True_),
     Connection(HabitationDeckTopLeft, Or(
         Has("Space Jump"),
-        CanFreezeEnemies()
+        CanFreezeEnemies(3)
     ))
 ]
 
