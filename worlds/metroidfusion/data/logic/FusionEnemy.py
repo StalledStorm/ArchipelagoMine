@@ -129,16 +129,17 @@ class Enemy(Enum):
         :param speed_booster_override: Toggle when room space allows for charging a speed boost to deal damage.
             Defaults to False.
         """
-
-        has_missile: bool = "Missile Data" in inventory and inventory["Missile Data"] > 0
-        has_morph: bool = "Morph Ball" in inventory and inventory["Morph Ball"] > 0
+        if inventory is None:
+            inventory = Counter()
+        has_missile: bool = "Missile Data" in inventory and inventory.get("Missile Data", 0) > 0
+        has_morph: bool = "Morph Ball" in inventory and inventory.get("Morph Ball", 0) > 0
         if (speed_booster_override
             and "Speed Booster" in inventory
-            and inventory["Speed Booster"] > 0):
+            and inventory.get("Speed Booster", 0) > 0):
             return True
         elif (Immunity.CHARGE not in self.immunities
               and "Charge Beam" in inventory
-              and inventory["Charge Beam"] > 0):
+              and inventory.get("Charge Beam", 0) > 0):
             return True
         elif (Immunity.MISSILE not in self.immunities
               and has_missile):
@@ -146,21 +147,21 @@ class Enemy(Enum):
         elif (Immunity.SUPER not in self.immunities
               and has_missile
               and "Super Missile" in inventory
-              and inventory["Super Missile"] > 0):
+              and inventory.get("Super Missile", 0) > 0):
             return True
         elif (Immunity.BOMB not in self.immunities
               and has_morph
               and "Bomb Data" in inventory
-              and inventory["Bomb Data"] > 0):
+              and inventory.get("Bomb Data", 0) > 0):
             return True
         elif (Immunity.PB not in self.immunities
               and has_morph
               and "Power Bomb Data" in inventory
-              and inventory["Power Bomb Data"] > 0):
+              and inventory.get("Power Bomb Data", 0) > 0):
             return True
         elif (Immunity.SCREW not in self.immunities
               and "Screw Attack" in inventory
-              and inventory["Screw Attack"] > 0):
+              and inventory.get("Screw Attack", 0) > 0):
             return True
         elif Immunity.BEAM not in self.immunities:
             return True
@@ -171,37 +172,39 @@ class Enemy(Enum):
                           method: Immunity,
                           inventory: Counter[str]) -> bool:
         """Check for a specific immunity and appropriate inventory to deal damage if that immunity does not exist"""
+        if inventory is None:
+            inventory = Counter()
         match method:
             case Immunity.CHARGE:
                 return (Immunity.CHARGE not in self.immunities
                         and "Charge Beam" in inventory
-                        and inventory["Charge Beam"] > 0)
+                        and inventory.get("Charge Beam", 0) > 0)
             case Immunity.MISSILE:
                 return (Immunity.MISSILE not in self.immunities
                         and "Missile Data" in inventory
-                        and inventory["Missile Data"] > 0)
+                        and inventory.get("Missile Data", 0) > 0)
             case Immunity.SUPER:
                 return (Immunity.SUPER not in self.immunities
                         and "Missile Data" in inventory
-                        and inventory["Missile Data"] > 0
+                        and inventory.get("Missile Data", 0) > 0
                         and "Super Missile" in inventory
-                        and inventory["Super Missile"] > 0)
+                        and inventory.get("Super Missile", 0) > 0)
             case Immunity.BOMB:
                 return (Immunity.BOMB not in self.immunities
                         and "Morph Ball" in inventory
-                        and inventory["Morph Ball"] > 0
+                        and inventory.get("Morph Ball", 0) > 0
                         and "Bomb Data" in inventory
-                        and inventory["Bomb Data"] > 0)
+                        and inventory.get("Bomb Data", 0) > 0)
             case Immunity.PB:
                 return (Immunity.PB not in self.immunities
                         and "Morph Ball" in inventory
-                        and inventory["Morph Ball"] > 0
+                        and inventory.get("Morph Ball", 0) > 0
                         and "Power Bomb Data" in inventory
-                        and inventory["Power Bomb Data"] > 0)
+                        and inventory.get("Power Bomb Data", 0) > 0)
             case Immunity.SCREW:
                 return (Immunity.SCREW not in self.immunities
                         and "Screw Attack" in inventory
-                        and inventory["Screw Attack"] > 0)
+                        and inventory.get("Screw Attack", 0) > 0)
             case Immunity.BEAM:
                 return Immunity.BEAM not in self.immunities
             case _:
