@@ -82,7 +82,7 @@ class IsLocationCollected(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
         return self.Resolved(player=world.player, location_name=self.location_name)
 
     class Resolved(Rule.Resolved):
-        location_name: str
+        location_name: str | None = None
 
         def _evaluate(self, state: CollectionState) -> bool:
             return state.multiworld.get_location(self.location_name, self.player) in state.locations_checked
@@ -204,52 +204,65 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     """Toggle when room space allows for charging a speed boost to deal damage."""
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return self.Resolved(world.options,
+        return self.Resolved(options=world.options,
                              enemy=self.enemy,
                              enemy_count=self.enemy_count,
                              player=world.player)
 
     class Resolved(Rule.Resolved):
-        options: "MetroidFusionOptions"
+        options: "MetroidFusionOptions | None" = None
         enemy: Enemy | None = None
         enemy_count: int = 1
         speed_booster_override: bool = False
 
         def _evaluate(self, state: CollectionState) -> bool:
-            # Pre-eval check
+            # Pre-eval setup
             missile_ammo_req = 0
+            total_missiles = 0
             pb_ammo_req = 0
+            total_pbs = 0
+
             if self.enemy is None:
                 missile_ammo_req = self.enemy_count
                 pb_ammo_req = self.enemy_count
-
-            # Setup
-            missile_damage = 10
-            if state.has("Super Missile", self.player):
-                missile_damage += 20
-            if state.has("Ice Missile", self.player):
-                missile_damage += 10
-            if state.has("Diffusion Missile", self.player):
-                missile_damage += 5
-            total_missiles = 0
-            if state.has("Missile Data", self.player):
+            if self.speed_booster_override and state.has("Speed Booster", self.player):
+                # Short Circuit if Speed Booster
+                return True
+            if (self.enemy not in {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER}
+                  and self.enemy.can_be_damaged_by(Immunity.SCREW, state.prog_items.get(self.player))):
+                # Short Circuit if Screw Attack against not a Geron of any type
+                return True
+            if self.enemy.can_be_damaged_by(Immunity.MISSILE, state.prog_items.get(self.player)):
+                # Check missile damage
+                missile_damage = 10
+                if state.has("Super Missile", self.player):
+                    missile_damage += 20
+                if state.has("Ice Missile", self.player):
+                    missile_damage += 10
+                if state.has("Diffusion Missile", self.player):
+                    missile_damage += 5
+                # Calculate max missiles available
                 total_missiles += (self.options.MissileDataAmmo.value +
-                                   state.count("Missile Tank", self.player) * self.options.MissileTankAmmo.value)
-            total_pbs = 0
-            if state.has("Power Bomb Data", self.player):
-                total_pbs += (self.options.PowerBombDataAmmo.value +
-                              state.count("Power Bomb Tank", self.player) * self.options.PowerBombTankAmmo.value)
-
-            # Calculate how much ammo is needed
-            if self.enemy:
+                                   (state.count("Missile Tank", self.player)
+                                    * self.options.MissileTankAmmo.value))
+                # Calculate missiles required
                 missile_ammo_req = EnergyAmmoUtil.damage_to_ammo_calc(self.enemy.hp, missile_damage)
-                pb_ammo_req = EnergyAmmoUtil.damage_to_ammo_calc(self.enemy.hp, 50)
                 missile_ammo_req *= self.enemy_count
-
+            if self.enemy.can_be_damaged_by(Immunity.PB, state.prog_items.get(self.player)):
+                # Calculate max PBs available
+                total_pbs += (self.options.PowerBombDataAmmo.value +
+                              (state.count("Power Bomb Tank", self.player)
+                               * self.options.PowerBombTankAmmo.value))
+                # Calculate PBs required
+                pb_ammo_req = EnergyAmmoUtil.damage_to_ammo_calc(self.enemy.hp, 50)
+                # Assume three enemy groups for leeway. Enemy count is irrelevant.
+                pb_ammo_req *= 3
+            # Modify ammo requirements to accommodate Combat trick setting
             missile_ammo_req = EnergyAmmoUtil.ammo_modified_by_options(missile_ammo_req, self.options)
             pb_ammo_req = EnergyAmmoUtil.ammo_modified_by_options(pb_ammo_req, self.options)
 
             # Do checks
+            # Geron priority
             if (self.enemy in {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER}
                 and self.options.NerfGeronWeaknesses.value):
                 match self.enemy:
@@ -261,10 +274,11 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
                     case Enemy.GERON_POWER:
                         return (total_pbs >= pb_ammo_req
                                 and state.has_all(["Morph Ball", "Power Bomb Data"], self.player))
-            elif self.enemy.can_be_damaged_by(Immunity.MISSILE, state.prog_items[self.player]):
-                return total_missiles >= missile_ammo_req
-            elif self.enemy.can_be_damaged_by(Immunity.PB, state.prog_items[self.player]):
+            # PB has higher use priority over missiles
+            elif self.enemy.can_be_damaged_by(Immunity.PB, state.prog_items.get(self.player)):
                 return total_pbs >= pb_ammo_req
+            elif self.enemy.can_be_damaged_by(Immunity.MISSILE, state.prog_items.get(self.player)):
+                return total_missiles >= missile_ammo_req
             else:
                 return self.enemy.can_be_damaged(state.prog_items[self.player],
                                                  speed_booster_override=self.speed_booster_override)
@@ -336,7 +350,7 @@ class HasMissileAmmo(Rule["MetroidFusionWorld"], game="MetroidFusion"):
         return self.Resolved(world.options, ammo=self.ammo, player=world.player)
 
     class Resolved(Rule.Resolved):
-        options: "MetroidFusionOptions"
+        options: "MetroidFusionOptions | None" = None
         ammo: int = 0
 
         def _evaluate(self, state: CollectionState) -> bool:
@@ -355,7 +369,7 @@ class HasPowerBombAmmo(Rule["MetroidFusionWorld"], game="MetroidFusion"):
         return self.Resolved(world.options, ammo=self.ammo, player=world.player)
 
     class Resolved(Rule.Resolved):
-        options: "MetroidFusionOptions"
+        options: "MetroidFusionOptions | None" = None
         ammo: int = 0
 
         def _evaluate(self, state: CollectionState) -> bool:
