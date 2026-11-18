@@ -139,7 +139,7 @@ RestrictedBackDoor.connections = [
             Has("Space Jump"),
             And(
                 Has("Wall Jump Boots"),
-                TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
             )
         )
     )),
@@ -178,7 +178,7 @@ StationEntrance.connections = [
         CanPowerBomb(),
         And(
             # Video demonstration: https://www.youtube.com/watch?v=QpbgjolExgE
-            TrickEnabled(TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value),
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)}),
             Has("Speed Booster")
         )
     ))
@@ -202,7 +202,7 @@ CentralNexus.connections = [
     Connection(DarkStairwellSecretTunnel, And(
         CanDestroyBombBlocks(),
         Has("Morph Ball"),
-        TrickEnabled(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)
+        TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)})
     ))
 ]
 
@@ -221,21 +221,21 @@ DarkStairwellSecretTunnel.connections = [
         CanDestroyBombBlocks(tunnel=True),
         Or(
             CanBallJump(),
-            TrickEnabled(TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value)
+            TricksEnabled({(TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value)})
         )
     )),
     Connection(DarkStairwell, And(
         HasAll("Screw Attack", "Morph Ball"),
         Or(
             CanBallJump(),
-            TrickEnabled(TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value)
+            TricksEnabled({(TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value)})
         )
     ))
 ]
 
 DarkStairwell.connections = [
     Connection(NexusNavigation, True_),
-    Connection(DarkStairwellSecretTunnel, TrickEnabled(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)),
+    Connection(DarkStairwellSecretTunnel, TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)})),
     Connection(CubbyHole, Has("Morph Ball")),
     Connection(QuarantineJunction, True_),
     Connection(SubZeroContainment, Has("Level 3 Keycard")),
@@ -257,7 +257,7 @@ QuarantineJunction.connections = [
         And(
             # Video demonstration: https://www.youtube.com/watch?v=QcD2-t9UDrg
             Has("Speed Booster"),
-            TrickEnabled(TrickType.SHINESPARK.value, TrickDifficulty.INTERMEDIATE.value)
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.INTERMEDIATE.value)})
         )
     ))
 ]
@@ -296,7 +296,7 @@ ConcourseVentilation.connections = [
             CanJumpHigh(),
             And(
                 Has("Wall Jump Boots"),
-                TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
             )
         )
     ))
@@ -319,10 +319,12 @@ OperationsVentilationWalkwayLeft.connections = [
         And(
             # Video demonstration: https://www.youtube.com/watch?v=dWJXG-nGo6A
             HasAll("Speed Booster", "Wall Jump Boots"),
-            TrickEnabled(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value),
-            TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value),
-            # Added due to requiring as little wasted movement as possible to maintain the shinespark
-            TrickEnabled(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.ADVANCED.value)
+            TricksEnabled({
+                (TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value),
+                (TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value),
+                # Added due to requiring as little wasted movement as possible to maintain the shinespark
+                (TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.ADVANCED.value)
+            })
         )
     ))
 ]
@@ -404,10 +406,10 @@ LowerArachnusArena.connections = [
             CanJumpHigh(),
             And(
                 Has("Wall Jump Boots"),
-                TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
             ),
             # Video demonstration: https://youtu.be/ycp5oCd5-9I
-            TrickEnabled(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.EXPERT.value)
+            TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.EXPERT.value)})
         )
     )),
     Connection(ConcourseVentilation, Has("Morph Ball")),
@@ -423,7 +425,7 @@ SiloEntryTop.connections = [
                 CanJumpHigh(),
                 And(
                     Has("Wall Jump Boots"),
-                    TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
+                    TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
                 )
             )
         )
@@ -446,7 +448,7 @@ CentralReactorCoreTop.connections = [
         CanJumpHigh(),
         And(
             Has("Wall Jump Boots"),
-            TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
         ),
         CanPONR()
     ))
@@ -464,12 +466,12 @@ CentralReactorCoreBottom.connections = [
         CanJumpHigh(),
         And(
             Has("Wall Jump Boots"),
-            TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
         ),
         And(
             # Video demonstration: https://www.youtube.com/watch?v=x7CqxW4JyJ4
             Has("Speed Booster"),
-            TrickEnabled(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value),
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value)}),
             CanClearEnemy(enemy=Enemy.KIHUNTER_GROUND, enemy_count=3)
         )
     )),
@@ -481,21 +483,23 @@ CentralReactorCoreBottom.connections = [
         Or(
             And(
                 Has("Hi-Jump"),
-                TrickEnabled(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)
+                TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
             ),
-            TrickEnabled(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)})
         ),
         Or(
             IsLocationCollected("Sector 2 (TRO) -- Nettori Arena"),
             CanBallJump(),
-            TrickEnabled(TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value),
-            # Jump, shoot vine block below, then grab ledge
-            TrickEnabled(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.INTERMEDIATE.value)
+            TricksEnabled({
+                (TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value),
+                # Jump, shoot vine block below, then grab ledge
+                (TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.INTERMEDIATE.value)
+            }),
         ),
         Or(
             # Easy retry to open the shutter backward, or take the long loop through Yakuza's Arena
             Has("Wave Beam"),
-            TrickEnabled(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)})
         )
     ))
 ]
@@ -508,10 +512,10 @@ SiloCatwalkLeft.connections = [
     Connection(CentralReactorCoreTop, True_),
     Connection(SiloCatwalkRight, Or(
         Has("Space Jump"),
-        TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value),
+        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
         And(
             Has("Energy Tank", 2),
-            TrickEnabled(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)
+            TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
         ),
         CanClearEnemy(enemy=Enemy.ZEBESIAN_GROUND, enemy_count=2)
     ))
@@ -520,10 +524,10 @@ SiloCatwalkLeft.connections = [
 SiloCatwalkRight.connections = [
     Connection(SiloCatwalkLeft, Or(
         Has("Space Jump"),
-        TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value),
+        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
         And(
             Has("Energy Tank", 2),
-            TrickEnabled(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)
+            TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
         ),
         CanClearEnemy(enemy=Enemy.ZEBESIAN_GROUND, enemy_count=2)
     )),
@@ -537,15 +541,15 @@ SiloScaffoldingTop.connections = [
             CanJumpHigh(),
             And(
                 Has("Wall Jump Boots"),
-                TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)})
             ),
             CanPONR()
         ),
         Or(
-            TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value),
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)}),
             And(
                 Has("Energy Tank", 4),
-                TrickEnabled(TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value)
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value)})
             ),
             CanClearEnemy(enemy=Enemy.ZEBESIAN_GROUND, enemy_count=3)
         )
@@ -558,14 +562,14 @@ SiloScaffoldingBottom.connections = [
             CanJumpHigh(),
             And(
                 Has("Wall Jump Boots"),
-                TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)})
             )
         ),
         Or(
-            TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value),
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)}),
             And(
                 Has("Energy Tank", 4),
-                TrickEnabled(TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value)
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value)})
             ),
             CanClearEnemy(enemy=Enemy.ZEBESIAN_GROUND, enemy_count=3)
         )
@@ -587,7 +591,7 @@ YakuzaArenaTop.connections = [
         Has("Space Jump"),
         Or(
             IsLocationCollected("Main Deck -- Yakuza Arena"),
-            TrickEnabled(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)
+            TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)})
         )
     )),
     Connection(YakuzaArenaBottom, Or(
@@ -658,8 +662,10 @@ HabitationDeckEntrance.connections = [
                         # Video demonstration: https://youtu.be/C56BsRG_eKY
                         CanClearEnemy(enemy=Enemy.FUNE),
                         Has("Wall Jump Boots"),
-                        TrickEnabled(TrickType.JUMP_EXTEND.value, TrickDifficulty.ADVANCED.value),
-                        TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)
+                        TricksEnabled({
+                            (TrickType.JUMP_EXTEND.value, TrickDifficulty.ADVANCED.value),
+                            (TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)
+                        })
                     )
                 )
             ),
@@ -667,8 +673,10 @@ HabitationDeckEntrance.connections = [
                 # Video demonstration: https://youtu.be/o-DdSO4E3-M
                 CanFreezeEnemies(),
                 Has("Wall Jump Boots"),
-                TrickEnabled(TrickType.FROZEN_ENEMIES.value, TrickDifficulty.BEGINNER.value),
-                TrickEnabled(TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value)
+                TricksEnabled({
+                    (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.BEGINNER.value),
+                    (TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value)
+                })
             ),
         )
     )),
@@ -767,7 +775,7 @@ NexusStorage.locations = [
         CanBallJump(),
         Or(
             CanDestroyBombBlocks(tunnel=True),
-            TrickEnabled(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.BEGINNER.value),
+            TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.BEGINNER.value)}),
             CanPONR()
         )
     ))
@@ -809,7 +817,7 @@ SubZeroContainment.locations = [
     FusionLocation("Main Deck -- Sub-Zero Containment", False, Or(
         Has("Varia Suit"),
         And(
-            TrickEnabled(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value),
+            TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)}),
             Has("Energy Tank")
         )
     ))
@@ -823,29 +831,29 @@ YakuzaArenaBottom.locations = [
         CanClearEnemy(enemy=Enemy.YAKUZA),
         CanClearEnemy(enemy=Enemy.CORE_X_SPACE),
         Or(
-            TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.MASTER.value),
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.MASTER.value)}),
             And(
                 Has("Energy Tank", 5),
                 HasAll("Charge Beam", "Wide Beam", "Super Missile", "Morph Ball")
             ),
             And(
                 Has("Energy Tank", 4),
-                TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.BEGINNER.value),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.BEGINNER.value)}),
                 HasAll("Charge Beam", "Wide Beam", "Ice Missile", "Morph Ball")
             ),
             And(
                 Has("Energy Tank", 3),
-                TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
                 HasAll("Charge Beam", "Diffusion Missile")
             ),
             And(
                 Has("Energy Tank", 2),
-                TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
                 Has("Charge Beam")
             ),
             And(
                 Has("Energy Tank"),
-                TrickEnabled(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)})
             )
         )
     ))
