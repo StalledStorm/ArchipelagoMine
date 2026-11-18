@@ -123,7 +123,7 @@ class Enemy(Enum):
     def can_be_damaged(self,
                        inventory: Counter[str],
                        speed_booster_override: bool = False) -> bool:
-        """Can the enemy be damaged based on ``inventory``?
+        """Can the enemy be damaged based on ``inventory``? Does not verify ammo quantity.
 
         :param inventory: A dict of item name and quantity
         :param speed_booster_override: Toggle when room space allows for charging a speed boost to deal damage.
@@ -171,7 +171,8 @@ class Enemy(Enum):
     def can_be_damaged_by(self,
                           method: Immunity,
                           inventory: Counter[str]) -> bool:
-        """Check for a specific immunity and appropriate inventory to deal damage if that immunity does not exist"""
+        """Check for a specific immunity and appropriate inventory to deal damage if that immunity does not exist.
+        Does not check if the player has ammo, if required."""
         if inventory is None:
             inventory = Counter()
         match method:
