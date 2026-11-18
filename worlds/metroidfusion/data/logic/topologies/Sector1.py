@@ -12,7 +12,16 @@ from ..regions.Sector6 import Sector6RestrictedZoneElevatorToTourian
 
 # Region Connections
 Sector1AfterChargeCoreZone.connections = [
-    Connection(Sector1FirstStabilizerZone, [], one_way=True)
+    Connection(Sector1FirstStabilizerZone, [], one_way=True),
+    Connection(Sector1ChargeCoreZone, [
+        Requirement("", [
+            CanDamageAnyGeron(),
+            CanDamageStabilizer("",[HasMorph()])
+        ],[
+            HasMissile(),
+            PONRRequirement("PONR - Enter Charge Core Zone", [])
+        ])
+    ], one_way=True),
 ]
 
 Sector1Antechamber.connections = [
@@ -29,14 +38,14 @@ Sector1Antechamber.connections = [
 Sector1ChargeCoreZone.connections = [
     Connection(Sector1AfterChargeCoreZone, [
         CanDamageCoreX("Need to Kill Beam Core X", [CanDamageGadora()])
-    ])
+    ], one_way=True)
 ]
 
 Sector1FirstStabilizerZone.connections = [
     Connection(Sector1SecondStabilizerZone, []),
     Connection(Sector1AfterChargeCoreZone, [
         HasWaveBeam("Backwards Travel")
-    ]),
+    ], one_way=True),
 ]
 
 Sector1FourthStabilizerZone.connections = [
@@ -107,7 +116,7 @@ Sector1TourianExit.connections = [
             # Must defeat SW or SE Stabilizers
             CanDamageStabilizer(),
             CanDamageAnyGeron()
-        ],  items_needed={"Space Jump", "Wave Beam", "Morph Ball"},
+        ],  items_needed={"Space Jump", "Screw Attack", "Wave Beam", "Morph Ball"},
         energy_tanks_needed=level_4_e_tanks),
     ], one_way=True),
     Connection(Sector1TourianHub, [
