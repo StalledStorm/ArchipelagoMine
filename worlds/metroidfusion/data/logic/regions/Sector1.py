@@ -118,6 +118,12 @@ class TourianCheckpoint(FusionRegion):
 class TourianEasternHub(FusionRegion):
     name = "Sector 1 (SRX) - Tourian Eastern Hub"
 
+class TourianEasternHubCheckpoint(FusionRegion):
+    name = "Sector 1 (SRX) - Tourian Eastern Hub (Checkpoint Cubby)"
+
+class TourianEasternHubLadder(FusionRegion):
+    name = "Sector 1 (SRX) - Tourian Eastern Hub (Ladder)"
+
 class TourianElevatorTop(FusionRegion):
     name = "Sector 1 (SRX) - Tourian Hub Elevator Top"
 
@@ -130,8 +136,11 @@ class TourianSaveWest(FusionRegion):
 class TourianTower(FusionRegion):
     name = "Sector 1 (SRX) - Tourian Tower"
 
-class TourianTrapdoor(FusionRegion):
-    name = "Sector 1 (SRX) - Tourian Trapdoor"
+class TourianTrapdoorTop(FusionRegion):
+    name = "Sector 1 (SRX) - Tourian Trapdoor (Top)"
+
+class TourianTrapdoorBottom(FusionRegion):
+    name = "Sector 1 (SRX) - Tourian Trapdoor (Bottom)"
 
 class TourianWesternHub(FusionRegion):
     name = "Sector 1 (SRX) - Tourian Western Hub"
@@ -139,11 +148,17 @@ class TourianWesternHub(FusionRegion):
 class TwinJunctionsEast(FusionRegion):
     name = "Sector 1 (SRX) - Twin Junctions East"
 
+class TwinJunctionsEastShutter(FusionRegion):
+    name = "Sector 1 (SRX) - Twin Junctions East (Shutter)"
+
 class TwinJunctionsSave(FusionRegion):
     name = "Sector 1 (SRX) - Twin Junctions Save Room"
 
 class TwinJunctionsWest(FusionRegion):
     name = "Sector 1 (SRX) - Twin Junctions West"
+
+class TwinJunctionsWestShutter(FusionRegion):
+    name = "Sector 1 (SRX) - Twin Junctions West (Shutter)"
 
 class WallJumpTutorial(FusionRegion):
     name = "Sector 1 (SRX) - Wall Jump Tutorial"
@@ -203,15 +218,20 @@ sector_1_regions = [
     StabilizerStorage,
     TourianCheckpoint,
     TourianEasternHub,
+    TourianEasternHubCheckpoint,
+    TourianEasternHubLadder,
     TourianElevatorTop,
     TourianSaveEast,
     TourianSaveWest,
     TourianTower,
-    TourianTrapdoor,
+    TourianTrapdoorTop,
+    TourianTrapdoorBottom,
     TourianWesternHub,
     TwinJunctionsEast,
+    TwinJunctionsEastShutter,
     TwinJunctionsSave,
     TwinJunctionsWest,
+    TwinJunctionsWestShutter,
     WallJumpTutorial,
     WateringHole,
     YamebaCorridor,
