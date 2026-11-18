@@ -265,23 +265,8 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
             pb_ammo_req = EnergyAmmoUtil.ammo_modified_by_options(pb_ammo_req, self.options)
 
             # Do checks
-            # Geron priority
-            if (self.enemy in {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER, Enemy.ATMOSPHERIC_STABILIZER_PARASITE}
-                and self.options.NerfGeronWeaknesses.value):
-                match self.enemy:
-                    case Enemy.GERON:
-                        return total_missiles >= missile_ammo_req and state.has("Missile Data", self.player)
-                    case Enemy.GERON_SUPER:
-                        return (total_missiles >= missile_ammo_req
-                                and state.has_all(["Missile Data", "Super Missile"], self.player))
-                    case Enemy.GERON_POWER:
-                        return (total_pbs >= pb_ammo_req
-                                and state.has_all(["Morph Ball", "Power Bomb Data"], self.player))
-                    case Enemy.ATMOSPHERIC_STABILIZER_PARASITE:
-                        return (state.has("Charge Beam", self.player)
-                                or (total_missiles >= missile_ammo_req and state.has("Missile Data", self.player)))
             # PB has higher use priority over missiles
-            elif self.enemy.can_be_damaged_by(Immunity.PB, state.prog_items.get(self.player)):
+            if self.enemy.can_be_damaged_by(Immunity.PB, state.prog_items.get(self.player)):
                 return total_pbs >= pb_ammo_req
             elif self.enemy.can_be_damaged_by(Immunity.MISSILE, state.prog_items.get(self.player)):
                 return total_missiles >= missile_ammo_req
@@ -294,59 +279,81 @@ class CanDamageSmallGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     speed_booster_override: bool = False
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        if world.options.NerfGeronWeaknesses.value:
-            return CanClearEnemy(enemy=Enemy.GERON,
-                                 speed_booster_override=self.speed_booster_override).resolve(world)
-        return Or(
-            Has("Screw Attack"),
-            CanClearEnemy(enemy=Enemy.GERON,
-                          speed_booster_override=self.speed_booster_override)
-        ).resolve(world)
+        if self.speed_booster_override:
+            return Has("Speed Booster").resolve(world)
+        elif world.options.NerfGeronWeaknesses.value:
+            return Has("Missile Data").resolve(world)
+        else:
+            return Or(
+                Has("Missile Data"),
+                And(
+                    TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)}),
+                    Or(
+                        Has("Screw Attack"),
+                        CanPowerBomb()
+                    )
+                )
+            ).resolve(world)
 
 @dataclass
 class CanDamageMediumGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     speed_booster_override: bool = False
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        if world.options.NerfGeronWeaknesses.value:
-            return CanClearEnemy(enemy=Enemy.GERON_SUPER,
-                                 speed_booster_override=self.speed_booster_override).resolve(world)
-        return Or(
-            Has("Screw Attack"),
-            CanClearEnemy(enemy=Enemy.GERON_SUPER,
-                          speed_booster_override=self.speed_booster_override)
-        ).resolve(world)
+        if self.speed_booster_override:
+            return Has("Speed Booster").resolve(world)
+        elif world.options.NerfGeronWeaknesses.value:
+            return HasAll("Missile Data", "Super Missile").resolve(world)
+        else:
+            return Or(
+                HasAll("Missile Data", "Super Missile"),
+                And(
+                    TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)}),
+                    Or(
+                        Has("Screw Attack"),
+                        CanPowerBomb()
+                    )
+                )
+            ).resolve(world)
 
 @dataclass
 class CanDamageLargeGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     speed_booster_override: bool = False
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        if world.options.NerfGeronWeaknesses.value:
-            return CanClearEnemy(enemy=Enemy.GERON_POWER,
-                                 speed_booster_override=self.speed_booster_override).resolve(world)
-        return Or(
-            Has("Screw Attack"),
-            CanClearEnemy(enemy=Enemy.GERON_POWER,
-                          speed_booster_override=self.speed_booster_override)
-        ).resolve(world)
+        if self.speed_booster_override:
+            return Has("Speed Booster").resolve(world)
+        elif world.options.NerfGeronWeaknesses.value:
+            return CanPowerBomb().resolve(world)
+        else:
+            return Or(
+                CanPowerBomb(),
+                And(
+                    TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)}),
+                    Has("Screw Attack")
+                )
+            ).resolve(world)
 
 @dataclass
 class CanDamageStabilizer(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     speed_booster_override: bool = False
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        if world.options.NerfGeronWeaknesses.value:
+        if self.speed_booster_override:
+            return Has("Speed Booster").resolve(world)
+        elif world.options.NerfGeronWeaknesses.value:
+            return HasAny("Charge Beam", "Missile Data").resolve(world)
+        else:
             return Or(
                 HasAny("Charge Beam", "Missile Data"),
-                CanClearEnemy(enemy=Enemy.ATMOSPHERIC_STABILIZER_PARASITE,
-                              speed_booster_override=self.speed_booster_override)
+                And(
+                    TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)}),
+                    Or(
+                        Has("Screw Attack"),
+                        CanPowerBomb()
+                    )
+                )
             ).resolve(world)
-        return Or(
-            HasAny("Charge Beam", "Missile Data", "Screw Attack"),
-            CanClearEnemy(enemy=Enemy.ATMOSPHERIC_STABILIZER_PARASITE,
-                          speed_booster_override=self.speed_booster_override)
-        ).resolve(world)
 
 @dataclass
 class HasMissileAmmo(Rule["MetroidFusionWorld"], game="MetroidFusion"):
@@ -396,40 +403,62 @@ class HasEnergy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 @dataclass
 class CanLeaveStabilizerSoutheast(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return Or(
-        HasAny("Charge Beam", "Missile Data"),
-        And(
-            TricksEnabled({TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value}),
-            Or(
-                CanPowerBomb(),
+        if world.options.NerfGeronWeaknesses:
+            return Or(
+                CanDamageStabilizer(),
                 And(
-                    Has("Screw Attack"),
+                    # Video demonstration: https://youtu.be/SrshBBv-MCw
+                    Has("Speed Booster"),
+                    TricksEnabled({
+                        (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                        (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
+                    }),
                     Or(
-                        Has("Space Jump"),
+                        Has("Hi-Jump"),
                         And(
                             Has("Wall Jump Boots"),
-                            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+                            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
+                        ),
+                        # No Hi-Jump or Wall Jumping
+                        # Video demonstration: https://youtu.be/WsY4pSmBAyo
+                        TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
+                    )
+                )
+            ).resolve(world)
+        return Or(
+            HasAny("Charge Beam", "Missile Data"),
+            And(
+                TricksEnabled({TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value}),
+                Or(
+                    CanPowerBomb(),
+                    And(
+                        Has("Screw Attack"),
+                        Or(
+                            Has("Space Jump"),
+                            And(
+                                Has("Wall Jump Boots"),
+                                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+                            )
                         )
                     )
                 )
+            ),
+            And(
+                # Video demonstration: https://youtu.be/SrshBBv-MCw
+                Has("Speed Booster"),
+                TricksEnabled({
+                    (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                    (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
+                }),
+                Or(
+                    Has("Hi-Jump"),
+                    And(
+                        Has("Wall Jump Boots"),
+                        TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
+                    ),
+                    # No Hi-Jump or Wall Jumping
+                    # Video demonstration: https://youtu.be/WsY4pSmBAyo
+                    TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
+                )
             )
-        ),
-        And(
-            # Video demonstration: https://youtu.be/SrshBBv-MCw
-            Has("Speed Booster"),
-            TricksEnabled({
-                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
-                (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
-            }),
-            Or(
-                Has("Hi-Jump"),
-                And(
-                    Has("Wall Jump Boots"),
-                    TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
-                ),
-                # No Hi-Jump or Wall Jumping
-                # Video demonstration: https://youtu.be/WsY4pSmBAyo
-                TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
-            )
-        )
-    ).resolve(world)
+        ).resolve(world)
