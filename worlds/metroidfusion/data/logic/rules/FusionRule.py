@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 from BaseClasses import CollectionState
 from NetUtils import JSONMessagePart
-from FusionTrick import Trick
+from FusionTrick import Trick, TrickType, TrickDifficulty
 from rule_builder.rules import (True_, False_, And, Or, Rule, Has, HasAll, HasAllCounts, HasAny,
                                 HasAnyCount, HasFromList, HasFromListUnique, HasGroup, HasGroupUnique,
                                 CanReachLocation, CanReachRegion, CanReachEntrance)
@@ -56,25 +56,25 @@ class TricksEnabled(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
         for trick in self.tricks:
             enabled = enabled and Trick.can_perform_trick(world.options, trick[0], trick[1])
         if enabled:
-            return True_.resolve(world)
+            return True_.resolve(self, world)
         else:
-            return False_.resolve(world)
+            return False_.resolve(self, world)
 
 @dataclass
 class CanPONR(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if world.options.PointOfNoReturnsInLogic.value:
-            return True_.resolve(world)
+            return True_.resolve(self, world)
         else:
-            return False_.resolve(world)
+            return False_.resolve(self, world)
 
 @dataclass
 class OpenSectorHubElevators(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if any([world.options.GameMode.value == 1,
                 world.options.GameMode.value == 2 and world.options.OpenSectorElevators.value]):
-            return True_.resolve(world)
-        return False_.resolve(world)
+            return True_.resolve(self, world)
+        return False_.resolve(self, world)
 
 @dataclass
 class IsLocationCollected(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
@@ -230,8 +230,9 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
             if self.speed_booster_override and state.has("Speed Booster", self.player):
                 # Short Circuit if Speed Booster
                 return True
-            if (self.enemy not in {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER}
-                  and self.enemy.can_be_damaged_by(Immunity.SCREW, state.prog_items.get(self.player))):
+            if (self.enemy not in
+                    {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER, Enemy.ATMOSPHERIC_STABILIZER_PARASITE}
+                    and self.enemy.can_be_damaged_by(Immunity.SCREW, state.prog_items.get(self.player))):
                 # Short Circuit if Screw Attack against not a Geron of any type
                 return True
             if self.enemy.can_be_damaged_by(Immunity.MISSILE, state.prog_items.get(self.player)):
@@ -265,7 +266,7 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 
             # Do checks
             # Geron priority
-            if (self.enemy in {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER}
+            if (self.enemy in {Enemy.GERON, Enemy.GERON_SUPER, Enemy.GERON_POWER, Enemy.ATMOSPHERIC_STABILIZER_PARASITE}
                 and self.options.NerfGeronWeaknesses.value):
                 match self.enemy:
                     case Enemy.GERON:
@@ -276,6 +277,9 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
                     case Enemy.GERON_POWER:
                         return (total_pbs >= pb_ammo_req
                                 and state.has_all(["Morph Ball", "Power Bomb Data"], self.player))
+                    case Enemy.ATMOSPHERIC_STABILIZER_PARASITE:
+                        return (state.has("Charge Beam", self.player)
+                                or (total_missiles >= missile_ammo_req and state.has("Missile Data", self.player)))
             # PB has higher use priority over missiles
             elif self.enemy.can_be_damaged_by(Immunity.PB, state.prog_items.get(self.player)):
                 return total_pbs >= pb_ammo_req
@@ -388,3 +392,44 @@ class HasEnergy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         return Has("Energy Tank", EnergyAmmoUtil.energy_value_to_tanks(self.energy)).resolve(world)
+
+@dataclass
+class CanLeaveStabilizerSoutheast(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
+        return Or(
+        HasAny("Charge Beam", "Missile Data"),
+        And(
+            TricksEnabled({TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value}),
+            Or(
+                CanPowerBomb(),
+                And(
+                    Has("Screw Attack"),
+                    Or(
+                        Has("Space Jump"),
+                        And(
+                            Has("Wall Jump Boots"),
+                            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+                        )
+                    )
+                )
+            )
+        ),
+        And(
+            # Video demonstration: https://youtu.be/SrshBBv-MCw
+            Has("Speed Booster"),
+            TricksEnabled({
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
+            }),
+            Or(
+                Has("Hi-Jump"),
+                And(
+                    Has("Wall Jump Boots"),
+                    TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
+                ),
+                # No Hi-Jump or Wall Jumping
+                # Video demonstration: https://youtu.be/WsY4pSmBAyo
+                TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
+            )
+        )
+    ).resolve(world)
