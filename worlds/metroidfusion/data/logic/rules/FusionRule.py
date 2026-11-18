@@ -131,43 +131,95 @@ class CanScrewAttackUnderwater(Rule["MetroidFusionWorld"], game="MetroidFusion")
 
 @dataclass
 class CanDo15MissileDamage(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    ammo: int = 1
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return HasAll("Missile Data", "Diffusion Missile").resolve(world)
+        return And(
+            HasAll("Missile Data", "Diffusion Missile"),
+            HasMissileAmmo(self.ammo)
+        ).resolve(world)
 
 @dataclass
 class CanDo20MissileDamage(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    ammo: int = 1
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return HasAll("Missile Data", "Ice Missile").resolve(world)
+        return And(
+            HasAll("Missile Data", "Ice Missile"),
+            HasMissileAmmo(self.ammo)
+        ).resolve(world)
 
 @dataclass
 class CanDo25MissileDamage(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    ammo: int = 1
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return HasAll("Missile Data", "Ice Missile", "Diffusion Missile").resolve(world)
+        return And(
+            HasAll("Missile Data", "Ice Missile", "Diffusion Missile"),
+            HasMissileAmmo(self.ammo)
+        ).resolve(world)
 
 @dataclass
 class CanDo30MissileDamage(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    ammo: int = 1
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return HasAll("Missile Data", "Super Missile").resolve(world)
+        return And(
+            HasAll("Missile Data", "Super Missile"),
+            HasMissileAmmo(self.ammo)
+        ).resolve(world)
 
 @dataclass
 class CanDo35MissileDamage(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    ammo: int = 1
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return HasAll("Missile Data", "Super Missile", "Diffusion Missile").resolve(world)
+        return And(
+            HasAll("Missile Data", "Super Missile", "Diffusion Missile"),
+            HasMissileAmmo(self.ammo)
+        ).resolve(world)
 
 @dataclass
 class CanDo40MissileDamage(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    ammo: int = 1
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return HasAll("Missile Data", "Super Missile", "Ice Missile").resolve(world)
+        return And(
+            HasAll("Missile Data", "Super Missile", "Ice Missile"),
+            HasMissileAmmo(self.ammo)
+        ).resolve(world)
 
 @dataclass
 class CanDo45MissileDamage(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    ammo: int = 1
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return HasAll("Missile Data", "Super Missile", "Ice Missile", "Diffusion Missile").resolve(world)
+        return And(
+            HasAll("Missile Data", "Super Missile", "Ice Missile", "Diffusion Missile"),
+            HasMissileAmmo(self.ammo)
+        ).resolve(world)
 
 @dataclass
 class CanFreezeEnemies(Rule["MetroidFusionWorld"], game="MetroidFusion"):
+    count: int = 1
+    """The number of enemies to be frozen"""
+    ice_ammo: int = count
+    """How many Ice Missiles are required"""
+    diff_ammo: int = count
+    """How many Diffusion Missiles are required"""
+
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return Or(Has("Ice Beam"), CanDo20MissileDamage(), CanDo15MissileDamage()).resolve(world)
+        return Or(
+            Has("Ice Beam"),
+            And(
+                CanDo20MissileDamage(),
+                HasMissileAmmo(self.ice_ammo)
+            ),
+            And(
+                CanDo15MissileDamage(),
+                HasMissileAmmo(self.diff_ammo)
+            )
+        ).resolve(world)
 
 @dataclass
 class CanActivatePillar(Rule["MetroidFusionWorld"], game="MetroidFusion"):
@@ -219,14 +271,10 @@ class CanClearEnemy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 
         def _evaluate(self, state: CollectionState) -> bool:
             # Pre-eval setup
-            missile_ammo_req = 0
-            total_missiles = 0
-            pb_ammo_req = 0
-            total_pbs = 0
+            missile_ammo_req, total_missiles, pb_ammo_req, total_pbs = 0, 0, 0, 0
 
             if self.enemy is None:
-                missile_ammo_req = self.enemy_count
-                pb_ammo_req = self.enemy_count
+                missile_ammo_req, pb_ammo_req = self.enemy_count, self.enemy_count
             if self.speed_booster_override and state.has("Speed Booster", self.player):
                 # Short Circuit if Speed Booster
                 return True
@@ -303,10 +351,10 @@ class CanDamageMediumGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
         if self.speed_booster_override:
             return Has("Speed Booster").resolve(world)
         elif world.options.NerfGeronWeaknesses.value:
-            return HasAll("Missile Data", "Super Missile").resolve(world)
+            return CanDo30MissileDamage().resolve(world)
         else:
             return Or(
-                HasAll("Missile Data", "Super Missile"),
+                CanDo30MissileDamage(),
                 And(
                     TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)}),
                     Or(
