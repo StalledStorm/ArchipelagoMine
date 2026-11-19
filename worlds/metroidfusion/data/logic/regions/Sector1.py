@@ -85,8 +85,11 @@ class NeoRidleyArena(FusionRegion):
 class NeoRidleyArenaAccess(FusionRegion):
     name = "Sector 1 (SRX) - Neo-Ridley Arena Access"
 
-class RipperMaze(FusionRegion):
-    name = "Sector 1 (SRX) - Ripper Maze"
+class RipperMazeLeft(FusionRegion):
+    name = "Sector 1 (SRX) - Ripper Maze (Left)"
+
+class RipperMazeRight(FusionRegion):
+    name = "Sector 1 (SRX) - Ripper Maze (Right)"
 
 class RipperSauna(FusionRegion):
     name = "Sector 1 (SRX) - Ripper Sauna"
@@ -207,7 +210,8 @@ sector_1_regions = [
     MotoMotorway,
     NeoRidleyArena,
     NeoRidleyArenaAccess,
-    RipperMaze,
+    RipperMazeLeft,
+    RipperMazeRight,
     RipperSauna,
     SciserPlayground,
     SciserPuddle,
