@@ -52,29 +52,43 @@ class TricksEnabled(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
     """The trick type and difficulty to match against"""
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        enabled = True
+        enabled, complete_rule = True, True_()
         for trick in self.tricks:
+            # Some tricks require specific item sets to perform
+            match trick[0]:
+                case TrickType.WALL_JUMP:
+                    complete_rule = And(complete_rule, Has("Wall Jump Boots"))
+                case TrickType.FROZEN_ENEMIES:
+                    complete_rule = And(complete_rule, CanFreezeEnemies())
+                case TrickType.MIDAIR_MORPH:
+                    complete_rule = And(complete_rule, Has("Morph Ball"))
+                case TrickType.SHINESPARK:
+                    complete_rule = And(complete_rule, Has("Speed Booster"))
+                case TrickType.JUMP_BOMB_JUMP:
+                    complete_rule = And(complete_rule, CanBomb())
+                case TrickType.JUMP_EXTEND:
+                    complete_rule = And(complete_rule, Has("Morph Ball"))
             enabled = enabled and Trick.can_perform_trick(world.options, trick[0], trick[1])
         if enabled:
-            return True_.resolve(self, world)
+            return complete_rule.resolve(world)
         else:
-            return False_.resolve(self, world)
+            return False_().resolve(world)
 
 @dataclass
 class CanPONR(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if world.options.PointOfNoReturnsInLogic.value:
-            return True_.resolve(self, world)
+            return True_().resolve(world)
         else:
-            return False_.resolve(self, world)
+            return False_().resolve(world)
 
 @dataclass
 class OpenSectorHubElevators(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if any([world.options.GameMode.value == 1,
                 world.options.GameMode.value == 2 and world.options.OpenSectorElevators.value]):
-            return True_.resolve(self, world)
-        return False_.resolve(self, world)
+            return True_().resolve(world)
+        return False_().resolve(world)
 
 @dataclass
 class IsLocationCollected(Rule["MetroidFusionWorld"], game="Metroid Fusion"):
