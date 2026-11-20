@@ -88,7 +88,7 @@ class Enemy(Enum):
     HALZYN_WING = (15, [Immunity.BEAM]),
     CORE_X_MORPH = (30, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
     CORE_X_CHARGE = (33, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
-    BOX = (60, [Immunity.BEAM, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
+    BOX = (300, [Immunity.BEAM, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
     CORE_X_WIDE = (150, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
     CORE_X_PLASMA = (200, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
     CORE_X_WAVE = (170, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
@@ -99,7 +99,7 @@ class Enemy(Enum):
     CORE_X_GRAVITY = (240, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
     # Table says Screw Core-X has 30 HP, but takes 6 full power missiles (45 damage each) to defeat.
     CORE_X_SCREW = (270, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
-    X_BOX = (260, [Immunity.BEAM, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
+    X_BOX = (500, [Immunity.BEAM, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
     X_BOX_MISSILE = (5,),
     CORE_X_ICE = (240, [Immunity.BEAM, Immunity.CHARGE, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
     MEGA_X = (100, [Immunity.BEAM, Immunity.MISSILE, Immunity.SUPER, Immunity.BOMB, Immunity.PB, Immunity.SCREW]),
