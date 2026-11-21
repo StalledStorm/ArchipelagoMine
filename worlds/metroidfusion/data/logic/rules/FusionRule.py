@@ -460,7 +460,7 @@ class HasEnergy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     energy: int
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
-        return Has("Energy Tank", EnergyAmmoUtil.energy_value_to_tanks(self.energy+1)).resolve(world)
+        return Has("Energy Tank", EnergyAmmoUtil.energy_value_to_tanks(self.energy-99)).resolve(world)
 
 @dataclass
 class CanLeaveStabilizerSoutheast(Rule["MetroidFusionWorld"], game="MetroidFusion"):
