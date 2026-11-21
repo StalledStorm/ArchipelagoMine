@@ -174,7 +174,6 @@ StationEntrance.connections = [
     Connection(CentralNexus, True_()),
     Connection(GenesisSpeedway, Or(
         CanPowerBomb(),
-        # Video demonstration: https://www.youtube.com/watch?v=QpbgjolExgE
         TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)})
     ))
 ]
@@ -249,11 +248,7 @@ QuarantineJunction.connections = [
     Connection(QuarantineBay, True_()),
     Connection(MainElevatorAccess, Or(
         Has("Morph Ball"),
-        And(
-            # Video demonstration: https://www.youtube.com/watch?v=QcD2-t9UDrg
-            Has("Speed Booster"),
-            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.INTERMEDIATE.value)})
-        )
+        TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.INTERMEDIATE.value)})
     ))
 ]
 
@@ -309,8 +304,6 @@ OperationsVentilationWalkwayLeft.connections = [
     Connection(OperationsVentilationWalkwayRight, Or(
         CanDamageSmallGeron(),
         And(
-            # Video demonstration: https://www.youtube.com/watch?v=dWJXG-nGo6A
-            HasAll("Speed Booster", "Wall Jump Boots"),
             TricksEnabled({
                 (TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value),
                 (TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value),
@@ -448,7 +441,6 @@ CentralReactorCoreBottom.connections = [
         CanJumpHigh(),
         TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)}),
         And(
-            # Video demonstration: https://www.youtube.com/watch?v=x7CqxW4JyJ4
             TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value)}),
             CanClearEnemy(enemy=Enemy.KIHUNTER_GROUND, enemy_count=3)
         )
@@ -456,8 +448,6 @@ CentralReactorCoreBottom.connections = [
     Connection(SiloSave, True_()),
     Connection(SiloCheckpoint, True_()),
     Connection(SiloTunnelRight, And(
-        # Video demonstration: https://www.youtube.com/watch?v=vVG5YNwzGjw
-        HasAll("Speed Booster", "Morph Ball"),
         Or(
             And(
                 Has("Hi-Jump"),
@@ -597,7 +587,7 @@ RestrictedCorridor.connections = [
 
 RestrictedAirlockBottom.connections = [
     Connection(RestrictedCorridor, Has("Level 4 Keycard")),
-    Connection(RestrictedAirlockTop, Has("Speed Booster"))
+    Connection(RestrictedAirlockTop, TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.VANILLA.value)}))
 ]
 
 RestrictedAirlockTop.connections = [
@@ -625,7 +615,6 @@ HabitationDeckEntrance.connections = [
                 Or(
                     CanFreezeEnemies(),
                     And(
-                        # Video demonstration: https://youtu.be/C56BsRG_eKY
                         CanClearEnemy(enemy=Enemy.FUNE),
                         TricksEnabled({
                             (TrickType.JUMP_EXTEND.value, TrickDifficulty.ADVANCED.value),
@@ -635,7 +624,6 @@ HabitationDeckEntrance.connections = [
                 )
             ),
             And(
-                # Video demonstration: https://youtu.be/o-DdSO4E3-M
                 CanFreezeEnemies(),
                 TricksEnabled({
                     (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.BEGINNER.value),
@@ -750,7 +738,6 @@ NexusStorage.locations = [
         Or(
             CanDestroyBombBlocks(tunnel=True),
             And(
-                # Video demonstration: https://youtu.be/7T5fVhUYQ4g
                 TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.BEGINNER.value)}),
                 Or(
                     CanJumpHigh(),
@@ -779,7 +766,9 @@ QuarantineBay.locations = [
 ]
 
 RestrictedAirlockBottom.locations = [
-    FusionLocation("Main Deck -- Restricted Airlock", False, Has("Speed Booster"))
+    FusionLocation("Main Deck -- Restricted Airlock", False, TricksEnabled({
+        (TrickType.SHINESPARK.value, TrickDifficulty.VANILLA.value)
+    }))
 ]
 
 SiloCatwalkRight.locations = [
