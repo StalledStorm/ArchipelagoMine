@@ -78,8 +78,11 @@ class HabitationDeckTopRight(FusionRegion):
 class HabitationDeckTopLeft(FusionRegion):
     name = "Main Deck - Habitation Deck (Top, Left)"
 
-class HabitationDeckMiddle(FusionRegion):
-    name = "Main Deck - Habitation Deck (Middle)"
+class HabitationDeckMiddleLeft(FusionRegion):
+    name = "Main Deck - Habitation Deck (Middle, Left)"
+
+class HabitationDeckMiddleRight(FusionRegion):
+    name = "Main Deck - Habitation Deck (Middle, Right)"
 
 class HabitationDeckBottomRight(FusionRegion):
     name = "Main Deck - Habitation Deck (Bottom, Right)"
@@ -283,7 +286,8 @@ main_deck_regions = [
     GenesisSpeedway,
     HabitationDeckTopLeft,
     HabitationDeckTopRight,
-    HabitationDeckMiddle,
+    HabitationDeckMiddleLeft,
+    HabitationDeckMiddleRight,
     HabitationDeckBottomLeft,
     HabitationDeckBottomMiddle,
     HabitationDeckBottomRight,
