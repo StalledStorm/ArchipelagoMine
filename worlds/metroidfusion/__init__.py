@@ -291,6 +291,8 @@ class MetroidFusionWorld(World):
                 for source, destination in self.spoiler_region_map.items():
                     # print(f"{source} <-> {destination}")
                     logging.info(f"{source} <-> {destination}")
+                from Utils import visualize_regions
+                visualize_regions(self.get_region("Menu"), f"fusiondiagram{self.player}.puml")
 
     def build_early_progression(self):
         starting_inventory = self.options.start_inventory.value | self.options.start_inventory_from_pool.value
