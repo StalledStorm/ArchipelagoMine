@@ -89,17 +89,17 @@ navigation_pose = 0x36
 graphics_reload_flag = 0x5671
 
 navigation_rooms: dict[str, FusionNavigationRoom] = {
-    "MainDeckEast": FusionNavigationRoom(0, 9),
-    "MainDeckWest": FusionNavigationRoom(0, 16),
-    "OperationsDeck": FusionNavigationRoom(0, 32),
-    "AuxiliaryPower": FusionNavigationRoom(0, 56),
-    "RestrictedLabs": FusionNavigationRoom(0, 66),
-    "Sector1Entrance": FusionNavigationRoom(1, 2),
-    "Sector2Entrance": FusionNavigationRoom(2, 2),
-    "Sector3Entrance": FusionNavigationRoom(3, 2),
-    "Sector4Entrance": FusionNavigationRoom(4, 2),
-    "Sector5Entrance": FusionNavigationRoom(5, 2),
-    "Sector6Entrance": FusionNavigationRoom(6, 2)
+    "MAIN_DECK_EAST": FusionNavigationRoom(0, 9),
+    "MAIN_DECK_WEST": FusionNavigationRoom(0, 16),
+    "OPERATIONS_DECK": FusionNavigationRoom(0, 32),
+    "AUXILIARY_POWER": FusionNavigationRoom(0, 56),
+    "RESTRICTED_LABS": FusionNavigationRoom(0, 66),
+    "SECTOR_1_ENTRANCE": FusionNavigationRoom(1, 2),
+    "SECTOR_2_ENTRANCE": FusionNavigationRoom(2, 2),
+    "SECTOR_3_ENTRANCE": FusionNavigationRoom(3, 2),
+    "SECTOR_4_ENTRANCE": FusionNavigationRoom(4, 2),
+    "SECTOR_5_ENTRANCE": FusionNavigationRoom(5, 2),
+    "SECTOR_6_ENTRANCE": FusionNavigationRoom(6, 2)
 }
 
 # These are in EWRAM
