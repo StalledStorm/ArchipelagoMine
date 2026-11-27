@@ -1,6 +1,6 @@
 # Metroid Fusion Tricks List
 
-These tricks have been largely compiled by the Randovania team, with edits and adjustments as necessary to facilitate 
+These tricks have been largely compiled by the [Randovania team](https://github.com/randovania/randovania/tree/main/randovania/games/fusion/logic_database), with edits and adjustments as necessary to facilitate 
 Archipelago's systems. If you find that a difficulty level needs adjusting, we welcome any feedback.
 
 It is planned to have a video demonstration for most, if not all, of the tricks listed in this document. If you would 
