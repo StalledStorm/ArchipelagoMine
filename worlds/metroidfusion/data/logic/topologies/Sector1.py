@@ -277,7 +277,7 @@ AtmosphericStabilizerSouthwest.connections = [
                 (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
                 (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
             }),
-            # Check if you can pass through and clear Atmospheric Stabilizer Northwest
+            # Check if you can pass through and clear Atmospheric Stabilizer Southeast
             CanReachRegion(ZebesianZag.name)
         )
     )),
