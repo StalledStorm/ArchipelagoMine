@@ -399,12 +399,30 @@ class CanDamageLargeGeron(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 @dataclass
 class CanDamageStabilizer(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     speed_booster_override: bool = False
+    screw_needs_jump: bool = False
 
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
         if self.speed_booster_override:
             return Has("Speed Booster").resolve(world)
         elif world.options.NerfGeronWeaknesses.value:
             return HasAny("Charge Beam", "Missile Data").resolve(world)
+        elif self.screw_needs_jump:
+            return Or(
+                HasAny("Charge Beam", "Missile Data"),
+                And(
+                    TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)}),
+                    Or(
+                        CanPowerBomb(),
+                        And(
+                            Has("Screw Attack"),
+                            Or(
+                                Has("Space Jump"),
+                                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)}),
+                            )
+                        )
+                    )
+                )
+            ).resolve(world)
         else:
             return Or(
                 HasAny("Charge Beam", "Missile Data"),
@@ -465,62 +483,27 @@ class HasEnergy(Rule["MetroidFusionWorld"], game="MetroidFusion"):
 @dataclass
 class CanLeaveStabilizerSoutheast(Rule["MetroidFusionWorld"], game="MetroidFusion"):
     def _instantiate(self, world: "MetroidFusionWorld") -> Rule.Resolved:
+        shinespark_rule: Rule = And(
+            # Video demonstration: https://youtu.be/SrshBBv-MCw
+            TricksEnabled({
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
+            }),
+            Or(
+                Has("Hi-Jump"),
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
+                # No Hi-Jump or Wall Jumping
+                # Video demonstration: https://youtu.be/WsY4pSmBAyo
+                TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
+            )
+        )
+
         if world.options.NerfGeronWeaknesses:
             return Or(
                 CanDamageStabilizer(),
-                And(
-                    # Video demonstration: https://youtu.be/SrshBBv-MCw
-                    Has("Speed Booster"),
-                    TricksEnabled({
-                        (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
-                        (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
-                    }),
-                    Or(
-                        Has("Hi-Jump"),
-                        And(
-                            Has("Wall Jump Boots"),
-                            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
-                        ),
-                        # No Hi-Jump or Wall Jumping
-                        # Video demonstration: https://youtu.be/WsY4pSmBAyo
-                        TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
-                    )
-                )
+                shinespark_rule
             ).resolve(world)
         return Or(
-            HasAny("Charge Beam", "Missile Data"),
-            And(
-                TricksEnabled({TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value}),
-                Or(
-                    CanPowerBomb(),
-                    And(
-                        Has("Screw Attack"),
-                        Or(
-                            Has("Space Jump"),
-                            And(
-                                Has("Wall Jump Boots"),
-                                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
-                            )
-                        )
-                    )
-                )
-            ),
-            And(
-                # Video demonstration: https://youtu.be/SrshBBv-MCw
-                Has("Speed Booster"),
-                TricksEnabled({
-                    (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
-                    (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
-                }),
-                Or(
-                    Has("Hi-Jump"),
-                    And(
-                        Has("Wall Jump Boots"),
-                        TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
-                    ),
-                    # No Hi-Jump or Wall Jumping
-                    # Video demonstration: https://youtu.be/WsY4pSmBAyo
-                    TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
-                )
-            )
+            CanDamageStabilizer(screw_needs_jump=True),
+            shinespark_rule
         ).resolve(world)
