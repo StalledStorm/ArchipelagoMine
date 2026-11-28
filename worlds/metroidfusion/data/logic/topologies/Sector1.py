@@ -93,8 +93,6 @@ LavaLakeAnnex.connections = [
                 TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.BEGINNER.value)})
             ),
             And(
-                # Video demonstration: https://youtu.be/jfuH3Epvxh8
-                #              Part 2: https://youtu.be/RF2_8Y0PaVQ
                 Has("Energy Tank", 2),
                 TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)}),
             )
@@ -113,8 +111,6 @@ LavaLake.connections = [
                 TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.BEGINNER.value)})
             ),
             And(
-                # Video demonstration: https://youtu.be/VFbTQoMI0uA
-                #              Part 2: https://youtu.be/pu2I2jaMrjI
                 Has("Energy Tank", 2),
                 TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)})
             )
@@ -127,10 +123,7 @@ YamebaCorridor.connections = [
     Connection(EntranceLobby, Or(
         CanDamageSmallGeron(),
         And(
-            # Charge spark in Moto Motorway. Maintain into Atmospheric Stabilizer Northeast,
-            # and carry through Atmospheric Stabilizer Northwest.
-            # Video demonstration: https://youtu.be/aq0PQxbFJQk
-            IsLocationCollected("Sector 1 (SRX) -- Atmospheric Stabilizer Northeast"),
+            connection_to(AtmosphericStabilizerNortheast, TwinJunctionsWest),
             CanDamageSmallGeron(speed_booster_override=True),
             TricksEnabled({
                 (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
@@ -158,30 +151,7 @@ YamebaCorridor.connections = [
 ]
 
 AtmosphericStabilizerNorthwest.connections = [
-    Connection(YamebaCorridor, Or(
-        CanDamageStabilizer(),
-        And(
-            # Charge spark in Moto Motorway. Maintain into Atmospheric Stabilizer Northeast,
-            # and carry through Atmospheric Stabilizer Northwest.
-            # Video demonstration: https://youtu.be/aq0PQxbFJQk
-            IsLocationCollected("Sector 1 (SRX) -- Atmospheric Stabilizer Northeast"),
-            CanDamageStabilizer(speed_booster_override=True),
-            TricksEnabled({
-                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
-                (TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)
-            }),
-            Or(
-                And(
-                    TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
-                    HasAny("Plasma Beam", "Charge Beam")
-                ),
-                And(
-                    TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
-                    HasAny("Wave Beam", "Wide Beam")
-                )
-            )
-        )
-    )),
+    Connection(YamebaCorridor, connection_to(YamebaCorridor, EntranceLobby)),
     Connection(HornoadHole, Or(
         CanDamageStabilizer(),
         And(
@@ -196,30 +166,7 @@ AtmosphericStabilizerNorthwest.connections = [
 ]
 
 HornoadHole.connections = [
-    Connection(AtmosphericStabilizerNorthwest, Or(
-        CanDamageStabilizer(),
-        And(
-            # Charge spark in Moto Motorway. Maintain into Atmospheric Stabilizer Northeast,
-            # and carry through Atmospheric Stabilizer Northwest.
-            # Video demonstration: https://youtu.be/aq0PQxbFJQk
-            IsLocationCollected("Sector 1 (SRX) -- Atmospheric Stabilizer Northeast"),
-            CanDamageStabilizer(speed_booster_override=True),
-            TricksEnabled({
-                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
-                (TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)
-            }),
-            Or(
-                And(
-                    TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
-                    HasAny("Plasma Beam", "Charge Beam")
-                ),
-                And(
-                    TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
-                    HasAny("Wave Beam", "Wide Beam")
-                )
-            )
-        )
-    )),
+    Connection(AtmosphericStabilizerNorthwest, connection_to(YamebaCorridor, EntranceLobby)),
     Connection(TwinJunctionsWest, True_)
 ]
 
@@ -237,7 +184,6 @@ AtmosphericStabilizerNortheast.connections = [
     Connection(TwinJunctionsWest, Or(
         CanDamageStabilizer(),
         And(
-            # Video demonstration: https://youtu.be/I9YH_s989sQ
             CanDamageStabilizer(speed_booster_override=True),
             TricksEnabled({
                 (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
@@ -258,7 +204,6 @@ ZebesianZig.connections = [
         CanClearEnemy(enemy=Enemy.ZEBESIAN_WALL, enemy_count=8),
         CanFreezeEnemies(8),
         # Pacifist
-        # Video demonstration: https://youtu.be/u40B3GpSIsA
         TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
     ))
 ]
@@ -322,21 +267,14 @@ ZebesianZag.connections = [
             Or(
                 Has("Space Jump"),
                 # Requires spin cancel to prevent destroying the platforms.
-                # Video demonstration: https://youtu.be/rsQZgb4xF6Y
                 TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.BEGINNER.value)})
             )
         ),
         # Pacifist
-        # Video demonstration: https://youtu.be/Lh9D7Ye3rw8
         TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
+        # Set to require a trick to not confuse trickless players
+        TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value)}),
         And(
-            # Video demonstration: https://youtu.be/_PmmHN9YvKw
-            Has("Speed Booster"),
-            # Set to require a trick to not confuse trickless players
-            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value)})
-        ),
-        And(
-            # Video demonstration: https://youtu.be/cqHI8tNmNVw
             HasEnergy(170),
             TricksEnabled({
                 (TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value),
@@ -486,9 +424,7 @@ TourianTrapdoorBottom.connections = [
                 CanFreezeEnemies(4, 10, 20),
                 Or(
                     And(
-                        # No Jump Upgrades climb with Wall Jump
-                        # Video demonstration: https://youtu.be/rpQG_ZFJ2Wg
-                        Has("Wall Jump Boots"),
+                        # Wall Jump only
                         TricksEnabled({
                             (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.MASTER.value),
                             (TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value)
@@ -498,16 +434,13 @@ TourianTrapdoorBottom.connections = [
                         Has("Hi-Jump"),
                         Or(
                             And(
-                                # Hi-Jump + Wall Jump climb
-                                # Video demonstration: https://youtu.be/Hfmrj3rurOY
-                                Has("Wall Jump Boots"),
+                                # Hi-Jump + Wall Jump
                                 TricksEnabled({
                                     (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.INTERMEDIATE.value),
                                     (TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
                                 })
                             ),
-                            # No Wall Jump with Hi-Jump
-                            # Video demonstration: https://youtu.be/T_aded4xYeU
+                            # Hi-Jump only
                             TricksEnabled({(TrickType.FROZEN_ENEMIES.value, TrickDifficulty.ADVANCED.value)})
                         )
                     )

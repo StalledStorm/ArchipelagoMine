@@ -82,7 +82,15 @@ This list is sorted in this order:
 - Connection destination (alphabetically)
 - Associated tricks' difficulty levels (ascending) or event flags
 
+It is recommended to use the Find feature ( [CTRL]+[F] ) with the Room name due to the size of this list.
+
 Note that only tricks above Vanilla difficulty are listed to reduce clutter
+### Any
+- Removing a Geron of ANY type
+  - YAML `NerfGeronWeaknesses: false`
+    - Destroy with Screw Attack or Power Bomb
+      - Knowledge - Beginner
+
 ### Main Deck
 #### Arachnus Arena
 - Destination: `Main Deck -- Crew Quarters East`
@@ -212,6 +220,111 @@ Note that only tricks above Vanilla difficulty are listed to reduce clutter
     - Combat - Master
 
 ### Sector 1
+#### Atmospheric Stabilizer Northeast
+- Destination: `Sector 1 (SRX) -- Twin Junctions West`
+  - Start charging Speed Booster in Twin Junctions West. Destroy the Stabilizer Parasite with it.
+    - [Video demonstration](https://youtu.be/I9YH_s989sQ)
+    - Knowledge - Intermediate
+    - Shinespark - Expert
+#### Atmospheric Stabilizer Northwest
+- Destination: `Sector 1 (SRX) -- Hornoad Hole`
+  - Start charging Speed Booster in either Yameba Corridor or Entrance Lobby. Destroy the Stabilizer Parasite with it.
+    - Knowledge - Intermediate
+    - Shinespark - Advanced
+- Destination: `Sector 1 (SRX) -- Yameba Corridor`
+  - Tricks required are the same as: Yameba Corridor → Entrance Lobby
+#### Atmospheric Stabilizer Southeast
+- Destination: Any Exit Door
+  - YAML `NerfGeronWeaknesses: false`, with Screw Attack and Wall Jump without Space Jump
+    - Wall Jump - Beginner
+    - Knowledge - Beginner
+  - Using a Shinespark
+    - Knowledge - Intermediate
+    - With Hi-Jump
+      - Shinespark - Advanced
+    - With Wall Jump
+      - Wall Jump - Advanced
+      - Shinespark - Advanced
+      - [Video demonstration](https://youtu.be/SrshBBv-MCw)
+    - Without Hi-Jump or Wall Jump
+      - Shinespark - Expert
+      - [Video demonstration](https://youtu.be/WsY4pSmBAyo)
+#### Atmospheric Stabilizer Southwest
+- Destination: `Sector 1 (SRX) -- Sciser Puddle`
+  - Start charging Speed Booster in either Atmospheric Stabilizer SE or Zebesian Zag. Destroy the Stabilizer Parasite 
+    with it.
+    - Knowledge - Intermediate
+    - Shinespark - Advanced
+#### Hornoad Hole
+- Destination: `Sector 1 (SRX) -- Atmospheric Stabilizer Northwest`
+  - Tricks required are the same as: Yameba Corridor → Entrance Lobby
+#### Lava Lake
+- Destination: `Sector 1 (SRX) -- Lava Lake Annex`
+  - Single Suit, 1 E-Tank
+    - Damage Run - Beginner
+  - No Suits, 2 E-Tanks
+    - Damage Run - Intermediate
+    - [Part 1 Video, Getting to the door](https://youtu.be/VFbTQoMI0uA)
+    - [Part 2 Video, Leaving the lava](https://youtu.be/pu2I2jaMrjI)
+#### Lava Lake Annex
+- Destination: `Sector 1 (SRX) -- Lava Lake`
+  - Single Suit, 1 E-tank
+    - Damage Run - Beginner
+  - No Suits, 2 E-Tanks
+    - Damage Run - Intermediate
+    - [Part 1 Video, Getting to the door](https://youtu.be/jfuH3Epvxh8)
+    - [Part 2 Video, Leaving the lava](https://youtu.be/RF2_8Y0PaVQ)
+#### Tourian Trapdoor
+- Destination: `Sector 1 (SRX) -- Moto Manor` or `Sector 1 (SRX) -- Atmospheric Stabilizer Southeast`
+  - Climb from the bottom of the room
+    - Hi-Jump and Wall Jump
+      - [Video demonstration](https://youtu.be/Hfmrj3rurOY)
+      - Wall Jump - Beginner
+      - Frozen Enemies - Intermediate
+    - Hi-Jump only
+      - [Video demonstration](https://youtu.be/T_aded4xYeU)
+      - Frozen Enemies - Advanced
+    - Wall Jump only
+      - [Video demonstration](https://youtu.be/rpQG_ZFJ2Wg)
+      - Wall Jump - Intermediate
+      - Frozen Enemies - Master
+#### Yameba Corridor
+- Destination: `Sector 1 (SRX) -- Atmospheric Stabilizer Northwest`
+  - Ram the Geron with Speed Booster
+    - Knowledge - Beginner
+- Destination: `Sector 1 (SRX) -- Entrance Lobby`
+  - YAML `NerfGeronWeaknesses: false`
+    - Destroy Stabilizer Parasite with Screw Attack or Power Bomb
+      - Knowledge - Beginner
+  - Charge Shinespark in Moto Motorway. Maintain into Atmospheric Stabilizer NE and carry through Atmospheric Stabilizer
+    NW. Demonstration uses significant amounts of pause buffering.
+    - [Video demonstration](https://youtu.be/aq0PQxbFJQk)
+    - Knowledge - Intermediate
+    - Shinespark - Master
+    - Wave Beam OR Wide Beam
+      - Combat - Intermediate
+    - Charge Beam OR Plasma Beam
+      - Combat - Advanced
+#### Zebesian Zag
+- Destination: `Sector 1 (SRX) -- Twin Junctions East`
+  - Screw Attack only, requiring cancelling a spin
+    - Movement - Beginner
+    - [Video demonstration](https://youtu.be/rsQZgb4xF6Y)
+  - Pacifist Hitless
+    - Combat - Intermediate
+    - [Video demonstration](https://youtu.be/Lh9D7Ye3rw8)
+  - Skip the room with a Shinespark
+    - Shinespark - Beginner
+    - [Video demonstration](https://youtu.be/_PmmHN9YvKw)
+  - Damage Boost through them with at least 1 E-Tank
+    - Movement - Beginner 
+    - Damage Boost - Intermediate
+    - [Video demonstration](https://youtu.be/cqHI8tNmNVw)
+#### Zebesian Zig
+- Destination: `Sector 1 (SRX) -- Sciser Puddle`
+  - Pacifist Descent
+    - [Video Demonstration](https://youtu.be/u40B3GpSIsA)
+    - Combat - Intermediate
 
 ### Sector 2
 
