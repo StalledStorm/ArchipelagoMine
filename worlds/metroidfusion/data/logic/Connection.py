@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from .Requirement import Requirement
+from .....rule_builder.rules import Rule
 
 if TYPE_CHECKING:
     from .FusionRegion import FusionRegion
@@ -8,13 +8,13 @@ if TYPE_CHECKING:
 
 class Connection:
     destination: "FusionRegion"
-    requirements: list[Requirement]
-    one_way: bool
+    rule: Rule
+    two_way: bool
 
-    def __init__(self, destination, requirements, one_way=False):
+    def __init__(self, destination, rule, two_way=False):
         self.destination = destination
-        self.requirements = requirements
-        self.one_way = one_way
+        self.rule = rule
+        self.two_way = two_way
 
     def determine_destination(
             self,

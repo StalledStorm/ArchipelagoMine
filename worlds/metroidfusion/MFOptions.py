@@ -81,32 +81,149 @@ class ElevatorShuffle(Choice):
 
 # Trick Options
 
-class WallJumpTrickDifficulty(Choice):
-    """What level of wall jump trick difficulty may be required to navigate around."""
-    display_name = "Wall Jump Trick Difficulty"
+class CombatDifficulty(Choice):
+    """What level of combat tools are logically expected to defeat bosses and enemies while navigating.
+    A higher difficulty will expect less combat tools to be available and to include fewer Energy Tanks than normal."""
+    display_name = "Combat Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class MovementTrickDifficulty(Choice):
+    """Any non-trivial maneuver that isn't otherwise classified by other tricks and is not expected to be performed in
+    a vanilla playthrough.
+    A higher difficulty will expect higher precision."""
+    display_name = "Movement Trick Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class KnowledgeDifficulty(Choice):
+    """Knowledge of interactions that aren't explained by a vanilla playthrough.
+    A higher difficulty will expect knowing details in increasing obscurity."""
+    display_name = "Knowledge Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    default = 0
+
+class DamageBoostTrickDifficulty(Choice):
+    """A damage boost is the act of intentionally taking damage to prevent taking a larger amount of damage, or to
+    create desirable knockback to use in travel.
+    A higher difficulty represents a greater risk of taking more damage than necessary to achieve results."""
+    display_name = "Damage Boost Trick Difficulty"
     option_none = 0
     option_beginner = 1
-    option_advanced = 2
-    # option_expert = 3
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class DamageRunTrickDifficulty(Choice):
+    """Traversing damaging environments without the Varia Suit, excluding damage from enemies.
+    A higher difficulty will expect less extra Energy Tanks to perform."""
+    display_name = "Damage Run Trick Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class FrozenEnemiesTrickDifficulty(Choice):
+    """Freezing an enemy to use as a platform in getting elsewhere.
+    A higher difficulty will expect more precise positioning or a risk to self."""
+    display_name = "Frozen Enemies Trick Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class JumpBombJumpTrickDifficulty(Choice):
+    """The act of placing a bomb at the peak of a jump to use in getting more vertical reach.
+    A higher difficulty will require more precision.
+    The beginner level is unavailable due to the difficulty of this trick."""
+    display_name = "Jump Bomb Jump Trick Difficulty"
+    option_none = 0
+    # option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class JumpExtendTrickDifficulty(Choice):
+    """Abusing midair state transitions to slow your falling speed.
+    A higher difficulty will require more precision."""
+    display_name = "Jump Extend Trick Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class MidairMorphTrickDifficulty(Choice):
+    """The act of entering Morph Ball in midair to enter a tunnel or place a bomb.
+    A higher difficulty will require more precision."""
+    display_name = "Midair Morph Trick Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
     default = 0
 
 class ShinesparkTrickDifficulty(Choice):
-    """What level of shinespark trick difficulty may be required to navigate around.
-    Note that this does not exclude items that require shinesparking in vanilla to obtain.
-    Use the ShinesparkLocations location group for that."""
+    """Using the stored charges from Speed Booster to traverse the station in unorthodox ways."""
     display_name = "Shinespark Trick Difficulty"
-    option_none = 0
+    option_none = -1
+    option_vanilla = 0
     option_beginner = 1
-    option_advanced = 2
-    # option_expert = 3
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
     default = 0
 
-class CombatDifficulty(Choice):
-    """What level of combat tools are logically expected for later game bosses."""
-    display_name = "Combat Difficulty"
-    option_beginner = 0
-    option_advanced = 1
-    option_expert = 2
+class UnderwaterWallJumpTrickDifficulty(Choice):
+    """Wall jumping underwater without Gravity Suit can be used to climb higher.
+    A higher difficulty will require climbing a greater height."""
+    display_name = "Underwater Wall Jump Trick Difficulty"
+    option_none = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
+    default = 0
+
+class WallJumpTrickDifficulty(Choice):
+    """Your ability to kick off walls to climb higher in areas that won't expect you to do so.
+    A higher difficulty will expect a wider range of ingenuity or higher risk."""
+    display_name = "Wall Jump Trick Difficulty"
+    option_vanilla = 0
+    option_beginner = 1
+    option_intermediate = 2
+    option_advanced = 3
+    option_expert = 4
+    option_master = 5
     default = 0
 
 # Custom Game Mode options
@@ -154,7 +271,7 @@ class FillerItems(ItemSet):
     default = ["Missile Tank", "Power Bomb Tank"]
 
 class OpenSectorElevators(Toggle):
-    """Determines if the sector elevators in the Sector Hub are locked by their vanilla keycard requirements.
+    """Unlocks the Sector Hub elevator doors on Main Deck, allowing full access without the necessary keycard items.
     This is a Custom Game Mode option and will only be applied if GameMode is set to Custom."""
     display_name = "Open Sector Elevators"
 
@@ -245,29 +362,6 @@ class PowerBombTankAmmo(Range):
     range_end = 100
     default = 2
 
-# Deprecated options
-
-class TrickyShinesparksInRegionLogic(Removed):
-    """DEPRECATED OPTION. WILL BE REMOVED IN A FUTURE VERSION.
-    Use ShinesparkTrickDifficulty instead."""
-    display_name = "Tricky Shinesparks in Region Logic"
-
-    def __init__(self, value: str):
-        if value:
-            raise Exception("TrickyShinesparksInRegionLogic option removed. "
-                            "Please use ShinesparkTrickDifficulty instead.")
-        super().__init__(value)
-
-class SimpleWallJumpsInRegionLogic(Removed):
-    """DEPRECATED OPTION. WILL BE REMOVED IN A FUTURE VERSION.
-    Use WallJumpTrickDifficulty instead."""
-    display_name = "Simple Wall Jumps in Region Logic"
-
-    def __init__(self, value: str):
-        if value:
-            raise Exception("SimpleWallJumpsInRegionLogic option removed. Please use WallJumpTrickDifficulty instead.")
-        super().__init__(value)
-
 @dataclass
 class MetroidFusionOptions(PerGameCommonOptions):
     GameMode: GameMode
@@ -280,9 +374,18 @@ class MetroidFusionOptions(PerGameCommonOptions):
     ElevatorShuffle: ElevatorShuffle
     PointOfNoReturnsInLogic: PointOfNoReturnsInLogic
 
-    ShinesparkTrickDifficulty: ShinesparkTrickDifficulty
-    WallJumpTrickDifficulty: WallJumpTrickDifficulty
     CombatDifficulty: CombatDifficulty
+    MovementTrickDifficulty: MovementTrickDifficulty
+    KnowledgeDifficulty: KnowledgeDifficulty
+    DamageBoostTrickDifficulty: DamageBoostTrickDifficulty
+    DamageRunTrickDifficulty: DamageRunTrickDifficulty
+    FrozenEnemiesTrickDifficulty: FrozenEnemiesTrickDifficulty
+    JumpBombJumpTrickDifficulty: JumpBombJumpTrickDifficulty
+    JumpExtendTrickDifficulty: JumpExtendTrickDifficulty
+    MidairMorphTrickDifficulty: MidairMorphTrickDifficulty
+    ShinesparkTrickDifficulty: ShinesparkTrickDifficulty
+    UnderwaterWallJumpTrickDifficulty: UnderwaterWallJumpTrickDifficulty
+    WallJumpTrickDifficulty: WallJumpTrickDifficulty
 
     StartingLocation: StartingLocation
     StartingMajorUpgrades: StartingMajorUpgrades
@@ -306,9 +409,6 @@ class MetroidFusionOptions(PerGameCommonOptions):
     PowerBombDataAmmo: PowerBombDataAmmo
     PowerBombTankAmmo: PowerBombTankAmmo
 
-    TrickyShinesparksInRegionLogic: TrickyShinesparksInRegionLogic
-    SimpleWallJumpsInRegionLogic: SimpleWallJumpsInRegionLogic
-
     start_inventory_from_pool: StartInventoryPool
     death_link: DeathLink
 
@@ -326,9 +426,18 @@ metroid_fusion_option_groups = [
         PointOfNoReturnsInLogic
     ]),
     OptionGroup("Trick Options", [
+        CombatDifficulty,
+        MovementTrickDifficulty,
+        KnowledgeDifficulty,
+        DamageBoostTrickDifficulty,
+        DamageRunTrickDifficulty,
+        FrozenEnemiesTrickDifficulty,
+        JumpExtendTrickDifficulty,
+        JumpBombJumpTrickDifficulty,
+        MidairMorphTrickDifficulty,
         ShinesparkTrickDifficulty,
-        WallJumpTrickDifficulty,
-        CombatDifficulty
+        UnderwaterWallJumpTrickDifficulty,
+        WallJumpTrickDifficulty
     ]),
     OptionGroup("Custom Game Mode Options", [
         StartingLocation,

@@ -1,336 +1,1039 @@
 from ..Connection import Connection
-from ..Requirement import Requirement, PONRRequirement
 from ..VariableConnection import VariableConnection
-from ..Requirements import *
 from ..FusionLocation import FusionLocation
+from ..FusionRegion import connection_to
 
-from ..regions.MainDeck import SectorHubElevator1Top
+from ..regions.MainDeck import SectorHubElevator1Top, RestrictedElevatorBottom
 from ..regions.Sector1 import *
 from ..regions.Sector2 import Sector2TubeLeft
 from ..regions.Sector3 import Sector3TubeRight
-from ..regions.Sector6 import Sector6RestrictedZoneElevatorToTourian
 
-# Region Connections
-Sector1AfterChargeCoreZone.connections = [
-    Connection(Sector1FirstStabilizerZone, [], one_way=True),
-    Connection(Sector1ChargeCoreZone, [
-        Requirement("", [
-            CanDamageAnyGeron(),
-            CanDamageStabilizer("",[HasMorph()])
-        ],[
-            HasMissile(),
-            PONRRequirement("PONR - Enter Charge Core Zone", [])
-        ])
-    ], one_way=True),
+from ..rules.FusionRule import *
+from ..rules.FusionTrick import TrickType, TrickDifficulty
+from ..FusionEnemy import Enemy
+from rule_builder.rules import (True_, False_, And, Or, Has, HasAll, HasAllCounts, HasAny,
+                                HasAnyCount, HasFromList, HasFromListUnique, HasGroup, HasGroupUnique,
+                                CanReachLocation, CanReachRegion, CanReachEntrance)
+
+
+# Elevator and Tube Connections
+Sector1EntranceElevatorBottom.connections = [
+    VariableConnection(SectorHubElevator1Top, True_),
+    Connection(EntranceNavigation, True_)
 ]
 
-Sector1Antechamber.connections = [
-    Connection(Sector1Hub, [
-        HasKeycard2("Enter Antechamber - Bottom Half and Open Door", [
-            HasScrewAttack()
-        ])
-    ], one_way=True),
-    Connection(Sector1TubeRight, [
-        HasMorph("Secret Tunnel")
-    ], one_way=True)
-]
-
-Sector1ChargeCoreZone.connections = [
-    Connection(Sector1AfterChargeCoreZone, [
-        CanDamageCoreX("Need to Kill Beam Core X", [CanDamageGadora()])
-    ], one_way=True)
-]
-
-Sector1FirstStabilizerZone.connections = [
-    Connection(Sector1SecondStabilizerZone, []),
-    Connection(Sector1AfterChargeCoreZone, [
-        HasWaveBeam("Backwards Travel")
-    ], one_way=True),
-]
-
-Sector1FourthStabilizerZone.connections = [
-    Connection(Sector1ChargeCoreZone, [
-        HasMorph("Enter Charge Core Zone", [
-            CanDamageCoreX("License to Kill"),
-            PONRRequirement("PONR - Enter Charge Core Zone", items_needed={"Charge Beam"})
-        ])
-    ], one_way=True),
-]
-
-Sector1Hub.connections = [
-    VariableConnection(SectorHubElevator1Top, []),
-    Connection(Sector1Antechamber, [
-        HasKeycard2("Enter Antechamber - Top Half", [
-            HasSpaceJump("Fly"),
-            CanDoAdvancedWallJump("Jump Good", [
-                HasHiJump()
-            ])
-        ], [
-            HasScrewAttack()
-        ])
-    ]),
-    Connection(Sector1TubeLeft, [
-        HasKeycard1("Can Approach West Tube from Top Door", [
-            HasMorph()
-        ], [
-            HasScrewAttack()
-        ])
-    ]),
-    Connection(Sector1FirstStabilizerZone, [
-        CanDamageSmallGeron("Atmospheric Stabilizer NW - Vanilla Kill"),
-        CanDamageAnyGeron("Atmospheric Stabilizer NW - Alternate Kill"),
-        CanDoAdvancedShinespark("Atmospheric Stabilizer NW - Shinespark Kill")
-    ]),
-    Connection(Sector1SecondStabilizerZone, [
-        CanLavaDive("Cut Through Lava Pool", items_needed={"Level 1 Keycard", "Level 2 Keycard"})
-    ]),
-]
-
-Sector1SecondStabilizerZone.connections = [
-    Connection(Sector1ThirdStabilizerZone, [
-        CanDamageStabilizer(),
-        CanDamageAnyGeron()
-    ])
-]
-
-Sector1ThirdStabilizerZone.connections = [
-    Connection(Sector1FourthStabilizerZone, [
-        CanDamageStabilizer(),
-        CanDamageAnyGeron()
-    ]),
-    Connection(Sector1TourianExit, [
-        HasMorph("Enter Tourian Exit from Stabilizers", [
-            PONRRequirement("PONR - Enter Tourian Exit from Stabilizers", [
-                CanFreezeEnemies("Use Rippers as platforms")
-            ]),
-            HasSpaceJump("Fly")
-        ], [
-            HasScrewAttack()
-        ], energy_tanks_needed=level_4_e_tanks),
-    ], one_way=True)
-]
-
-Sector1TourianExit.connections = [
-    Connection(Sector1ThirdStabilizerZone, [
-        Requirement("Break Out of Tourian Exit toward Stabilizers", [
-            # Must defeat SW or SE Stabilizers
-            CanDamageStabilizer(),
-            CanDamageAnyGeron()
-        ],  items_needed={"Space Jump", "Screw Attack", "Wave Beam", "Morph Ball"},
-        energy_tanks_needed=level_4_e_tanks),
-    ], one_way=True),
-    Connection(Sector1TourianHub, [
-        Requirement("Break Into Tourian from Exit", [
-            HasSpaceJump("Fly"),
-            CanDoSimpleWallJump()
-        ], [
-            HasWaveBeam("Can Open Shutter Gate Backwards"),
-            PONRRequirement("PONR - Break Into Tourian from Exit")
-        ], items_needed={"Missile Data", "Screw Attack", "Morph Ball"},
-        energy_tanks_needed=level_3_e_tanks),
-    ], one_way=True)
-]
-
-Sector1TourianHub.connections = [
-    Connection(Sector1TourianExit, [
-        HasMissile("Open and Enter Tunnel to Tourian Exit", [
-            HasSpaceJump(),
-            CanDoAdvancedWallJump()
-        ], items_needed={"Morph Ball", "Screw Attack", "Wave Beam"},
-        energy_tanks_needed=level_4_e_tanks),
-    ]),
-    Connection(Sector1TourianHubElevatorTop, [
-        Requirement("Traverse Tourian Hub to/from Tourian Elevator", [
-            HasSpaceJump(),
-            CanDoSimpleWallJump()
-        ], [
-            # Pinnacle of Movement and Avoidance
-            CanDoExpertCombat(),
-            CanDoAdvancedCombat(None, [
-                # Gerubus HP is between 41 and 45
-                CanDamageToughEnemy("Kill Pirate and Kill/Stun Gerubus", enemy_hp=(90 + (2 * 45)))
-            ], [
-                HasIceBeam("Freeze Ripper")
-            ]),
-            HasMissile("Trickless Combat", [
-                CanFreezeEnemies(missile_ammo_needed=10),
-                HasScrewAttack("Kill Everything")
-            ])
-        ], energy_tanks_needed=level_4_e_tanks)
-    ])
-]
-
-Sector1TourianHubElevatorTop.connections = [
-    VariableConnection(Sector6RestrictedZoneElevatorToTourian, []),
-    Connection(Sector1TourianHub, [
-        PONRRequirement("PONR - Leaving Tourian Elevator",
-                        energy_tanks_needed=level_4_e_tanks),
-    ], one_way=True)
+TourianElevatorTop.connections = [
+    VariableConnection(RestrictedElevatorBottom, True_),
+    Connection(RipperMazeLeft, True_)
 ]
 
 Sector1TubeLeft.connections = [
-    VariableConnection(Sector3TubeRight, [])
+    VariableConnection(Sector3TubeRight, True_),
+    Connection(LavaLakeAnnex, HasAll("Screw Attack", "Morph Ball"))
 ]
 
 Sector1TubeRight.connections = [
-    Connection(Sector1Antechamber, [
-        CanBallJump("Jump Into Tunnel")
-    ]),
-    VariableConnection(Sector2TubeLeft, [])
+    VariableConnection(Sector2TubeLeft, True_),
+    Connection(AntechamberTop, CanBallJump())
 ]
+
+# Region Connections
+
+EntranceNavigation.connections = [
+    Connection(Sector1EntranceElevatorBottom, True_),
+    Connection(EntranceSave, True_)
+]
+
+EntranceSave.connections = [
+    Connection(EntranceNavigation, True_),
+    Connection(EntranceRecharge, True_)
+]
+
+EntranceRecharge.connections = [
+    Connection(EntranceSave, True_),
+    Connection(EntranceLobby, True_)
+]
+
+EntranceLobby.connections = [
+    Connection(EntranceRecharge, True_),
+    Connection(AntechamberBottom, Has("Level 2 Keycard")),
+    Connection(LavaLakeAnnex, Has("Level 1 Keycard")),
+    Connection(YamebaCorridor, True_)
+]
+
+AntechamberBottom.connections = [
+    Connection(EntranceLobby, Has("Level 2 Keycard")),
+    Connection(AntechamberTop, And(
+        Has("Screw Attack"),
+        CanJumpHigh()
+    ))
+]
+
+AntechamberTop.connections = [
+    Connection(AntechamberBottom, And(
+        Has("Screw Attack"),
+        Or(
+            CanJumpHigh(),
+            CanPONR()
+        )
+    )),
+    Connection(Sector1TubeRight, Has("Morph Ball"))
+]
+
+LavaLakeAnnex.connections = [
+    Connection(EntranceLobby, Has("Level 1 Keycard")),
+    Connection(Sector1TubeLeft, HasAll("Screw Attack", "Morph Ball")),
+    Connection(LavaLake, And(
+        Has("Level 2 Keycard"),
+        Or(
+            CanLavaDive(),
+            And(
+                Has("Energy Tank"),
+                HasAny("Varia Suit", "Gravity Suit"),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.BEGINNER.value)})
+            ),
+            And(
+                Has("Energy Tank", 2),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)}),
+            )
+        )
+    ))
+]
+
+LavaLake.connections = [
+    Connection(LavaLakeAnnex, And(
+        Has("Level 2 Keycard"),
+        Or(
+            CanLavaDive(),
+            And(
+                Has("Energy Tank"),
+                HasAny("Varia Suit", "Gravity Suit"),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.BEGINNER.value)})
+            ),
+            And(
+                Has("Energy Tank", 2),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)})
+            )
+        )
+    )),
+    Connection(ZebesianZig, True_)
+]
+
+YamebaCorridor.connections = [
+    Connection(EntranceLobby, Or(
+        CanDamageSmallGeron(),
+        And(
+            connection_to(AtmosphericStabilizerNortheast, TwinJunctionsWest),
+            CanDamageSmallGeron(speed_booster_override=True),
+            TricksEnabled({
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)
+            }),
+            Or(
+                And(
+                    TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
+                    HasAny("Plasma Beam", "Charge Beam")
+                ),
+                And(
+                    TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
+                    HasAny("Wave Beam", "Wide Beam")
+                )
+            )
+        )
+    )),
+    Connection(AtmosphericStabilizerNorthwest, Or(
+        CanDamageSmallGeron(),
+        And(
+            CanDamageSmallGeron(speed_booster_override=True),
+            TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)})
+        )
+    ))
+]
+
+AtmosphericStabilizerNorthwest.connections = [
+    Connection(YamebaCorridor, connection_to(YamebaCorridor, EntranceLobby)),
+    Connection(HornoadHole, Or(
+        CanDamageStabilizer(),
+        And(
+            # Can Destroy via Shinespark
+            CanDamageStabilizer(speed_booster_override=True),
+            TricksEnabled({
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
+            })
+        )
+    ))
+]
+
+HornoadHole.connections = [
+    Connection(AtmosphericStabilizerNorthwest, connection_to(YamebaCorridor, EntranceLobby)),
+    Connection(TwinJunctionsWest, True_)
+]
+
+TwinJunctionsWest.connections = [
+    Connection(HornoadHole, True_),
+    Connection(TwinJunctionsEast, True_),
+    Connection(MotoMotorway, True_),
+    Connection(AtmosphericStabilizerNortheast, Or(
+        connection_to(AtmosphericStabilizerNortheast, TwinJunctionsWest),
+        CanPONR()
+    ))
+]
+
+AtmosphericStabilizerNortheast.connections = [
+    Connection(TwinJunctionsWest, Or(
+        CanDamageStabilizer(),
+        And(
+            CanDamageStabilizer(speed_booster_override=True),
+            TricksEnabled({
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)
+            }),
+        )
+    ))
+]
+
+MotoMotorway.connections = [
+    Connection(TwinJunctionsWest, True_),
+    Connection(ZebesianZig, True_)
+]
+
+ZebesianZig.connections = [
+    Connection(LavaLake, True_),
+    Connection(SciserPuddle, Or(
+        CanClearEnemy(enemy=Enemy.ZEBESIAN_WALL, enemy_count=8),
+        CanFreezeEnemies(8),
+        # Pacifist
+        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
+    ))
+]
+
+SciserPuddle.connections = [
+    Connection(ZebesianZig, True_),
+    Connection(AtmosphericStabilizerSouthwest, True_)
+]
+
+AtmosphericStabilizerSouthwest.connections = [
+    Connection(SciserPuddle, Or(
+        CanDamageStabilizer(),
+        And(
+            CanDamageStabilizer(speed_booster_override=True),
+            TricksEnabled({
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)
+            }),
+            # Check if you can pass through and clear Atmospheric Stabilizer Southeast
+            CanReachRegion(ZebesianZag.name)
+        )
+    )),
+    Connection(MotoManor, CanDamageStabilizer())
+]
+
+MotoManor.connections = [
+    Connection(AtmosphericStabilizerSouthwest, True_),
+    Connection(TourianTrapdoorTop, True_)
+]
+
+TourianTrapdoorTop.connections = [
+    Connection(MotoManor, True_),
+    Connection(TourianTrapdoorBottom, And(
+        Has("Screw Attack"),
+        Or(
+            CanPONR(),
+            connection_to(TourianTrapdoorBottom, TourianTrapdoorTop)
+        )
+    )),
+    Connection(AtmosphericStabilizerSoutheast, True_)
+]
+
+AtmosphericStabilizerSoutheast.connections = [
+    Connection(TourianTrapdoorTop, CanLeaveStabilizerSoutheast()),
+    Connection(StabilizerStorage, CanLeaveStabilizerSoutheast()),
+    Connection(ZebesianZag, CanLeaveStabilizerSoutheast())
+]
+
+StabilizerStorage.connections = [
+    Connection(AtmosphericStabilizerSoutheast, True_)
+]
+
+ZebesianZag.connections = [
+    Connection(AtmosphericStabilizerSoutheast, True_),
+    Connection(TwinJunctionsEastShutter, Or(
+        HasAny("Charge Beam", "Missile Data"),
+        CanFreezeEnemies(5),
+        CanPowerBomb(),
+        And(
+            Has("Screw Attack"),
+            Or(
+                Has("Space Jump"),
+                # Requires spin cancel to prevent destroying the platforms.
+                TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.BEGINNER.value)})
+            )
+        ),
+        # Pacifist
+        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
+        # Set to require a trick to not confuse trickless players
+        TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value)}),
+        And(
+            HasEnergy(170),
+            TricksEnabled({
+                (TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.BEGINNER.value)
+            })
+        )
+    ))
+]
+
+TwinJunctionsEastShutter.connections = [
+    Connection(ZebesianZag, Has("Wave Beam")),
+    Connection(SciserPlayground, True_)
+]
+
+SciserPlayground.connections = [
+    Connection(TwinJunctionsEastShutter, True_),
+    Connection(ChargeCoreLowerAccess, Has("Morph Ball"))
+]
+
+ChargeCoreLowerAccess.connections = [
+    Connection(HornoadHousing, Or(
+        Has("Morph Ball"),
+        CanDestroyBombBlocks()
+    )),
+    Connection(WateringHole, Or(
+        CanDestroyBombBlocks(),
+        And(
+            Has("Speed Booster"),
+            TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)})
+        )
+    )),
+    Connection(ChargeCoreArena, CanClearEnemy(enemy=Enemy.GADORA))
+]
+
+WateringHole.connections = [
+    Connection(ChargeCoreLowerAccess, True_)
+]
+
+HornoadHousing.connections = [
+    Connection(ChargeCoreLowerAccess, True_),
+    Connection(CentralSave, True_)
+]
+
+CentralSave.connections = [
+    Connection(HornoadHousing, True_)
+]
+
+ChargeCoreArena.connections = [
+    Connection(ChargeCoreLowerAccess, IsLocationCollected("Sector 1 (SRX) -- Charge Core Arena -- Core X")),
+    Connection(ChargeCoreUpperAccess, IsLocationCollected("Sector 1 (SRX) -- Charge Core Arena -- Core X"))
+]
+
+ChargeCoreUpperAccess.connections = [
+    Connection(ChargeCoreArena, True_),
+    Connection(AtmosphericStabilizerCentral, True_),
+    Connection(CrabRave, HasAll("Morph Ball", "Missile Data"))
+]
+
+AtmosphericStabilizerCentral.connections = [
+    Connection(ChargeCoreUpperAccess, Or(
+        And(
+            # Vanilla
+            CanDamageStabilizer(),
+            Has("Morph Ball")
+        ),
+        And(
+            # Charge Beam flare only
+            # Video demonstration: https://youtu.be/EYzjWUclb_0
+            Has("Charge Beam"),
+            TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)})
+        ),
+        And(
+            # Damage boost into the Geron to get past the shielding
+            # Video demonstration: https://youtu.be/Mp9YwFW3dLM
+            HasAny("Charge Beam", "Missile Data"),
+            TricksEnabled({
+                (TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)
+            })
+        ),
+        And(
+            # Shinespark kill from Twin Junction East
+            # Video demonstration: https://youtu.be/2biI4SB_wAs
+            HasAll("Speed Booster", "Wave Beam"),
+            TricksEnabled({
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.SHINESPARK.value, TrickDifficulty.INTERMEDIATE.value)
+            })
+        )
+    )),
+    Connection(TwinJunctionsWestShutter, Or(
+        And(
+            # Vanilla
+            CanDamageStabilizer(),
+            Has("Morph Ball")
+        ),
+        And(
+            # Charge Beam flare only
+            # Video demonstration: https://youtu.be/EYzjWUclb_0
+            Has("Charge Beam"),
+            TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)})
+        ),
+        And(
+            # Damage boost into the Geron to get past the shielding
+            # Video demonstration: https://youtu.be/Mp9YwFW3dLM
+            HasAny("Charge Beam", "Missile Data"),
+            TricksEnabled({
+                (TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value),
+                (TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)
+            })
+        )
+    ))
+]
+
+TwinJunctionsWestShutter.connections = [
+    Connection(AtmosphericStabilizerCentral, Has("Wave Beam")),
+    Connection(TwinJunctionsEast, True_)
+]
+
+TwinJunctionsEast.connections = [
+    Connection(TwinJunctionsWestShutter, True_),
+    Connection(TwinJunctionsWest, True_),
+    Connection(TwinJunctionsSave, True_)
+]
+
+TwinJunctionsSave.connections = [
+    Connection(TwinJunctionsEast, True_),
+    Connection(WallJumpTutorial, Or(
+        CanBallJump(),
+        And(
+            Has("Morph Ball"),
+            TricksEnabled({(TrickType.MIDAIR_MORPH.value, TrickDifficulty.BEGINNER.value)})
+        )
+    ))
+]
+
+WallJumpTutorial.connections = [
+    Connection(TwinJunctionsSave, Has("Morph Ball"))
+]
+
+TourianTrapdoorBottom.connections = [
+    Connection(TourianTrapdoorTop, And(
+        Has("Screw Attack"),
+        Or(
+            Has("Space Jump"),
+            And(
+                CanFreezeEnemies(4, 10, 20),
+                Or(
+                    And(
+                        # Wall Jump only
+                        TricksEnabled({
+                            (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.MASTER.value),
+                            (TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value)
+                        }),
+                    ),
+                    And(
+                        Has("Hi-Jump"),
+                        Or(
+                            And(
+                                # Hi-Jump + Wall Jump
+                                TricksEnabled({
+                                    (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.INTERMEDIATE.value),
+                                    (TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)
+                                })
+                            ),
+                            # Hi-Jump only
+                            TricksEnabled({(TrickType.FROZEN_ENEMIES.value, TrickDifficulty.ADVANCED.value)})
+                        )
+                    )
+                )
+            )
+        )
+    )),
+    Connection(RipperSauna, True_)
+]
+
+RipperSauna.connections = [
+    Connection(TourianTrapdoorBottom, And(
+        HasAll("Morph Ball", "Screw Attack", "Wave Beam"),
+        Or(
+            Has("Space Jump"),
+            And(
+                # Video demonstration: https://youtu.be/BPF8pppB7po
+                HasEnergy(130),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)})
+            ),
+            And(
+                # Video demonstration: https://youtu.be/rjzsSJlkeKw
+                CanFreezeEnemies(5),
+                TricksEnabled({(TrickType.FROZEN_ENEMIES.value, TrickDifficulty.ADVANCED.value)})
+            )
+        )
+    )),
+    Connection(TourianTower, And(
+        HasAll("Morph Ball", "Screw Attack"),
+        Or(
+            CanBallJump(),
+            TricksEnabled({(TrickType.MIDAIR_MORPH.value, TrickDifficulty.INTERMEDIATE.value)})
+        ),
+        Or(
+            Has("Space Jump"),
+            And(
+                # Video demonstration: https://youtu.be/BPF8pppB7po
+                HasEnergy(90),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)})
+            ),
+            And(
+                # Video demonstration: https://youtu.be/rjzsSJlkeKw
+                CanFreezeEnemies(5),
+                TricksEnabled({(TrickType.FROZEN_ENEMIES.value, TrickDifficulty.ADVANCED.value)})
+            )
+        ),
+        Or(
+            Has("Wave Beam"),
+            CanPONR()
+        )
+    ))
+]
+
+TourianTower.connections = [
+    Connection(RipperSauna, HasAll("Morph Ball", "Screw Attack")),
+    Connection(TourianCheckpoint, And(
+        HasAll("Morph Ball", "Screw Attack"),
+        Or(
+            Has("Space Jump"),
+            And(
+                Has("Wall Jump Boots"),
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+            )
+        )
+    ))
+]
+
+TourianCheckpoint.connections = [
+    Connection(TourianTower, Has("Wave Beam")),
+    Connection(TourianEasternHubCheckpoint, Or(
+        Has("Wave Beam"),
+        CanPONR()
+    ))
+]
+
+TourianEasternHubCheckpoint.connections = [
+    Connection(TourianCheckpoint, True_),
+    Connection(TourianEasternHubLadder, And(
+        HasAll("Missile Data", "Morph Ball"),
+        HasMissileAmmo(3)
+    )),
+    Connection(TourianEasternHub, And(
+        HasAll("Missile Data", "Morph Ball"),
+        HasMissileAmmo(3)
+    ))
+]
+
+TourianEasternHubLadder.connections = [
+    Connection(TourianEasternHubCheckpoint, And(
+        HasAll("Missile Data", "Morph Ball"),
+        HasMissileAmmo(3)
+    )),
+    Connection(GoldPirateCrossing, CanDestroyBombBlocks(chain=True)),
+    Connection(TourianEasternHub, True_)
+]
+
+GoldPirateCrossing.connections = [
+    Connection(TourianEasternHubLadder, CanDestroyBombBlocks(chain=True)),
+    Connection(TourianWesternHub, And(
+        CanDestroyBombBlocks(chain=True),
+        Or(
+            Has("Wave Beam"),
+            And(
+                CanPowerBomb(),
+                HasPowerBombAmmo(2)
+            )
+        ),
+        CanClearEnemy(enemy=Enemy.ZEBESIAN_GOLD, enemy_count=2)
+    ))
+]
+
+TourianWesternHub.connections = [
+    Connection(GoldPirateCrossing, Or(
+        Has("Space Jump"),
+        And(
+            Has("Wall Jump Boots"),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+        )
+    )),
+    Connection(TourianSaveWest, True_),
+    Connection(GenesisHabitation, True_),
+    Connection(NeoRidleyArenaAccess, True_)
+]
+
+TourianSaveWest.connections = [
+    Connection(TourianWesternHub, True_)
+]
+
+GenesisHabitation.connections = [
+    Connection(TourianWesternHub, True_)
+]
+
+NeoRidleyArenaAccess.connections = [
+    Connection(TourianWesternHub, Or(
+        Has("Screw Attack"),
+        CanFreezeEnemies(6),
+        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
+        And(
+            HasEnergy(150),
+            TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+        )
+    )),
+    Connection(NeoRidleyArena, And(
+        CanClearEnemy(enemy=Enemy.GADORA),
+        Or(
+            Has("Screw Attack"),
+            CanFreezeEnemies(6),
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
+            And(
+                HasEnergy(150),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+            )
+        )
+    ))
+]
+
+NeoRidleyArena.connections = [
+    Connection(NeoRidleyArenaAccess, And(
+        IsLocationCollected("Sector 1 (SRX) -- Neo-Ridley Arena"),
+        Or(
+            Has("Space Jump"),
+            And(
+                # Woe be the man who enables max tricks
+                # Video demonstration: https://youtu.be/3rfQghnP54o
+                CanBomb(),
+                Has("Wall Jump Boots"),
+                TricksEnabled({
+                    (TrickType.WALL_JUMP.value, TrickDifficulty.MASTER.value),
+                    (TrickType.JUMP_EXTEND.value, TrickDifficulty.MASTER.value),
+                    (TrickType.JUMP_BOMB_JUMP.value, TrickDifficulty.MASTER.value)
+                })
+            )
+        )
+    ))
+]
+
+TourianEasternHub.connections = [
+    Connection(TourianSaveEast, True_),
+    Connection(YamebaPool, True_),
+    Connection(Animorphs, Or(
+        CanJumpHigh(),
+        CanPONR()
+    )),
+    Connection(TourianEasternHubLadder, Or(
+        Has("Space Jump"),
+        And(
+            Has("Wall Jump Boots"),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value)})
+        ),
+        And(
+            HasAll("Hi-Jump", "Wall Jump Boots"),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+        )
+    ))
+]
+
+TourianSaveEast.connections = [
+    Connection(TourianEasternHub, True_)
+]
+
+Animorphs.connections = [
+    Connection(TourianEasternHub, Or(
+        Has("Space Jump"),
+        And(
+            HasAll("Hi-Jump", "Wall Jump Boots"),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+        )
+    )),
+    Connection(AnimorphsCache, And(
+        Or(
+            # Kill the snail
+            And(
+                Has("Charge Beam"),
+                Or(
+                    Has("Wave Beam"),
+                    # Charge flare on corner
+                    # Video demonstration: https://youtu.be/6Stz6EU-Zrc
+                    TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)})
+                )
+            ),
+            And(
+                CanPowerBomb(),
+                HasPowerBombAmmo(2)
+            )
+        ),
+        CanClearEnemy(enemy=Enemy.GERUBUS),
+        CanClearEnemy(enemy=Enemy.ZEBESIAN_GOLD)
+    ))
+]
+
+AnimorphsCache.connections = [
+    Connection(Animorphs, True_)
+]
+
+YamebaPool.connections = [
+    Connection(TourianEasternHub, True_),
+    Connection(RipperMazeRight, True_)
+]
+
+RipperMazeRight.connections = [
+    Connection(YamebaPool, True_),
+    Connection(RipperMazeLeft, And(
+        Or(
+            # Pass Rippers
+            HasAny("Morph Ball", "Screw Attack"),
+            And(
+                # Glitch through frozen Ripper
+                # Video demonstration: https://youtu.be/6TSAshOOI-Q
+                CanFreezeEnemies(2),
+                TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)})
+            ),
+            And(
+                HasEnergy(50),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+            ),
+            # Dodge
+            # Video demonstration: https://youtu.be/pmg_d94lKUQ
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)})
+        ),
+        Or(
+            # Pass Gerubus
+            CanClearEnemy(enemy=Enemy.GERUBUS, enemy_count=2),
+            And(
+                # Dodge
+                # Video demonstration: https://youtu.be/mpN1LGf4lmU
+                Has("Morph Ball"),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.BEGINNER.value)})
+            ),
+            And(
+                HasEnergy(101),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+            )
+        ),
+        Or(
+            # Pass triple Rippers
+            And(
+                Has("Screw Attack"),
+                Or(
+                    Has("Space Jump"),
+                    And(
+                        Has("Wall Jump Boots"),
+                        TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+                    )
+                )
+            ),
+            And(
+                # Video demonstration: https://youtu.be/1-vVlBiw0og
+                CanFreezeEnemies(3),
+                Or(
+                    Has("Space Jump"),
+                    And(
+                        Has("Wall Jump Boots"),
+                        TricksEnabled({
+                            (TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value),
+                            (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.INTERMEDIATE.value)
+                        })
+                    )
+                )
+            ),
+            And(
+                # Damage Boost
+                # Video demonstration: https://youtu.be/uyPIOm9rYyQ
+                HasEnergy(101),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value)}),
+                Or(
+                    Has("Space Jump"),
+                    And(
+                        HasAll("Hi-Jump", "Wall Jump Boots"),
+                        TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value)})
+                    )
+                )
+            ),
+            And(
+                # Damage Boost, Wall Jump only
+                # Video demonstration: https://youtu.be/twrTcGHR8SM
+                HasEnergy(201),
+                Has("Wall Jump Boots"),
+                TricksEnabled({
+                    (TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value),
+                    (TrickType.DAMAGE_BOOST.value, TrickDifficulty.ADVANCED.value)
+                })
+            ),
+            And(
+                # Space Jump No-Hit
+                # Video demonstration: https://youtu.be/M2fDkXlM8LU
+                Has("Space Jump"),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)})
+            )
+        )
+    ))
+]
+
+RipperMazeLeft.connections = [
+    Connection(TourianElevatorTop, True_),
+    Connection(RipperMazeRight, And(
+        Or(
+            CanJumpHigh(),
+            And(
+                Has("Wall Jump Boots"),
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+            )
+        ),
+        Or(
+            # Pass triple Rippers
+            Has("Screw Attack"),
+            CanFreezeEnemies(3),
+            # Video demonstration: https://youtu.be/66mAKLiF8z4
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
+            And(
+                HasEnergy(50),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+            )
+        ),
+        Or(
+            # Pass Gerubus
+            CanClearEnemy(enemy=Enemy.GERUBUS),
+            And(
+                # Dodge
+                # Video demonstration: https://youtu.be/mpN1LGf4lmU
+                Has("Morph Ball"),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.BEGINNER.value)})
+            ),
+            And(
+                HasEnergy(101),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+            )
+        ),
+        Or(
+            # Pass Rippers
+            HasAny("Morph Ball", "Screw Attack"),
+            And(
+                # Glitch through frozen Ripper
+                # Video demonstration: https://youtu.be/6TSAshOOI-Q
+                CanFreezeEnemies(2),
+                TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.INTERMEDIATE.value)})
+            ),
+            And(
+                HasEnergy(50),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+            ),
+            # Dodge
+            # Video demonstration: https://youtu.be/X-rHiHQ7Sxw
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)})
+        )
+    )),
+]
+
+
 
 # Item Locations
-Sector1AfterChargeCoreZone.locations = [
-    FusionLocation("Sector 1 (SRX) -- Crab Rave", False, [
-        HasMorph("Enter Crab Rave", [
-            HasMissile()
-        ])
-    ])
+CrabRave.locations = [
+    FusionLocation("Sector 1 (SRX) -- Crab Rave", False, True_)
 ]
 
-Sector1Antechamber.locations = [
-    FusionLocation("Sector 1 (SRX) -- Antechamber", False, [])
+AntechamberTop.locations = [
+    FusionLocation("Sector 1 (SRX) -- Antechamber", False, True_)
 ]
 
-Sector1ChargeCoreZone.locations = [
-    FusionLocation("Sector 1 (SRX) -- Charge Core Arena -- Core X", True, [
-        CanDamageCoreX()
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Charge Core Arena -- Upper Item", False, [
-        HasSpeedBooster("Obtain Charge Core Upper Item", [
-            CanDamageCoreX("Kill the Core X First"),
-            PONRRequirement("PONR - Obtain Charge Core Upper Item")
-        ])
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Watering Hole", False, [
-        CanBallJump("Grab Watering Hole Item", [
-            CanSpeedBoosterUnderwater(),
-            # When new trick level is ready to unleash in the YAML
-            # Video proof: https://www.youtube.com/watch?v=7CrmoeqlIUk
-            CanDoExpertShinespark("Watering Hole - The 7 Frame Window", [HasChargeBeam("Pseudo-Screw the Crab")])
-        ], [
-            CanDoAdvancedShinespark("Avoid the Crab"),
-            CanDoBeginnerShinespark("Alternate Kill the Crab", [
-                HasWaveBeam(),
-                CanDo10MissileDamage(),
-                CanPowerBomb()
-            ]),
-            Requirement("Trickless - Kill the Crab", [
-                HasScrewAttack(),
-                HasChargeBeam(),
-                HasPlasmaBeam()
-            ])
-        ])
-    ])
+ChargeCoreArena.locations = [
+    FusionLocation("Sector 1 (SRX) -- Charge Core Arena -- Core X", True,
+                   CanClearEnemy(enemy=Enemy.CORE_X_CHARGE)),
+    FusionLocation("Sector 1 (SRX) -- Charge Core Arena -- Upper Item", False, And(
+        Has("Speed Booster"),
+        Or(
+            And(
+                # Trickless
+                # Video demonstration: https://youtu.be/Z6_miH4qoQY
+                Has("Hi-Jump"),
+                IsLocationCollected("Sector 1 (SRX) -- Charge Core Arena -- Core X"),
+            ),
+            # Video demonstration: https://youtu.be/Fo8-jjuPdik
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)}),
+            And(
+                # Video demonstration: https://youtu.be/q7HKdMt4v3g
+                Has("Hi-Jump"),
+                TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.INTERMEDIATE.value)})
+            )
+        )
+    ))
 ]
 
-Sector1FirstStabilizerZone.locations = [
-    FusionLocation("Sector 1 (SRX) -- Atmospheric Stabilizer Northeast", False, [
-        Requirement("Collect Atmospheric Stabilizer NE Item", [
-            PONRRequirement("PONR - Collect Atmospheric Stabilizer NE Item"),
-            CanDamageStabilizer("Atmospheric Stabilizer NE - Vanilla"),
-            CanDamageAnyGeron("Atmospheric Stabilizer NE - Alternate"),
-            # Video proof: https://www.youtube.com/watch?v=I9YH_s989sQ
-            CanDoExpertShinespark("Atmospheric Stabilizer NE - Shinespark"),
-        ])
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Hornoad Hole", False, [
-        HasMorph("Secret Tunnel")
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Wall Jump Tutorial", False, [
-        HasMorph("Enter Wall Jump Tutorial", [
-            HasWallJump(),
-            HasSpaceJump()
-        ]),
-        CanBallJump("Enter Wall Jump Tutorial - Skill Issue", [
-            HasWallJump(),
-            HasSpaceJump()
-        ])
-    ])
+WateringHole.locations = [
+    FusionLocation("Sector 1 (SRX) -- Watering Hole", False, And(
+        Has("Speed Booster"),
+        CanBallJump(),
+        Or(
+            Has("Gravity Suit"),
+            And(
+                # The 7-frame Window
+                # Video demonstration: https://youtu.be/7CrmoeqlIUk
+                Has("Charge Beam"),
+                TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)})
+            )
+        ),
+        Or(
+            HasAny("Charge Beam", "Missile Data", "Plasma Beam"),
+            And(
+                Has("Wide Beam"),
+                HasAny("Ice Beam", "Wave Beam")
+            ),
+            CanScrewAttackUnderwater(),
+            # Maintain spark until Sciser is dead
+            # Video demonstration: https://youtu.be/QnQD7K9hcB8
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)})
+        )
+    ))
 ]
 
-Sector1FourthStabilizerZone.locations = [
-    FusionLocation("Sector 1 (SRX) -- Stabilizer Storage", False, [
-        CanDamageStabilizer("Can Kill Atmospheric Stabilizer SE - Vanilla"),
-        CanDamageAnyGeron("Can Kill Atmospheric Stabilizer SE - Alternate", [
-            HasHiJump(),
-            CanDoSimpleWallJump(),
-            Requirement(hard_items_needed={"Power Bomb Data"})
-        ])
-    ])
+AtmosphericStabilizerNortheast.locations = [
+    FusionLocation("Sector 1 (SRX) -- Atmospheric Stabilizer Northeast", False, True_)
 ]
 
-Sector1SecondStabilizerZone.locations = [
-    FusionLocation("Sector 1 (SRX) -- Lava Lake -- Lower Item", False, [
-        CanLavaDive("Lava Bath - Enter Tunnel", [
-            HasMorph()
-        ])
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Lava Lake -- Upper Left Item", False, [
-        HasSpaceJump("Lava Lake Far Shelf - Fly"),
-        CanDoBeginnerShinespark("Lava Lake Far Shelf - Shinespark")
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Lava Lake -- Upper Right Item", False, []),
+HornoadHole.locations = [
+    FusionLocation("Sector 1 (SRX) -- Hornoad Hole", False, Has("Morph Ball"))
 ]
 
-Sector1TourianHub.locations = [
-    FusionLocation("Sector 1 (SRX) -- Animorphs Cache", False, [
-        CanDamageToughEnemy("Kill the Yard", [
-            # Kill the Gerubus
-            CanDefeatGerubus()
-        ], [
-            # Kill the Golden Pirate
-            CanDamageToughEnemy("Kill the Golden Pirate", enemy_hp=135, immunities={"Beam", "Power Bomb"})
-        ], [
-            PONRRequirement("PONR - Enter and Collect Animorphs"),
-            HasSpaceJump("Fly out of Animorphs Cache"),
-            CanDoSimpleWallJump("Wall Jump out of Animorphs Cache", [
-                HasHiJump()
-            ])
-        ], enemy_hp=60, behind_wall=True)
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Neo-Ridley Arena", True, [
-        Requirement("Enter Neo-Ridley Arena", [
-            # Destroy Bomb Wall
-            CanBomb(),
-            CanPowerBomb()
-        ], [
-            # Can Kill Genesis under floor
-            HasWaveBeam(),
-            CanPowerBomb(power_bomb_ammo_needed=2)
-        ], [
-            # Can Kill Golden Pirates
-            CanDamageToughEnemy("Kill Golden Pirates", enemy_hp=(135 * 2), immunities={"Beam", "Power Bomb"})
-        ], [
-            # Do Ridley Fight
-            CanFightLateGameBoss("Ridley Trickless", energy_tanks_needed=level_4_e_tanks, boss_hp=4500,
-                                 immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"}),
-            CanFightLateGameBossOnAdvanced("Ridley On Advanced", [
-                HasPlasmaBeam()
-            ], boss_hp=4500, immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"}),
-            CanFightBossOnExpert("Ridley On Expert", boss_hp=4500,
-                                 immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"})
-        ], [
-            HasSpaceJump("Can Leave Neo-Ridley Arena"),
-            PONRRequirement("PONR - Neo-Ridley Arena")
-        ])
-    ]),
-    FusionLocation("Sector 1 (SRX) -- Ripper Maze", False, [
-        HasMorph("Collect Ripper Maze Item", [
-            CanBallJump("Can Leave after Ripper Maze Item"),
-            PONRRequirement("PONR - Ripper Maze Item")
-        ], [
-            # Mobility Requirements
-            HasSpaceJump(),
-            CanDoSimpleWallJump()
-        ], [
-            # Dealing with Rippers
-            CanFreezeEnemies(missile_ammo_needed=5),
-            HasScrewAttack()
-        ], [
-            CanUseDiffusionMissile(),
-            # Can be done without Diffusion. Awaiting trick identity
-            # HasMissile(missile_ammo_needed=3)
-        ])
-    ])
+WallJumpTutorial.locations = [
+    FusionLocation("Sector 1 (SRX) -- Wall Jump Tutorial", False, True_)
+]
+
+StabilizerStorage.locations = [
+    FusionLocation("Sector 1 (SRX) -- Stabilizer Storage", False, True_)
+]
+
+LavaLake.locations = [
+    FusionLocation("Sector 1 (SRX) -- Lava Lake -- Lower Item", False, And(
+        Has("Morph Ball"),
+        Or(
+            CanLavaDive(),
+            And(
+                # Suitless
+                # Video demonstration: https://youtu.be/GUfsbWoRpzA
+                HasEnergy(150),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)})
+            ),
+            And(
+                # Varia
+                Has("Varia Suit"),
+                HasEnergy(55),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.BEGINNER.value)})
+            ),
+            And(
+                # Gravity
+                Has("Gravity Suit"),
+                HasEnergy(80),
+                TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.BEGINNER.value)})
+            )
+        )
+    )),
+    FusionLocation("Sector 1 (SRX) -- Lava Lake -- Upper Left Item", False, Or(
+        Has("Space Jump"),
+        And(
+            Has("Speed Booster"),
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value)})
+        )
+    )),
+    FusionLocation("Sector 1 (SRX) -- Lava Lake -- Upper Right Item", False, True_),
+]
+
+AnimorphsCache.locations = [
+    FusionLocation("Sector 1 (SRX) -- Animorphs Cache", False, True_),
+]
+
+NeoRidleyArena.locations = [
+    FusionLocation("Sector 1 (SRX) -- Neo-Ridley Arena", True, And(
+        CanClearEnemy(enemy=Enemy.CORE_X_SCREW),
+        Or(
+            # Diddle the Riddle
+            And(
+                # Space Jump Cheese
+                HasAll("Space Jump", "Charge Beam"),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.MASTER.value)})
+            ),
+            # Missiles Only
+            CanDo45MissileDamage(100),
+            CanDo40MissileDamage(113),
+            CanDo35MissileDamage(129),
+            CanDo30MissileDamage(150),
+            CanDo25MissileDamage(180),
+            CanDo20MissileDamage(225),
+            CanDo15MissileDamage(300),
+            HasMissileAmmo(450),
+            And(
+                # Beams only
+                Has("Charge Beam"),
+                Or(
+                    And(
+                        # All Beam
+                        HasAll("Ice Beam", "Plasma Beam", "Wave Beam", "Wide Beam"),
+                        HasEnergy(161)
+                    ),
+                    And(
+                        # Vanilla Beam damage
+                        HasAll("Plasma Beam", "Wide Beam"),
+                        HasAny("Ice Beam", "Wave Beam"),
+                        Or(
+                            HasEnergy(551),
+                            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)})
+                        )
+                    ),
+                    And(
+                        # Plasma & Wide only
+                        HasAll("Plasma Beam", "Wide Beam"),
+                        HasEnergy(751),
+                        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)})
+                    ),
+                    And(
+                        # Plasma Only or All but
+                        HasEnergy(2051),
+                        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)}),
+                        Or(
+                            Has("Plasma Beam"),
+                            HasAll("Ice Beam", "Wave Beam", "Wide Beam"),
+                        )
+                    )
+                )
+            )
+        )
+    ))
+]
+
+RipperMazeLeft.locations = [
+    FusionLocation("Sector 1 (SRX) -- Ripper Maze", False, And(
+        Has("Morph Ball"),
+        Or(
+            CanJumpHigh(),
+            And(
+                Has("Wall Jump Boots"),
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+            )
+        ),
+        Or(
+            CanDo15MissileDamage(),
+            And(
+                TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.ADVANCED.value)}),
+                HasMissileAmmo(3),
+                Or(
+                    Has("Space Jump"),
+                    # Video demonstration: https://youtu.be/8tUjNmvbRDE
+                    TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.INTERMEDIATE.value)}),
+                    And(
+                        CanFreezeEnemies(3),
+                        TricksEnabled({(TrickType.FROZEN_ENEMIES.value, TrickDifficulty.BEGINNER.value)})
+                    )
+                )
+            )
+        ),
+        Or(
+            CanBallJump(),
+            And(
+                TricksEnabled({(TrickType.MIDAIR_MORPH.value, TrickDifficulty.BEGINNER.value)}),
+                CanPONR()
+            )
+        )
+    ))
 ]

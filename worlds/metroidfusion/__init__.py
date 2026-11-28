@@ -216,9 +216,9 @@ class MetroidFusionWorld(World):
                 connecting_region = self.get_region(connection.destination.name)
                 logic_object = LogicObject(self.player, self.options)
                 if self.debug:
-                    # print(f"{'One way connection' if connection.one_way else 'Two way connection'}: "
+                    # print(f"{'Two way connection' if connection.two_way else 'One way connection'}: "
                     #         f"{origin_region.name} to {connecting_region.name}")
-                    logging.info(f"{'One way connection' if connection.one_way else 'Two way connection'}: "
+                    logging.info(f"{'Two way connection' if connection.two_way else 'One way connection'}: "
                                  f"{origin_region.name} to {connecting_region.name}")
                 (logic_object.requirements,
                  logic_object.energy_tanks,
@@ -229,7 +229,7 @@ class MetroidFusionWorld(World):
                     self.options,
                     self.debug)
                 connection_name = f"{origin_region.name} to {connecting_region.name}"
-                entrance_type = EntranceType.ONE_WAY if connection.one_way else EntranceType.TWO_WAY
+                entrance_type = EntranceType.ONE_WAY if not connection.two_way else EntranceType.TWO_WAY
                 if connection.__class__ == VariableConnection:
                     if "Tube" in connection.destination.name:
                         if "Left" in connection.destination.name:

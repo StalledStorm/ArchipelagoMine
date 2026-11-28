@@ -276,10 +276,8 @@ Sector4UpperWaterZone.connections = [
 
 Sector4CargoHold.connections= [
     Connection(Sector4UpperSecurityZone, [
-        CanBallJump(None, [
-            HasGravity(hard_items_needed={"Bomb Data"}),
-            Requirement(hard_items_needed={"Hi-Jump"}),
-        ], energy_tanks_needed=level_4_e_tanks)
+        HasGravity(None, [CanBomb()], energy_tanks_needed=level_4_e_tanks),
+        HasMorph(None, [HasHiJump()], energy_tanks_needed=level_4_e_tanks)
     ])
 ]
 
@@ -291,8 +289,7 @@ Sector4UpperSecurityZone.connections= [
         ]),
     ], one_way=True),
     Connection(Sector4SecurityZone, [
-        CanJumpHighUnderwater("Return from dropping down Aquarium Shaft",
-                              hard_items_needed={"Space Jump"}),
+        HasGravity("Return from dropping down Aquarium Shaft", [HasSpaceJump()]),
         PONRRequirement("PONR - Drop down Aquarium Shaft")
     ], one_way=True)
 ]
@@ -346,8 +343,7 @@ Sector4SecurityZone.connections = [
     ], one_way=True),
     Connection(Sector4UpperSecurityZone, [
         Requirement("Can Climb Aquarium Shaft", [
-            CanJumpHighUnderwater("Space Jump Underwater",
-                                  hard_items_needed={"Space Jump"}),
+            HasGravity("Space Jump Underwater", [HasSpaceJump()]),
             HasKeycard4("Vanilla Game Sequence Break - Skip Diffusion - Partial", [
                 # Get to Upper Security Bypass to charge the initial shinespark
                 CanDo10MissileDamage("Climb Cheddar Bay first", [
@@ -467,7 +463,7 @@ Sector4RightWaterZone.connections = [
                 HasGravity(),
                 CanJumpHigh()
             ], missile_ammo_needed=10),
-            CanJumpHighUnderwater(hard_items_needed={"Space Jump"}),
+            HasGravity("Space Jump Underwater", [HasSpaceJump()]),
         ], [
             # Break Missile Blocks
             CanUseDiffusionMissile(),

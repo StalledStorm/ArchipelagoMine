@@ -1,332 +1,831 @@
 from ..Connection import Connection
 from ..FusionLocation import FusionLocation
-from ..regions.MainDeck import *
-from ..regions.Sector1 import Sector1Hub
-from ..regions.Sector2 import Sector2Hub, Sector2NettoriZone
-from ..regions.Sector3 import Sector3Hub
-from ..regions.Sector4 import Sector4Hub
-from ..regions.Sector5 import Sector5Hub
-from ..regions.Sector6 import Sector6Hub
-from ..Requirement import Requirement, PONRRequirement
-from ..Requirements import *
 from ..VariableConnection import VariableConnection
+from ..FusionRegion import connection_to
 
-# Region Connections
-AuxiliaryReactor.connections = [
-    Connection(ReactorZone, [], one_way=True),
-    Connection(YakuzaZone, [
-        PONRRequirement("PONR - Yakuza Entry Backwards"),
-        HasSpaceJump()
-    ], one_way=True)
-]
+from ..regions.MainDeck import *
+from ..regions.Sector1 import Sector1EntranceElevatorBottom, TourianElevatorTop
+from ..regions.Sector2 import Sector2EntranceElevatorBottom, OvergrownEntranceTunnel
+from ..regions.Sector3 import Sector3EntranceElevatorBottom
+from ..regions.Sector4 import Sector4EntranceElevatorBottom
+from ..regions.Sector5 import Sector5EntranceElevatorBottom
+from ..regions.Sector6 import Sector6EntranceElevatorBottom, AuthorizationCheckpointTunnel
 
-HabitationDeckElevatorBottom.connections = [
-    VariableConnection(HabitationDeckElevatorTop, [])
-]
+from ..rules.FusionRule import *
+from ..rules.FusionTrick import TrickType, TrickDifficulty
+from ..FusionEnemy import Enemy
+from rule_builder.rules import (True_, False_, And, Or, Has, HasAll, HasAllCounts, HasAny,
+                                HasAnyCount, HasFromList, HasFromListUnique, HasGroup, HasGroupUnique,
+                                CanReachLocation, CanReachRegion, CanReachEntrance)
 
-HabitationDeckElevatorTop.connections = [
-    VariableConnection(HabitationDeckElevatorBottom, []),
-    Connection(HabitationDeck, [
-        HasKeycard2("Open Door with Level 2 Keycard")
-    ])
-]
 
-MainDeckHub.connections = [
-    Connection(OperationsDeckElevatorBottom, []),
-    Connection(VentilationZone, [
-        CanDamageSmallGeron("Kill Lower Vent Geron"),
-        CanDamageAnyGeron("Kill Lower Vent Geron with NerfGeronWeakness Disabled")
-    ]),
-    Connection(LowerArachnusArena, [
-        HasMorph("Can Enter and Leave Arachnus Fight Arena")
-    ]),
-    Connection(UpperArachnusArena, [
-        HasMorph("Use Hidden Screw Attack Tunnel", [
-            CanJumpHigh(),
-            CanDoSimpleWallJump()
-        ], [
-            HasScrewAttack()
-        ])
-    ]),
-    Connection(HabitationDeckElevatorBottom, [
-        HasKeycard2("Open Elevator Door with Level 2 Keycard")
-    ]),
-    Connection(SectorHubElevatorTop, [
-        HasMorph("Use Morph Tunnel"),
-        CanDoAdvancedShinespark("Can Shinespark to Sector Hub Elevator")
-    ]),
-    Connection(ReactorZone, [
-        HasMorph("Can Enter Reactor Zone", [
-            HasKeycard4("Open Door to Reactor Zone with Level 4 Keycard"),
-            CanPowerBomb("Can Blow Up Wall to Reactor Zone")
-        ], energy_tanks_needed=level_2_e_tanks)
-    ]),
-    Connection(NexusStorage, [
-        HasKeycard2("Can Enter Nexus Storage", [
-            CanDamageLargeGeron(),
-            CanDamageAnyGeron()
-        ])
-    ])
-]
-
-OperationsDeckElevatorBottom.connections = [
-    VariableConnection(OperationsDeckElevatorTop, [])
-]
-
-OperationsDeckElevatorTop.connections = [
-    VariableConnection(OperationsDeckElevatorBottom, []),
-    Connection(OperationsDeck, [])
-]
-
-OperationsDeck.connections = [
-    Connection(VentilationZone, [
-        HasMissile("Can Break Ventilation Cap", [
-            CanDamageSmallGeron(),
-            CanDamageAnyGeron()
-        ], missile_ammo_needed=1)
-    ], one_way=True)
-]
-
-ReactorZone.connections = [
-    Connection(YakuzaZone, [
-        HasMorph("Can Access Yakuza - Vanilla Route", [
-            # 6 Zebesian (ground) and 1 Gadora
-            CanDamageToughEnemy("Can Kill Pirates and Eyedoor", [CanDamageGadora()], enemy_hp=(90 * 6))
-        ], [
-            CanBomb("Destroy Block with Bomb"),
-            CanPowerBomb("Destroy Block with Power Bomb"),
-            HasWaveBeam("Destroy Block with Wave Beam")
-        ], [
-            HasSpaceJump("Can Enter and Fly out of Yakuza's Arena"),
-            PONRRequirement("PONR - Can Enter Yakuza's Arena")
-        ]),
-    ], one_way=True),
-    Connection(AuxiliaryReactor, [
-        HasWaveBeam("Can Open Auxiliary Gate Backwards"),
-        HasMorph("Can Skip Yakuza - Vanilla Route", [
-            # 6 Zebesian (ground) and 1 Gadora
-            CanDamageToughEnemy("Can Kill Pirates and Eyedoor", [CanDamageGadora()], enemy_hp=(90 * 6))
-        ], [
-            CanBomb("Destroy Block with Bomb"),
-            CanPowerBomb("Destroy Block with Power Bomb"),
-            HasWaveBeam("Destroy Block with Wave Beam")
-        ], [
-            HasSpaceJump("Can Skip Yakuza Fight")
-        ])
-    ], one_way=True),
-    Connection(Sector2NettoriZone, [
-        HasSpaceJump("Can Get to Sector 2 Backdoor", [
-            # Can pass them easily, but assume two will be annoying
-            CanDamageToughEnemy("Can Kill Kihunter", enemy_hp=(80 * 2))
-        ], [
-            CanBomb("Traverse Tunnel with Bomb"),
-            CanPowerBomb("Traverse Tunnel with Power Bomb")
-        ], [
-            CanDo10MissileDamage()
-        ])
-    ], one_way=True)
-]
-
-SectorHubElevatorTop.connections = [
-    Connection(MainDeckHub, [
-        PONRRequirement("PONR - Enter Main Deck Hub with Speed Booster - Trickless", [
-            HasSpeedBooster()
-        ])
-    ], one_way=True),
-    VariableConnection(SectorHubElevatorBottom, [])
+# Elevator and Tube Connections
+MainElevatorTop.connections = [
+    VariableConnection(SectorHubElevatorBottom, True_()),
+    Connection(MainElevatorCache, True_()),
+    Connection(MainElevatorAccess, True_())
 ]
 
 SectorHubElevatorBottom.connections = [
-    VariableConnection(SectorHubElevatorTop, []),
-    Connection(SectorHubElevator1Top, []),
-    Connection(SectorHubElevator2Top, []),
-    Connection(SectorHubElevator3Top, [
-        SectorHubLevel1KeycardRequirement("Open Door with Level 1 Keycard")
-    ]),
-    Connection(SectorHubElevator4Top, [
-        SectorHubLevel1KeycardRequirement("Open Door with Level 1 Keycard")
-    ]),
-    Connection(SectorHubElevator5Top, [
-        SectorHubLevel1And2KeycardRequirement("Open Door with Level 2 Keycard")
-    ]),
-    Connection(SectorHubElevator6Top, [
-        SectorHubLevel1And2KeycardRequirement("Open Door with Level 2 Keycard")
-    ])
+    VariableConnection(MainElevatorTop, True_()),
+    Connection(SectorHubElevator1Top, Or(
+        OpenSectorHubElevators(),
+        True_()
+    )),
+    Connection(SectorHubElevator2Top, Or(
+        OpenSectorHubElevators(),
+        True_()
+    )),
 ]
 
 SectorHubElevator1Top.connections = [
-    VariableConnection(Sector1Hub, [])
-]
-
-SectorHubElevator2Top.connections = [
-    VariableConnection(Sector2Hub, [])
+    VariableConnection(Sector1EntranceElevatorBottom, True_()),
+    Connection(SectorHubElevatorBottom, Or(
+        OpenSectorHubElevators(),
+        True_()
+    )),
+    Connection(SectorHubElevator3Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 1 Keycard")
+    ))
 ]
 
 SectorHubElevator3Top.connections = [
-    VariableConnection(Sector3Hub, [])
-]
-
-SectorHubElevator4Top.connections = [
-    VariableConnection(Sector4Hub, [])
+    VariableConnection(Sector3EntranceElevatorBottom, True_()),
+    Connection(SectorHubElevator1Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 1 Keycard")
+    )),
+    Connection(SectorHubElevator5Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 2 Keycard")
+    ))
 ]
 
 SectorHubElevator5Top.connections = [
-    VariableConnection(Sector5Hub, [])
+    VariableConnection(Sector5EntranceElevatorBottom, True_()),
+    Connection(SectorHubElevator3Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 2 Keycard")
+    ))
+]
+
+SectorHubElevator2Top.connections = [
+    VariableConnection(Sector2EntranceElevatorBottom, True_()),
+    Connection(SectorHubElevatorBottom, Or(
+        OpenSectorHubElevators(),
+        True_()
+    )),
+    Connection(SectorHubElevator4Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 1 Keycard")
+    )),
+]
+
+SectorHubElevator4Top.connections = [
+    VariableConnection(Sector4EntranceElevatorBottom, True_()),
+    Connection(SectorHubElevator2Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 1 Keycard")
+    )),
+    Connection(SectorHubElevator6Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 2 Keycard")
+    ))
 ]
 
 SectorHubElevator6Top.connections = [
-    VariableConnection(Sector6Hub, [])
+    VariableConnection(Sector6EntranceElevatorBottom, True_()),
+    Connection(SectorHubElevator4Top, Or(
+        OpenSectorHubElevators(),
+        Has("Level 2 Keycard")
+    )),
+]
+
+HabitationDeckElevatorBottom.connections = [
+    VariableConnection(HabitationDeckElevatorTop, True_()),
+    Connection(CentralNexus, Has("Level 2 Keycard"))
+]
+
+HabitationDeckElevatorTop.connections = [
+    VariableConnection(HabitationDeckElevatorBottom, True_()),
+    Connection(HabitationDeckSave, True_()),
+    Connection(HabitationDeckEntrance, Has("Level 2 Keycard"))
+]
+
+OperationsDeckElevatorBottom.connections = [
+    VariableConnection(OperationsDeckElevatorTop, True_()),
+    Connection(CrewQuartersWest, True_())
+]
+
+OperationsDeckElevatorTop.connections = [
+    VariableConnection(OperationsDeckElevatorBottom, True_()),
+    Connection(OperationsDeck, True_())
+]
+
+# Not a tube, but connects to another sector
+SiloTunnelLeft.connections = [
+    Connection(OvergrownEntranceTunnel, True_()),
+    Connection(SiloTunnelRight, Or(
+        CanDestroyBombBlocks(tunnel=True),
+        IsLocationCollected("Sector 2 (TRO) -- Nettori Arena")
+    ))
+]
+
+# Not a tube, but connects to another sector
+RestrictedBackDoor.connections = [
+    Connection(AuthorizationCheckpointTunnel, And(
+        HasAll("Screw Attack", "Morph Ball"),
+        Or(
+            Has("Space Jump"),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+        )
+    )),
+    Connection(RestrictedSave, Has("Level 4 Keycard"))
+]
+
+RestrictedElevatorBottom.connections = [
+    VariableConnection(TourianElevatorTop, True_()),
+    Connection(RestrictedNavigation, Has("Level 4 Keycard"))
+]
+
+
+# Region Connections
+DockingBayHangar.connections = [
+    Connection(DockingBayAccess, True_())
+]
+
+DockingBayAccess.connections = [
+    Connection(DockingBayHangar, True_()),
+    Connection(DockingBayClimb, True_())
+]
+
+DockingBayClimb.connections = [
+    Connection(DockingBayAccess, True_()),
+    Connection(SiloEntryTop, Or(
+        Has("Level 4 Keycard"),
+        CanPowerBomb()
+    )),
+    Connection(StationEntrance, True_())
+]
+
+StationEntrance.connections = [
+    Connection(DockingBayClimb, True_()),
+    Connection(CentralNexus, True_()),
+    Connection(GenesisSpeedway, Or(
+        CanPowerBomb(),
+        TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.ADVANCED.value)})
+    ))
+]
+
+GenesisSpeedway.connections = [
+    Connection(StationEntrance, Or(
+        CanPowerBomb(),
+        Has("Speed Booster")
+    ))
+]
+
+CentralNexus.connections = [
+    Connection(NexusNavigation, True_()),
+    Connection(HornoadHallway, True_()),
+    Connection(HabitationDeckElevatorBottom, Has("Level 2 Keycard")),
+    Connection(NexusStorage, And(
+        CanDamageLargeGeron(),
+        Has("Level 2 Keycard")
+    )),
+    Connection(DarkStairwellSecretTunnel, And(
+        CanDestroyBombBlocks(),
+        Has("Morph Ball"),
+        TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)})
+    ))
+]
+
+NexusStorage.connections = [
+    Connection(CentralNexus, Has("Level 2 Keycard"))
+]
+
+NexusNavigation.connections = [
+    Connection(CentralNexus, True_()),
+    Connection(DarkStairwell, True_())
+]
+
+DarkStairwellSecretTunnel.connections = [
+    Connection(CentralNexus, And(
+        HasAll("Screw Attack", "Morph Ball"),
+        CanDestroyBombBlocks(tunnel=True),
+        Or(
+            CanBallJump(),
+            TricksEnabled({(TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value)})
+        )
+    )),
+    Connection(DarkStairwell, And(
+        HasAll("Screw Attack", "Morph Ball"),
+        Or(
+            CanBallJump(),
+            TricksEnabled({(TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value)})
+        )
+    ))
+]
+
+DarkStairwell.connections = [
+    Connection(NexusNavigation, True_()),
+    Connection(DarkStairwellSecretTunnel, TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)})),
+    Connection(CubbyHole, Has("Morph Ball")),
+    Connection(QuarantineJunction, True_()),
+    Connection(SubZeroContainment, Has("Level 3 Keycard")),
+]
+
+CubbyHole.connections = [
+    Connection(DarkStairwell, Has("Morph Ball"))
+]
+
+SubZeroContainment.connections = [
+    Connection(DarkStairwell, Has("Level 3 Keycard"))
+]
+
+QuarantineJunction.connections = [
+    Connection(DarkStairwell, True_()),
+    Connection(QuarantineBay, True_()),
+    Connection(MainElevatorAccess, Or(
+        Has("Morph Ball"),
+        TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.INTERMEDIATE.value)})
+    ))
+]
+
+MainElevatorAccess.connections = [
+    Connection(QuarantineJunction, HasAny("Morph Ball", "Speed Booster")),
+    Connection(MainElevatorTop, True_())
+]
+
+MainElevatorCache.connections = [
+    Connection(MainElevatorTop, True_())
+]
+
+HornoadHallway.connections = [
+    Connection(CentralNexus, True_()),
+    Connection(ConcourseSave, True_())
+]
+
+ConcourseSave.connections = [
+    Connection(HornoadHallway, True_()),
+    Connection(Concourse, True_())
+]
+
+Concourse.connections = [
+    Connection(ConcourseSave, True_()),
+    Connection(ConcourseRecharge, True_()),
+    Connection(ConcourseVentilation, Has("Morph Ball")),
+    Connection(CrewQuartersNavigation, True_())
+]
+
+ConcourseVentilation.connections = [
+    Connection(Concourse, Has("Morph Ball")),
+    Connection(LowerArachnusArena, And(
+        Has("Morph Ball"),
+        Or(
+            CanJumpHigh(),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+        )
+    ))
+]
+
+CrewQuartersNavigation.connections = [
+    Connection(Concourse, True_()),
+    Connection(CrewQuartersWest, True_())
+]
+
+CrewQuartersWest.connections = [
+    Connection(OperationsDeckElevatorBottom, True_()),
+    Connection(OperationsVentilationWalkwayLeft, True_()),
+]
+
+OperationsVentilationWalkwayLeft.connections = [
+    Connection(CrewQuartersWest, True_()),
+    Connection(OperationsVentilationWalkwayRight, Or(
+        CanDamageSmallGeron(),
+        And(
+            TricksEnabled({
+                (TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value),
+                (TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value),
+                # Added due to requiring as little wasted movement as possible to maintain the shinespark
+                (TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.ADVANCED.value)
+            })
+        )
+    ))
+]
+
+OperationsVentilationWalkwayRight.connections = [
+    Connection(OperationsVentilationWalkwayLeft, CanDamageSmallGeron()),
+    Connection(CrewQuartersEast, True_()),
+]
+
+CrewQuartersEast.connections = [
+    Connection(OperationsVentilationWalkwayRight, True_()),
+    Connection(CrewQuartersSave, True_()),
+    Connection(OperationsVentilationBottom, True_()),
+    Connection(UpperArachnusArena, CanClearEnemy(enemy=Enemy.GADORA))
+]
+
+CrewQuartersSave.connections = [
+    Connection(CrewQuartersEast, True_())
+]
+
+OperationsDeck.connections = [
+    Connection(OperationsDeckElevatorTop, True_()),
+    Connection(OperationsRoom, CanGoal()),
+    Connection(OperationsDeckNavigation, True_()),
+    Connection(OperationsDeckRecharge, True_()),
+    Connection(OperationsVentilationTop, Has("Missile Data"))
+]
+
+OperationsDeckRecharge.connections = [
+    Connection(OperationsDeck, True_()),
+    Connection(OperationsDeckSave, True_())
+]
+
+OperationsDeckSave.connections = [
+    Connection(OperationsDeckRecharge, True_())
+]
+
+OperationsDeckNavigation.connections = [
+    Connection(OperationsDeck, True_()),
+    Connection(OperationsDeckData, True_())
+]
+
+OperationsRoom.connections = [
+    Connection(OperationsDeck, True_())
+]
+
+OperationsVentilationTop.connections = [
+    Connection(OperationsDeck, True_()),
+    Connection(OperationsVentilationBottom, Has("Missile Data"))
+]
+
+OperationsVentilationBottom.connections = [
+    Connection(CrewQuartersEast, True_()),
+    Connection(OperationsVentilationStorage, True_())
+]
+
+OperationsVentilationStorage.connections = [
+    Connection(OperationsVentilationBottom, True_())
+]
+
+ArachnusArena.connections = [
+    Connection(LowerArachnusArena, Has("Morph Ball"))
 ]
 
 UpperArachnusArena.connections = [
-    Connection(LowerArachnusArena, [
-        PONRRequirement("PONR - Vanilla Route"),
-        HasMorph("Vanilla Route")
-    ], one_way=True),
-    Connection(MainDeckHub, [
-        HasScrewAttack("Use Screw Attack Tunnel, then exit left", [
-            HasMorph()
-        ])
-    ], one_way=True)
+    Connection(Attic, Has("Missile Data")),
+    Connection(LowerArachnusArena, Has("Screw Attack")),
+    Connection(ArachnusArena, Or(
+        Has("Morph Ball"),
+        CanPONR()
+    )),
+    Connection(CrewQuartersEast, IsLocationCollected("Main Deck -- Arachnus Arena -- Core X"))
 ]
 
-VentilationZone.connections = [
-    Connection(UpperArachnusArena, [
-        CanDamageGadora("Enter Arachnus Arena through Eyedoor", [
-            HasMorph("Can Leave Arachnus Arena"),
-            PONRRequirement("PONR - Can Enter Arachnus Fight")
-        ])
-    ], one_way=True)
+LowerArachnusArena.connections = [
+    Connection(UpperArachnusArena, And(
+        Has("Screw Attack"),
+        Or(
+            CanJumpHigh(),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)}),
+            # Video demonstration: https://youtu.be/ycp5oCd5-9I
+            TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.EXPERT.value)})
+        )
+    )),
+    Connection(ConcourseVentilation, Has("Morph Ball")),
+    Connection(ArachnusArena, Has("Morph Ball"))
 ]
 
-YakuzaZone.connections = [
-    Connection(AuxiliaryReactor, [
-        HasSpaceJump("Leave Yakuza Arena")
-    ])
+SiloEntryTop.connections = [
+    Connection(DockingBayClimb, Or(
+        CanPowerBomb(),
+        And(
+            Has("Level 4 Keycard"),
+            Or(
+                CanJumpHigh(),
+                TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+            )
+        )
+    )),
+    Connection(SiloEntryBottom, Has("Morph Ball"))
+]
+
+SiloEntryBottom.connections = [
+    Connection(SiloEntryTop, Has("Morph Ball")),
+    Connection(CentralReactorCoreTop, True_())
+]
+
+CentralReactorCoreTop.connections = [
+    Connection(SiloEntryBottom, True_()),
+    Connection(SiloCatwalkLeft, True_()),
+    Connection(SiloTunnelRight, And(
+        HasAll("Space Jump", "Morph Ball"),
+    )),
+    Connection(CentralReactorCoreBottom, Or(
+        connection_to(CentralReactorCoreBottom, CentralReactorCoreTop),
+        CanPONR()
+    ))
+]
+
+SiloTunnelRight.connections = [
+    Connection(CentralReactorCoreTop, Or(
+        CanDestroyBombBlocks(tunnel=True),
+        IsLocationCollected("Sector 2 (TRO) -- Nettori Arena")
+    ))
+]
+
+CentralReactorCoreBottom.connections = [
+    Connection(CentralReactorCoreTop, Or(
+        CanJumpHigh(),
+        TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)}),
+        And(
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.BEGINNER.value)}),
+            CanClearEnemy(enemy=Enemy.KIHUNTER_GROUND, enemy_count=3)
+        )
+    )),
+    Connection(SiloSave, True_()),
+    Connection(SiloCheckpoint, True_()),
+    Connection(SiloTunnelRight, And(
+        Or(
+            And(
+                Has("Hi-Jump"),
+                TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.EXPERT.value)})
+            ),
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)})
+        ),
+        Or(
+            IsLocationCollected("Sector 2 (TRO) -- Nettori Arena"),
+            CanBallJump(),
+            TricksEnabled({
+                (TrickType.MIDAIR_MORPH.value, TrickDifficulty.ADVANCED.value),
+                # Jump, shoot vine block below, then grab ledge
+                (TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.INTERMEDIATE.value)
+            }),
+        ),
+        Or(
+            # Easy retry to open the shutter backward, or take the long loop through Yakuza's Arena
+            Has("Wave Beam"),
+            TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.MASTER.value)})
+        )
+    ))
+]
+
+SiloSave.connections = [
+    Connection(CentralReactorCoreBottom, True_())
+]
+
+SiloCatwalkLeft.connections = [
+    Connection(CentralReactorCoreTop, True_()),
+    Connection(SiloCatwalkRight, Or(
+        Has("Space Jump"),
+        TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
+        And(
+            # Direct Zebesian Ground contact damage
+            HasEnergy(2 * 94),
+            TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.BEGINNER.value)})
+        ),
+        CanClearEnemy(enemy=Enemy.ZEBESIAN_GROUND, enemy_count=2)
+    ), two_way=True)
+]
+
+SiloCatwalkRight.connections = [
+    Connection(SiloScaffoldingTop, True_())
+]
+
+SiloScaffoldingTop.connections = [
+    Connection(SiloCatwalkRight, True_()),
+    Connection(SiloScaffoldingBottom, And(
+        Or(
+            CanJumpHigh(),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)}),
+            CanPONR()
+        ),
+        Or(
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)}),
+            And(
+                # Direct Zebesian Ground contact damage
+                HasEnergy(2 * 94),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value)})
+            ),
+            CanClearEnemy(enemy=Enemy.ZEBESIAN_GROUND, enemy_count=3)
+        )
+    ))
+]
+
+SiloScaffoldingBottom.connections = [
+    Connection(SiloScaffoldingTop, And(
+        Or(
+            CanJumpHigh(),
+            TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)})
+        ),
+        Or(
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)}),
+            And(
+                # Direct Zebesian Ground contact damage
+                HasEnergy(2 * 94),
+                TricksEnabled({(TrickType.DAMAGE_BOOST.value, TrickDifficulty.INTERMEDIATE.value)})
+            ),
+            CanClearEnemy(enemy=Enemy.ZEBESIAN_GROUND, enemy_count=3)
+        )
+    )),
+    Connection(YakuzaArenaTop, And(
+        Has("Morph Ball"),
+        CanClearEnemy(enemy=Enemy.GADORA),
+        Or(
+            Has("Wave Beam"),
+            CanDo15MissileDamage(),
+            CanBomb(),
+            CanPowerBomb()
+        )
+    ))
+]
+
+YakuzaArenaTop.connections = [
+    Connection(AuxiliaryPowerStation, And(
+        Has("Space Jump"),
+        Or(
+            IsLocationCollected("Main Deck -- Yakuza Arena"),
+            TricksEnabled({(TrickType.KNOWLEDGE.value, TrickDifficulty.BEGINNER.value)})
+        )
+    )),
+    Connection(YakuzaArenaBottom, Or(
+        Has("Space Jump"),
+        CanPONR()
+    ))
+]
+
+YakuzaArenaBottom.connections = [
+    Connection(YakuzaArenaTop, Has("Space Jump"))
+]
+
+AuxiliaryPowerStation.connections = [
+    Connection(YakuzaArenaTop, True_()),
+    Connection(AuxiliaryNavigation, True_())
+]
+
+AuxiliaryNavigation.connections = [
+    Connection(AuxiliaryNavigation, True_()),
+    Connection(SiloCheckpoint, True_())
+]
+
+SiloCheckpoint.connections = [
+    Connection(CentralReactorCoreBottom, True_()),
+    Connection(AuxiliaryNavigation, Has("Wave Beam"))
+]
+
+RestrictedSave.connections = [
+    Connection(RestrictedBackDoor, Has("Level 4 Keycard")),
+    Connection(RestrictedCorridor, Has("Level 4 Keycard"))
+]
+
+RestrictedCorridor.connections = [
+    Connection(RestrictedSave, Has("Level 4 Keycard")),
+    Connection(RestrictedAirlockBottom, Has("Level 4 Keycard"))
+]
+
+RestrictedAirlockBottom.connections = [
+    Connection(RestrictedCorridor, Has("Level 4 Keycard")),
+    Connection(RestrictedAirlockTop, TricksEnabled({(TrickType.SHINESPARK.value, TrickDifficulty.VANILLA.value)}))
+]
+
+RestrictedAirlockTop.connections = [
+    Connection(RestrictedNavigation, Has("Level 4 Keycard"))
+]
+
+RestrictedNavigation.connections = [
+    Connection(RestrictedAirlockTop, Has("Level 4 Keycard")),
+    Connection(RestrictedElevatorBottom, Has("Level 4 Keycard"))
+]
+
+HabitationDeckSave.connections = [
+    Connection(HabitationDeckElevatorTop, True_())
+]
+
+HabitationDeckEntrance.connections = [
+    Connection(HabitationDeckElevatorTop, Has("Level 2 Keycard")),
+    Connection(HabitationDeckBottomRight, Has("Level 2 Keycard")),
+    Connection(HabitationDeckMiddleRight, And(
+        Has("Level 2 Keycard"),
+        Or(
+            Has("Space Jump"),
+            And(
+                Has("Hi-Jump"),
+                Or(
+                    CanFreezeEnemies(),
+                    And(
+                        CanClearEnemy(enemy=Enemy.FUNE),
+                        TricksEnabled({
+                            (TrickType.JUMP_EXTEND.value, TrickDifficulty.ADVANCED.value),
+                            (TrickType.WALL_JUMP.value, TrickDifficulty.ADVANCED.value)
+                        })
+                    )
+                )
+            ),
+            And(
+                CanFreezeEnemies(),
+                TricksEnabled({
+                    (TrickType.FROZEN_ENEMIES.value, TrickDifficulty.BEGINNER.value),
+                    (TrickType.WALL_JUMP.value, TrickDifficulty.INTERMEDIATE.value)
+                })
+            ),
+        )
+    )),
+    Connection(HabitationDeckTopRight, And(
+        Has("Level 2 Keycard"),
+        CanReachRegion(HabitationDeckMiddleRight.name),
+        Or(
+            CanFreezeEnemies(),
+            Has("Space Jump")
+        )
+    ))
+]
+
+HabitationDeckTopRight.connections = [
+    Connection(HabitationDeckEntrance, Has("Level 2 Keycard")),
+    Connection(HabitationDeckMiddleLeft, True_()),
+    Connection(HabitationDeckMiddleRight, True_()),
+    Connection(HabitationDeckTopLeft, IsLocationCollected("Main Deck -- Habitation Deck -- Animals"))
+]
+
+HabitationDeckMiddleRight.connections = [
+    Connection(HabitationDeckEntrance, Has("Level 2 Keycard")),
+    Connection(HabitationDeckMiddleLeft, Has("Wave Beam")),
+    Connection(HabitationDeckBottomRight, True_())
+]
+
+HabitationDeckMiddleLeft.connections = [
+    Connection(HabitationDeckMiddleRight, True_()),
+    Connection(HabitationDeckBottomMiddle, True_()),
+    Connection(HabitationDeckBottomLeft, Has("Speed Booster"))
+]
+
+HabitationDeckBottomRight.connections = [
+    Connection(HabitationDeckEntrance, Has("Level 2 Keycard")),
+    Connection(HabitationDeckBottomMiddle, Has("Wave Beam"))
+]
+
+HabitationDeckBottomMiddle.connections = [
+    Connection(HabitationDeckBottomRight, True_()),
+    Connection(HabitationDeckBottomLeft, Has("Wave Beam"))
+]
+
+HabitationDeckBottomLeft.connections = [
+    Connection(HabitationDeckBottomMiddle, True_()),
+    Connection(HabitationVentilation, True_()),
+]
+
+HabitationVentilation.connections = [
+    Connection(HabitationDeckBottomLeft, True_()),
+    Connection(HabitationDeckTopLeft, Or(
+        Has("Space Jump"),
+        CanFreezeEnemies(3)
+    ))
+]
+
+HabitationDeckTopLeft.connections = [
+    Connection(HabitationVentilation, True_()),
+    Connection(HabitationDeckTopRight, IsLocationCollected("Main Deck -- Habitation Deck -- Animals"))
 ]
 
 # Item Locations
-AuxiliaryReactor.locations = [
-    FusionLocation("Main Deck -- Auxiliary Power Station", True, [])
+ArachnusArena.locations = [
+    FusionLocation("Main Deck -- Arachnus Arena -- Core X", True, And(
+        CanClearEnemy(enemy=Enemy.ARACHNUS),
+        CanClearEnemy(enemy=Enemy.CORE_X_MORPH),
+        Or(
+            HasEnergy(60),
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.BEGINNER.value)})
+        )
+    ))
 ]
 
-HabitationDeck.locations = [
-    FusionLocation("Main Deck -- Habitation Deck -- Animals", True, [
-        HasKeycard2("Enter Habitation Deck for Animals", [
-            # Habitation Deck Entrance Options
-            HasWaveBeam("Backwards Gates from Habitation Deck Foyer"),
-            HasSpaceJump("Fly to Top of Habitation Deck Foyer"),
-            CanFreezeEnemies("Freeze Fune/Namihe to Climb Habitation Deck Foyer", [
-                HasHiJump(),
-                CanDoAdvancedWallJump()
-            ], missile_ammo_needed=2),
-        ], [
-            # Traversal of Main Habitation Deck
-            HasWaveBeam("Backwards Gates"),
-            HasSpeedBooster("Vanilla Route")
-        ], [
-            # Habitation Ventilation
-            HasSpaceJump("Fly to Top of Habitation Ventilation"),
-            CanFreezeEnemies("Freeze Fune/Namihe to Climb Habitation Ventilation", missile_ammo_needed=3)
-        ])
-    ]),
-    FusionLocation("Main Deck -- Habitation Deck -- Lower Item", False, [
-        HasKeycard2("Enter Habitation Deck for Lower Item", [
-            # Habitation Deck Entrance Options
-            HasWaveBeam("Backwards Gates from Habitation Deck Foyer"),
-            HasSpaceJump("Fly to Top of Habitation Deck Foyer"),
-            CanFreezeEnemies("Freeze Fune/Namihe to Climb Habitation Deck Foyer", [
-                HasHiJump(),
-                CanDoAdvancedWallJump()
-            ], missile_ammo_needed=2),
-        ], [
-            # Traversal of Main Habitation Deck
-            HasWaveBeam("Backwards Gates"),
-            HasSpeedBooster("Vanilla Route")
-        ])
-    ])
+Attic.locations = [
+    FusionLocation("Main Deck -- Attic", False, True_())
 ]
 
-LowerArachnusArena.locations = [
-    FusionLocation("Main Deck -- Arachnus Arena -- Core X", True, [
-        CanDamageCoreX()
-    ])
+AuxiliaryPowerStation.locations = [
+    FusionLocation("Main Deck -- Auxiliary Power Station", True, True_())
 ]
 
-MainDeckHub.locations = [
-    FusionLocation("Main Deck -- Cubby Hole", False, [
-        HasMorph()
-    ]),
-    FusionLocation("Main Deck -- Genesis Speedway", False, [
-        CanPowerBomb("Can Enter Genesis Speedway Tunnel", [
-            CanBallJump()
-        ], power_bomb_ammo_needed=2)
-    ]),
-    FusionLocation("Main Deck -- Quarantine Bay", False, []),
-    FusionLocation("Main Deck -- Station Entrance", False, [
-        CanPowerBomb("Blow Up the Floor")
-    ]),
-    FusionLocation("Main Deck -- Sub-Zero Containment", False, [
-        HasKeycard3("Open Door with Level 3 Keycard", [
-            HasVaria()
-        ])
-    ])
+CubbyHole.locations = [
+    FusionLocation("Main Deck -- Cubby Hole", False, True_())
+]
+
+GenesisSpeedway.locations = [
+    FusionLocation("Main Deck -- Genesis Speedway", False, And(
+        CanPowerBomb(),
+        CanBallJump()
+    ))
+]
+
+HabitationDeckTopLeft.locations = [
+    FusionLocation("Main Deck -- Habitation Deck -- Animals", True, True_())
+]
+
+HabitationDeckBottomMiddle.locations = [
+    FusionLocation("Main Deck -- Habitation Deck -- Lower Item", False, True_())
+]
+
+MainElevatorCache.locations = [
+    FusionLocation("Main Deck -- Main Elevator Cache", False, Has("Speed Booster"))
 ]
 
 NexusStorage.locations = [
-    FusionLocation("Main Deck -- Nexus Storage", False, [
-        CanBallJump("Can Access Nexus Storage Item", [
-            PONRRequirement("PONR - Collect Nexus Storage Item",
-                            hard_items_needed={"Hi-Jump"}),
-            Requirement(hard_items_needed={"Bomb Data"}),
-            CanPowerBomb()
-        ])
-    ])
+    FusionLocation("Main Deck -- Nexus Storage", False, And(
+        CanBallJump(),
+        Or(
+            CanDestroyBombBlocks(tunnel=True),
+            And(
+                TricksEnabled({(TrickType.GENERIC_MOVEMENT.value, TrickDifficulty.BEGINNER.value)}),
+                Or(
+                    CanJumpHigh(),
+                    TricksEnabled({(TrickType.WALL_JUMP.value, TrickDifficulty.BEGINNER.value)})
+                ),
+            ),
+            CanPONR()
+        )
+    ))
 ]
 
-OperationsDeck.locations = [
-    FusionLocation("Main Deck -- Operations Deck Data Room", True, [])
+OperationsDeckData.locations = [
+    FusionLocation("Main Deck -- Operations Deck Data Room", True, True_())
 ]
 
-ReactorZone.locations = [
-    FusionLocation("Main Deck -- Silo Catwalk", False, [
-        CanDamageToughEnemy("Kill Pirates", enemy_hp=(90 * 2)),
-        CanDoAdvancedCombat("Avoid Pirates")
-    ]),
-    FusionLocation("Main Deck -- Silo Scaffolding", False, [
-        HasMorph("Grab Silo Scaffolding Item", [
-            PONRRequirement("PONR - Silo Scaffolding"),
-            CanJumpHigh(),
-            CanDoAdvancedWallJump()
-        ], [
-            CanDamageToughEnemy("Kill Pirates", enemy_hp=(90 * 5)),
-            CanDoExpertCombat("Avoid Pirates")
-        ])
-    ])
+OperationsVentilationBottom.locations = [
+    FusionLocation("Main Deck -- Operations Ventilation", False, True_())
 ]
 
-SectorHubElevatorTop.locations = [
-    FusionLocation("Main Deck -- Main Elevator Cache", False, [
-        HasSpeedBooster()
-    ])
+OperationsVentilationStorage.locations = [
+    FusionLocation("Main Deck -- Operations Ventilation Storage", False, True_())
+]
+
+QuarantineBay.locations = [
+    FusionLocation("Main Deck -- Quarantine Bay", False, CanClearEnemy(enemy=Enemy.HORNOAD_QUARANTINE_BAY))
+]
+
+RestrictedAirlockBottom.locations = [
+    FusionLocation("Main Deck -- Restricted Airlock", False, TricksEnabled({
+        (TrickType.SHINESPARK.value, TrickDifficulty.VANILLA.value)
+    }))
+]
+
+SiloCatwalkRight.locations = [
+    FusionLocation("Main Deck -- Silo Catwalk", False, True_())
+]
+
+SiloScaffoldingBottom.locations = [
+    FusionLocation("Main Deck -- Silo Scaffolding", False, Has("Morph Ball"))
+]
+
+StationEntrance.locations = [
+    FusionLocation("Main Deck -- Station Entrance", False, CanPowerBomb())
+]
+
+SubZeroContainment.locations = [
+    FusionLocation("Main Deck -- Sub-Zero Containment", False, Or(
+        Has("Varia Suit"),
+        And(
+            TricksEnabled({(TrickType.DAMAGE_RUN.value, TrickDifficulty.INTERMEDIATE.value)}),
+            HasEnergy(80)
+        )
+    ))
 ]
 
 UpperArachnusArena.locations = [
-    FusionLocation("Main Deck -- Arachnus Arena -- Upper Item", False, []),
-    FusionLocation("Main Deck -- Attic", False, [
-        HasMissile("Blast Open the Ceiling", missile_ammo_needed=1)
-    ]),
+    FusionLocation("Main Deck -- Arachnus Arena -- Upper Item", False, True_())
 ]
 
-VentilationZone.locations = [
-    FusionLocation("Main Deck -- Operations Ventilation", False, []),
-    FusionLocation("Main Deck -- Operations Ventilation Storage", False, [])
-]
-
-YakuzaZone.locations = [
-    FusionLocation("Main Deck -- Yakuza Arena", True, [
-        CanFightMidGameBoss(boss_hp=1000, immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"}),
-        CanFightMidGameBossOnAdvanced(boss_hp=1000, immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"}),
-        CanFightBossOnExpert(boss_hp=1000, immunities={"Beam", "Bomb", "Power Bomb", "Screw Attack"})
-    ])
+YakuzaArenaBottom.locations = [
+    FusionLocation("Main Deck -- Yakuza Arena", True, And(
+        CanClearEnemy(enemy=Enemy.YAKUZA),
+        CanClearEnemy(enemy=Enemy.CORE_X_SPACE),
+        Or(
+            TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.MASTER.value)}),
+            And(
+                HasEnergy(550),
+                HasAll("Charge Beam", "Wide Beam", "Super Missile", "Morph Ball")
+            ),
+            And(
+                HasEnergy(450),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.BEGINNER.value)}),
+                HasAll("Charge Beam", "Wide Beam", "Ice Missile", "Morph Ball")
+            ),
+            And(
+                HasEnergy(350),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.INTERMEDIATE.value)}),
+                HasAll("Charge Beam", "Diffusion Missile")
+            ),
+            And(
+                HasEnergy(250),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.ADVANCED.value)}),
+                Has("Charge Beam")
+            ),
+            And(
+                HasEnergy(150),
+                TricksEnabled({(TrickType.COMBAT.value, TrickDifficulty.EXPERT.value)})
+            )
+        )
+    ))
 ]

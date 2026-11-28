@@ -43,6 +43,16 @@ placeholder_names: set[str] = {"False Requirement Flag",
 
 valid_item_names = [*item_names, *[event[3] for event in events], *placeholder_names]
 
+def validate_items(items: set[str]) -> None:
+    assert all([item_name in valid_item_names
+                for item_name in items]), f"Invalid item name in: {items}"
+
+def validate_and_remove_placeholder(items: set[str]) -> set[str]:
+    validate_items(items)
+    return {item_name
+            for item_name in items
+            if item_name not in placeholder_names}
+
 # Everything not listed here has a quantity of one
 default_item_quantities = {
     "Nothing": 0,
